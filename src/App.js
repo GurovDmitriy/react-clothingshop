@@ -1,7 +1,9 @@
+import PageHome from "./pages/PageHome/PageHome"
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">hi react</header>
+    <div className="app">
+      <PageHome />
     </div>
   )
 }
