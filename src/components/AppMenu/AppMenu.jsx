@@ -14,11 +14,11 @@ function getAppMenuItems(items) {
 }
 
 AppMenu.defaultProps = {
-  dataItem: {},
+  dataItem: [],
 }
 
 AppMenu.propTypes = {
-  dataItem: PropTypes.object,
+  dataItem: PropTypes.array,
 }
 
 export default AppMenu
