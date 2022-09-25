@@ -1,5 +1,6 @@
 import AppMenuItem from "../AppMenuItem/AppMenuItem"
 import PropTypes from "prop-types"
+import "./index.scss"
 
 function AppMenu(props) {
   const appMenuItems = getAppMenuItems(props.dataItem)

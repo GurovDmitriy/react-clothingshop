@@ -27,8 +27,8 @@ module.exports = {
     "max-empty-lines": 1,
     "color-hex-length": "long",
     "color-hex-case": "lower",
-    // "selector-class-pattern": /\w+/,
-    // "at-rule-no-unknown": null,
-    // "selector-id-pattern": null,
+    "selector-class-pattern": /\w+/,
+    "at-rule-no-unknown": null,
+    "selector-id-pattern": null,
   },
 }

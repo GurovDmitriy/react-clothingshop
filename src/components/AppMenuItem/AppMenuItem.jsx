@@ -1,12 +1,15 @@
 import PropTypes from "prop-types"
+import "./index.scss"
 
 function AppMenuItem(props) {
   const { caption, description } = props.dataItem
 
   return (
     <div className="menu-item">
-      <h2 className="menu-item__caption">{caption}</h2>
-      <p className="menu-item__description">{description}</p>
+      <div className="menu-item__box-content">
+        <h2 className="menu-item__caption">{caption}</h2>
+        <p className="menu-item__description">{description}</p>
+      </div>
     </div>
   )
 }
