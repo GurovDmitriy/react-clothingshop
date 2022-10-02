@@ -1,4 +1,4 @@
-import AppMenuItem from "../AppMenuItem/AppMenuItem"
+import AppMenuItem from "../../components/AppMenuItem/AppMenuItem"
 import PropTypes from "prop-types"
 import "./index.scss"
 
