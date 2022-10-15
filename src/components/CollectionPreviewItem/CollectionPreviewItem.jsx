@@ -3,9 +3,20 @@ import "./styles.scss"
 
 function CollectionPreviewItem(props) {
   return (
-    <div className="collection-preview-list-item">
-      <img src={props.dataItem.imageUrl} alt="" width="200px" height="200px" />
-      <p>{props.dataItem.name}</p>
+    <div className="collection-preview-item">
+      <div className="collection-preview-item__image-box">
+        <img
+          className="collection-preview-item__image"
+          src={props.dataItem.imageUrl}
+          alt=""
+        />
+      </div>
+      <div className="collection-preview-item__caption">
+        {props.dataItem.name}
+      </div>
+      <div className="collection-preview-item__price">
+        ${props.dataItem.price}
+      </div>
     </div>
   )
 }

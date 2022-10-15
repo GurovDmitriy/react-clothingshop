@@ -1,6 +1,7 @@
 import shopCollections from "./data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { useLoaderData } from "react-router-dom"
+import "./styles.scss"
 
 export async function loader(props) {
   const collectionList = await new Promise((resolve) => {

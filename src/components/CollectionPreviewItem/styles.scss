@@ -1,4 +1,25 @@
-.menu {
-  display: flex;
-  flex-wrap: wrap;
+.collection-preview-item {
+  width: calc(25% - 20px);
+  margin: 10px;
+}
+
+.collection-preview-item__image-box {
+  position: relative;
+
+  width: 100%;
+  padding-bottom: 110%;
+  overflow: hidden;
+}
+
+.collection-preview-item__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+  width: 120%;
+  height: auto;
+  margin: 0;
+
+  line-height: 0;
 }

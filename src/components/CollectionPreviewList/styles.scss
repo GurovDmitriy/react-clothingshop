@@ -1,4 +1,17 @@
-.menu {
+.collection-preview-list {
+  margin-bottom: 40px;
+}
+
+.collection-preview-list__title {
+  display: block;
+  margin-bottom: 20px;
+
+  color: #000000;
+  text-decoration: none;
+}
+
+.collection-preview-list__preview {
   display: flex;
   flex-wrap: wrap;
+  margin: -10px;
 }

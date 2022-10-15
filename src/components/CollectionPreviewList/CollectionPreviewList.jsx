@@ -8,9 +8,12 @@ function CollectionPreviewList(props) {
 
   return (
     <div className="collection-preview-list">
-      <div className="collection-preview-list__title">
-        <Link to={props.dataItem.routeName}>{props.dataItem.title}</Link>
-      </div>
+      <Link
+        className="collection-preview-list__title"
+        to={props.dataItem.routeName}
+      >
+        {props.dataItem.title}
+      </Link>
       <div className="collection-preview-list__preview">
         {collectionPreviewItems}
       </div>

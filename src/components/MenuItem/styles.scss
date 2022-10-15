@@ -19,7 +19,18 @@
 
   padding: 10px;
 
+  color: #000000;
+
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+
   background-color: rgba($color: #ffffff, $alpha: 80%);
   border: 1px solid #000000;
   transform: translate(-50%, -50%);
+}
+
+.menu-item__description {
+  font-weight: 300;
+  font-size: 12px;
 }
