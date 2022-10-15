@@ -1,8 +1,8 @@
-import AppMenuItem from "../../components/AppMenuItem/AppMenuItem"
+import MenuItem from "../MenuItem/MenuItem"
 import PropTypes from "prop-types"
-import "./index.scss"
+import "./styles.scss"
 
-function AppMenu(props) {
+function Menu(props) {
   const appMenuItems = getAppMenuItems(props.dataItem)
 
   return <section className="menu">{appMenuItems}</section>
@@ -10,16 +10,16 @@ function AppMenu(props) {
 
 function getAppMenuItems(items) {
   return items.map((item) => {
-    return <AppMenuItem dataItem={item} key={item.id} />
+    return <MenuItem dataItem={item} key={item.id} />
   })
 }
 
-AppMenu.defaultProps = {
+Menu.defaultProps = {
   dataItem: [],
 }
 
-AppMenu.propTypes = {
+Menu.propTypes = {
   dataItem: PropTypes.array,
 }
 
-export default AppMenu
+export default Menu

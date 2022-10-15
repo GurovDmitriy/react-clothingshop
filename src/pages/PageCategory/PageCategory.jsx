@@ -1,53 +1,24 @@
-import { useLoaderData, Form, Link, Outlet } from "react-router-dom"
-import { listItems } from "./data"
+import shopCollections from "./data"
+import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
+import { useLoaderData } from "react-router-dom"
 
 export async function loader(props) {
-  const categoryItems = await new Promise((resolve) => {
-    const data = listItems.find(
-      (item) => item.category.toLowerCase() === props.params.category
+  const collectionList = await new Promise((resolve) => {
+    const data = shopCollections.filter(
+      (item) => item.routeName === props.params.category
     )
-    return resolve(data)
+    resolve(data)
   })
 
-  return { categoryItems }
-}
-
-export async function action(props) {
-  await new Promise((resolve) => {
-    const category = listItems.find(
-      (item) => item.category.toLowerCase() === props.params.category
-    )
-    const count = category.items.length + 1
-    const item = {
-      id: count,
-      name: `${category.category} ${count}`,
-      details: {
-        caption: `caption Hats ${count}`,
-        description: `description Hats ${count}`,
-      },
-    }
-    category.items.push(item)
-    resolve("new item added")
-  })
+  return { collectionList }
 }
 
 function PageCategory() {
-  const { categoryItems } = useLoaderData()
-  const categoryList = categoryItems.items.map((item) => {
-    return (
-      <div key={item.id}>
-        <Link to={`${item.id}`}>{item.name}</Link>
-      </div>
-    )
-  })
+  const { collectionList } = useLoaderData()
 
   return (
     <div className="page-category">
-      <Form method="post">
-        <button type="submit">add new</button>
-      </Form>
-      {categoryList}
-      <Outlet />
+      <CollectionPreview dataItem={collectionList} />
     </div>
   )
 }

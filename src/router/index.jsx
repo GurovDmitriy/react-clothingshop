@@ -1,13 +1,10 @@
 import PageHome, { loader as rootLoader } from "../pages/PageHome/PageHome"
-import PageCategory, {
-  loader as categoryLoader,
-  action as categoryAction,
-} from "../pages/PageCategory/PageCategory"
-import PageCategoryDetails, {
-  loader as detailsLoader,
-} from "../pages/PageCategoryDetails/PageCategoryDetails"
 import PageError from "../pages/PageError/PageError"
 import { createBrowserRouter } from "react-router-dom"
+import PageShop, { loader as shopLoader } from "../pages/PageShop/PageShop"
+import PageCategory, {
+  loader as categoryLoader,
+} from "../pages/PageCategory/PageCategory"
 
 const router = createBrowserRouter([
   {
@@ -17,15 +14,14 @@ const router = createBrowserRouter([
     loader: rootLoader,
   },
   {
-    path: "/:category",
-    element: <PageCategory />,
-    loader: categoryLoader,
-    action: categoryAction,
+    path: "/shop",
+    element: <PageShop />,
+    loader: shopLoader,
   },
   {
-    path: "/:category/:categoryId",
-    element: <PageCategoryDetails />,
-    loader: detailsLoader,
+    path: "/shop/:category",
+    element: <PageCategory />,
+    loader: categoryLoader,
   },
 ])
 

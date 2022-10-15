@@ -1,9 +1,10 @@
 import { useLoaderData } from "react-router-dom"
-import AppMenu from "../../containers/AppMenu/AppMenu"
-import { menu } from "./data"
+import Menu from "../../components/Menu/Menu"
+import menuData from "./data"
+import "./styles.scss"
 
 export async function loader() {
-  const menuList = await new Promise((resolve) => resolve(menu))
+  const menuList = await new Promise((resolve) => resolve(menuData))
   return { menuList }
 }
 
@@ -12,7 +13,7 @@ function PageHome() {
 
   return (
     <div className="page-home">
-      <AppMenu dataItem={menuList} />
+      <Menu dataItem={menuList} />
     </div>
   )
 }

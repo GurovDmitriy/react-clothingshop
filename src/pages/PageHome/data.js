@@ -1,32 +1,39 @@
-export const menu = [
+const menuData = [
   {
     id: 1,
     caption: "Hats",
     description: "Shop now",
-    link: "/hats",
+    link: "/shop/hats",
+    image: "images/hats.png",
   },
   {
     id: 2,
     caption: "Jackets",
     description: "Shop now",
-    link: "/jackets",
+    link: "/shop/jackets",
+    image: "images/jackets.png",
   },
   {
     id: 3,
     caption: "Sneakers",
     description: "Shop now",
-    link: "/sneakers",
+    link: "/shop/sneakers",
+    image: "images/sneakers.png",
   },
   {
     id: 4,
     caption: "Womens",
     description: "Shop now",
-    link: "/womens",
+    link: "/shop/womens",
+    image: "images/womens.png",
   },
   {
     id: 5,
     caption: "Mens",
     description: "Shop now",
-    link: "/mens",
+    link: "/shop/mens",
+    image: "images/men.png",
   },
 ]
+
+export default menuData
