@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import "./styles.scss"
 
 function ButtonIcon({ dataItem, handleClick }) {
   const tag = dataItem.tag
@@ -26,9 +27,12 @@ function ButtonIcon({ dataItem, handleClick }) {
 
 function Icon({ dataItem }) {
   const component = dataItem.component
+  const Icon = component
 
   return component ? (
-    <span className="button-icon__icon">{component}</span>
+    <span className="button-icon__icon">
+      <Icon />
+    </span>
   ) : null
 }
 
@@ -40,10 +44,10 @@ function getClassLabel(dataItem) {
   const data = ["button-icon__label"]
 
   if (dataItem.isVisible === false) {
-    data.push("button-icon__icon--hidden")
+    data.push("button-icon__label--hidden")
   }
 
-  return data
+  return data.join(" ")
 }
 
 ButtonIcon.defaultProps = {

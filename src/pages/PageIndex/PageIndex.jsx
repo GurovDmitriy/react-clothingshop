@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom"
 import MenuList from "../../components/MenuList/MenuList"
 import menuData from "./data"
-import "./styles.scss"
 
 export async function loader() {
   const menuList = await new Promise((resolve) => resolve(menuData))

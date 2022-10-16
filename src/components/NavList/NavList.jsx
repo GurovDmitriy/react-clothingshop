@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import ButtonIcon from "../ButtonIcon/ButtonIcon"
+import "./styles.scss"
 
 function NavList({ dataItem }) {
   const listItems = getListsItems(dataItem)

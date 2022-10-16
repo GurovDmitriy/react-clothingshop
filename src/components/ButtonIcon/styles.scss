@@ -1,0 +1,54 @@
+@import "../../assets/styles/mixins";
+
+.button-icon {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 10px;
+
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  vertical-align: middle;
+
+  background: none;
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.button-icon__label {
+  margin-right: 4px;
+
+  &--hidden {
+    @include sr-only;
+  }
+
+  &:only-child {
+    margin-right: 0;
+  }
+}
+
+.button-icon__icon {
+  position: relative;
+
+  display: inline-block;
+  width: 20px;
+
+  font-size: 14px;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.button-icon__icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100%;
+  height: auto;
+
+  transform: translate(-50%, -50%);
+}

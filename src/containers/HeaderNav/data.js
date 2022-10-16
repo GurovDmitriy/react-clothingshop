@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { ReactComponent as Cart } from "../../assets/images/cart.svg"
 
 const dataNav = [
   {
@@ -22,6 +23,40 @@ const dataNav = [
     id: 2,
     label: {
       isVisible: true,
+      content: "Contact",
+      value: "contact",
+    },
+    tag: {
+      name: Link,
+      type: null,
+      href: null,
+      to: "/contact",
+    },
+    icon: {
+      component: null,
+    },
+  },
+  {
+    id: 3,
+    label: {
+      isVisible: true,
+      content: "Sign in",
+      value: "singIn",
+    },
+    tag: {
+      name: Link,
+      type: null,
+      href: null,
+      to: "/sign",
+    },
+    icon: {
+      component: null,
+    },
+  },
+  {
+    id: 4,
+    label: {
+      isVisible: false,
       content: "Cart",
       value: "cart",
     },
@@ -32,7 +67,7 @@ const dataNav = [
       to: null,
     },
     icon: {
-      component: null,
+      component: Cart,
     },
   },
 ]

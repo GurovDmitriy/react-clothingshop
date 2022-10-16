@@ -1,7 +1,11 @@
-.header-nav {
+.nav-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  margin: 0 -14px;
+}
+
+.nav-list .button-icon {
+  margin: 0 4px;
 }
