@@ -1,13 +1,13 @@
 import PropTypes from "prop-types"
 
-function ButtonIcon({ dataItem }) {
+function ButtonIcon({ dataItem, handleClick }) {
   const tag = dataItem.tag
   const label = dataItem.label
   const icon = dataItem.icon
   const CustomTag = tag.name
 
-  const handleClick = () => {
-    tag.handleClick(dataItem)
+  const emitButtonClick = () => {
+    handleClick(dataItem)
   }
 
   return (
@@ -16,7 +16,7 @@ function ButtonIcon({ dataItem }) {
       href={tag.href}
       type={tag.type}
       className="button-icon"
-      onClick={handleClick}
+      onClick={emitButtonClick}
     >
       <Label dataItem={label} />
       <Icon dataItem={icon} />
@@ -64,10 +64,13 @@ ButtonIcon.defaultProps = {
       component: null,
     },
   },
+
+  handleClick: () => console.log("click"),
 }
 
 ButtonIcon.propTypes = {
   dataItem: PropTypes.object,
+  handleClick: PropTypes.func,
 }
 
 Icon.defaultProps = {

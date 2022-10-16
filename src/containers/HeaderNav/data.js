@@ -13,7 +13,6 @@ const dataNav = [
       type: null,
       href: null,
       to: "/shop",
-      handleClick: null,
     },
     icon: {
       component: null,
@@ -31,7 +30,6 @@ const dataNav = [
       type: "button",
       href: null,
       to: null,
-      handleClick: (data) => console.log(data),
     },
     icon: {
       component: null,
