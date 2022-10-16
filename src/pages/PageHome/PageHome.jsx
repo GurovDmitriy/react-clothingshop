@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom"
-import Menu from "../../components/Menu/Menu"
+import MenuList from "../../components/MenuList/MenuList"
+import HeaderNav from "../../containers/HeaderNav/HeaderNav"
 import menuData from "./data"
 import "./styles.scss"
 
@@ -13,7 +14,8 @@ function PageHome() {
 
   return (
     <div className="page-home">
-      <Menu dataItem={menuList} />
+      <HeaderNav />
+      <MenuList dataItem={menuList} />
     </div>
   )
 }
