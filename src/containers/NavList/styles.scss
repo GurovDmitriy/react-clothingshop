@@ -3,9 +3,13 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin: 0 -14px;
+  margin: 0 -10px;
 }
 
-.nav-list .button-icon {
+.nav-list__button-simple {
+  margin: 0 4px;
+}
+
+.nav-list__button-icon {
   margin: 0 4px;
 }

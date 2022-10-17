@@ -1,8 +1,7 @@
 import "./styles.scss"
 import { ReactComponent as Logo } from "../../assets/images/crown.svg"
 import LogoBox from "../../components/LogoBox/LogoBox"
-import NavList from "../../components/NavList/NavList"
-import dataNav from "./data"
+import NavList from "../NavList/NavList"
 
 const logoBoxProps = {
   logo: <Logo />,
@@ -13,7 +12,7 @@ function HeaderNav() {
   return (
     <div className="header-nav">
       <LogoBox dataItem={logoBoxProps} />
-      <NavList dataItem={dataNav} />
+      <NavList />
     </div>
   )
 }

@@ -2,10 +2,21 @@ import PropTypes from "prop-types"
 import "./styles.scss"
 
 function ButtonIcon({ dataItem, handleClick }) {
-  const tag = dataItem.tag
-  const label = dataItem.label
-  const icon = dataItem.icon
-  const CustomTag = tag.name
+  const {
+    to,
+    href,
+    target,
+    isVisibleLabel,
+    icon,
+    type,
+    tag,
+    customClass,
+    label,
+  } = dataItem
+
+  const CustomTag = tag
+  const Icon = icon
+  const classLabelHidden = !isVisibleLabel ? "button-icon__label--hidden" : null
 
   const emitButtonClick = () => {
     handleClick(dataItem)
@@ -13,90 +24,42 @@ function ButtonIcon({ dataItem, handleClick }) {
 
   return (
     <CustomTag
-      to={tag.to}
-      href={tag.href}
-      type={tag.type}
-      className="button-icon"
+      to={to}
+      href={href}
+      type={type}
+      target={target}
+      className={`button-icon ${customClass}__button-icon`}
       onClick={emitButtonClick}
     >
-      <Label dataItem={label} />
-      <Icon dataItem={icon} />
+      <span className={`button-icon__label ${classLabelHidden}`}>{label}</span>
+      <span className="button-icon__icon-box">
+        <Icon className="button-icon__icon" />
+      </span>
     </CustomTag>
   )
-}
-
-function Icon({ dataItem }) {
-  const component = dataItem.component
-  const Icon = component
-
-  return component ? (
-    <span className="button-icon__icon">
-      <Icon />
-    </span>
-  ) : null
-}
-
-function Label({ dataItem }) {
-  return <span className={getClassLabel(dataItem)}>{dataItem.content}</span>
-}
-
-function getClassLabel(dataItem) {
-  const data = ["button-icon__label"]
-
-  if (dataItem.isVisible === false) {
-    data.push("button-icon__label--hidden")
-  }
-
-  return data.join(" ")
 }
 
 ButtonIcon.defaultProps = {
   dataItem: {
     id: 1,
-    label: {
-      isVisible: true,
-      content: "Shop",
-      value: "shop",
-    },
-    tag: {
-      name: "button",
-      type: null,
-      href: null,
-      to: "/shop",
-    },
-    icon: {
-      component: null,
-    },
+    label: "Button",
+    isVisibleLabel: false,
+    value: "button",
+    tag: "button",
+    href: null,
+    target: null,
+    type: "button",
+    to: null,
+    customClass: null,
+    icon: null,
   },
 
-  handleClick: () => console.log("click"),
+  handleClick: () => {},
 }
 
 ButtonIcon.propTypes = {
   dataItem: PropTypes.object,
   handleClick: PropTypes.func,
-}
-
-Icon.defaultProps = {
-  dataItem: {
-    component: null,
-  },
-}
-
-Icon.propTypes = {
-  dataItem: PropTypes.object,
-}
-
-Label.defaultProps = {
-  dataItem: {
-    isVisible: true,
-    content: "Shop",
-    value: "shop",
-  },
-}
-
-Label.propTypes = {
-  dataItem: PropTypes.object,
 }
 
 export default ButtonIcon
