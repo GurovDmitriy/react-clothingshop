@@ -17,9 +17,11 @@ class FormSignIn extends React.Component {
     console.log(evt)
   }
 
-  handleInput(evt, value) {
-    console.log(evt)
-    console.log(value)
+  handleInput(evt) {
+    const { value, name } = evt.target
+    this.setState({
+      [name]: value,
+    })
   }
 
   render() {
@@ -37,7 +39,7 @@ class FormSignIn extends React.Component {
           onSubmit={this.handleSubmit}
         >
           <input
-            onInput={(evt) => this.handleInput(evt, "email")}
+            onInput={this.handleInput}
             type="email"
             name="email"
             placeholder="email"
@@ -46,7 +48,7 @@ class FormSignIn extends React.Component {
             value={this.state.email}
           />
           <input
-            onInput={(evt) => this.handleInput(evt, "password")}
+            onInput={this.handleInput}
             type="password"
             name="password"
             placeholder="password"
