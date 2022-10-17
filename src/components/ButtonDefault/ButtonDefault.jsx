@@ -35,8 +35,6 @@ ButtonDefault.defaultProps = {
     to: null,
     customClass: null,
   },
-
-  handleClick: () => {},
 }
 
 ButtonDefault.propTypes = {

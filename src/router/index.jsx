@@ -6,6 +6,7 @@ import PageShop, { loader as shopLoader } from "../pages/PageShop/PageShop"
 import PageCategory, {
   loader as categoryLoader,
 } from "../pages/PageCategory/PageCategory"
+import PageSign from "../pages/PageSign/PageSign"
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
         path: "shop/:category",
         element: <PageCategory />,
         loader: categoryLoader,
+      },
+
+      {
+        path: "sign",
+        element: <PageSign />,
       },
     ],
   },
