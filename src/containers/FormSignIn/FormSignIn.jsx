@@ -1,6 +1,8 @@
 import React from "react"
 import InputBox from "../../components/InputBox/InputBox"
-import { configInput } from "../../components/InputBox/data"
+import { configInput, configButton } from "./data"
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
+import "./styles.scss"
 
 class FormSignIn extends React.Component {
   constructor(props) {
@@ -9,17 +11,14 @@ class FormSignIn extends React.Component {
       email: "",
       password: "",
     }
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleInput = this.handleInput.bind(this)
   }
 
-  handleSubmit(evt) {
+  handleSubmit = (evt) => {
     evt.preventDefault()
     console.log(evt)
   }
 
-  handleInput(evt) {
+  handleInput = (evt) => {
     const { value, name } = evt.target
     this.setState({
       [name]: value,
@@ -29,10 +28,10 @@ class FormSignIn extends React.Component {
   render() {
     return (
       <div className="form-sing-in">
-        <p className="form-sign-in__caption">I already have an account</p>
-        <span className="form-sing-in__description">
+        <h3 className="form-sign-in__caption">I already have an account</h3>
+        <p className="form-sing-in__description">
           Sing in with your email and password
-        </span>
+        </p>
 
         <form
           className="form-sign-in__form"
@@ -43,14 +42,22 @@ class FormSignIn extends React.Component {
           <InputBox
             onInput={this.handleInput}
             value={this.state.email}
-            config={configInput.email}
+            dataItem={configInput.email}
           />
           <InputBox
             onInput={this.handleInput}
             value={this.state.password}
-            config={configInput.password}
+            dataItem={configInput.password}
           />
-          <button type="submit">submit</button>
+
+          <div className="form-sign-in__button-box">
+            <ButtonDefault dataItem={configButton.signIn}>
+              Sign in
+            </ButtonDefault>
+            <ButtonDefault dataItem={configButton.signGoogle}>
+              Sign in with Google
+            </ButtonDefault>
+          </div>
         </form>
       </div>
     )

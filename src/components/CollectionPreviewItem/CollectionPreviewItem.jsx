@@ -1,22 +1,18 @@
 import PropTypes from "prop-types"
 import "./styles.scss"
 
-function CollectionPreviewItem(props) {
+function CollectionPreviewItem({ dataItem }) {
   return (
     <div className="collection-preview-item">
       <div className="collection-preview-item__image-box">
         <img
           className="collection-preview-item__image"
-          src={props.dataItem.imageUrl}
+          src={dataItem.imageUrl}
           alt=""
         />
       </div>
-      <div className="collection-preview-item__caption">
-        {props.dataItem.name}
-      </div>
-      <div className="collection-preview-item__price">
-        ${props.dataItem.price}
-      </div>
+      <div className="collection-preview-item__caption">{dataItem.name}</div>
+      <div className="collection-preview-item__price">${dataItem.price}</div>
     </div>
   )
 }

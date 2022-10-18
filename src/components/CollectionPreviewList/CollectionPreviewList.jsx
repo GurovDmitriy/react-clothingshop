@@ -3,16 +3,13 @@ import { Link } from "react-router-dom"
 import "./styles.scss"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
 
-function CollectionPreviewList(props) {
-  const collectionPreviewItems = getCollectionPreviewItems(props)
+function CollectionPreviewList({ dataItem }) {
+  const collectionPreviewItems = getCollectionPreviewItems(dataItem)
 
   return (
     <div className="collection-preview-list">
-      <Link
-        className="collection-preview-list__title"
-        to={props.dataItem.routeName}
-      >
-        {props.dataItem.title}
+      <Link className="collection-preview-list__title" to={dataItem.routeName}>
+        {dataItem.title}
       </Link>
       <div className="collection-preview-list__preview">
         {collectionPreviewItems}
@@ -21,8 +18,8 @@ function CollectionPreviewList(props) {
   )
 }
 
-function getCollectionPreviewItems(props) {
-  return props.dataItem.items.map((item) => {
+function getCollectionPreviewItems(dataItem) {
+  return dataItem.items.map((item) => {
     return <CollectionPreviewItem dataItem={item} key={item.id} />
   })
 }

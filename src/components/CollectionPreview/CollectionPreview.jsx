@@ -2,14 +2,14 @@ import PropTypes from "prop-types"
 import "./styles.scss"
 import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
 
-function CollectionPreview(props) {
-  const collectionPreviewList = getCollectionPreviewList(props)
+function CollectionPreview({ dataItem }) {
+  const collectionPreviewList = getCollectionPreviewList(dataItem)
 
   return <div className="collection-preview">{collectionPreviewList}</div>
 }
 
-function getCollectionPreviewList(props) {
-  return props.dataItem.map((item) => {
+function getCollectionPreviewList(dataItem) {
+  return dataItem.map((item) => {
     return <CollectionPreviewList key={item.id} dataItem={item} />
   })
 }

@@ -1,24 +1,23 @@
 import PropTypes from "prop-types"
 import "./styles.scss"
 
-function ButtonSimple({ dataItem, handleClick }) {
-  const { to, href, type, tag, customClass, label, target } = dataItem
-  const CustomTag = tag
+function ButtonSimple({ dataItem, handleClick, children }) {
+  const CustomTag = dataItem.tag
 
   const emitButtonClick = () => {
-    handleClick(dataItem)
+    if (handleClick) handleClick(dataItem)
   }
 
   return (
     <CustomTag
-      to={to}
-      href={href}
-      type={type}
-      target={target}
-      className={`button-simple ${customClass}__button-simple`}
+      to={dataItem.to}
+      href={dataItem.href}
+      type={dataItem.type}
+      target={dataItem.target}
+      className={`button-simple ${dataItem.customClass}__button-simple`}
       onClick={emitButtonClick}
     >
-      {label}
+      {children || dataItem.label}
     </CustomTag>
   )
 }
@@ -35,13 +34,12 @@ ButtonSimple.defaultProps = {
     to: null,
     customClass: null,
   },
-
-  handleClick: () => {},
 }
 
 ButtonSimple.propTypes = {
   dataItem: PropTypes.object,
   handleClick: PropTypes.func,
+  children: PropTypes.any,
 }
 
 export default ButtonSimple

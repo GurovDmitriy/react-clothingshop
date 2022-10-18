@@ -1,22 +1,23 @@
 import PropTypes from "prop-types"
+import "./styles.scss"
 
-function InputBox({ config, onInput, value }) {
+function InputBox({ dataItem, onInput, value }) {
   return (
-    <div className={`input-box ${config.customClass}__input-box`}>
+    <div className={`input-box ${dataItem.customClass}__input-box`}>
       <label
-        className={getClassLabel(config.isVisibleLabel)}
-        htmlFor={config.id}
+        className={getClassLabel(dataItem.isVisibleLabel)}
+        htmlFor={dataItem.id}
       >
-        {config.label}
+        {dataItem.label}
       </label>
       <input
         className="input-box__input"
         onInput={onInput}
-        type={config.type}
-        name={config.name}
-        placeholder={config.placeholder}
-        id={config.id}
-        required={config.required}
+        type={dataItem.type}
+        name={dataItem.name}
+        placeholder={dataItem.placeholder}
+        id={dataItem.id}
+        required={dataItem.required}
         value={value}
       />
     </div>
@@ -34,7 +35,7 @@ function getClassLabel(isVisibleLabel) {
 }
 
 InputBox.defaultProps = {
-  config: {
+  dataItem: {
     type: "text",
     name: "name",
     placeholder: "name",
@@ -50,7 +51,7 @@ InputBox.defaultProps = {
 InputBox.propTypes = {
   onInput: PropTypes.func,
   value: PropTypes.any,
-  config: PropTypes.object,
+  dataItem: PropTypes.object,
 }
 
 export default InputBox

@@ -1,24 +1,23 @@
 import PropTypes from "prop-types"
 import "./styles.scss"
 
-function ButtonDefault({ dataItem, handleClick }) {
-  const { to, href, type, tag, customClass, label, target } = dataItem
-  const CustomTag = tag
+function ButtonDefault({ dataItem, handleClick, children }) {
+  const CustomTag = dataItem.tag
 
   const emitButtonClick = () => {
-    handleClick(dataItem)
+    if (handleClick) handleClick(dataItem)
   }
 
   return (
     <CustomTag
-      to={to}
-      href={href}
-      type={type}
-      target={target}
-      className={`button-default ${customClass}__button-default`}
+      to={dataItem.to}
+      href={dataItem.href}
+      type={dataItem.type}
+      target={dataItem.target}
+      className={`button-default ${dataItem.customClass}__button-default`}
       onClick={emitButtonClick}
     >
-      {label}
+      {children || dataItem.label}
     </CustomTag>
   )
 }
@@ -40,6 +39,7 @@ ButtonDefault.defaultProps = {
 ButtonDefault.propTypes = {
   dataItem: PropTypes.object,
   handleClick: PropTypes.func,
+  children: PropTypes.any,
 }
 
 export default ButtonDefault
