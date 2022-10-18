@@ -1,4 +1,6 @@
 import React from "react"
+import InputBox from "../../components/InputBox/InputBox"
+import { configInput } from "../../components/InputBox/data"
 
 class FormSignIn extends React.Component {
   constructor(props) {
@@ -38,25 +40,16 @@ class FormSignIn extends React.Component {
           method="POST"
           onSubmit={this.handleSubmit}
         >
-          <input
+          <InputBox
             onInput={this.handleInput}
-            type="email"
-            name="email"
-            placeholder="email"
-            id="email-field"
-            required={true}
             value={this.state.email}
+            config={configInput.email}
           />
-          <input
+          <InputBox
             onInput={this.handleInput}
-            type="password"
-            name="password"
-            placeholder="password"
-            id="password-field"
-            required={true}
             value={this.state.password}
+            config={configInput.password}
           />
-
           <button type="submit">submit</button>
         </form>
       </div>
