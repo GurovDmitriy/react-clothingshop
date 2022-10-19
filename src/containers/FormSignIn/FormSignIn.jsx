@@ -31,7 +31,7 @@ class FormSignIn extends React.Component {
 
   render() {
     return (
-      <div className="form-sing-in">
+      <div className="form-sign-in">
         <h3 className="form-sign-in__caption">I already have an account</h3>
         <p className="form-sing-in__description">
           Sing in with your email and password

@@ -7,7 +7,7 @@ export const configInput = {
     placeholder: "email",
     label: "email",
     isVisibleLabel: false,
-    className: "form-sign",
+    className: "form-sign-in",
   },
   password: {
     type: "password",
