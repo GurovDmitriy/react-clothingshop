@@ -8,10 +8,6 @@ function ButtonIcon({ dataItem, handleClick, children }) {
     ? "button-icon__label--hidden"
     : null
 
-  const emitButtonClick = () => {
-    if (handleClick) handleClick(dataItem)
-  }
-
   return (
     <CustomTag
       to={dataItem.to}
@@ -19,7 +15,7 @@ function ButtonIcon({ dataItem, handleClick, children }) {
       type={dataItem.type}
       target={dataItem.target}
       className={`button-icon ${dataItem.customClass}__button-icon`}
-      onClick={emitButtonClick}
+      onClick={handleClick}
     >
       <span className={`button-icon__label ${classLabelHidden}`}>
         {children || dataItem.label}

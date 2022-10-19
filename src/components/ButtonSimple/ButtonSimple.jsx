@@ -4,10 +4,6 @@ import "./styles.scss"
 function ButtonSimple({ dataItem, handleClick, children }) {
   const CustomTag = dataItem.tag
 
-  const emitButtonClick = () => {
-    if (handleClick) handleClick(dataItem)
-  }
-
   return (
     <CustomTag
       to={dataItem.to}
@@ -15,7 +11,7 @@ function ButtonSimple({ dataItem, handleClick, children }) {
       type={dataItem.type}
       target={dataItem.target}
       className={`button-simple ${dataItem.customClass}__button-simple`}
-      onClick={emitButtonClick}
+      onClick={handleClick}
     >
       {children || dataItem.label}
     </CustomTag>

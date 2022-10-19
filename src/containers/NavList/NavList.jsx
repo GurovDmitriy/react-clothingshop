@@ -7,14 +7,17 @@ import "./styles.scss"
 function NavList() {
   const listItems = getListsItems(dataNav)
 
-  const handleClick = (data) => {
-    console.log(data)
+  const handleClickCart = () => {
+    console.log("cart")
   }
 
   return (
     <div className="nav-list">
       {listItems}
-      <ButtonIcon dataItem={dataCartButton} handleClick={handleClick} />
+      <ButtonIcon
+        dataItem={dataCartButton}
+        handleClick={() => handleClickCart()}
+      />
     </div>
   )
 }

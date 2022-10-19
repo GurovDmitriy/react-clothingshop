@@ -13,6 +13,10 @@ class FormSignIn extends React.Component {
     }
   }
 
+  handleClickSign = () => {
+    console.log("sign")
+  }
+
   handleSubmit = (evt) => {
     evt.preventDefault()
     console.log(evt)
@@ -54,7 +58,10 @@ class FormSignIn extends React.Component {
             <ButtonDefault dataItem={configButton.signIn}>
               Sign in
             </ButtonDefault>
-            <ButtonDefault dataItem={configButton.signGoogle}>
+            <ButtonDefault
+              dataItem={configButton.signGoogle}
+              handleClick={() => this.handleClickSign()}
+            >
               Sign in with Google
             </ButtonDefault>
           </div>
