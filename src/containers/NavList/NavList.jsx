@@ -1,15 +1,19 @@
-import PropTypes from "prop-types"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
 import { dataNav, dataCartButton } from "./data"
+import { auth } from "../../firebase/firebaseConfig"
 import "./styles.scss"
 
 function NavList() {
-  const listItems = getListsItems(dataNav)
+  const handleSignOut = async () => {
+    await auth.signOut()
+  }
 
   const handleClickCart = () => {
     console.log("cart")
   }
+
+  const listItems = getListsItems(dataNav, handleSignOut)
 
   return (
     <div className="nav-list">
@@ -22,16 +26,26 @@ function NavList() {
   )
 }
 
-function getListsItems(dataItem) {
-  return dataItem.map((el) => <ButtonSimple key={el.id} dataItem={el} />)
-}
+function getListsItems(dataNav, handleSignOut) {
+  const isExistCurrentUser = auth && auth.currentUser
 
-NavList.defaultProps = {
-  dataItem: [],
-}
+  return dataNav.map((el) => {
+    if (isExistCurrentUser && el.value === "signIn") {
+      return null
+    }
 
-NavList.propTypes = {
-  dataItem: PropTypes.array,
+    if (!isExistCurrentUser && el.value === "signOut") {
+      return null
+    }
+
+    if (isExistCurrentUser && el.value === "signOut") {
+      return (
+        <ButtonSimple key={el.id} dataItem={el} handleClick={handleSignOut} />
+      )
+    }
+
+    return <ButtonSimple key={el.id} dataItem={el} />
+  })
 }
 
 export default NavList
