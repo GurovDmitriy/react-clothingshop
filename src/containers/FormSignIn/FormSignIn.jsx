@@ -22,10 +22,9 @@ class FormSignIn extends React.Component {
     console.log(evt)
   }
 
-  handleInput = (evt) => {
-    const { value, name } = evt.target
+  handleInput = (evt, { name }) => {
     this.setState({
-      [name]: value,
+      [name]: evt.target.value,
     })
   }
 
@@ -44,12 +43,16 @@ class FormSignIn extends React.Component {
           onSubmit={this.handleSubmit}
         >
           <InputBox
-            onInput={this.handleInput}
+            onInput={(evt) => {
+              this.handleInput(evt, { name: "email" })
+            }}
             value={this.state.email}
             dataItem={configInput.email}
           />
           <InputBox
-            onInput={this.handleInput}
+            oonInput={(evt) => {
+              this.handleInput(evt, { name: "password" })
+            }}
             value={this.state.password}
             dataItem={configInput.password}
           />

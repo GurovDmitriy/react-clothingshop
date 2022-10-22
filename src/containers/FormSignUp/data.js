@@ -2,7 +2,7 @@ export const configInput = {
   name: {
     type: "name",
     name: "name",
-    id: "name-field",
+    id: "form-sign-up-name-field",
     required: true,
     placeholder: "Display Name",
     label: "Display Name",
@@ -12,7 +12,7 @@ export const configInput = {
   email: {
     type: "email",
     name: "email",
-    id: "email-field",
+    id: "form-sign-up-email-field",
     required: true,
     placeholder: "email",
     label: "email",
@@ -22,7 +22,7 @@ export const configInput = {
   password: {
     type: "password",
     name: "password",
-    id: "password-field",
+    id: "form-sign-up-password-field",
     required: true,
     placeholder: "password",
     label: "password",
@@ -32,7 +32,7 @@ export const configInput = {
   passwordConfirm: {
     type: "password",
     name: "password-confirm",
-    id: "password-confirm-field",
+    id: "form-sign-up-password-confirm-field",
     required: true,
     placeholder: "Confirm Password",
     label: "Confirm Password",

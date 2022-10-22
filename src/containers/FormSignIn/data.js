@@ -2,7 +2,7 @@ export const configInput = {
   email: {
     type: "email",
     name: "email",
-    id: "email-field",
+    id: "form-sign-in-email-field",
     required: true,
     placeholder: "email",
     label: "email",
@@ -12,7 +12,7 @@ export const configInput = {
   password: {
     type: "password",
     name: "password",
-    id: "password-field",
+    id: "form-sign-in-password-field",
     required: true,
     placeholder: "password",
     label: "password",

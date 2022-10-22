@@ -1,7 +1,8 @@
 import React from "react"
 import InputBox from "../../components/InputBox/InputBox"
-import { configInput, configButton } from "./data"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
+import { configInput, configButton } from "./data"
+import api from "../../api"
 import "./styles.scss"
 
 class FormSignUp extends React.Component {
@@ -15,15 +16,17 @@ class FormSignUp extends React.Component {
     }
   }
 
-  handleSubmit = (evt) => {
+  handleSubmit = async (evt) => {
     evt.preventDefault()
-    console.log(evt)
+    await api.auth.createUser({
+      email: this.state.email,
+      password: this.state.password,
+    })
   }
 
-  handleInput = (evt) => {
-    const { value, name } = evt.target
+  handleInput = (evt, { name }) => {
     this.setState({
-      [name]: value,
+      [name]: evt.target.value,
     })
   }
 
@@ -42,22 +45,30 @@ class FormSignUp extends React.Component {
           onSubmit={this.handleSubmit}
         >
           <InputBox
-            onInput={this.handleInput}
-            value={this.state.email}
+            onInput={(evt) => {
+              this.handleInput(evt, { name: "name" })
+            }}
+            value={this.state.name}
             dataItem={configInput.name}
           />
           <InputBox
-            onInput={this.handleInput}
+            onInput={(evt) => {
+              this.handleInput(evt, { name: "email" })
+            }}
             value={this.state.email}
             dataItem={configInput.email}
           />
           <InputBox
-            onInput={this.handleInput}
+            onInput={(evt) => {
+              this.handleInput(evt, { name: "password" })
+            }}
             value={this.state.password}
             dataItem={configInput.password}
           />
           <InputBox
-            onInput={this.handleInput}
+            onInput={(evt) => {
+              this.handleInput(evt, { name: "passwordConfirm" })
+            }}
             value={this.state.passwordConfirm}
             dataItem={configInput.passwordConfirm}
           />
