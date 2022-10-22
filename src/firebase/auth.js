@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth"
@@ -10,6 +11,19 @@ const provider = new GoogleAuthProvider()
 async function createUserFB({ email, password }) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+    return userCredential.user
+  } catch (err) {
+    console.error(`Oops! ${err.code} ${err.message}`)
+  }
+}
+
+async function signInFB({ email, password }) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
       password
@@ -37,5 +51,6 @@ async function signInWithGoogleFB() {
 
 export default {
   createUserFB,
+  signInFB,
   signInWithGoogleFB,
 }

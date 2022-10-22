@@ -4,11 +4,16 @@ function createUser({ email, password }) {
   return firebaseSDK.auth.createUserFB({ email, password })
 }
 
-function signInWithGoogleFB() {
+function signIn({ email, password }) {
+  return firebaseSDK.auth.signInFB({ email, password })
+}
+
+function signInWithGoogle() {
   return firebaseSDK.auth.signInWithGoogleFB()
 }
 
 export default {
   createUser,
-  signInWithGoogleFB,
+  signIn,
+  signInWithGoogle,
 }

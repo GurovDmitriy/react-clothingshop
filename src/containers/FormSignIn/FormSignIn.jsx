@@ -1,78 +1,81 @@
-import React from "react"
 import InputBox from "../../components/InputBox/InputBox"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import api from "../../api"
 import { configInput, configButton } from "./data"
 import "./styles.scss"
+import { useState } from "react"
 
-class FormSignIn extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: "",
-      password: "",
-    }
+function FormSignIn() {
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  })
+
+  async function handleClickSign() {
+    await api.auth.signInWithGoogle()
   }
 
-  handleClickSign = async () => {
-    await api.auth.signInWithGoogleFB()
-  }
-
-  handleSubmit = (evt) => {
+  async function handleSubmit(evt) {
     evt.preventDefault()
-    console.log(evt)
+
+    await api.auth.signIn({
+      email: state.email,
+      password: state.password,
+    })
   }
 
-  handleInput = (evt, { name }) => {
-    this.setState({
+  function handleInput(evt, { name }) {
+    setState({
+      ...state,
       [name]: evt.target.value,
     })
   }
 
-  render() {
-    return (
-      <div className="form-sign-in">
-        <h3 className="form-sign-in__caption">I already have an account</h3>
-        <p className="form-sing-in__description">
-          Sing in with your email and password
-        </p>
+  return (
+    <div className="form-sign-in">
+      <h3 className="form-sign-in__caption">I already have an account</h3>
+      <p className="form-sing-in__description">
+        Sing in with your email and password
+      </p>
 
-        <form
-          className="form-sign-in__form"
-          action=""
-          method="POST"
-          onSubmit={this.handleSubmit}
-        >
-          <InputBox
-            onInput={(evt) => {
-              this.handleInput(evt, { name: "email" })
-            }}
-            value={this.state.email}
-            dataItem={configInput.email}
-          />
-          <InputBox
-            onInput={(evt) => {
-              this.handleInput(evt, { name: "password" })
-            }}
-            value={this.state.password}
-            dataItem={configInput.password}
-          />
+      <form
+        className="form-sign-in__form"
+        action=""
+        method="POST"
+        onSubmit={handleSubmit}
+      >
+        <InputBox
+          onInput={(evt) => {
+            handleInput(evt, { name: "email" })
+          }}
+          value={state.email}
+          dataItem={configInput.email}
+        />
+        <InputBox
+          onInput={(evt) => {
+            handleInput(evt, { name: "password" })
+          }}
+          value={state.password}
+          dataItem={configInput.password}
+        />
 
-          <div className="form-sign-in__button-box">
-            <ButtonDefault dataItem={configButton.signIn}>
-              Sign in
-            </ButtonDefault>
-            <ButtonDefault
-              dataItem={configButton.signGoogle}
-              handleClick={() => this.handleClickSign()}
-            >
-              Sign in with Google
-            </ButtonDefault>
-          </div>
-        </form>
-      </div>
-    )
-  }
+        <div className="form-sign-in__button-box">
+          <ButtonDefault
+            dataItem={configButton.signIn}
+            handleClick={handleSubmit}
+          >
+            Sign in
+          </ButtonDefault>
+          <ButtonDefault
+            dataItem={configButton.signGoogle}
+            handleClick={handleClickSign}
+          >
+            Sign in with Google
+          </ButtonDefault>
+        </div>
+      </form>
+    </div>
+  )
 }
 
 export default FormSignIn
