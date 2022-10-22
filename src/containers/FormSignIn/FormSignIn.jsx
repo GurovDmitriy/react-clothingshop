@@ -1,7 +1,8 @@
 import React from "react"
 import InputBox from "../../components/InputBox/InputBox"
-import { configInput, configButton } from "./data"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
+import api from "../../api"
+import { configInput, configButton } from "./data"
 import "./styles.scss"
 
 class FormSignIn extends React.Component {
@@ -13,8 +14,8 @@ class FormSignIn extends React.Component {
     }
   }
 
-  handleClickSign = () => {
-    console.log("sign")
+  handleClickSign = async () => {
+    await api.auth.signInWithGoogleFB()
   }
 
   handleSubmit = (evt) => {
