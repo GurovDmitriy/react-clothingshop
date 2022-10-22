@@ -51,7 +51,7 @@ class FormSignIn extends React.Component {
             dataItem={configInput.email}
           />
           <InputBox
-            oonInput={(evt) => {
+            onInput={(evt) => {
               this.handleInput(evt, { name: "password" })
             }}
             value={this.state.password}

@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom"
 import HeaderNav from "../../containers/HeaderNav/HeaderNav"
+import { useEffect, useState } from "react"
+import { auth } from "../../firebase/firebaseConfig"
 import menuData from "./data"
 import "./styles.scss"
 
@@ -9,6 +11,20 @@ export async function loader() {
 }
 
 function PageHome() {
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user)
+    })
+
+    console.log(currentUser)
+
+    return function cleanup() {
+      unsubscribeAuth()
+    }
+  })
+
   return (
     <div className="page-home">
       <HeaderNav />
