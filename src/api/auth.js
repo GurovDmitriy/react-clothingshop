@@ -1,7 +1,20 @@
 import firebaseSDK from "../firebase"
 
-function createUser({ email, password }) {
-  return firebaseSDK.auth.createUserFB({ email, password })
+function createUser({ email, password, displayName }) {
+  return firebaseSDK.auth.createUserFB({
+    email,
+    password,
+    displayName,
+  })
+}
+
+function createUserDocument({ uid, email, displayName }) {
+  return firebaseSDK.auth.createUserDocumentFB({
+    createdAt: new Date(),
+    id: uid,
+    email,
+    displayName,
+  })
 }
 
 function signIn({ email, password }) {
@@ -16,4 +29,5 @@ export default {
   createUser,
   signIn,
   signInWithGoogle,
+  createUserDocument,
 }
