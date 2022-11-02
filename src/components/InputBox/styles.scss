@@ -4,6 +4,12 @@
   display: block;
 }
 
+.input-box__label {
+  &--hidden {
+    @include sr-only;
+  }
+}
+
 .input-box__input {
   display: block;
   width: 100%;
@@ -13,10 +19,4 @@
   background: none;
   border: none;
   border-bottom: 1px solid #000000;
-}
-
-.input-box__label {
-  &--hidden {
-    @include sr-only;
-  }
 }

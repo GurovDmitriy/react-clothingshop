@@ -1,17 +1,22 @@
 import MenuItem from "../MenuItem/MenuItem"
 import PropTypes from "prop-types"
 import "./styles.scss"
+import classNames from "classnames"
 
-function MenuList(props) {
-  const appMenuItems = getMenuItems(props.dataItem)
-
-  return <section className="menu-list">{appMenuItems}</section>
-}
-
-function getMenuItems(items) {
-  return items.map((item) => {
-    return <MenuItem dataItem={item} key={item.id} />
+function MenuList({ className, dataItem }) {
+  const classesList = classNames("menu-list", className)
+  const appMenuItems = dataItem.map((item) => {
+    return (
+      <MenuItem
+        className="menu-list__item"
+        dataItem={item}
+        key={item.id}
+        style={{ backgroundImage: `url(${item.image})` }}
+      />
+    )
   })
+
+  return <section className={classesList}>{appMenuItems}</section>
 }
 
 MenuList.defaultProps = {
@@ -20,6 +25,7 @@ MenuList.defaultProps = {
 
 MenuList.propTypes = {
   dataItem: PropTypes.array,
+  className: PropTypes.string,
 }
 
 export default MenuList

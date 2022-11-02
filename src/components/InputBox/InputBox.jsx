@@ -1,57 +1,32 @@
 import PropTypes from "prop-types"
 import "./styles.scss"
+import classNames from "classnames"
 
-function InputBox({ dataItem, onInput, value }) {
+function InputBox({ children, isHiddenLabel, className, ...propsInput }) {
+  const classesInputBox = classNames("input-box", className)
+  const classesLabel = classNames("input-box__label", {
+    "input-box__label--hidden": isHiddenLabel,
+  })
+
   return (
-    <div className={`input-box ${dataItem.customClass}__input-box`}>
-      <label
-        className={getClassLabel(dataItem.isVisibleLabel)}
-        htmlFor={dataItem.id}
-      >
-        {dataItem.label}
+    <div className={classesInputBox}>
+      <label className={classesLabel} htmlFor={propsInput.id}>
+        {children}
       </label>
-      <input
-        className="input-box__input"
-        onInput={onInput}
-        type={dataItem.type}
-        name={dataItem.name}
-        placeholder={dataItem.placeholder}
-        id={dataItem.id}
-        required={dataItem.required}
-        value={value}
-      />
+      <input className="input-box__input" {...propsInput} />
     </div>
   )
 }
 
-function getClassLabel(isVisibleLabel) {
-  const data = ["input-box__label"]
-
-  if (!isVisibleLabel) {
-    data.push("input-box__label--hidden")
-  }
-
-  return data.join(" ")
-}
-
 InputBox.defaultProps = {
-  dataItem: {
-    type: "text",
-    name: "name",
-    placeholder: "name",
-    required: false,
-    id: "name-field",
-    label: "name",
-    isVisibleLabel: true,
-    className: null,
-  },
-  value: null,
+  isHiddenLabel: false,
 }
 
 InputBox.propTypes = {
   onInput: PropTypes.func,
-  value: PropTypes.any,
-  dataItem: PropTypes.object,
+  children: PropTypes.string,
+  className: PropTypes.string,
+  isHiddenLabel: PropTypes.bool,
 }
 
 export default InputBox

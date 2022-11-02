@@ -5,11 +5,13 @@ function PageError() {
   console.error(error)
 
   return (
-    <div id="page-error">
-      <h1>Oops!</h1>
-      <p>Soory, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
+    <div id="page-error" className="page-error">
+      <h1 className="page-error__caption">Oops!</h1>
+      <p className="page-error__description">
+        Sorry, an unexpected error has occurred.
+      </p>
+      <p className="page-error__error-content">
+        {error.statusText || error.message}
       </p>
     </div>
   )

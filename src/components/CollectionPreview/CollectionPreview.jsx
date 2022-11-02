@@ -1,17 +1,15 @@
+import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
 import PropTypes from "prop-types"
 import "./styles.scss"
-import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
+import classNames from "classnames"
 
-function CollectionPreview({ dataItem }) {
-  const collectionPreviewList = getCollectionPreviewList(dataItem)
-
-  return <div className="collection-preview">{collectionPreviewList}</div>
-}
-
-function getCollectionPreviewList(dataItem) {
-  return dataItem.map((item) => {
+function CollectionPreview({ dataItem, className }) {
+  const classesCollections = classNames("collection-preview", className)
+  const collectionPreviewList = dataItem.map((item) => {
     return <CollectionPreviewList key={item.id} dataItem={item} />
   })
+
+  return <div className={classesCollections}>{collectionPreviewList}</div>
 }
 
 CollectionPreview.defaultProps = {
@@ -20,6 +18,7 @@ CollectionPreview.defaultProps = {
 
 CollectionPreview.propTypes = {
   dataItem: PropTypes.array,
+  className: PropTypes.string,
 }
 
 export default CollectionPreview
