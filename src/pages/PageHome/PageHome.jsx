@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import HeaderNav from "../../containers/HeaderNav/HeaderNav"
+import ContainerHeaderNav from "../../containers/ContainerHeaderNav/ContainerHeaderNav"
 import { useEffect, useState } from "react"
 import { auth } from "../../firebase/firebaseConfig"
 import menuData from "./data"
@@ -27,8 +27,10 @@ function PageHome() {
 
   return (
     <div className="page-home">
-      <HeaderNav />
-      <Outlet />
+      <ContainerHeaderNav className="page-home__header-nav" />
+      <div className="page-home__content-wrapper">
+        <Outlet />
+      </div>
     </div>
   )
 }

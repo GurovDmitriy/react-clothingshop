@@ -6,12 +6,13 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "firebase": "^9.12.1",
+    "classnames": "^2.3.2",
+    "firebase": "^9.13.0",
     "postcss-normalize": "^10.0.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "sass": "^1.55.0",
     "web-vitals": "^3.0.4"
@@ -43,8 +44,8 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "eslint": "^8.26.0",
     "eslint-plugin-react": "^7.31.10",
     "husky": "^8.0.1",
@@ -54,7 +55,7 @@
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-rational-order-fix": "^0.1.9",
-    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-config-standard-scss": "^6.0.0",
     "stylelint-order": "^5.0.0"
   },
   "packageManager": "yarn@3.2.4"

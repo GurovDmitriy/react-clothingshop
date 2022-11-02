@@ -1,52 +1,46 @@
 import PropTypes from "prop-types"
+import classNames from "classnames"
 import "./styles.scss"
 
-function ButtonIcon({ dataItem, handleClick, children }) {
-  const CustomTag = dataItem.tag
-  const Icon = dataItem.icon
-  const classLabelHidden = !dataItem.isVisibleLabel
-    ? "button-icon__label--hidden"
-    : null
+function ButtonIcon({
+  tag,
+  icon,
+  isHiddenLabel,
+  className,
+  handleClick,
+  children,
+  ...propsButton
+}) {
+  const TagCustom = tag
+  const IconCustom = icon
+  const classesButton = classNames("button-icon", className)
+  const classesLabel = classNames("button-icon__label", {
+    "button-icon__label--hidden": isHiddenLabel,
+  })
 
   return (
-    <CustomTag
-      to={dataItem.to}
-      href={dataItem.href}
-      type={dataItem.type}
-      target={dataItem.target}
-      className={`button-icon ${dataItem.customClass}__button-icon`}
-      onClick={handleClick}
-    >
-      <span className={`button-icon__label ${classLabelHidden}`}>
-        {children || dataItem.label}
-      </span>
+    <TagCustom className={classesButton} onClick={handleClick} {...propsButton}>
+      <span className={classesLabel}>{children}</span>
       <span className="button-icon__icon-box">
-        <Icon className="button-icon__icon" />
+        <IconCustom />
       </span>
-    </CustomTag>
+    </TagCustom>
   )
 }
 
 ButtonIcon.defaultProps = {
-  dataItem: {
-    id: 1,
-    label: "Button",
-    isVisibleLabel: false,
-    value: "button",
-    tag: "button",
-    href: null,
-    target: null,
-    type: "button",
-    to: null,
-    customClass: null,
-    icon: null,
-  },
+  tag: "button",
+  isHiddenLabel: true,
+  icon: null,
 }
 
 ButtonIcon.propTypes = {
-  dataItem: PropTypes.object,
   handleClick: PropTypes.func,
   children: PropTypes.any,
+  tag: PropTypes.any,
+  className: PropTypes.string,
+  isHiddenLabel: PropTypes.bool,
+  icon: PropTypes.object,
 }
 
 export default ButtonIcon

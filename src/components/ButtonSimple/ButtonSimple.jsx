@@ -1,41 +1,33 @@
+import classNames from "classnames"
 import PropTypes from "prop-types"
 import "./styles.scss"
 
-function ButtonSimple({ dataItem, handleClick, children }) {
-  const CustomTag = dataItem.tag
+function ButtonSimple({
+  tag,
+  className,
+  handleClick,
+  children,
+  ...propsButton
+}) {
+  const TagCustom = tag
+  const classesButton = classNames("button-simple", className)
 
   return (
-    <CustomTag
-      to={dataItem.to}
-      href={dataItem.href}
-      type={dataItem.type}
-      target={dataItem.target}
-      className={`button-simple ${dataItem.customClass}__button-simple`}
-      onClick={handleClick}
-    >
-      {children || dataItem.label}
-    </CustomTag>
+    <TagCustom className={classesButton} {...propsButton} onClick={handleClick}>
+      {children}
+    </TagCustom>
   )
 }
 
 ButtonSimple.defaultProps = {
-  dataItem: {
-    id: 1,
-    label: "Button",
-    value: "button",
-    tag: "button",
-    href: null,
-    target: null,
-    type: "button",
-    to: null,
-    customClass: null,
-  },
+  tag: "button",
 }
 
 ButtonSimple.propTypes = {
-  dataItem: PropTypes.object,
   handleClick: PropTypes.func,
   children: PropTypes.any,
+  tag: PropTypes.any,
+  className: PropTypes.string,
 }
 
 export default ButtonSimple

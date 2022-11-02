@@ -20,7 +20,10 @@ function PageShop() {
 
   return (
     <div className="page-shop">
-      <CollectionPreview dataItem={shopList} />
+      <CollectionPreview
+        className="page-shop__collectionPreview"
+        dataItem={shopList}
+      />
     </div>
   )
 }

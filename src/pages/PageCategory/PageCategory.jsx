@@ -18,7 +18,10 @@ function PageCategory() {
 
   return (
     <div className="page-category">
-      <CollectionPreview dataItem={collectionList} />
+      <CollectionPreview
+        dataItem={collectionList}
+        className="page-category__collection-preview"
+      />
     </div>
   )
 }

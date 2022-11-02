@@ -1,22 +1,27 @@
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
+import classNames from "classnames"
 
-function LogoBox({ dataItem }) {
+function LogoBox({ className, to, children }) {
+  const classesLogoBox = classNames("logo-box", className)
+
   return (
-    <div className="logo-box">
-      <Link className="logo-box__link" to={dataItem.to}>
-        {dataItem.logo}
+    <div className={classesLogoBox}>
+      <Link className="logo-box__link" to={to}>
+        {children}
       </Link>
     </div>
   )
 }
 
 LogoBox.defaultProps = {
-  dataItem: {},
+  to: "/",
 }
 
 LogoBox.propTypes = {
-  dataItem: PropTypes.object,
+  to: PropTypes.string,
+  children: PropTypes.any,
+  className: PropTypes.string,
 }
 
 export default LogoBox

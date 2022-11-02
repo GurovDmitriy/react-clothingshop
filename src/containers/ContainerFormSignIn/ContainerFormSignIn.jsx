@@ -1,11 +1,15 @@
 import InputBox from "../../components/InputBox/InputBox"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import api from "../../api"
-import { configInput, configButton } from "./data"
+import { configInput } from "./data"
 import "./styles.scss"
 import { useState } from "react"
+import classNames from "classnames"
+import PropTypes from "prop-types"
 
-function FormSignIn() {
+function ContainerFormSignIn({ className }) {
+  const classesForm = classNames("container-form-sign-in", className)
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -32,42 +36,51 @@ function FormSignIn() {
   }
 
   return (
-    <div className="form-sign-in">
-      <h3 className="form-sign-in__caption">I already have an account</h3>
-      <p className="form-sing-in__description">
+    <div className={classesForm}>
+      <h3 className="container-form-sign-in__caption">
+        I already have an account
+      </h3>
+      <p className="container-form-sing-in__description">
         Sing in with your email and password
       </p>
 
       <form
-        className="form-sign-in__form"
+        className="container-form-sign-in__form"
         action=""
         method="POST"
         onSubmit={handleSubmit}
       >
         <InputBox
+          className="container-form-sign-in__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "email" })
           }}
           value={state.email}
-          dataItem={configInput.email}
-        />
+          {...configInput.email}
+        >
+          Email
+        </InputBox>
         <InputBox
+          className="container-form-sign-in__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "password" })
           }}
           value={state.password}
-          dataItem={configInput.password}
-        />
+          {...configInput.password}
+        >
+          Password
+        </InputBox>
 
-        <div className="form-sign-in__button-box">
+        <div className="container-form-sign-in__button-box">
           <ButtonDefault
-            dataItem={configButton.signIn}
-            handleClick={handleSubmit}
+            type="submit"
+            className="container-form-sign-in__button-default"
           >
             Sign in
           </ButtonDefault>
           <ButtonDefault
-            dataItem={configButton.signGoogle}
+            type="button"
+            className="container-form-sign-in__button-default"
             handleClick={handleClickSign}
           >
             Sign in with Google
@@ -78,4 +91,8 @@ function FormSignIn() {
   )
 }
 
-export default FormSignIn
+ContainerFormSignIn.propTypes = {
+  className: PropTypes.string,
+}
+
+export default ContainerFormSignIn
