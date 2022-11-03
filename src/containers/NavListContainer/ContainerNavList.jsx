@@ -1,31 +1,27 @@
-import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
-import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
-import { auth } from "../../firebase/firebaseConfig"
-import "./styles.scss"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import api from "../../api"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
-import { useEffect, useState } from "react"
+import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
+import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
+import fetchStateTypes from "../../store/statusAction"
+import {
+  selectUser,
+  selectUserStatusFetch,
+} from "../../store/user/userSelector"
+import "./styles.scss"
 
 function ContainerNavList() {
-  const [currentUser, setCurrentUser] = useState(null)
+  const userStatusFetch = useSelector(selectUserStatusFetch)
+  const user = useSelector(selectUser)
 
   const handleSignOut = async () => {
-    await auth.signOut()
+    await api.auth.signOut()
   }
 
   const handleClickCart = () => {
     console.log("cart")
   }
-
-  useEffect(() => {
-    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user)
-    })
-
-    return function cleanup() {
-      unsubscribeAuth()
-    }
-  })
 
   const buttonSignOut = (
     <ButtonSimple type="button" handleClick={handleSignOut}>
@@ -39,6 +35,8 @@ function ContainerNavList() {
     </ButtonSimple>
   )
 
+  const buttonLoading = <ButtonSimple type="button">Loading...</ButtonSimple>
+
   return (
     <div className="nav-list">
       <ButtonSimple to="/" tag={Link}>
@@ -47,7 +45,11 @@ function ContainerNavList() {
       <ButtonSimple to="/contact" tag={Link}>
         Contact
       </ButtonSimple>
-      {currentUser ? buttonSignOut : buttonSignIn}
+      {userStatusFetch === fetchStateTypes.pending
+        ? buttonLoading
+        : user
+        ? buttonSignOut
+        : buttonSignIn}
       <ButtonIcon
         isHiddenLabel={true}
         to="/"

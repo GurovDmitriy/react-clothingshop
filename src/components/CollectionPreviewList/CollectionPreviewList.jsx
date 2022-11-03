@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
-import "./styles.scss"
-import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
-import PropTypes from "prop-types"
 import classNames from "classnames"
+import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
+import "./styles.scss"
 
 function CollectionPreviewList({ dataItem, className }) {
   const classesList = classNames("collection-preview-list", className)

@@ -1,6 +1,6 @@
-import shopCollections from "./data"
-import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { useLoaderData } from "react-router-dom"
+import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
+import shopCollections from "./data"
 
 export async function loader(props) {
   const collectionList = await new Promise((resolve) => {
@@ -13,7 +13,7 @@ export async function loader(props) {
   return { collectionList }
 }
 
-function PageCategory() {
+function CategoryPage() {
   const { collectionList } = useLoaderData()
 
   return (
@@ -26,4 +26,4 @@ function PageCategory() {
   )
 }
 
-export default PageCategory
+export default CategoryPage

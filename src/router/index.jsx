@@ -1,41 +1,41 @@
 import { createBrowserRouter } from "react-router-dom"
-import PageIndex from "../pages/PageIndex/PageIndex"
-import PageHome, { loader as rootLoader } from "../pages/PageHome/PageHome"
-import PageError from "../pages/PageError/PageError"
-import PageShop, { loader as shopLoader } from "../pages/PageShop/PageShop"
-import PageCategory, {
+import CategoryPage, {
   loader as categoryLoader,
-} from "../pages/PageCategory/PageCategory"
-import PageSign from "../pages/PageSign/PageSign"
+} from "../pages/CategoryPage/CategoryPage"
+import ErrorPage from "../pages/ErrorPage/ErrorPage"
+import HomePage from "../pages/HomePage/HomePage"
+import IndexPage, { loader as rootLoader } from "../pages/IndexPage/IndexPage"
+import ShopPage, { loader as shopLoader } from "../pages/ShopPage/ShopPage"
+import SignPage from "../pages/SignPage/SignPage"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PageHome />,
-    errorElement: <PageError />,
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
 
     children: [
       {
         index: true,
-        element: <PageIndex />,
+        element: <IndexPage />,
         loader: rootLoader,
       },
 
       {
         path: "shop",
-        element: <PageShop />,
+        element: <ShopPage />,
         loader: shopLoader,
       },
 
       {
         path: "shop/:category",
-        element: <PageCategory />,
+        element: <CategoryPage />,
         loader: categoryLoader,
       },
 
       {
         path: "sign",
-        element: <PageSign />,
+        element: <SignPage />,
       },
     ],
   },

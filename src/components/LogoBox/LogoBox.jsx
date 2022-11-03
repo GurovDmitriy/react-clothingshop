@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
-import PropTypes from "prop-types"
 import classNames from "classnames"
+import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
 
 function LogoBox({ className, to, children }) {
   const classesLogoBox = classNames("logo-box", className)

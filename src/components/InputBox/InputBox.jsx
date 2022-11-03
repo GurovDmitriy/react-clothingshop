@@ -1,6 +1,6 @@
+import classNames from "classnames"
 import PropTypes from "prop-types"
 import "./styles.scss"
-import classNames from "classnames"
 
 function InputBox({ children, isHiddenLabel, className, ...propsInput }) {
   const classesInputBox = classNames("input-box", className)

@@ -1,13 +1,13 @@
-import InputBox from "../../components/InputBox/InputBox"
-import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
-import { configInput } from "./data"
-import api from "../../api"
-import "./styles.scss"
-import { useState } from "react"
 import classNames from "classnames"
 import PropTypes from "prop-types"
+import { useState } from "react"
+import api from "../../api"
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
+import InputBox from "../../components/InputBox/InputBox"
+import { configInput } from "./data"
+import "./styles.scss"
 
-function ContainerFormSignUp({ className }) {
+function FormSignUpContainer({ className }) {
   const classesForm = classNames("container-form-sign-up", className)
 
   const [state, setState] = useState({
@@ -20,9 +20,20 @@ function ContainerFormSignUp({ className }) {
   async function handleSubmit(evt) {
     evt.preventDefault()
 
-    await api.auth.createUser({
+    if (state.password !== state.passwordConfirm) {
+      alert("password don't match")
+      return
+    }
+
+    const user = await api.auth.createUser({
       email: state.email,
       password: state.password,
+    })
+
+    await api.auth.createUserDocument({
+      id: user.uid,
+      email: user.email,
+      displayName: state.name,
     })
   }
 
@@ -94,8 +105,8 @@ function ContainerFormSignUp({ className }) {
   )
 }
 
-ContainerFormSignUp.propTypes = {
+FormSignUpContainer.propTypes = {
   className: PropTypes.string,
 }
 
-export default ContainerFormSignUp
+export default FormSignUpContainer
