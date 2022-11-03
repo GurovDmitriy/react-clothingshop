@@ -1,6 +1,6 @@
-import "./styles.scss"
-import PropTypes from "prop-types"
 import classNames from "classnames"
+import PropTypes from "prop-types"
+import "./styles.scss"
 
 function CollectionPreviewItem({ dataItem, className }) {
   const classesPreviewItem = classNames("collection-preview-item", className)

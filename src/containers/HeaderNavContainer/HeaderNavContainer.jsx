@@ -1,11 +1,11 @@
-import "./styles.scss"
-import LogoBox from "../../components/LogoBox/LogoBox"
-import ContainerNavList from "../ContainerNavList/ContainerNavList"
-import PropTypes from "prop-types"
 import classNames from "classnames"
+import PropTypes from "prop-types"
 import { ReactComponent as Logo } from "../../assets/images/crown.svg"
+import LogoBox from "../../components/LogoBox/LogoBox"
+import ContainerNavList from "../NavListContainer/ContainerNavList"
+import "./styles.scss"
 
-function ContainerHeaderNav({ className }) {
+function HeaderNavContainer({ className }) {
   const classesNav = classNames("header-nav", className)
 
   return (
@@ -18,8 +18,8 @@ function ContainerHeaderNav({ className }) {
   )
 }
 
-ContainerHeaderNav.propTypes = {
+HeaderNavContainer.propTypes = {
   className: PropTypes.string,
 }
 
-export default ContainerHeaderNav
+export default HeaderNavContainer

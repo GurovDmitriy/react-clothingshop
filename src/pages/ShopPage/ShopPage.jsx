@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom"
-import shopCollections from "./data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
+import shopCollections from "./data"
 
 export async function loader() {
   const shopList = await new Promise((resolve) => {
@@ -15,7 +15,7 @@ export async function loader() {
   return { shopList }
 }
 
-function PageShop() {
+function ShopPage() {
   const { shopList } = useLoaderData()
 
   return (
@@ -28,4 +28,4 @@ function PageShop() {
   )
 }
 
-export default PageShop
+export default ShopPage

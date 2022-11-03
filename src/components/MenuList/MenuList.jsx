@@ -1,7 +1,7 @@
-import MenuItem from "../MenuItem/MenuItem"
-import PropTypes from "prop-types"
-import "./styles.scss"
 import classNames from "classnames"
+import PropTypes from "prop-types"
+import MenuItem from "../MenuItem/MenuItem"
+import "./styles.scss"
 
 function MenuList({ className, dataItem }) {
   const classesList = classNames("menu-list", className)

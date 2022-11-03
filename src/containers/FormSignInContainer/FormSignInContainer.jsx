@@ -1,13 +1,13 @@
-import InputBox from "../../components/InputBox/InputBox"
-import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
-import api from "../../api"
-import { configInput } from "./data"
-import "./styles.scss"
-import { useState } from "react"
 import classNames from "classnames"
 import PropTypes from "prop-types"
+import { useState } from "react"
+import api from "../../api"
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
+import InputBox from "../../components/InputBox/InputBox"
+import { configInput } from "./data"
+import "./styles.scss"
 
-function ContainerFormSignIn({ className }) {
+function FormSignInContainer({ className }) {
   const classesForm = classNames("container-form-sign-in", className)
 
   const [state, setState] = useState({
@@ -16,7 +16,13 @@ function ContainerFormSignIn({ className }) {
   })
 
   async function handleClickSign() {
-    await api.auth.signInWithGoogle()
+    const response = await api.auth.signInWithGoogle()
+
+    await api.auth.createUserDocument({
+      id: response.user.uid,
+      email: response.user.email,
+      displayName: response.user.displayName,
+    })
   }
 
   async function handleSubmit(evt) {
@@ -91,8 +97,8 @@ function ContainerFormSignIn({ className }) {
   )
 }
 
-ContainerFormSignIn.propTypes = {
+FormSignInContainer.propTypes = {
   className: PropTypes.string,
 }
 
-export default ContainerFormSignIn
+export default FormSignInContainer

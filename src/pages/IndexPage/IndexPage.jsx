@@ -7,7 +7,7 @@ export async function loader() {
   return { menuList }
 }
 
-function PageIndex() {
+function IndexPage() {
   const { menuList } = useLoaderData()
 
   return (
@@ -17,4 +17,4 @@ function PageIndex() {
   )
 }
 
-export default PageIndex
+export default IndexPage
