@@ -1,47 +1,60 @@
 import firebaseSDK from "../firebase"
 
-function createUser({ email, password }) {
-  return firebaseSDK.auth.createUserFB({
-    email,
-    password,
-  })
+/**
+ * @param {object} payload
+ * @param {string} payload.email
+ * @param {string} payload.password
+ * @returns {Promise<*|undefined>}
+ */
+function signUp(payload) {
+  return firebaseSDK.auth.signUpFB(payload)
 }
 
-function signIn({ email, password }) {
-  return firebaseSDK.auth.signInFB({ email, password })
+/**
+ * @param {object} payload
+ * @param {string} payload.email
+ * @param {string} payload.password
+ * @returns {Promise<*|undefined>}
+ */
+function signIn(payload) {
+  return firebaseSDK.auth.signInFB(payload)
 }
 
+/**
+ * @returns {Promise<{user: User, token: string}|undefined>}
+ */
 function signInWithGoogle() {
   return firebaseSDK.auth.signInWithGoogleFB()
 }
 
-function createUserDocument({ id, email, displayName }) {
-  return firebaseSDK.auth.createUserDocumentFB({
-    createdAt: new Date(),
-    id,
-    email,
-    displayName,
-  })
-}
-
-function getUserDocument(id) {
-  return firebaseSDK.auth.getUserDocumentFB(id)
-}
-
+/**
+ * @returns {Promise<*>}
+ */
 function signOut() {
   return firebaseSDK.auth.signOutFB()
 }
 
+/**
+ *
+ * @returns {*}
+ */
+function signCheck() {
+  return firebaseSDK.auth.signCheckFB()
+}
+
+/**
+ * @param {function} cb - Callback
+ * @returns {Unsubscribe}
+ */
 function subscribeStateChange(cb) {
   return firebaseSDK.auth.subscribeStateChangeFB(cb)
 }
 
 export default {
-  createUser,
+  signUp,
   signIn,
   signInWithGoogle,
-  createUserDocument,
-  getUserDocument,
   signOut,
   subscribeStateChange,
+  signCheck,
 }

@@ -1,23 +1,17 @@
-/** Selector for User fetch status
+/**
  *  @param {object} state - State Redux
- *  @returns {string|null} - User status fetch
+ *  @returns {string} - User status fetch
  */
 function selectUserStatusFetch(state) {
-  if (state && state.user && state.user.status) {
-    return state.user.status
-  }
-  return null
+  return state.user.status
 }
 
-/** Selector for User fetch status
+/**
  *  @param {object} state - State Redux
- *  @returns {object|null} - User data
+ *  @returns {object} - User data
  */
 function selectUser(state) {
-  if (state && state.user) {
-    return state.user.entities
-  }
-  return null
+  return state.user.entities
 }
 
 export { selectUserStatusFetch, selectUser }

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { Outlet } from "react-router-dom"
 import api from "../../api"
 import HeaderNavContainer from "../../containers/HeaderNavContainer/HeaderNavContainer"
+import { signCheckAction } from "../../store/auth/authAction"
 import { fetchUserAction } from "../../store/user/userAction"
 import "./styles.scss"
 
@@ -12,6 +13,7 @@ function HomePage() {
   useEffect(() => {
     const unsubscribeAuth = api.auth.subscribeStateChange((user) => {
       if (user) {
+        dispatch(signCheckAction())
         dispatch(fetchUserAction(user.uid))
       }
     })

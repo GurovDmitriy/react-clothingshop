@@ -5,12 +5,16 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth"
-import { doc, getDoc, setDoc } from "firebase/firestore"
-import { auth, db } from "./config"
+import { auth } from "./config"
 
 const provider = new GoogleAuthProvider()
 
-async function createUserFB({ email, password }) {
+/**
+ * @param email
+ * @param password
+ * @returns {Promise<User>}
+ */
+async function signUpFB({ email, password }) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -23,6 +27,11 @@ async function createUserFB({ email, password }) {
   }
 }
 
+/**
+ * @param email
+ * @param password
+ * @returns {Promise<User>}
+ */
 async function signInFB({ email, password }) {
   try {
     const userCredential = await signInWithEmailAndPassword(
@@ -36,6 +45,9 @@ async function signInFB({ email, password }) {
   }
 }
 
+/**
+ * @returns {Promise<{user: User, token: string}>}
+ */
 async function signInWithGoogleFB() {
   try {
     const result = await signInWithPopup(auth, provider)
@@ -51,44 +63,32 @@ async function signInWithGoogleFB() {
   }
 }
 
-async function createUserDocumentFB({ createdAt, id, email, displayName }) {
-  try {
-    const docRef = doc(db, `users/${id}`)
-    const docSnap = await getDoc(docRef)
-    if (docSnap.exists()) return
+/**
+ * @returns {Promise<{displayName: string, id: string, email: string}>}
+ */
+async function signCheckFB() {
+  const response = await auth.currentUser
 
-    const response = await setDoc(doc(db, "users", id), {
-      displayName,
-      createdAt,
-      email,
-    })
-
-    return response
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
+  const data = {
+    id: response.uid,
+    displayName: response.displayName,
+    email: response.email,
   }
+  return data
 }
 
-async function getUserDocumentFB(id) {
-  try {
-    const docRef = doc(db, `users/${id}`)
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      return docSnap.data()
-    } else {
-      return null
-    }
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
-  }
-}
-
+/**
+ * @returns {Promise<void>}
+ */
 async function signOutFB() {
   const response = await auth.signOut()
   return response
 }
 
+/**
+ * @param cb
+ * @returns {Unsubscribe}
+ */
 function subscribeStateChangeFB(cb) {
   return onAuthStateChanged(auth, (user) => {
     cb(user)
@@ -96,11 +96,10 @@ function subscribeStateChangeFB(cb) {
 }
 
 export default {
-  createUserFB,
+  signUpFB,
   signInFB,
   signInWithGoogleFB,
-  createUserDocumentFB,
-  getUserDocumentFB,
   signOutFB,
   subscribeStateChangeFB,
+  signCheckFB,
 }
