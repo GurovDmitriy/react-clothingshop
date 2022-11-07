@@ -1,14 +1,16 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import { useState } from "react"
-import api from "../../api"
+import { useDispatch } from "react-redux"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import InputBox from "../../components/InputBox/InputBox"
+import { signUpAction } from "../../store/auth/authAction"
+import { createUserAction } from "../../store/user/userAction"
 import { configInput } from "./data"
 import "./styles.scss"
 
 function FormSignUpContainer({ className }) {
-  const classesForm = classNames("container-form-sign-up", className)
+  const dispatch = useDispatch()
 
   const [state, setState] = useState({
     name: "",
@@ -25,16 +27,20 @@ function FormSignUpContainer({ className }) {
       return
     }
 
-    const user = await api.auth.createUser({
-      email: state.email,
-      password: state.password,
-    })
+    const response = await dispatch(
+      signUpAction({
+        email: state.email,
+        password: state.password,
+      })
+    )
 
-    await api.auth.createUserDocument({
-      id: user.uid,
-      email: user.email,
-      displayName: state.name,
-    })
+    await dispatch(
+      createUserAction({
+        id: response.user.uid,
+        displayName: state.name,
+        email: state.email,
+      })
+    )
   }
 
   function handleInput(evt, { name }) {
@@ -43,6 +49,8 @@ function FormSignUpContainer({ className }) {
       [name]: evt.target.value,
     })
   }
+
+  const classesForm = classNames("container-form-sign-up", className)
 
   return (
     <div className={classesForm}>

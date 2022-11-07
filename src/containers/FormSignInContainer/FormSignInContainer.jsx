@@ -1,31 +1,35 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import api from "../../api"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import InputBox from "../../components/InputBox/InputBox"
+import { signInWithGoogleAction } from "../../store/auth/authAction"
+import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 import { configInput } from "./data"
 import "./styles.scss"
 
 function FormSignInContainer({ className }) {
-  const classesForm = classNames("container-form-sign-in", className)
+  const dispatch = useDispatch()
 
   const [state, setState] = useState({
     email: "",
     password: "",
   })
 
-  async function handleClickSign() {
-    const response = await api.auth.signInWithGoogle()
+  async function handleClickSignWithGoogle() {
+    const responseSign = await dispatch(signInWithGoogleAction())
+    const responseUser = await dispatch(
+      fetchUserAction(responseSign.payload.id)
+    )
 
-    await api.auth.createUserDocument({
-      id: response.user.uid,
-      email: response.user.email,
-      displayName: response.user.displayName,
-    })
+    if (!responseUser.payload || !responseUser.payload.id) {
+      await dispatch(createUserAction(responseSign.payload))
+    }
   }
 
-  async function handleSubmit(evt) {
+  async function handleSignIn(evt) {
     evt.preventDefault()
 
     await api.auth.signIn({
@@ -41,6 +45,8 @@ function FormSignInContainer({ className }) {
     })
   }
 
+  const classesForm = classNames("container-form-sign-in", className)
+
   return (
     <div className={classesForm}>
       <h3 className="container-form-sign-in__caption">
@@ -54,7 +60,7 @@ function FormSignInContainer({ className }) {
         className="container-form-sign-in__form"
         action=""
         method="POST"
-        onSubmit={handleSubmit}
+        onSubmit={handleSignIn}
       >
         <InputBox
           className="container-form-sign-in__input-box"
@@ -87,7 +93,7 @@ function FormSignInContainer({ className }) {
           <ButtonDefault
             type="button"
             className="container-form-sign-in__button-default"
-            handleClick={handleClickSign}
+            handleClick={handleClickSignWithGoogle}
           >
             Sign in with Google
           </ButtonDefault>

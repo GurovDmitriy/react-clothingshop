@@ -1,22 +1,20 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import api from "../../api"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
 import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
-import fetchStateTypes from "../../store/statusAction"
-import {
-  selectUser,
-  selectUserStatusFetch,
-} from "../../store/user/userSelector"
+import { signOutAction } from "../../store/auth/authAction"
+import { selectAuth } from "../../store/auth/authSelector"
+import { clearUserAction } from "../../store/user/userAction"
 import "./styles.scss"
 
-function ContainerNavList() {
-  const userStatusFetch = useSelector(selectUserStatusFetch)
-  const user = useSelector(selectUser)
+function NavListContainer() {
+  const dispatch = useDispatch()
+  const authData = useSelector(selectAuth)
 
   const handleSignOut = async () => {
-    await api.auth.signOut()
+    await dispatch(signOutAction())
+    await dispatch(clearUserAction())
   }
 
   const handleClickCart = () => {
@@ -35,7 +33,7 @@ function ContainerNavList() {
     </ButtonSimple>
   )
 
-  const buttonLoading = <ButtonSimple type="button">Loading...</ButtonSimple>
+  const activeButton = authData && authData.id ? buttonSignOut : buttonSignIn
 
   return (
     <div className="nav-list">
@@ -45,11 +43,7 @@ function ContainerNavList() {
       <ButtonSimple to="/contact" tag={Link}>
         Contact
       </ButtonSimple>
-      {userStatusFetch === fetchStateTypes.pending
-        ? buttonLoading
-        : user
-        ? buttonSignOut
-        : buttonSignIn}
+      {activeButton}
       <ButtonIcon
         isHiddenLabel={true}
         to="/"
@@ -64,4 +58,4 @@ function ContainerNavList() {
   )
 }
 
-export default ContainerNavList
+export default NavListContainer

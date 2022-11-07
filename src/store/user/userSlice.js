@@ -1,27 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit"
-import fetchStateTypes from "../statusAction"
-import { fetchUserAction } from "./userAction"
+import actionStatusTypes from "../actionStatusTypes"
+import {
+  clearUserAction,
+  createUserAction,
+  fetchUserAction,
+} from "./userAction"
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     entities: null,
-    status: fetchStateTypes.useless,
+    status: actionStatusTypes.useless,
     error: null,
   },
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(createUserAction.pending, (state) => {
+        state.status = actionStatusTypes.pending
+        state.error = null
+      })
+      .addCase(createUserAction.fulfilled, (state, action) => {
+        state.entities = action.payload
+        state.status = actionStatusTypes.success
+      })
+      .addCase(createUserAction.rejected, (state, action) => {
+        state.status = actionStatusTypes.failure
+        state.error = action.error.message
+      })
       .addCase(fetchUserAction.pending, (state) => {
-        state.status = fetchStateTypes.pending
+        state.status = actionStatusTypes.pending
+        state.error = null
       })
       .addCase(fetchUserAction.fulfilled, (state, action) => {
         state.entities = action.payload
-        state.status = fetchStateTypes.success
+        state.status = actionStatusTypes.success
       })
       .addCase(fetchUserAction.rejected, (state, action) => {
+        state.status = actionStatusTypes.failure
         state.error = action.error.message
-        state.status = fetchStateTypes.failure
+      })
+      .addCase(clearUserAction.pending, (state) => {
+        state.status = actionStatusTypes.pending
+        state.error = null
+      })
+      .addCase(clearUserAction.fulfilled, (state, action) => {
+        state.entities = action.payload
+        state.status = actionStatusTypes.success
+      })
+      .addCase(clearUserAction.rejected, (state, action) => {
+        state.status = actionStatusTypes.failure
+        state.error = action.error.message
       })
   },
 })
