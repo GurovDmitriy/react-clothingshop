@@ -5,11 +5,22 @@ const createUserAction = createAsyncThunk(
   "user/createUserAction",
   async (payload) => {
     const createdAt = new Date()
-    const response = await api.user.createUserDocument({
+
+    await api.user.createUserDocument({
       ...payload,
       createdAt,
     })
-    return response.data
+
+    const response = await api.user.getUserDocument(payload.id)
+
+    console.log(response)
+
+    return {
+      id: payload.id,
+      displayName: response.displayName,
+      email: response.email,
+      createdAt: response.createdAt.toDate().toString(),
+    }
   }
 )
 
@@ -17,7 +28,8 @@ const fetchUserAction = createAsyncThunk("user/fetchUserAction", async (id) => {
   const response = await api.user.getUserDocument(id)
   return {
     id,
-    ...response,
+    displayName: response.displayName,
+    email: response.email,
     createdAt: response.createdAt.toDate().toString(),
   }
 })

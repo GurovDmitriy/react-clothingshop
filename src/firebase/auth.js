@@ -10,56 +10,48 @@ import { auth } from "./config"
 const provider = new GoogleAuthProvider()
 
 /**
- * @param email
- * @param password
+ * @param {object} payload
+ * @param {string} payload.email
+ * @param {string} payload.password
  * @returns {Promise<User>}
  */
-async function signUpFB({ email, password }) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    )
-    return userCredential.user
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
-  }
+async function signUpFB(payload) {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    payload.email,
+    payload.password
+  )
+
+  return userCredential.user
 }
 
 /**
- * @param email
- * @param password
+ * @param {object} payload
+ * @param {string} payload.email
+ * @param {string} payload.password
  * @returns {Promise<User>}
  */
-async function signInFB({ email, password }) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    )
-    return userCredential.user
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
-  }
+async function signInFB(payload) {
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    payload.email,
+    payload.password
+  )
+
+  return userCredential.user
 }
 
 /**
  * @returns {Promise<{user: User, token: string}>}
  */
 async function signInWithGoogleFB() {
-  try {
-    const result = await signInWithPopup(auth, provider)
-    const credential = GoogleAuthProvider.credentialFromResult(result)
-    const token = credential.accessToken
+  const result = await signInWithPopup(auth, provider)
+  const credential = GoogleAuthProvider.credentialFromResult(result)
+  const token = credential.accessToken
 
-    return {
-      user: result.user,
-      token,
-    }
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
+  return {
+    user: result.user,
+    token,
   }
 }
 
@@ -74,6 +66,7 @@ async function signCheckFB() {
     displayName: response.displayName,
     email: response.email,
   }
+
   return data
 }
 

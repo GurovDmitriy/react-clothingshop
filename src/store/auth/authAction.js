@@ -3,7 +3,14 @@ import api from "../../api"
 
 const signUpAction = createAsyncThunk("auth/signUpAction", async (payload) => {
   const response = await api.auth.signUp(payload)
-  return response.data
+
+  const data = {
+    id: response.uid,
+    displayName: response.displayName,
+    email: response.email,
+  }
+
+  return data
 })
 
 const signInAction = createAsyncThunk("auth/signInAction", async (payload) => {
