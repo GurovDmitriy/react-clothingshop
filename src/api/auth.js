@@ -7,7 +7,12 @@ import firebaseSDK from "../firebase"
  * @returns {Promise<*|undefined>}
  */
 function signUp(payload) {
-  return firebaseSDK.auth.signUpFB(payload)
+  const data = {
+    email: payload.email,
+    password: payload.password,
+  }
+
+  return firebaseSDK.auth.signUpFB(data)
 }
 
 /**
@@ -17,7 +22,12 @@ function signUp(payload) {
  * @returns {Promise<*|undefined>}
  */
 function signIn(payload) {
-  return firebaseSDK.auth.signInFB(payload)
+  const data = {
+    email: payload.email,
+    password: payload.password,
+  }
+
+  return firebaseSDK.auth.signInFB(data)
 }
 
 /**
@@ -35,7 +45,6 @@ function signOut() {
 }
 
 /**
- *
  * @returns {*}
  */
 function signCheck() {

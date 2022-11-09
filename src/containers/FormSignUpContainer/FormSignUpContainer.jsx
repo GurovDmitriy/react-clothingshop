@@ -27,16 +27,18 @@ function FormSignUpContainer({ className }) {
       return
     }
 
-    const response = await dispatch(
+    const signUpResponse = await dispatch(
       signUpAction({
         email: state.email,
         password: state.password,
       })
     )
 
+    console.log(signUpResponse)
+
     await dispatch(
       createUserAction({
-        id: response.user.uid,
+        id: signUpResponse.payload.id,
         displayName: state.name,
         email: state.email,
       })

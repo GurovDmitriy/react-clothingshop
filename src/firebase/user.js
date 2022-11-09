@@ -1,32 +1,35 @@
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "./config"
 
-async function createUserDocumentFB({ createdAt, id, email, displayName }) {
-  try {
-    const response = await setDoc(doc(db, "users", id), {
-      displayName,
-      createdAt,
-      email,
-    })
-
-    return response
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
-  }
+/**
+ *
+ * @param {object} payload
+ * @param {string} payload.id
+ * @param {string} payload.email
+ * @param {string} payload.displayName
+ * @param {string} payload.createdAt
+ * @returns {Promise<void>}
+ */
+async function createUserDocumentFB(payload) {
+  await setDoc(doc(db, "users", payload.id), {
+    displayName: payload.displayName,
+    email: payload.email,
+    createdAt: payload.createdAt,
+  })
 }
 
+/**
+ * @param {string} id
+ * @returns {Promise<DocumentData|null>}
+ */
 async function getUserDocumentFB(id) {
-  try {
-    const docRef = doc(db, `users/${id}`)
-    const docSnap = await getDoc(docRef)
+  const docRef = doc(db, `users/${id}`)
+  const docSnap = await getDoc(docRef)
 
-    if (docSnap.exists()) {
-      return docSnap.data()
-    } else {
-      return null
-    }
-  } catch (err) {
-    console.error(`Oops! ${err.code} ${err.message}`)
+  if (docSnap.exists()) {
+    return docSnap.data()
+  } else {
+    return null
   }
 }
 

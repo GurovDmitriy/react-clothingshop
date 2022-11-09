@@ -8,7 +8,14 @@ import firebaseSDK from "../firebase"
  * @returns {Promise<undefined|void>}
  */
 function createUserDocument(payload) {
-  return firebaseSDK.user.createUserDocumentFB(payload)
+  const data = {
+    id: payload.id,
+    email: payload.email,
+    displayName: payload.displayName,
+    createdAt: payload.createdAt,
+  }
+
+  return firebaseSDK.user.createUserDocumentFB(data)
 }
 
 /**
