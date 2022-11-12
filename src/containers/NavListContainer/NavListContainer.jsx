@@ -37,11 +37,14 @@ function NavListContainer() {
 
   return (
     <div className="nav-list">
-      <ButtonSimple to="/" tag={Link}>
+      <ButtonSimple to="/shop" tag={Link}>
         Shop
       </ButtonSimple>
       <ButtonSimple to="/contact" tag={Link}>
         Contact
+      </ButtonSimple>
+      <ButtonSimple to="/about" tag={Link}>
+        About
       </ButtonSimple>
       {activeButton}
       <ButtonIcon

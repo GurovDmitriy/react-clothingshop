@@ -13,8 +13,6 @@ const createUserAction = createAsyncThunk(
 
     const response = await api.user.getUserDocument(payload.id)
 
-    console.log(response)
-
     return {
       id: payload.id,
       displayName: response.displayName,

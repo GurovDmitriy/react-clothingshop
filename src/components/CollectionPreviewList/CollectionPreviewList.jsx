@@ -4,10 +4,16 @@ import { Link } from "react-router-dom"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
 import "./styles.scss"
 
-function CollectionPreviewList({ dataItem, className }) {
+function CollectionPreviewList({ dataItem, className, handleAddToCart }) {
   const classesList = classNames("collection-preview-list", className)
-  const collectionPreviewItems = dataItem.items.map((item) => {
-    return <CollectionPreviewItem dataItem={item} key={item.id} />
+  const collectionPreviewItemList = dataItem.items.map((item) => {
+    return (
+      <CollectionPreviewItem
+        dataItem={item}
+        key={item.id}
+        handleAddToCart={handleAddToCart}
+      />
+    )
   })
 
   return (
@@ -16,7 +22,7 @@ function CollectionPreviewList({ dataItem, className }) {
         {dataItem.title}
       </Link>
       <div className="collection-preview-list__preview">
-        {collectionPreviewItems}
+        {collectionPreviewItemList}
       </div>
     </div>
   )
@@ -29,6 +35,7 @@ CollectionPreviewList.defaultProps = {
 CollectionPreviewList.propTypes = {
   dataItem: PropTypes.object,
   className: PropTypes.string,
+  handleAddToCart: PropTypes.func,
 }
 
 export default CollectionPreviewList
