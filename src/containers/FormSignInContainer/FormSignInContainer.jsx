@@ -8,7 +8,7 @@ import InputBox from "../../components/InputBox/InputBox"
 import { signInWithGoogleAction } from "../../store/auth/authAction"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 import { configInput } from "./data"
-import "./styles.scss"
+import "./style.scss"
 
 function FormSignInContainer({ className }) {
   const dispatch = useDispatch()

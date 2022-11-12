@@ -7,7 +7,7 @@ import {
   selectAuth,
   selectAuthStatusFetch,
 } from "../../store/auth/authSelector"
-import "./styles.scss"
+import "./style.scss"
 
 function SignPage() {
   const authState = useSelector(selectAuth)

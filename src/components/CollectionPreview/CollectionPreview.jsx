@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
-import "./styles.scss"
+import "./style.scss"
 
 function CollectionPreview({ dataItem, className, handleAddToCart }) {
   const classesCollections = classNames("collection-preview", className)

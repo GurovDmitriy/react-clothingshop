@@ -6,7 +6,7 @@ import HeaderNavContainer from "../../containers/HeaderNavContainer/HeaderNavCon
 import { signCheckAction } from "../../store/auth/authAction"
 import { fetchCartAction } from "../../store/cart/cartAction"
 import { fetchUserAction } from "../../store/user/userAction"
-import "./styles.scss"
+import "./style.scss"
 
 function HomeLayout() {
   const dispatch = useDispatch()
