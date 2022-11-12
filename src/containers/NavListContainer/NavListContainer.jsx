@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
 import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
@@ -16,6 +16,7 @@ function NavListContainer() {
   const authData = useSelector(selectAuth)
   const cartData = useSelector(selectCart)
   const cartCountItems = useSelector(selectCartCountItems)
+  const navigate = useNavigate()
 
   const cartList = cartData ? Object.values(cartData) : []
 
@@ -25,8 +26,8 @@ function NavListContainer() {
     dispatch(clearCartAction())
   }
 
-  const handleClickCart = () => {
-    console.log("cart")
+  const handleToCart = () => {
+    navigate("/cart")
   }
 
   const buttonSignOut = (
@@ -57,15 +58,18 @@ function NavListContainer() {
       {activeButton}
       <div className="nav-list__button-icon-box">
         <ButtonIcon
-          to="/"
+          to="/cart"
           tag={Link}
           className="nav-list__button-icon"
           icon={CartIcon}
-          handleClick={() => handleClickCart()}
         >
           {cartCountItems || null}
         </ButtonIcon>
-        <CartModal className="nav-list__cart-modal" list={cartList} />
+        <CartModal
+          className="nav-list__cart-modal"
+          list={cartList}
+          handleToCart={handleToCart}
+        />
       </div>
     </div>
   )

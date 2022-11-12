@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import AboutLayout from "../layouts/AboutLayout/AboutLayout"
 import HomeLayout from "../layouts/HomeLayout/HomeLayout"
 import AboutPage from "../pages/AboutPage/AboutPage"
+import CartPage from "../pages/CartPage/CartPage"
 import CategoryPage, {
   loader as categoryLoader,
 } from "../pages/CategoryPage/CategoryPage"
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
       {
         path: "sign",
         element: <SignPage />,
+      },
+
+      {
+        path: "cart",
+        element: <CartPage />,
       },
     ],
   },
