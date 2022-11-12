@@ -52,11 +52,11 @@ function FormSignUpContainer({ className }) {
     })
   }
 
-  const classesForm = classNames("container-form-sign-up", className)
+  const classesForm = classNames("form-sign-up-container", className)
 
   return (
     <div className={classesForm}>
-      <h3 className="container-form-sign-up__caption">
+      <h3 className="form-sign-up-container__caption">
         I dont have an account
       </h3>
       <p className="container-form-sing-up__description">
@@ -64,13 +64,13 @@ function FormSignUpContainer({ className }) {
       </p>
 
       <form
-        className="container-form-sign-up__form"
+        className="form-sign-up-container__form"
         action=""
         method="POST"
         onSubmit={handleSubmit}
       >
         <InputBox
-          className="container-form-sign-up__input-box"
+          className="form-sign-up-container__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "name" })
           }}
@@ -78,7 +78,7 @@ function FormSignUpContainer({ className }) {
           {...configInput.name}
         />
         <InputBox
-          className="container-form-sign-up__input-box"
+          className="form-sign-up-container__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "email" })
           }}
@@ -86,7 +86,7 @@ function FormSignUpContainer({ className }) {
           {...configInput.email}
         />
         <InputBox
-          className="container-form-sign-up__input-box"
+          className="form-sign-up-container__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "password" })
           }}
@@ -94,7 +94,7 @@ function FormSignUpContainer({ className }) {
           {...configInput.password}
         />
         <InputBox
-          className="container-form-sign-up__input-box"
+          className="form-sign-up-container__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "passwordConfirm" })
           }}
@@ -102,9 +102,9 @@ function FormSignUpContainer({ className }) {
           {...configInput.passwordConfirm}
         />
 
-        <div className="container-form-sign-up__button-box">
+        <div className="form-sign-up-container__button-box">
           <ButtonDefault
-            className="container-form-sign-up__button-default"
+            className="form-sign-up-container__button-default"
             type="submit"
           >
             Sign Up

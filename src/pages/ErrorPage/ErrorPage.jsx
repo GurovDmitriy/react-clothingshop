@@ -5,12 +5,12 @@ function ErrorPage() {
   console.error(error)
 
   return (
-    <div id="page-error" className="page-error">
-      <h1 className="page-error__caption">Oops!</h1>
-      <p className="page-error__description">
+    <div id="error-page" className="error-page">
+      <h1 className="error-page__caption">Oops!</h1>
+      <p className="error-page__description">
         Sorry, an unexpected error has occurred.
       </p>
-      <p className="page-error__error-content">
+      <p className="error-page__error-content">
         {error.statusText || error.message}
       </p>
     </div>
