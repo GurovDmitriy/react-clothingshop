@@ -1,23 +1,25 @@
 import { createBrowserRouter } from "react-router-dom"
+import AboutLayout from "../layouts/AboutLayout/AboutLayout"
+import HomeLayout from "../layouts/HomeLayout/HomeLayout"
+import AboutPage from "../pages/AboutPage/AboutPage"
 import CategoryPage, {
   loader as categoryLoader,
 } from "../pages/CategoryPage/CategoryPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
-import HomePage from "../pages/HomePage/HomePage"
-import IndexPage, { loader as rootLoader } from "../pages/IndexPage/IndexPage"
+import HomePage, { loader as rootLoader } from "../pages/HomePage/HomePage"
 import ShopPage, { loader as shopLoader } from "../pages/ShopPage/ShopPage"
 import SignPage from "../pages/SignPage/SignPage"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <HomeLayout />,
     errorElement: <ErrorPage />,
 
     children: [
       {
         index: true,
-        element: <IndexPage />,
+        element: <HomePage />,
         loader: rootLoader,
       },
 
@@ -36,6 +38,19 @@ const router = createBrowserRouter([
       {
         path: "sign",
         element: <SignPage />,
+      },
+    ],
+  },
+
+  {
+    path: "/about",
+    element: <AboutLayout />,
+    errorElement: <ErrorPage />,
+
+    children: [
+      {
+        index: true,
+        element: <AboutPage />,
       },
     ],
   },

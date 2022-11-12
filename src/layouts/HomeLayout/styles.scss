@@ -1,0 +1,5 @@
+@import "../../assets/styles/mixins";
+
+.home-layout {
+  @include container;
+}
