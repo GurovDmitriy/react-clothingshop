@@ -11,7 +11,7 @@ function HomePage() {
   const { menuList } = useLoaderData()
 
   return (
-    <div className="page-index">
+    <div className="page-home">
       <MenuList dataItem={menuList} />
     </div>
   )

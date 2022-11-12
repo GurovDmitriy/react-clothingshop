@@ -6,14 +6,14 @@ import NavListContainer from "../NavListContainer/NavListContainer"
 import "./style.scss"
 
 function HeaderNavContainer({ className }) {
-  const classesNav = classNames("header-nav", className)
+  const classesNav = classNames("header-nav-container", className)
 
   return (
     <div className={classesNav}>
-      <LogoBox className="header-nav__logo-box" to="/">
+      <LogoBox className="header-nav-container__logo-box" to="/">
         <Logo />
       </LogoBox>
-      <NavListContainer className="header-nav__nav-list" />
+      <NavListContainer className="header-nav-container__nav-list" />
     </div>
   )
 }

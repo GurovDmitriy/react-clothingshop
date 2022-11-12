@@ -45,7 +45,7 @@ function NavListContainer() {
   const activeButton = authData && authData.id ? buttonSignOut : buttonSignIn
 
   return (
-    <div className="nav-list">
+    <div className="nav-list-container">
       <ButtonSimple to="/shop" tag={Link}>
         Shop
       </ButtonSimple>
@@ -56,17 +56,17 @@ function NavListContainer() {
         About
       </ButtonSimple>
       {activeButton}
-      <div className="nav-list__button-icon-box">
+      <div className="nav-list-container__button-icon-box">
         <ButtonIcon
           to="/cart"
           tag={Link}
-          className="nav-list__button-icon"
+          className="nav-list-container__button-icon"
           icon={CartIcon}
         >
           {cartCountItems || null}
         </ButtonIcon>
         <CartModal
-          className="nav-list__cart-modal"
+          className="nav-list-container__cart-modal"
           list={cartList}
           handleToCart={handleToCart}
         />

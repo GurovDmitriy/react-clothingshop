@@ -45,11 +45,11 @@ function FormSignInContainer({ className }) {
     })
   }
 
-  const classesForm = classNames("container-form-sign-in", className)
+  const classesForm = classNames("form-sign-in-container", className)
 
   return (
     <div className={classesForm}>
-      <h3 className="container-form-sign-in__caption">
+      <h3 className="form-sign-in-container__caption">
         I already have an account
       </h3>
       <p className="container-form-sing-in__description">
@@ -57,13 +57,13 @@ function FormSignInContainer({ className }) {
       </p>
 
       <form
-        className="container-form-sign-in__form"
+        className="form-sign-in-container__form"
         action=""
         method="POST"
         onSubmit={handleSignIn}
       >
         <InputBox
-          className="container-form-sign-in__input-box"
+          className="form-sign-in-container__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "email" })
           }}
@@ -73,7 +73,7 @@ function FormSignInContainer({ className }) {
           Email
         </InputBox>
         <InputBox
-          className="container-form-sign-in__input-box"
+          className="form-sign-in-container__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "password" })
           }}
@@ -83,16 +83,16 @@ function FormSignInContainer({ className }) {
           Password
         </InputBox>
 
-        <div className="container-form-sign-in__button-box">
+        <div className="form-sign-in-container__button-box">
           <ButtonDefault
             type="submit"
-            className="container-form-sign-in__button-default"
+            className="form-sign-in-container__button-default"
           >
             Sign in
           </ButtonDefault>
           <ButtonDefault
             type="button"
-            className="container-form-sign-in__button-default"
+            className="form-sign-in-container__button-default"
             handleClick={handleClickSignWithGoogle}
           >
             Sign in with Google

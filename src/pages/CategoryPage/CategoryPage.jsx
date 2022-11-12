@@ -17,10 +17,10 @@ function CategoryPage() {
   const { collectionList } = useLoaderData()
 
   return (
-    <div className="page-category">
+    <div className="category-page">
       <CollectionPreview
         dataItem={collectionList}
-        className="page-category__collection-preview"
+        className="category-page__collection-preview"
       />
     </div>
   )
