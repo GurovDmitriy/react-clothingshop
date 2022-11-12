@@ -1,17 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit"
 import actionStatusTypes from "../actionStatusTypes"
-import { addToCartAction, removeFromCartAction } from "./cartAction"
+import {
+  addToCartAction,
+  clearCartAction,
+  fetchCartAction,
+  removeFromCartAction,
+} from "./cartAction"
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    entities: {},
+    entities: null,
     status: actionStatusTypes.useless,
     error: null,
   },
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(fetchCartAction.pending, (state) => {
+        state.status = actionStatusTypes.pending
+        state.error = null
+      })
+      .addCase(fetchCartAction.fulfilled, (state, action) => {
+        state.entities = action.payload
+        state.status = actionStatusTypes.success
+      })
+      .addCase(fetchCartAction.rejected, (state, action) => {
+        state.status = actionStatusTypes.failure
+        state.error = action.error.message
+      })
       .addCase(addToCartAction.pending, (state) => {
         state.status = actionStatusTypes.pending
         state.error = null
@@ -33,6 +50,18 @@ const cartSlice = createSlice({
         state.status = actionStatusTypes.success
       })
       .addCase(removeFromCartAction.rejected, (state, action) => {
+        state.status = actionStatusTypes.failure
+        state.error = action.error.message
+      })
+      .addCase(clearCartAction.pending, (state) => {
+        state.status = actionStatusTypes.pending
+        state.error = null
+      })
+      .addCase(clearCartAction.fulfilled, (state, action) => {
+        state.entities = action.payload
+        state.status = actionStatusTypes.success
+      })
+      .addCase(clearCartAction.rejected, (state, action) => {
         state.status = actionStatusTypes.failure
         state.error = action.error.message
       })

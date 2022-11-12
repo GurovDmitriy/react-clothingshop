@@ -30,7 +30,7 @@ function ButtonIcon({
 
 ButtonIcon.defaultProps = {
   tag: "button",
-  isHiddenLabel: true,
+  isHiddenLabel: false,
   icon: null,
 }
 

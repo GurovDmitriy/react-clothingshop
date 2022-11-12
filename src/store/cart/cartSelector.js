@@ -1,3 +1,5 @@
+import { createSelector } from "@reduxjs/toolkit"
+
 /**
  *  @param {object} state - State Redux
  *  @returns {string} - Cart status fetch
@@ -22,4 +24,25 @@ function selectCart(state) {
   return state.cart.entities
 }
 
-export { selectCartStatusFetch, selectCart, selectCartError }
+/**
+ * @param {object} state - State Redux
+ * @returns {number} - Cart count items
+ */
+const selectCartCountItems = createSelector(
+  [selectCart, (state) => state.auth.id],
+  (cart) => {
+    if (cart && Object.values(cart).length) {
+      return Object.values(cart).reduce((previousValue, currentValue) => {
+        return previousValue + currentValue.count
+      }, 0)
+    }
+    return 0
+  }
+)
+
+export {
+  selectCartStatusFetch,
+  selectCart,
+  selectCartError,
+  selectCartCountItems,
+}

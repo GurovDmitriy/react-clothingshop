@@ -1,11 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api"
 
+const fetchCartAction = createAsyncThunk(
+  "cart/fetchCartAction",
+  async (payload, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
+    let cartOld = null
+
+    if (userId) {
+      cartOld = await api.cart.fetchCartDocument(userId)
+    }
+
+    return cartOld
+  }
+)
+
 const addToCartAction = createAsyncThunk(
   "cart/addToCartAction",
   async (payload, thunkAPI) => {
     const userId = thunkAPI.getState().auth.entities.id
-    const cartOld = await api.cart.getCartDocument(userId)
+    const cartOld = await api.cart.fetchCartDocument(userId)
     const existItem = cartOld?.[String(payload.id)]
     let count = 1
 
@@ -21,7 +35,7 @@ const addToCartAction = createAsyncThunk(
       count,
     })
 
-    const cartNew = await api.cart.getCartDocument(userId)
+    const cartNew = await api.cart.fetchCartDocument(userId)
 
     return cartNew
   }
@@ -31,7 +45,7 @@ const removeFromCartAction = createAsyncThunk(
   "cart/removeFromCartAction",
   async (payload, thunkAPI) => {
     const userId = thunkAPI.getState().auth.entities.id
-    const cartOld = await api.cart.getCartDocument(userId)
+    const cartOld = await api.cart.fetchCartDocument(userId)
     const existItem = cartOld?.[String(payload.id)]
     let count = 0
 
@@ -57,10 +71,19 @@ const removeFromCartAction = createAsyncThunk(
         })
     }
 
-    const cartNew = await api.cart.getCartDocument(userId)
+    const cartNew = await api.cart.fetchCartDocument(userId)
 
     return cartNew
   }
 )
 
-export { addToCartAction, removeFromCartAction }
+const clearCartAction = createAsyncThunk("cart/clearCartAction", async () => {
+  return null
+})
+
+export {
+  addToCartAction,
+  removeFromCartAction,
+  fetchCartAction,
+  clearCartAction,
+}
