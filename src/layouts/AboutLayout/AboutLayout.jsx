@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
-import "./styles.scss"
+import "./style.scss"
 
 function AboutLayout() {
   return (

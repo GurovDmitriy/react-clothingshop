@@ -7,7 +7,7 @@ import InputBox from "../../components/InputBox/InputBox"
 import { signUpAction } from "../../store/auth/authAction"
 import { createUserAction } from "../../store/user/userAction"
 import { configInput } from "./data"
-import "./styles.scss"
+import "./style.scss"
 
 function FormSignUpContainer({ className }) {
   const dispatch = useDispatch()

@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
-import "./styles.scss"
+import "./style.scss"
 
 function MenuItem({ dataItem, className, ...propsMenu }) {
   const classesMenu = classNames("menu-item", className)

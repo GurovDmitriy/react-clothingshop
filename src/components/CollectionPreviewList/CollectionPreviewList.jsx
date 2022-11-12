@@ -2,7 +2,7 @@ import classNames from "classnames"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
-import "./styles.scss"
+import "./style.scss"
 
 function CollectionPreviewList({ dataItem, className, handleAddToCart }) {
   const classesList = classNames("collection-preview-list", className)

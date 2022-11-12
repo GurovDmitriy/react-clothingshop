@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
-import "./styles.scss"
+import "./style.scss"
 
 function CollectionPreviewItem({ dataItem, className, handleAddToCart }) {
   const classesPreviewItem = classNames("collection-preview-item", className)
