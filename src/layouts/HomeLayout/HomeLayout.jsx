@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom"
 import api from "../../api"
 import HeaderNavContainer from "../../containers/HeaderNavContainer/HeaderNavContainer"
 import { signCheckAction } from "../../store/auth/authAction"
+import { fetchCartAction } from "../../store/cart/cartAction"
 import { fetchUserAction } from "../../store/user/userAction"
 import "./styles.scss"
 
@@ -11,10 +12,11 @@ function HomeLayout() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const unsubscribeAuth = api.auth.subscribeStateChange((user) => {
+    const unsubscribeAuth = api.auth.subscribeStateChange(async (user) => {
       if (user) {
-        dispatch(signCheckAction())
-        dispatch(fetchUserAction(user.uid))
+        await dispatch(signCheckAction())
+        await dispatch(fetchUserAction())
+        await dispatch(fetchCartAction())
       }
     })
 

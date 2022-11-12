@@ -22,15 +22,21 @@ const createUserAction = createAsyncThunk(
   }
 )
 
-const fetchUserAction = createAsyncThunk("user/fetchUserAction", async (id) => {
-  const response = await api.user.getUserDocument(id)
-  return {
-    id,
-    displayName: response.displayName,
-    email: response.email,
-    createdAt: response.createdAt.toDate().toString(),
+const fetchUserAction = createAsyncThunk(
+  "user/fetchUserAction",
+  async (payload, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
+    const response = await api.user.getUserDocument(userId)
+    console.log(response)
+
+    return {
+      id: response.uid,
+      displayName: response.displayName,
+      email: response.email,
+      createdAt: response.createdAt.toDate().toString(),
+    }
   }
-})
+)
 
 const clearUserAction = createAsyncThunk("user/clearUserAction", async () => {
   return null

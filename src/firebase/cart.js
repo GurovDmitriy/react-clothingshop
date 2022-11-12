@@ -67,7 +67,7 @@ async function deleteCartFieldDocumentFB(payload) {
  * @param {string} id
  * @returns {Promise<DocumentData|null>}
  */
-async function getCartDocumentFB(id) {
+async function fetchCartDocumentFB(id) {
   const cartsRef = doc(db, `carts/${id}`)
   const docSnap = await getDoc(cartsRef)
 
@@ -82,5 +82,5 @@ export default {
   createCartDocumentFB,
   updateCartDocumentFB,
   deleteCartFieldDocumentFB,
-  getCartDocumentFB,
+  fetchCartDocumentFB,
 }

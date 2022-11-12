@@ -5,16 +5,20 @@ import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
+import { clearCartAction } from "../../store/cart/cartAction"
+import { selectCartCountItems } from "../../store/cart/cartSelector"
 import { clearUserAction } from "../../store/user/userAction"
 import "./styles.scss"
 
 function NavListContainer() {
   const dispatch = useDispatch()
   const authData = useSelector(selectAuth)
+  const cartCountItems = useSelector(selectCartCountItems)
 
   const handleSignOut = async () => {
-    await dispatch(signOutAction())
-    await dispatch(clearUserAction())
+    dispatch(signOutAction())
+    dispatch(clearUserAction())
+    dispatch(clearCartAction())
   }
 
   const handleClickCart = () => {
@@ -48,14 +52,13 @@ function NavListContainer() {
       </ButtonSimple>
       {activeButton}
       <ButtonIcon
-        isHiddenLabel={true}
         to="/"
         tag={Link}
         className="nav-list__button-icon"
         icon={CartIcon}
         handleClick={() => handleClickCart()}
       >
-        Cart
+        {cartCountItems || null}
       </ButtonIcon>
     </div>
   )

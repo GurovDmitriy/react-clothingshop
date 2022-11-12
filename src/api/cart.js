@@ -58,13 +58,13 @@ function deleteCartFieldDocument(payload) {
  * @param {string|number} id
  * @returns {Promise<undefined|void>}
  */
-function getCartDocument(id) {
-  return firebaseSDK.cart.getCartDocumentFB(id)
+function fetchCartDocument(id) {
+  return firebaseSDK.cart.fetchCartDocumentFB(id)
 }
 
 export default {
   createCartDocument,
   updateCartDocument,
   deleteCartFieldDocument,
-  getCartDocument,
+  fetchCartDocument,
 }
