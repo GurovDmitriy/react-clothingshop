@@ -9,6 +9,7 @@ import { db } from "./config"
  * @param {string} payload.name
  * @param {string} payload.imageUrl
  * @param {string} payload.count
+ * @param {string} payload.price
  * @returns {Promise<void>}
  */
 async function createCartDocumentFB(payload) {
@@ -21,6 +22,7 @@ async function createCartDocumentFB(payload) {
         name: payload.name,
         imageUrl: payload.imageUrl,
         count: payload.count,
+        price: payload.price,
       },
     },
     { merge: true }
@@ -35,6 +37,7 @@ async function createCartDocumentFB(payload) {
  * @param {string} payload.name
  * @param {string} payload.imageUrl
  * @param {string} payload.count
+ * @param {string} payload.price
  * @returns {Promise<void>}
  */
 async function updateCartDocumentFB(payload) {
@@ -45,6 +48,7 @@ async function updateCartDocumentFB(payload) {
       name: payload.name,
       imageUrl: payload.imageUrl,
       count: payload.count,
+      price: payload.price,
     },
   })
 }

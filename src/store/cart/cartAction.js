@@ -32,6 +32,7 @@ const addToCartAction = createAsyncThunk(
       id: payload.id,
       name: payload.name,
       imageUrl: payload.imageUrl,
+      price: payload.price,
       count,
     })
 
@@ -67,6 +68,7 @@ const removeFromCartAction = createAsyncThunk(
           id: payload.id,
           name: payload.name,
           imageUrl: payload.imageUrl,
+          price: payload.price,
           count,
         })
     }

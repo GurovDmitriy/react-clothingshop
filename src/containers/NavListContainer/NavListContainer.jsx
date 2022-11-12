@@ -3,17 +3,21 @@ import { Link } from "react-router-dom"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
 import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
+import CartModal from "../../components/CartModal/CartModal"
 import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { clearCartAction } from "../../store/cart/cartAction"
-import { selectCartCountItems } from "../../store/cart/cartSelector"
+import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
 import { clearUserAction } from "../../store/user/userAction"
-import "./styles.scss"
+import "./style.scss"
 
 function NavListContainer() {
   const dispatch = useDispatch()
   const authData = useSelector(selectAuth)
+  const cartData = useSelector(selectCart)
   const cartCountItems = useSelector(selectCartCountItems)
+
+  const cartList = cartData ? Object.values(cartData) : []
 
   const handleSignOut = async () => {
     dispatch(signOutAction())
@@ -51,15 +55,18 @@ function NavListContainer() {
         About
       </ButtonSimple>
       {activeButton}
-      <ButtonIcon
-        to="/"
-        tag={Link}
-        className="nav-list__button-icon"
-        icon={CartIcon}
-        handleClick={() => handleClickCart()}
-      >
-        {cartCountItems || null}
-      </ButtonIcon>
+      <div className="nav-list__button-icon-box">
+        <ButtonIcon
+          to="/"
+          tag={Link}
+          className="nav-list__button-icon"
+          icon={CartIcon}
+          handleClick={() => handleClickCart()}
+        >
+          {cartCountItems || null}
+        </ButtonIcon>
+        <CartModal className="nav-list__cart-modal" list={cartList} />
+      </div>
     </div>
   )
 }
