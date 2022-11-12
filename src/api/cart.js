@@ -6,6 +6,7 @@ import firebaseSDK from "../firebase"
  * @param {string} payload.name
  * @param {string} payload.imageUrl
  * @param {string} payload.count
+ * @param {string} payload.price
  * @returns {Promise<undefined|void>}
  */
 function createCartDocument(payload) {
@@ -15,6 +16,7 @@ function createCartDocument(payload) {
     name: payload.name,
     imageUrl: payload.imageUrl,
     count: payload.count,
+    price: payload.price,
   }
 
   return firebaseSDK.cart.createCartDocumentFB(data)
@@ -26,6 +28,7 @@ function createCartDocument(payload) {
  * @param {string} payload.name
  * @param {string} payload.imageUrl
  * @param {string} payload.count
+ * @param {string} payload.price
  * @returns {Promise<undefined|void>}
  */
 function updateCartDocument(payload) {
@@ -35,6 +38,7 @@ function updateCartDocument(payload) {
     name: payload.name,
     imageUrl: payload.imageUrl,
     count: payload.count,
+    price: payload.price,
   }
 
   return firebaseSDK.cart.updateCartDocumentFB(data)

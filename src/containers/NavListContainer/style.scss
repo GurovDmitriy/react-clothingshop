@@ -1,0 +1,32 @@
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -10px;
+}
+
+.nav-list__button-simple {
+  margin: 0 4px;
+}
+
+.nav-list__button-icon {
+  margin: 0 4px;
+}
+
+.nav-list__button-icon-box {
+  position: relative;
+}
+
+.nav-list__cart-modal {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  z-index: 10;
+
+  display: none;
+}
+
+.nav-list__button-icon-box:hover .nav-list__cart-modal {
+  display: block;
+}

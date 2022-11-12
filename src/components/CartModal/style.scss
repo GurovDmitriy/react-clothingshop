@@ -1,0 +1,40 @@
+.cart-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  max-height: 400px;
+  padding: 20px;
+  overflow: auto;
+
+  background-color: #ffffff;
+
+  border: 1px solid #000000;
+}
+
+.cart-modal__body {
+  margin-bottom: 20px;
+}
+
+.cart-modal__item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.cart-modal__img-box {
+  width: 70px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.cart-modal__img-box img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  line-height: 0;
+}
+
+.cart-modal__btn-box {
+  margin-top: auto;
+}
