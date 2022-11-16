@@ -34,8 +34,6 @@ function FormSignUpContainer({ className }) {
       })
     )
 
-    console.log(signUpResponse)
-
     await dispatch(
       createUserAction({
         id: signUpResponse.payload.id,
