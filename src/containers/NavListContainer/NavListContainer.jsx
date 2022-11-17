@@ -6,8 +6,9 @@ import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import CartModal from "../../components/CartModal/CartModal"
 import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
-import { clearCartAction } from "../../store/cart/cartAction"
+import { updateCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
+import cartOperationTypes from "../../store/cartOperationTypes"
 import { clearUserAction } from "../../store/user/userAction"
 import "./style.scss"
 
@@ -23,7 +24,7 @@ function NavListContainer() {
   const handleSignOut = async () => {
     dispatch(signOutAction())
     dispatch(clearUserAction())
-    dispatch(clearCartAction())
+    dispatch(updateCartAction({ cartOperation: cartOperationTypes.clear }))
   }
 
   const handleToCart = () => {

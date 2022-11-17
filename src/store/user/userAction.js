@@ -27,7 +27,6 @@ const fetchUserAction = createAsyncThunk(
   async (payload, thunkAPI) => {
     const userId = thunkAPI.getState().auth?.entities?.id
     const response = await api.user.getUserDocument(userId)
-    console.log(response)
 
     return {
       id: response.uid,
