@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import CartBox from "../../components/CartBox/CartBox"
-import { fetchCartAction } from "../../store/cart/cartAction"
+import { fetchCartAction, updateCartAction } from "../../store/cart/cartAction"
 import { selectCart } from "../../store/cart/cartSelector"
+import cartOperationTypes from "../../store/cartOperationTypes"
 
 function CartPage({ className }) {
   const dispatch = useDispatch()
@@ -16,8 +17,38 @@ function CartPage({ className }) {
     dispatch(fetchCartAction())
   }, [])
 
-  const handleChangeCount = (id, value) => {
-    console.log(id, value)
+  const handleChangeCount = (cartItem, cartOperation) => {
+    switch (cartOperation) {
+      case cartOperationTypes.increment:
+        dispatch(
+          updateCartAction({
+            cartItem,
+            cartOperation: cartOperationTypes.increment,
+          })
+        )
+        break
+
+      case cartOperationTypes.decrement:
+        dispatch(
+          updateCartAction({
+            cartItem,
+            cartOperation: cartOperationTypes.decrement,
+          })
+        )
+        break
+
+      case cartOperationTypes.delete:
+        dispatch(
+          updateCartAction({
+            cartItem,
+            cartOperation: cartOperationTypes.delete,
+          })
+        )
+        break
+
+      default:
+        return
+    }
   }
 
   const cartPageClasses = classNames("cart-page", className)

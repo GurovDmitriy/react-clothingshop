@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
+import cartOperationTypes from "../../store/cartOperationTypes"
 
 function CartBox({ className, entities, handleChangeCount }) {
   const cartPageClasses = classNames("cart-box", className)
@@ -25,14 +26,18 @@ function CartBox({ className, entities, handleChangeCount }) {
           <span className="cart-box__item-quantity">
             <button
               className="cart-box__item-quantity-dec"
-              onClick={() => handleChangeCount(item.id, "dec")}
+              onClick={() =>
+                handleChangeCount(item, cartOperationTypes.decrement)
+              }
             >
               -
             </button>
             <span className="cart-box__item-quantity">{item.count}</span>
             <button
               className="cart-box__item-quantity-inc"
-              onClick={() => handleChangeCount(item.id, "inc")}
+              onClick={() =>
+                handleChangeCount(item, cartOperationTypes.increment)
+              }
             >
               +
             </button>
@@ -44,7 +49,7 @@ function CartBox({ className, entities, handleChangeCount }) {
         <td>
           <button
             className="cart-box__item-remove"
-            onClick={() => handleChangeCount(item.id, "del")}
+            onClick={() => handleChangeCount(item, cartOperationTypes.delete)}
           >
             del
           </button>
