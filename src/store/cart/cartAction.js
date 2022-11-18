@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api"
-import cartOperationTypes from "../cartOperationTypes"
+import cartOperationTypes from "../types/cartOperationTypes"
 
 const updateCartAction = createAsyncThunk(
   "cart/updateCartAction",

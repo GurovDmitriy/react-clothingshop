@@ -28,21 +28,33 @@ function selectCart(state) {
  * @param {object} state - State Redux
  * @returns {number} - Cart count items
  */
-const selectCartCountItems = createSelector(
-  [selectCart, (state) => state.auth.id],
-  (cart) => {
-    if (cart && Object.values(cart).length) {
-      return Object.values(cart).reduce((previousValue, currentValue) => {
-        return previousValue + currentValue.count
-      }, 0)
-    }
-    return 0
+const selectCartCountItems = createSelector([selectCart], (cart) => {
+  if (cart && Object.values(cart).length) {
+    return Object.values(cart).reduce((previousValue, currentValue) => {
+      return previousValue + currentValue.count
+    }, 0)
   }
-)
+  return 0
+})
+
+/**
+ * @param {object} state - State Redux
+ * @returns {number} - Cart count items
+ */
+const selectCartTotalPrice = createSelector([selectCart], (cart) => {
+  if (cart && Object.values(cart).length) {
+    return Object.values(cart).reduce((previousValue, currentValue) => {
+      return previousValue + currentValue.price * currentValue.count
+    }, 0)
+  }
+
+  return 0
+})
 
 export {
   selectCartStatusFetch,
   selectCart,
   selectCartError,
   selectCartCountItems,
+  selectCartTotalPrice,
 }
