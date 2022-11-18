@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { updateCartAction } from "../../store/cart/cartAction"
-import cartOperationTypes from "../../store/cartOperationTypes"
+import cartOperationTypes from "../../store/types/cartOperationTypes"
 import shopCollections from "./data"
 
 export async function loader() {

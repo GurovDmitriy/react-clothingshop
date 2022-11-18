@@ -8,7 +8,7 @@ import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { updateCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
-import cartOperationTypes from "../../store/cartOperationTypes"
+import cartOperationTypes from "../../store/types/cartOperationTypes"
 import { clearUserAction } from "../../store/user/userAction"
 import "./style.scss"
 

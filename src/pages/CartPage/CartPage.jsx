@@ -3,15 +3,24 @@ import PropTypes from "prop-types"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import CartBox from "../../components/CartBox/CartBox"
+import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
 import { fetchCartAction, updateCartAction } from "../../store/cart/cartAction"
-import { selectCart } from "../../store/cart/cartSelector"
-import cartOperationTypes from "../../store/cartOperationTypes"
+import {
+  selectCart,
+  selectCartStatusFetch,
+  selectCartTotalPrice,
+} from "../../store/cart/cartSelector"
+import actionStatusTypes from "../../store/types/actionStatusTypes"
+import cartOperationTypes from "../../store/types/cartOperationTypes"
 
 function CartPage({ className }) {
   const dispatch = useDispatch()
   const cart = useSelector(selectCart)
+  const totalPrice = useSelector(selectCartTotalPrice)
+  const cartStateFetch = useSelector(selectCartStatusFetch)
 
   const cartEntities = cart ? Object.values(cart) : []
+  const loading = cartStateFetch === actionStatusTypes.pending
 
   useEffect(() => {
     dispatch(fetchCartAction())
@@ -55,10 +64,12 @@ function CartPage({ className }) {
 
   return (
     <div className={cartPageClasses}>
+      <LoadingBlock className="cart-page__loading-block" loading={loading} />
       <CartBox
         className="cart-page__cart-box"
         handleChangeCount={handleChangeCount}
         entities={cartEntities}
+        totalPrice={totalPrice}
       />
     </div>
   )
