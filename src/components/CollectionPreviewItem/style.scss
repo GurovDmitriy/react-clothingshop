@@ -15,6 +15,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
 
   display: block;
   width: 120%;
@@ -22,4 +23,22 @@
   margin: 0;
 
   line-height: 0;
+}
+
+.collection-preview-item__button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 2;
+
+  width: max-content;
+
+  transform: translate(-50%, -50%);
+  opacity: 0;
+
+  transition: opacity 0.2s;
+}
+
+.collection-preview-item__image-box:hover .collection-preview-item__button {
+  opacity: 1;
 }

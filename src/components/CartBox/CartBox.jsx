@@ -62,6 +62,15 @@ function CartBox({ className, entities, handleChangeCount, totalPrice }) {
     )
   })
 
+  const placeholder = (
+    <tr>
+      <td>
+        <span className="cart-box__empty">Empty</span>
+      </td>
+    </tr>
+  )
+  const cartData = itemList && itemList.length ? itemList : placeholder
+
   return (
     <div className={cartPageClasses}>
       <table className="cart-box__table">
@@ -74,7 +83,7 @@ function CartBox({ className, entities, handleChangeCount, totalPrice }) {
             <th>Remove</th>
           </tr>
         </thead>
-        <tbody>{itemList}</tbody>
+        <tbody>{cartData}</tbody>
         <tfoot>
           <tr>
             <td></td>
