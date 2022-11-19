@@ -34,7 +34,9 @@ function CartModal({ className, list, handleToCart }) {
         {listItems.length ? listItems : "empty"}
       </div>
       <div className="cart-modal__btn-box">
-        <ButtonDefault handleClick={handleToCart}>Go to checkout</ButtonDefault>
+        <ButtonDefault className="cart-modal__btn" handleClick={handleToCart}>
+          Go to checkout
+        </ButtonDefault>
       </div>
     </div>
   )

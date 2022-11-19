@@ -16,12 +16,15 @@ function CollectionPreviewItem({ dataItem, className, handleAddToCart }) {
           alt="cloth"
           src={dataItem.imageUrl}
         />
+        <ButtonDefault
+          className="collection-preview-item__button"
+          handleClick={() => handleAddToCart(dataItem)}
+        >
+          Add to cart
+        </ButtonDefault>
       </div>
       <div className="collection-preview-item__caption">{dataItem.name}</div>
       <div className="collection-preview-item__price">${dataItem.price}</div>
-      <ButtonDefault handleClick={() => handleAddToCart(dataItem)}>
-        +
-      </ButtonDefault>
     </div>
   )
 }

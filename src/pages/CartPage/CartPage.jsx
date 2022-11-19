@@ -12,6 +12,7 @@ import {
 } from "../../store/cart/cartSelector"
 import actionStatusTypes from "../../store/types/actionStatusTypes"
 import cartOperationTypes from "../../store/types/cartOperationTypes"
+import "./style.scss"
 
 function CartPage({ className }) {
   const dispatch = useDispatch()
