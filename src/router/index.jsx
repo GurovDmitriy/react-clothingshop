@@ -1,14 +1,17 @@
 import { createBrowserRouter } from "react-router-dom"
+import { fetchCategory as rootLoader } from "../api/category"
+import {
+  fetchShopCollection as collectionLoader,
+  fetchShopItems as shopLoader,
+} from "../api/shop"
 import AboutLayout from "../layouts/AboutLayout/AboutLayout"
 import HomeLayout from "../layouts/HomeLayout/HomeLayout"
 import AboutPage from "../pages/AboutPage/AboutPage"
 import CartPage from "../pages/CartPage/CartPage"
-import CategoryPage, {
-  loader as categoryLoader,
-} from "../pages/CategoryPage/CategoryPage"
+import CategoryPage from "../pages/CategoryPage/CategoryPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
-import HomePage, { loader as rootLoader } from "../pages/HomePage/HomePage"
-import ShopPage, { loader as shopLoader } from "../pages/ShopPage/ShopPage"
+import HomePage from "../pages/HomePage/HomePage"
+import ShopPage from "../pages/ShopPage/ShopPage"
 import SignPage from "../pages/SignPage/SignPage"
 
 const router = createBrowserRouter([
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "shop/:category",
         element: <CategoryPage />,
-        loader: categoryLoader,
+        loader: collectionLoader,
       },
 
       {
