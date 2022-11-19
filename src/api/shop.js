@@ -22,7 +22,7 @@ async function fetchShopItems() {
     const data = shopData.map((item) => {
       return {
         ...item,
-        items: item.items.filter((el, index) => index <= 3),
+        items: item.items.filter((el, index) => index < 4),
       }
     })
     resolve(data)
