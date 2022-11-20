@@ -2,17 +2,14 @@ import classNames from "classnames"
 import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
-import ButtonIcon from "../../components/ButtonIcon/ButtonIcon"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
-import CartModal from "../../components/CartModal/CartModal"
+import NavList from "../../components/NavList/NavList"
 import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { updateCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
 import cartOperationTypes from "../../store/types/cartOperationTypes"
 import { clearUserAction } from "../../store/user/userAction"
-import "./style.scss"
 
 function NavListContainer({ className }) {
   const dispatch = useDispatch()
@@ -21,7 +18,7 @@ function NavListContainer({ className }) {
   const cartCountItems = useSelector(selectCartCountItems)
   const navigate = useNavigate()
 
-  const cartList = cartData ? Object.values(cartData) : []
+  const cartListEntities = cartData ? Object.values(cartData) : []
 
   const handleSignOut = async () => {
     dispatch(signOutAction())
@@ -56,33 +53,13 @@ function NavListContainer({ className }) {
   const navListContainerClass = classNames("nav-list-container", className)
 
   return (
-    <div className={navListContainerClass}>
-      <ButtonSimple to="/shop" tag={Link}>
-        Shop
-      </ButtonSimple>
-      <ButtonSimple to="/contact" tag={Link}>
-        Contact
-      </ButtonSimple>
-      <ButtonSimple to="/about" tag={Link}>
-        About
-      </ButtonSimple>
-      {renderActiveButton()}
-      <div className="nav-list-container__button-icon-box">
-        <ButtonIcon
-          to="/cart"
-          tag={Link}
-          className="nav-list-container__button-icon"
-          icon={CartIcon}
-        >
-          {cartCountItems || null}
-        </ButtonIcon>
-        <CartModal
-          className="nav-list-container__cart-modal"
-          entities={cartList}
-          handleToCart={handleToCart}
-        />
-      </div>
-    </div>
+    <NavList
+      className={navListContainerClass}
+      handleToCart={handleToCart}
+      renderActiveButton={renderActiveButton}
+      cartCountItems={cartCountItems}
+      cartListEntities={cartListEntities}
+    />
   )
 }
 
