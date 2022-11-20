@@ -13,14 +13,14 @@ function ButtonIcon({
 }) {
   const TagCustom = tag
   const IconCustom = icon
-  const classesButton = classNames("button-icon", className)
-  const classesLabel = classNames("button-icon__label", {
+  const buttonClass = classNames("button-icon", className)
+  const labelClass = classNames("button-icon__label", {
     "button-icon__label--hidden": isHiddenLabel,
   })
 
   return (
-    <TagCustom className={classesButton} onClick={handleClick} {...propsButton}>
-      <span className={classesLabel}>{children}</span>
+    <TagCustom className={buttonClass} onClick={handleClick} {...propsButton}>
+      <span className={labelClass}>{children}</span>
       <span className="button-icon__icon-box">
         <IconCustom />
       </span>

@@ -50,10 +50,10 @@ function FormSignUpContainer({ className }) {
     })
   }
 
-  const classesForm = classNames("form-sign-up-container", className)
+  const formClass = classNames("form-sign-up-container", className)
 
   return (
-    <div className={classesForm}>
+    <div className={formClass}>
       <h3 className="form-sign-up-container__caption">
         I dont have an account
       </h3>

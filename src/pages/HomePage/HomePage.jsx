@@ -6,7 +6,7 @@ function HomePage() {
 
   return (
     <div className="page-home">
-      <MenuList dataItem={menuList} />
+      <MenuList entities={menuList} />
     </div>
   )
 }

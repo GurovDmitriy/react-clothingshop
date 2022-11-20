@@ -21,7 +21,7 @@ function ShopPage() {
     <div className="page-shop">
       <CollectionPreview
         className="page-shop__collectionPreview"
-        dataItem={shopList}
+        entities={shopList}
         handleAddToCart={handleAddToCart}
       />
     </div>

@@ -1,3 +1,5 @@
+import classNames from "classnames"
+import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
@@ -12,7 +14,7 @@ import cartOperationTypes from "../../store/types/cartOperationTypes"
 import { clearUserAction } from "../../store/user/userAction"
 import "./style.scss"
 
-function NavListContainer() {
+function NavListContainer({ className }) {
   const dispatch = useDispatch()
   const authData = useSelector(selectAuth)
   const cartData = useSelector(selectCart)
@@ -31,22 +33,30 @@ function NavListContainer() {
     navigate("/cart")
   }
 
-  const buttonSignOut = (
-    <ButtonSimple type="button" handleClick={handleSignOut}>
-      Sign out
-    </ButtonSimple>
-  )
+  const renderActiveButton = () => {
+    let component = null
 
-  const buttonSignIn = (
-    <ButtonSimple to="/sign" tag={Link}>
-      Sign in
-    </ButtonSimple>
-  )
+    if (authData && authData.id) {
+      component = (
+        <ButtonSimple type="button" handleClick={handleSignOut}>
+          Sign out
+        </ButtonSimple>
+      )
+    } else {
+      component = (
+        <ButtonSimple to="/sign" tag={Link}>
+          Sign in
+        </ButtonSimple>
+      )
+    }
 
-  const activeButton = authData && authData.id ? buttonSignOut : buttonSignIn
+    return component
+  }
+
+  const navListContainerClass = classNames("nav-list-container", className)
 
   return (
-    <div className="nav-list-container">
+    <div className={navListContainerClass}>
       <ButtonSimple to="/shop" tag={Link}>
         Shop
       </ButtonSimple>
@@ -56,7 +66,7 @@ function NavListContainer() {
       <ButtonSimple to="/about" tag={Link}>
         About
       </ButtonSimple>
-      {activeButton}
+      {renderActiveButton()}
       <div className="nav-list-container__button-icon-box">
         <ButtonIcon
           to="/cart"
@@ -68,12 +78,16 @@ function NavListContainer() {
         </ButtonIcon>
         <CartModal
           className="nav-list-container__cart-modal"
-          list={cartList}
+          entities={cartList}
           handleToCart={handleToCart}
         />
       </div>
     </div>
   )
+}
+
+NavListContainer.propTypes = {
+  className: PropTypes.string,
 }
 
 export default NavListContainer

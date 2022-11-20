@@ -7,72 +7,83 @@ import cartOperationTypes from "../../store/types/cartOperationTypes"
 import "./style.scss"
 
 function CartBox({ className, entities, handleChangeCount, totalPrice }) {
-  const cartPageClasses = classNames("cart-box", className)
-
-  const itemList = entities.map((item) => {
-    return (
-      <tr key={item.id}>
-        <td>
-          <div className="cart-box__item-image-box">
-            <img
-              className="cart-box__item-image"
-              src={item.imageUrl}
-              alt="cloth"
-              width="100"
-              height="150"
-            />
-          </div>
-        </td>
-        <td>
-          <span className="cart-box__item-caption">{item.name}</span>
-        </td>
-        <td>
-          <span className="cart-box__item-quantity">
+  const renderCartBoxItems = () => {
+    return entities.map((item) => {
+      return (
+        <tr key={item.id}>
+          <td>
+            <div className="cart-box__item-image-box">
+              <img
+                className="cart-box__item-image"
+                src={item.imageUrl}
+                alt="cloth"
+                width="100"
+                height="150"
+              />
+            </div>
+          </td>
+          <td>
+            <span className="cart-box__item-caption">{item.name}</span>
+          </td>
+          <td>
+            <span className="cart-box__item-quantity">
+              <button
+                className="cart-box__item-btn cart-box__item-btn--dec"
+                onClick={() =>
+                  handleChangeCount(item, cartOperationTypes.decrement)
+                }
+              >
+                <IconDec />
+              </button>
+              <span className="cart-box__item-quantity">{item.count}</span>
+              <button
+                className="cart-box__item-btn cart-box__item-btn--inc"
+                onClick={() =>
+                  handleChangeCount(item, cartOperationTypes.increment)
+                }
+              >
+                <IconInc />
+              </button>
+            </span>
+          </td>
+          <td>
+            <span className="cart-box__item-price">${item.price}</span>
+          </td>
+          <td>
             <button
-              className="cart-box__item-btn cart-box__item-btn--dec"
-              onClick={() =>
-                handleChangeCount(item, cartOperationTypes.decrement)
-              }
+              className="cart-box__item-btn cart-box__item-btn--del"
+              onClick={() => handleChangeCount(item, cartOperationTypes.delete)}
             >
-              <IconDec />
+              <IconDel />
             </button>
-            <span className="cart-box__item-quantity">{item.count}</span>
-            <button
-              className="cart-box__item-btn cart-box__item-btn--inc"
-              onClick={() =>
-                handleChangeCount(item, cartOperationTypes.increment)
-              }
-            >
-              <IconInc />
-            </button>
-          </span>
-        </td>
-        <td>
-          <span className="cart-box__item-price">${item.price}</span>
-        </td>
-        <td>
-          <button
-            className="cart-box__item-btn cart-box__item-btn--del"
-            onClick={() => handleChangeCount(item, cartOperationTypes.delete)}
-          >
-            <IconDel />
-          </button>
-        </td>
-      </tr>
-    )
-  })
+          </td>
+        </tr>
+      )
+    })
+  }
 
-  const placeholder = (
-    <tr>
-      <td>
-        <span className="cart-box__empty">Empty</span>
-      </td>
-    </tr>
-  )
-  const cartData = itemList && itemList.length ? itemList : placeholder
+  const renderCartEntities = () => {
+    let component = null
+
+    if (entities.length) {
+      component = renderCartBoxItems()
+    } else {
+      component = (
+        <tr>
+          <td>
+            <span className="cart-box__empty">Empty</span>
+          </td>
+        </tr>
+      )
+    }
+
+    return component
+  }
+
+  const cartPageClass = classNames("cart-box", className)
 
   return (
-    <div className={cartPageClasses}>
+    <div className={cartPageClass}>
       <table className="cart-box__table">
         <thead>
           <tr>
@@ -83,7 +94,7 @@ function CartBox({ className, entities, handleChangeCount, totalPrice }) {
             <th>Remove</th>
           </tr>
         </thead>
-        <tbody>{cartData}</tbody>
+        <tbody>{renderCartEntities()}</tbody>
         <tfoot>
           <tr>
             <td></td>

@@ -23,8 +23,8 @@ function SignPage() {
   return (
     <section className="page-sign">
       <h2 className="page-sign__caption">Form Sign in and Sign up</h2>
-      <FormSignInContainer lassName="page-sign__container-form-sign-in" />
-      <FormSignUpContainer lassName="page-sign__container-form-sign-up" />
+      <FormSignInContainer className="page-sign__container-form-sign-in" />
+      <FormSignUpContainer className="page-sign__container-form-sign-up" />
     </section>
   )
 }

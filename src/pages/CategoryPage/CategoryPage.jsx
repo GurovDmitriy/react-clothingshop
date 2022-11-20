@@ -20,7 +20,7 @@ function CategoryPage() {
   return (
     <div className="category-page">
       <CollectionPreview
-        dataItem={collectionList}
+        entities={collectionList}
         handleAddToCart={handleAddToCart}
         className="category-page__collection-preview"
       />
