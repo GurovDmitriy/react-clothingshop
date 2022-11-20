@@ -1,4 +1,4 @@
-.nav-list-container {
+.nav-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -6,19 +6,19 @@
   margin: 0 -10px;
 }
 
-.nav-list-container__button-simple {
+.nav-list__button-simple {
   margin: 0 4px;
 }
 
-.nav-list-container__button-icon {
+.nav-list__button-icon {
   margin: 0 4px;
 }
 
-.nav-list-container__button-icon-box {
+.nav-list__button-icon-box {
   position: relative;
 }
 
-.nav-list-container__cart-modal {
+.nav-list__cart-modal {
   position: absolute;
   top: 30px;
   right: 10px;
@@ -27,6 +27,6 @@
   display: none;
 }
 
-.nav-list-container__button-icon-box:hover .nav-list-container__cart-modal {
+.nav-list__button-icon-box:hover .nav-list__cart-modal {
   display: flex;
 }
