@@ -5,7 +5,7 @@ import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewIte
 import "./style.scss"
 
 function CollectionPreviewList({ entities, className, handleAddToCart }) {
-  const renderCollectionEntities = () => {
+  function renderCollectionEntities() {
     return entities.items.map((item) => {
       return (
         <CollectionPreviewItem

@@ -21,7 +21,7 @@ function NavList({
       <ButtonSimple to="/shop" tag={Link}>
         Shop
       </ButtonSimple>
-      <ButtonSimple to="/contact" tag={Link}>
+      <ButtonSimple to="/about/contact" tag={Link}>
         Contact
       </ButtonSimple>
       <ButtonSimple to="/about" tag={Link}>

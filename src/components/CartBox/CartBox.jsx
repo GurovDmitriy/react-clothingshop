@@ -7,7 +7,7 @@ import cartOperationTypes from "../../store/types/cartOperationTypes"
 import "./style.scss"
 
 function CartBox({ className, entities, handleChangeCount, totalPrice }) {
-  const renderCartBoxItems = () => {
+  function renderCartBoxItems() {
     return entities.map((item) => {
       return (
         <tr key={item.id}>
@@ -62,7 +62,7 @@ function CartBox({ className, entities, handleChangeCount, totalPrice }) {
     })
   }
 
-  const renderCartEntities = () => {
+  function renderCartEntities() {
     let component = null
 
     if (entities.length) {

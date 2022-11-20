@@ -9,6 +9,7 @@ import HomeLayout from "../layouts/HomeLayout/HomeLayout"
 import AboutPage from "../pages/AboutPage/AboutPage"
 import CartPage from "../pages/CartPage/CartPage"
 import CategoryPage from "../pages/CategoryPage/CategoryPage"
+import ContactPage from "../pages/ContactPage/ContactPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
 import HomePage from "../pages/HomePage/HomePage"
 import ShopPage from "../pages/ShopPage/ShopPage"
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <AboutPage />,
+      },
+
+      {
+        path: "contact",
+        element: <ContactPage />,
       },
     ],
   },

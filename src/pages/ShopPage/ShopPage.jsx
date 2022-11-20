@@ -1,20 +1,14 @@
 import { useDispatch } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
-import { updateCartAction } from "../../store/cart/cartAction"
-import cartOperationTypes from "../../store/types/cartOperationTypes"
+import { addToCartAction } from "../../store/cart/cartAction"
 
 function ShopPage() {
   const { shopList } = useLoaderData()
   const dispatch = useDispatch()
 
-  const handleAddToCart = async (cartItem) => {
-    await dispatch(
-      updateCartAction({
-        cartItem,
-        cartOperation: cartOperationTypes.increment,
-      })
-    )
+  async function handleAddToCart(cartItem) {
+    await dispatch(addToCartAction(cartItem))
   }
 
   return (
