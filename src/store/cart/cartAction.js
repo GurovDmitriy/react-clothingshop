@@ -1,36 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api"
-import cartOperationTypes from "../types/cartOperationTypes"
-
-const updateCartAction = createAsyncThunk(
-  "cart/updateCartAction",
-  async (payload, thunkAPI) => {
-    const userId = thunkAPI.getState().auth?.entities?.id
-    const cartOld = await api.cart.fetchCartDocument(userId)
-    let cartNew = null
-
-    switch (payload.cartOperation) {
-      case cartOperationTypes.increment:
-        cartNew = await addToCart(userId, cartOld, payload)
-        return cartNew
-
-      case cartOperationTypes.decrement:
-        cartNew = await removeFromCart(userId, cartOld, payload)
-        return cartNew
-
-      case cartOperationTypes.delete:
-        cartNew = await deleteFromCart(userId, payload)
-        return cartNew
-
-      case cartOperationTypes.clear:
-        cartNew = await clearCart()
-        return cartNew
-
-      default:
-        return cartOld
-    }
-  }
-)
 
 const fetchCartAction = createAsyncThunk(
   "cart/fetchCartAction",
@@ -46,73 +15,96 @@ const fetchCartAction = createAsyncThunk(
   }
 )
 
-async function addToCart(userId, cartOld, payload) {
-  const existItem = cartOld?.[String(payload.cartItem.id)]
-  let count = 1
+const addToCartAction = createAsyncThunk(
+  "cart/addToCartAction",
+  async (payload, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
+    const cartOld = await api.cart.fetchCartDocument(userId)
 
-  if (existItem) {
-    count = existItem.count + 1
+    const existItem = cartOld?.[String(payload.id)]
+    let count = 1
+
+    if (existItem) {
+      count = existItem.count + 1
+    }
+
+    await api.cart.createCartDocument({
+      userId,
+      id: payload.id,
+      name: payload.name,
+      imageUrl: payload.imageUrl,
+      price: payload.price,
+      count,
+    })
+
+    const cartNew = await api.cart.fetchCartDocument(userId)
+
+    return cartNew
   }
+)
 
-  await api.cart.createCartDocument({
-    userId,
-    id: payload.cartItem.id,
-    name: payload.cartItem.name,
-    imageUrl: payload.cartItem.imageUrl,
-    price: payload.cartItem.price,
-    count,
-  })
+const removeFromCartAction = createAsyncThunk(
+  "cart/removeFromCartAction",
+  async (payload, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
+    const cartOld = await api.cart.fetchCartDocument(userId)
 
-  const cartNew = await api.cart.fetchCartDocument(userId)
+    const existItem = cartOld?.[String(payload.id)]
+    let count = 0
 
-  return cartNew
-}
+    if (existItem && existItem.count > 0) {
+      count = existItem.count - 1
+    }
 
-async function removeFromCart(userId, cartOld, payload) {
-  const existItem = cartOld?.[String(payload.cartItem.id)]
-  let count = 0
+    switch (count) {
+      case 0:
+        await api.cart.deleteCartFieldDocument({
+          userId,
+          id: payload.id,
+        })
+        break
 
-  if (existItem && existItem.count > 0) {
-    count = existItem.count - 1
+      default:
+        await api.cart.updateCartDocument({
+          userId,
+          id: payload.id,
+          name: payload.name,
+          imageUrl: payload.imageUrl,
+          price: payload.price,
+          count,
+        })
+    }
+
+    const cartNew = await api.cart.fetchCartDocument(userId)
+
+    return cartNew
   }
+)
 
-  switch (count) {
-    case 0:
-      await api.cart.deleteCartFieldDocument({
-        userId,
-        id: payload.cartItem.id,
-      })
-      break
+const deleteFromCartAction = createAsyncThunk(
+  "cart/deleteFromCartAction",
+  async (payload, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
 
-    default:
-      await api.cart.updateCartDocument({
-        userId,
-        id: payload.cartItem.id,
-        name: payload.cartItem.name,
-        imageUrl: payload.cartItem.imageUrl,
-        price: payload.cartItem.price,
-        count,
-      })
+    await api.cart.deleteCartFieldDocument({
+      userId,
+      id: payload.id,
+    })
+
+    const cartNew = await api.cart.fetchCartDocument(userId)
+
+    return cartNew
   }
+)
 
-  const cartNew = await api.cart.fetchCartDocument(userId)
-
-  return cartNew
-}
-
-async function deleteFromCart(userId, payload) {
-  await api.cart.deleteCartFieldDocument({
-    userId,
-    id: payload.cartItem.id,
-  })
-
-  const cartNew = await api.cart.fetchCartDocument(userId)
-
-  return cartNew
-}
-
-async function clearCart() {
+const clearCartAction = createAsyncThunk("cart/clearCartAction", async () => {
   return null
-}
+})
 
-export { fetchCartAction, updateCartAction }
+export {
+  fetchCartAction,
+  addToCartAction,
+  removeFromCartAction,
+  deleteFromCartAction,
+  clearCartAction,
+}

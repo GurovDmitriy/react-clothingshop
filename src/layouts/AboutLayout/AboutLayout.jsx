@@ -1,13 +1,13 @@
 import { Link, Outlet } from "react-router-dom"
-import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import "./style.scss"
 
 function AboutLayout() {
   return (
     <div className="about-layout">
-      <ButtonSimple tag={Link} to="/">
-        Home
-      </ButtonSimple>
+      <ButtonDefault className="about-layout__button" tag={Link} to="/">
+        Go Home
+      </ButtonDefault>
       <div className="about-layout__content-wrapper">
         <Outlet />
       </div>

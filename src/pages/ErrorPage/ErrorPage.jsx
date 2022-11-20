@@ -1,4 +1,6 @@
-import { useRouteError } from "react-router-dom"
+import { Link, useRouteError } from "react-router-dom"
+import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
+import "./style.scss"
 
 function ErrorPage() {
   const error = useRouteError()
@@ -13,6 +15,9 @@ function ErrorPage() {
       <p className="error-page__error-content">
         {error.statusText || error.message}
       </p>
+      <ButtonDefault tag={Link} to="/">
+        Go Home
+      </ButtonDefault>
     </div>
   )
 }

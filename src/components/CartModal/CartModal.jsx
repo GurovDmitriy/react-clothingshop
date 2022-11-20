@@ -4,7 +4,7 @@ import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
 
 function CartModal({ className, entities, handleToCart }) {
-  const renderListItems = () => {
+  function renderListItems() {
     return entities.map((item) => {
       return (
         <div className="cart-modal__item" key={item.id}>
@@ -28,7 +28,7 @@ function CartModal({ className, entities, handleToCart }) {
     })
   }
 
-  const renderCartEntities = () => {
+  function renderCartEntities() {
     let component = null
 
     if (entities.length) {

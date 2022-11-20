@@ -4,7 +4,12 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
-import { fetchCartAction, updateCartAction } from "../../store/cart/cartAction"
+import {
+  addToCartAction,
+  deleteFromCartAction,
+  fetchCartAction,
+  removeFromCartAction,
+} from "../../store/cart/cartAction"
 import {
   selectCart,
   selectCartStatusFetch,
@@ -27,33 +32,18 @@ function CartPage({ className }) {
     dispatch(fetchCartAction())
   }, [])
 
-  const handleChangeCount = (cartItem, cartOperation) => {
+  async function handleChangeCount(cartItem, cartOperation) {
     switch (cartOperation) {
       case cartOperationTypes.increment:
-        dispatch(
-          updateCartAction({
-            cartItem,
-            cartOperation: cartOperationTypes.increment,
-          })
-        )
+        dispatch(addToCartAction(cartItem))
         break
 
       case cartOperationTypes.decrement:
-        dispatch(
-          updateCartAction({
-            cartItem,
-            cartOperation: cartOperationTypes.decrement,
-          })
-        )
+        dispatch(removeFromCartAction(cartItem))
         break
 
       case cartOperationTypes.delete:
-        dispatch(
-          updateCartAction({
-            cartItem,
-            cartOperation: cartOperationTypes.delete,
-          })
-        )
+        dispatch(deleteFromCartAction(cartItem))
         break
 
       default:
