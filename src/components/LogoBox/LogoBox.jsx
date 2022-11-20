@@ -3,10 +3,10 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 
 function LogoBox({ className, to, children }) {
-  const classesLogoBox = classNames("logo-box", className)
+  const logoBoxClass = classNames("logo-box", className)
 
   return (
-    <div className={classesLogoBox}>
+    <div className={logoBoxClass}>
       <Link className="logo-box__link" to={to}>
         {children}
       </Link>

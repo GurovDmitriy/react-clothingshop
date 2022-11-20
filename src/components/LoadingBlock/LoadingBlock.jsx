@@ -4,12 +4,12 @@ import { FaReact } from "react-icons/fa"
 import "./style.scss"
 
 function LoadingBlock({ className, loading }) {
-  const loadingBlockClasses = classNames("loading-block", className, {
+  const loadingBlockClass = classNames("loading-block", className, {
     "loading-block--visible": loading,
   })
 
   return (
-    <div className={loadingBlockClasses}>
+    <div className={loadingBlockClass}>
       <div className="loading-block__overlay"></div>
       <div className="loading-block__icon-box">
         <FaReact />

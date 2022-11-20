@@ -10,10 +10,10 @@ function ButtonDefault({
   ...propsButton
 }) {
   const TagCustom = tag
-  const classesButton = classNames("button-default", className)
+  const buttomClass = classNames("button-default", className)
 
   return (
-    <TagCustom className={classesButton} onClick={handleClick} {...propsButton}>
+    <TagCustom className={buttomClass} onClick={handleClick} {...propsButton}>
       {children}
     </TagCustom>
   )

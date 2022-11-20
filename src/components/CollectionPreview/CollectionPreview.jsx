@@ -3,27 +3,30 @@ import PropTypes from "prop-types"
 import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
 import "./style.scss"
 
-function CollectionPreview({ dataItem, className, handleAddToCart }) {
-  const classesCollections = classNames("collection-preview", className)
-  const collectionsList = dataItem.map((item) => {
-    return (
-      <CollectionPreviewList
-        key={item.id}
-        dataItem={item}
-        handleAddToCart={handleAddToCart}
-      />
-    )
-  })
+function CollectionPreview({ entities, className, handleAddToCart }) {
+  const renderCollectionEntities = () => {
+    return entities.map((item) => {
+      return (
+        <CollectionPreviewList
+          key={item.id}
+          entities={item}
+          handleAddToCart={handleAddToCart}
+        />
+      )
+    })
+  }
 
-  return <div className={classesCollections}>{collectionsList}</div>
+  const collectionClass = classNames("collection-preview", className)
+
+  return <div className={collectionClass}>{renderCollectionEntities()}</div>
 }
 
 CollectionPreview.defaultProps = {
-  dataItem: [],
+  entities: [],
 }
 
 CollectionPreview.propTypes = {
-  dataItem: PropTypes.array,
+  entities: PropTypes.array,
   className: PropTypes.string,
   handleAddToCart: PropTypes.func,
 }

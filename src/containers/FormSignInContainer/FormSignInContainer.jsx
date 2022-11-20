@@ -45,10 +45,10 @@ function FormSignInContainer({ className }) {
     })
   }
 
-  const classesForm = classNames("form-sign-in-container", className)
+  const formClass = classNames("form-sign-in-container", className)
 
   return (
-    <div className={classesForm}>
+    <div className={formClass}>
       <h3 className="form-sign-in-container__caption">
         I already have an account
       </h3>

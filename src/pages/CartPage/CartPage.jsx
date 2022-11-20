@@ -61,10 +61,10 @@ function CartPage({ className }) {
     }
   }
 
-  const cartPageClasses = classNames("cart-page", className)
+  const cartPageClass = classNames("cart-page", className)
 
   return (
-    <div className={cartPageClasses}>
+    <div className={cartPageClass}>
       <LoadingBlock className="cart-page__loading-block" loading={loading} />
       <CartBox
         className="cart-page__cart-box"

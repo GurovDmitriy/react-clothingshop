@@ -4,36 +4,39 @@ import { Link } from "react-router-dom"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
 import "./style.scss"
 
-function CollectionPreviewList({ dataItem, className, handleAddToCart }) {
-  const classesList = classNames("collection-preview-list", className)
-  const collectionPreviewItemList = dataItem.items.map((item) => {
-    return (
-      <CollectionPreviewItem
-        dataItem={item}
-        key={item.id}
-        handleAddToCart={handleAddToCart}
-      />
-    )
-  })
+function CollectionPreviewList({ entities, className, handleAddToCart }) {
+  const renderCollectionEntities = () => {
+    return entities.items.map((item) => {
+      return (
+        <CollectionPreviewItem
+          entities={item}
+          key={item.id}
+          handleAddToCart={handleAddToCart}
+        />
+      )
+    })
+  }
+
+  const collectionClass = classNames("collection-preview-list", className)
 
   return (
-    <div className={classesList}>
-      <Link className="collection-preview-list__title" to={dataItem.routeName}>
-        {dataItem.title}
+    <div className={collectionClass}>
+      <Link className="collection-preview-list__title" to={entities.routeName}>
+        {entities.title}
       </Link>
       <div className="collection-preview-list__preview">
-        {collectionPreviewItemList}
+        {renderCollectionEntities()}
       </div>
     </div>
   )
 }
 
 CollectionPreviewList.defaultProps = {
-  dataItem: {},
+  entities: {},
 }
 
 CollectionPreviewList.propTypes = {
-  dataItem: PropTypes.object,
+  entities: PropTypes.object,
   className: PropTypes.string,
   handleAddToCart: PropTypes.func,
 }
