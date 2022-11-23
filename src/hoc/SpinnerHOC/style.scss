@@ -1,0 +1,59 @@
+.spinner-hoc {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+
+  display: none;
+  width: 100%;
+  height: 100vh;
+
+  transform: translate(-50%, -50%);
+
+  &--visible {
+    display: block;
+  }
+}
+
+.spinner-hoc__overlay {
+  width: 100%;
+  height: 100vh;
+
+  background-color: #ffffff;
+  opacity: 0.4;
+}
+
+.spinner-hoc__icon-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 22;
+
+  width: 40px;
+
+  transform: translate(-50%, -50%);
+}
+
+.spinner-hoc__icon-box svg {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  line-height: 0;
+
+  animation-name: loading;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
