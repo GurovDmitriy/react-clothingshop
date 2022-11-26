@@ -7,13 +7,15 @@ import ButtonSimple from "../ButtonSimple/ButtonSimple"
 import CartModal from "../CartModal/CartModal"
 import "./style.scss"
 
-function NavList({
-  className,
-  handleToCart,
-  renderActiveButton,
-  cartCountItems,
-  cartListEntities,
-}) {
+function NavList(props) {
+  const {
+    className,
+    handleToCart,
+    renderActiveButton,
+    cartCountItems,
+    cartListEntities,
+  } = props
+
   const navListContainerClass = classNames("nav-list", className)
 
   return (

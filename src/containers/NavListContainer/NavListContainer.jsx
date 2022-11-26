@@ -10,7 +10,9 @@ import { clearCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
 import { clearUserAction } from "../../store/user/userAction"
 
-function NavListContainer({ className }) {
+function NavListContainer(props) {
+  const { className } = props
+
   const dispatch = useDispatch()
   const authData = useSelector(selectAuth)
   const cartData = useSelector(selectCart)
@@ -18,6 +20,7 @@ function NavListContainer({ className }) {
   const navigate = useNavigate()
 
   const cartListEntities = cartData ? Object.values(cartData) : []
+  const activeButton = renderActiveButton()
 
   async function handleSignOut() {
     dispatch(signOutAction())
@@ -25,11 +28,11 @@ function NavListContainer({ className }) {
     dispatch(clearCartAction())
   }
 
-  const handleToCart = () => {
+  function handleToCart() {
     navigate("/cart")
   }
 
-  const renderActiveButton = () => {
+  function renderActiveButton() {
     let component = null
 
     if (authData && authData.id) {
@@ -55,7 +58,7 @@ function NavListContainer({ className }) {
     <NavList
       className={navListContainerClass}
       handleToCart={handleToCart}
-      renderActiveButton={renderActiveButton}
+      renderActiveButton={activeButton}
       cartCountItems={cartCountItems}
       cartListEntities={cartListEntities}
     />

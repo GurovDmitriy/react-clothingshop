@@ -5,7 +5,9 @@ import LogoBox from "../../components/LogoBox/LogoBox"
 import NavListContainer from "../NavListContainer/NavListContainer"
 import "./style.scss"
 
-function HeaderNavContainer({ className }) {
+function HeaderNavContainer(props) {
+  const { className } = props
+
   const headerNavClass = classNames("header-nav-container", className)
 
   return (

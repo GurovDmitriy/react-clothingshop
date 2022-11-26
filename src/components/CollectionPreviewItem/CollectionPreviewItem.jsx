@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
 
-function CollectionPreviewItem({ entities, className, handleAddToCart }) {
+function CollectionPreviewItem(props) {
+  const { entities, className, handleAddToCart } = props
+
   const previewItemClass = classNames("collection-preview-item", className)
 
   return (

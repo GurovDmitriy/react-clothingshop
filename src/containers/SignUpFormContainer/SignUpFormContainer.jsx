@@ -1,11 +1,13 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import { useDispatch } from "react-redux"
-import FormSignUp from "../../components/FormSignUp/FormSignUp"
+import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import { signUpAction } from "../../store/auth/authAction"
 import { createUserAction } from "../../store/user/userAction"
 
-function FormSignUpContainer({ className }) {
+function SignUpFormContainer(props) {
+  const { className } = props
+
   const dispatch = useDispatch()
 
   async function handleSignUp(data) {
@@ -30,13 +32,13 @@ function FormSignUpContainer({ className }) {
     )
   }
 
-  const formClass = classNames("form-sign-up-container", className)
+  const formClass = classNames("sign-up-form-container", className)
 
-  return <FormSignUp className={formClass} handleSignUp={handleSignUp} />
+  return <SignUpForm className={formClass} handleSignUp={handleSignUp} />
 }
 
-FormSignUpContainer.propTypes = {
+SignUpFormContainer.propTypes = {
   className: PropTypes.string,
 }
 
-export default FormSignUpContainer
+export default SignUpFormContainer

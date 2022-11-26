@@ -2,11 +2,13 @@ import classNames from "classnames"
 import PropTypes from "prop-types"
 import { useDispatch } from "react-redux"
 import api from "../../api"
-import FormSignIn from "../../components/FormSignIn/FormSignIn"
+import SignInForm from "../../components/SignInForm/SignInForm"
 import { signInWithGoogleAction } from "../../store/auth/authAction"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 
-function FormSignInContainer({ className }) {
+function SignInContainerForm(props) {
+  const { className } = props
+
   const dispatch = useDispatch()
 
   async function handleSignIn(evt, methodSign, data) {
@@ -42,13 +44,13 @@ function FormSignInContainer({ className }) {
     })
   }
 
-  const formClass = classNames("form-sign-in-container", className)
+  const formClass = classNames("sign-in-form-container", className)
 
-  return <FormSignIn handleSignIn={handleSignIn} className={formClass} />
+  return <SignInForm handleSignIn={handleSignIn} className={formClass} />
 }
 
-FormSignInContainer.propTypes = {
+SignInContainerForm.propTypes = {
   className: PropTypes.string,
 }
 
-export default FormSignInContainer
+export default SignInContainerForm

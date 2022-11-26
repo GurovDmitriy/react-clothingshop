@@ -40,11 +40,13 @@ function CartModal({ className, entities, handleToCart }) {
     return component
   }
 
+  const cartEntities = renderCartEntities()
+
   const cartModalClass = classNames("cart-modal", className)
 
   return (
     <div className={cartModalClass}>
-      <div className="cart-modal__body">{renderCartEntities()}</div>
+      <div className="cart-modal__body">{cartEntities}</div>
       <div className="cart-modal__btn-box">
         <ButtonDefault className="cart-modal__btn" handleClick={handleToCart}>
           Go to checkout

@@ -6,7 +6,9 @@ import InputBox from "../InputBox/InputBox"
 import { configInput } from "./data"
 import "./style.scss"
 
-function FormSignIn({ className, handleSignIn }) {
+function SignInForm(props) {
+  const { className, handleSignIn } = props
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -24,23 +26,23 @@ function FormSignIn({ className, handleSignIn }) {
     handleSignIn(evt, methodSign, state)
   }
 
-  const formClass = classNames("form-sign-in", className)
+  const formClass = classNames("sign-in-form", className)
 
   return (
     <div className={formClass}>
-      <h3 className="form-sign-in__caption">I already have an account</h3>
+      <h3 className="sign-in-form__caption">I already have an account</h3>
       <p className="container-form-sing-in__description">
         Sing in with your email and password
       </p>
 
       <form
-        className="form-sign-in__form"
-        action="src/components/FormSignIn/FormSignIn.jsx"
+        className="sign-in-form__form"
+        action="src/components/SignInForm/SignInForm.jsx"
         method="POST"
         onSubmit={(evt) => handleSubmit(evt, "default")}
       >
         <InputBox
-          className="form-sign-in__input-box"
+          className="sign-in-form__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "email" })
           }}
@@ -50,7 +52,7 @@ function FormSignIn({ className, handleSignIn }) {
           Email
         </InputBox>
         <InputBox
-          className="form-sign-in__input-box"
+          className="sign-in-form__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "password" })
           }}
@@ -60,13 +62,13 @@ function FormSignIn({ className, handleSignIn }) {
           Password
         </InputBox>
 
-        <div className="form-sign-in__button-box">
-          <ButtonDefault type="submit" className="form-sign-in__button-default">
+        <div className="sign-in-form__button-box">
+          <ButtonDefault type="submit" className="sign-in-form__button-default">
             Sign in
           </ButtonDefault>
           <ButtonDefault
             type="button"
-            className="form-sign-in__button-default"
+            className="sign-in-form__button-default"
             handleClick={(evt) => handleSubmit(evt, "google")}
           >
             Sign in with Google
@@ -77,9 +79,9 @@ function FormSignIn({ className, handleSignIn }) {
   )
 }
 
-FormSignIn.propTypes = {
+SignInForm.propTypes = {
   className: PropTypes.string,
   handleSignIn: PropTypes.func,
 }
 
-export default FormSignIn
+export default SignInForm

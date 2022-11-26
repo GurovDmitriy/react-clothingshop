@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import "./style.scss"
 
-function MenuItem({ entities, className, ...propsMenu }) {
+function MenuItem(props) {
+  const { entities, className, ...propsMenu } = props
+
   const menuClass = classNames("menu-item", className)
 
   return (

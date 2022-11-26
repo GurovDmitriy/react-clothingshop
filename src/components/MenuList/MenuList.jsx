@@ -3,19 +3,24 @@ import PropTypes from "prop-types"
 import MenuItem from "../MenuItem/MenuItem"
 import "./style.scss"
 
-function MenuList({ className, entities }) {
-  const listClass = classNames("menu-list", className)
+function MenuList(props) {
+  const { className, entities } = props
 
-  const appMenuItems = entities.map((item) => {
-    return (
-      <MenuItem
-        className="menu-list__item"
-        entities={item}
-        key={item.id}
-        style={{ backgroundImage: `url(${item.image})` }}
-      />
-    )
-  })
+  function renderAppMenuItems() {
+    return entities.map((item) => {
+      return (
+        <MenuItem
+          className="menu-list__item"
+          entities={item}
+          key={item.id}
+          style={{ backgroundImage: `url(${item.image})` }}
+        />
+      )
+    })
+  }
+
+  const appMenuItems = renderAppMenuItems()
+  const listClass = classNames("menu-list", className)
 
   return <section className={listClass}>{appMenuItems}</section>
 }

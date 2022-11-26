@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
 import "./style.scss"
 
-function CollectionPreview({ entities, className, handleAddToCart }) {
+function CollectionPreview(props) {
+  const { entities, className, handleAddToCart } = props
+
   function renderCollectionEntities() {
     return entities.map((item) => {
       return (
@@ -16,9 +18,10 @@ function CollectionPreview({ entities, className, handleAddToCart }) {
     })
   }
 
+  const collectionEntities = renderCollectionEntities()
   const collectionClass = classNames("collection-preview", className)
 
-  return <div className={collectionClass}>{renderCollectionEntities()}</div>
+  return <div className={collectionClass}>{collectionEntities}</div>
 }
 
 CollectionPreview.defaultProps = {

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
 import "./style.scss"
 
-function CollectionPreviewList({ entities, className, handleAddToCart }) {
+function CollectionPreviewList(props) {
+  const { entities, className, handleAddToCart } = props
+
   function renderCollectionEntities() {
     return entities.items.map((item) => {
       return (
@@ -17,6 +19,8 @@ function CollectionPreviewList({ entities, className, handleAddToCart }) {
     })
   }
 
+  const collectionEntities = renderCollectionEntities()
+
   const collectionClass = classNames("collection-preview-list", className)
 
   return (
@@ -25,7 +29,7 @@ function CollectionPreviewList({ entities, className, handleAddToCart }) {
         {entities.title}
       </Link>
       <div className="collection-preview-list__preview">
-        {renderCollectionEntities()}
+        {collectionEntities}
       </div>
     </div>
   )

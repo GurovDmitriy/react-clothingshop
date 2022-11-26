@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import { FaReact } from "react-icons/fa"
 import "./style.scss"
 
-function LoadingBlock({ className, loading }) {
+function LoadingBlock(props) {
+  const { className, loading } = props
+
   const loadingBlockClass = classNames("loading-block", className, {
     "loading-block--visible": loading,
   })

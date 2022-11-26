@@ -6,7 +6,9 @@ import InputBox from "../InputBox/InputBox"
 import { configInput } from "./data"
 import "./style.scss"
 
-function FormSignUp({ className, handleSignUp }) {
+function SignUpForm(props) {
+  const { className, handleSignUp } = props
+
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -26,23 +28,23 @@ function FormSignUp({ className, handleSignUp }) {
     handleSignUp(state)
   }
 
-  const formClass = classNames("form-sign-up", className)
+  const formClass = classNames("sign-up-form", className)
 
   return (
     <div className={formClass}>
-      <h3 className="form-sign-up__caption">I dont have an account</h3>
-      <p className="container-form-sing-up__description">
+      <h3 className="sign-up-form__caption">I dont have an account</h3>
+      <p className="sing-up-form__description">
         Sing up with your email and password
       </p>
 
       <form
-        className="form-sign-up__form"
-        action="src/components/FormSignUp/FormSignUp.jsx"
+        className="sign-up-form__form"
+        action="src/components/SignUpForm/SignUpForm.jsx"
         method="POST"
         onSubmit={handleSubmit}
       >
         <InputBox
-          className="form-sign-up__input-box"
+          className="sign-up-form__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "name" })
           }}
@@ -50,7 +52,7 @@ function FormSignUp({ className, handleSignUp }) {
           {...configInput.name}
         />
         <InputBox
-          className="form-sign-up__input-box"
+          className="sign-up-form__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "email" })
           }}
@@ -58,7 +60,7 @@ function FormSignUp({ className, handleSignUp }) {
           {...configInput.email}
         />
         <InputBox
-          className="form-sign-up__input-box"
+          className="sign-up-form__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "password" })
           }}
@@ -66,7 +68,7 @@ function FormSignUp({ className, handleSignUp }) {
           {...configInput.password}
         />
         <InputBox
-          className="form-sign-up__input-box"
+          className="sign-up-form__input-box"
           onInput={(evt) => {
             handleInput(evt, { name: "passwordConfirm" })
           }}
@@ -74,8 +76,8 @@ function FormSignUp({ className, handleSignUp }) {
           {...configInput.passwordConfirm}
         />
 
-        <div className="form-sign-up__button-box">
-          <ButtonDefault className="form-sign-up__button-default" type="submit">
+        <div className="sign-up-form__button-box">
+          <ButtonDefault className="sign-up-form__button-default" type="submit">
             Sign Up
           </ButtonDefault>
         </div>
@@ -84,9 +86,9 @@ function FormSignUp({ className, handleSignUp }) {
   )
 }
 
-FormSignUp.propTypes = {
+SignUpForm.propTypes = {
   className: PropTypes.string,
   handleSignUp: PropTypes.func,
 }
 
-export default FormSignUp
+export default SignUpForm
