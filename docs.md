@@ -2,7 +2,7 @@
 
 ```jsx
 function ButtonDefault(props) {
-  const { className, children } = props
+  const { children } = props
 
   // hooks
   // ...
@@ -14,14 +14,12 @@ function ButtonDefault(props) {
   // ...
 
   // handler funciton
+  // ...
 
   // render function
   // ...
 
   // helper function
-  // ...
-
-  // css classes
   // ...
 
   return (
