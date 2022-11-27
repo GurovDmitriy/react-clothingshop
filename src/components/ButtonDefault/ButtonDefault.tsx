@@ -2,29 +2,28 @@ import classNames from "classnames"
 import React from "react"
 import "./style.scss"
 
-ButtonDefault.defaultProps = {
-  tag: "button",
-}
-
-type ButtonDefaultProps = {
-  tag?: string
-  className?: string
-  handlerClick?: () => void
-  children: string | number
-  [x: string]: any
-} & typeof ButtonDefault.defaultProps
-
 function ButtonDefault(props: ButtonDefaultProps) {
-  const { tag, className, handlerClick, children, ...otherProps } = props
+  const { as, className, handlerClick, children, ...otherProps } = props
 
-  const TagCustom = tag as React.ElementType
+  const Component = as
   const buttonClass = classNames("button-default", className)
 
   return (
-    <TagCustom className={buttonClass} onClick={handlerClick} {...otherProps}>
+    <Component className={buttonClass} onClick={handlerClick} {...otherProps}>
       {children}
-    </TagCustom>
+    </Component>
   )
+}
+
+ButtonDefault.defaultProps = {
+  as: "button",
+}
+
+interface ButtonDefaultProps extends React.ComponentPropsWithoutRef<"button"> {
+  handlerClick?: () => void
+  children?: string | number
+  as: React.ElementType
+  className?: string
 }
 
 export default ButtonDefault

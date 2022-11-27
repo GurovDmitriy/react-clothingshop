@@ -1,18 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit"
-import actionStatusTypes from "../../helpers/constants"
+import { actionStatusTypes } from "../../helpers/constants"
 import {
   clearUserAction,
   createUserAction,
   fetchUserAction,
 } from "./userAction"
 
+interface UserState {
+  entities?: object | null
+  status: string
+  error?: string | null
+}
+
+const initialState: UserState = {
+  entities: null,
+  status: actionStatusTypes.useless,
+  error: null,
+}
+
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    entities: null,
-    status: actionStatusTypes.useless,
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers(builder) {
     builder

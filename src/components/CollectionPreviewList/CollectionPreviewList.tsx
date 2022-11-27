@@ -21,7 +21,7 @@ type CollectionPreviewListProps = {
     items: Array<CollectionPreviewListItems>
   }
   className?: string
-  handlerAddToCart: () => void
+  handlerAddToCart: (cartItem: any) => Promise<void>
 } & typeof CollectionPreviewList.defaultProps
 
 function CollectionPreviewList(props: CollectionPreviewListProps) {

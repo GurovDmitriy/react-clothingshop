@@ -1,21 +1,21 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { Outlet } from "react-router-dom"
 import api from "../../api/api"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
 import HeaderNavContainer from "../../containers/HeaderNavContainer/HeaderNavContainer"
-import actionStatusTypes from "../../helpers/constants"
+import { actionStatusTypes } from "../../helpers/constants"
 import { signCheckAction } from "../../store/auth/authAction"
 import { selectAuthStatusFetch } from "../../store/auth/authSelector"
 import { fetchCartAction } from "../../store/cart/cartAction"
 import { selectCartStatusFetch } from "../../store/cart/cartSelector"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { fetchUserAction } from "../../store/user/userAction"
 import "./style.scss"
 
 function HomeLayout() {
-  const dispatch = useDispatch()
-  const authStateFetch = useSelector(selectAuthStatusFetch)
-  const cartStateFetch = useSelector(selectCartStatusFetch)
+  const dispatch = useAppDispatch()
+  const authStateFetch = useAppSelector(selectAuthStatusFetch)
+  const cartStateFetch = useAppSelector(selectCartStatusFetch)
 
   const authLoading = authStateFetch === actionStatusTypes.pending
   const cartLoading = cartStateFetch === actionStatusTypes.pending

@@ -1,13 +1,13 @@
-import { useDispatch } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { addToCartAction } from "../../store/cart/cartAction"
+import { useAppDispatch } from "../../store/hooks"
 
 function ShopPage() {
   const { shopList } = useLoaderData()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  async function handleAddToCart(cartItem) {
+  async function handlerAddToCart(cartItem) {
     await dispatch(addToCartAction(cartItem))
   }
 
@@ -16,7 +16,7 @@ function ShopPage() {
       <CollectionPreview
         className="page-shop__collectionPreview"
         entities={shopList}
-        handleAddToCart={handleAddToCart}
+        handlerAddToCart={handlerAddToCart}
       />
     </div>
   )

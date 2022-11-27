@@ -1,5 +1,4 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import SignInContainerForm from "../../containers/SignInFormContainer/SignInContainerForm"
 import SignUpFormContainer from "../../containers/SignUpFormContainer/SignUpFormContainer"
@@ -7,11 +6,12 @@ import {
   selectAuth,
   selectAuthStatusFetch,
 } from "../../store/auth/authSelector"
+import { useAppSelector } from "../../store/hooks"
 import "./style.scss"
 
 function SignPage() {
-  const authState = useSelector(selectAuth)
-  const authStatusFetch = useSelector(selectAuthStatusFetch)
+  const authState = useAppSelector(selectAuth)
+  const authStatusFetch = useAppSelector(selectAuthStatusFetch)
   const navigate = useNavigate()
 
   useEffect(() => {

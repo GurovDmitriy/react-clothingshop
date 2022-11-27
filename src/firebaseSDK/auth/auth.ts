@@ -5,8 +5,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth"
-import Firebase from "firebase/compat"
+import firebase from "firebase/compat"
 import { auth } from "../config"
+import UserCredential = firebase.auth.UserCredential
 
 const provider = new GoogleAuthProvider()
 
@@ -25,8 +26,10 @@ async function signUpFB(payload: EmailPasswordType) {
   return userCredential.user
 }
 
-async function signInFB(payload: EmailPasswordType) {
-  const userCredential = await signInWithEmailAndPassword(
+async function signInFB(
+  payload: EmailPasswordType
+): Promise<firebase.User | any> {
+  const userCredential: UserCredential = await signInWithEmailAndPassword(
     auth,
     payload.email,
     payload.password

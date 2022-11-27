@@ -5,9 +5,11 @@ import "./style.scss"
 function AboutLayout() {
   return (
     <div className="about-layout">
-      <ButtonDefault className="about-layout__button" tag={Link} to="/">
-        Go Home
-      </ButtonDefault>
+      <Link to="/">
+        <ButtonDefault className="about-layout__button" tag="button">
+          Go Home
+        </ButtonDefault>
+      </Link>
       <div className="about-layout__content-wrapper">
         <Outlet />
       </div>

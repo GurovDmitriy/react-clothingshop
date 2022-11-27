@@ -23,7 +23,7 @@ type CollectionPreviewEntities = {
 type CollectionPreviewProps = {
   entities: Array<CollectionPreviewEntities>
   className: string
-  handlerAddToCart: () => void
+  handlerAddToCart: (cartItem: any) => Promise<void>
 } & typeof CollectionPreview.defaultProps
 
 function CollectionPreview(props: CollectionPreviewProps) {

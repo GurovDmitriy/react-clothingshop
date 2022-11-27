@@ -11,15 +11,13 @@ NavList.defaultProps = {
   cartListEntities: [],
 }
 
-type NavListProps =
-  | {
-      className: string
-      handlerToCart: () => void
-      activeButton: JSX.Element
-      cartCountItems: number | string
-      cartListEntities: Array<CartEntitiesType>
-    }
-  | typeof NavList.defaultProps
+type NavListProps = {
+  className: string
+  handlerToCart: () => void
+  activeButton: JSX.Element
+  cartCountItems: number | string
+  cartListEntities: Array<CartEntitiesType>
+} & typeof NavList.defaultProps
 
 function NavList(props: NavListProps) {
   const {
@@ -47,10 +45,10 @@ function NavList(props: NavListProps) {
       <div className="nav-list__button-icon-box">
         <Link to="/cart">
           <ButtonIcon
-            tag="span"
-            className="nav-list__button-icon"
+            as="span"
             isHiddenLabel={false}
             icon={CartIcon}
+            title="title"
           >
             {cartCountItems}
           </ButtonIcon>
