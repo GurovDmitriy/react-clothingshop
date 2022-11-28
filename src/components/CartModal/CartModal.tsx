@@ -1,4 +1,3 @@
-import React from "react"
 import classNames from "classnames"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
@@ -22,7 +21,7 @@ function CartModal(props: CartModalProps) {
   }
 
   function getListItems() {
-    if(!entities || !entities.length) return null
+    if (!entities || !entities.length) return null
 
     return entities.map((item) => {
       return (

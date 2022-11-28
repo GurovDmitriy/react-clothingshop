@@ -1,9 +1,8 @@
-import React from "react"
 import classNames from "classnames"
 import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import { signUpAction } from "../../store/auth/authAction"
+import { useAppDispatch } from "../../store/hooks"
 import { createUserAction } from "../../store/user/userAction"
-import { useAppDispatch } from "../../store/hooks";
 
 function SignUpFormContainer(props: SignUpFormContainerProps) {
   const { className } = props
@@ -45,7 +44,7 @@ type SignUpFormFields = {
 }
 
 type SignUpFormContainerProps = {
-  className: string,
+  className: string
 }
 
 export default SignUpFormContainer

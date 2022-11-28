@@ -1,4 +1,3 @@
-import React from "react"
 import classNames from "classnames"
 import { ReactComponent as IconDec } from "../../assets/images/decrement.svg"
 import { ReactComponent as IconDel } from "../../assets/images/delete.svg"
@@ -25,7 +24,7 @@ function CartBox(props: CartBoxProps) {
   }
 
   function getCartBoxItems() {
-    if(!entities || !entities.length) return null
+    if (!entities || !entities.length) return null
 
     return entities.map((item) => {
       return (
@@ -71,9 +70,7 @@ function CartBox(props: CartBoxProps) {
           <td>
             <button
               className="cart-box__item-btn cart-box__item-btn--del"
-              onClick={() =>
-                handlerChangeCount(item, CartOperation.delete)
-              }
+              onClick={() => handlerChangeCount(item, CartOperation.delete)}
             >
               <IconDel />
             </button>
@@ -128,10 +125,7 @@ type CartBoxProps = {
   className?: string
   totalPrice?: number
   entities?: Array<CartEntitiesType>
-  handlerChangeCount: (
-    item: CartEntitiesType,
-    operation: CartOperation
-  ) => void
+  handlerChangeCount: (item: CartEntitiesType, operation: CartOperation) => void
 }
 
 export default CartBox

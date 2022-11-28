@@ -1,4 +1,3 @@
-import React from "react"
 import classNames from "classnames"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"

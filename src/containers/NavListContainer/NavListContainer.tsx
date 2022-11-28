@@ -1,4 +1,3 @@
-import React from "react"
 import classNames from "classnames"
 import { Link, useNavigate } from "react-router-dom"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
@@ -7,8 +6,8 @@ import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { clearCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { clearUserAction } from "../../store/user/userAction"
-import {useAppDispatch, useAppSelector} from "../../store/hooks";
 
 function NavListContainer(props: NavListContainerPropsType) {
   const { className } = props

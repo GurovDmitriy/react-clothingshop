@@ -2,7 +2,7 @@ import classNames from "classnames"
 import { useEffect } from "react"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
-import {actionStatusTypes, cartOperationTypes} from "../../helpers/constants"
+import { actionStatusTypes, cartOperationTypes } from "../../helpers/constants"
 import {
   addToCartAction,
   deleteFromCartAction,
@@ -14,11 +14,11 @@ import {
   selectCartStatusFetch,
   selectCartTotalPrice,
 } from "../../store/cart/cartSelector"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import "./style.scss"
-import {useAppDispatch, useAppSelector} from "../../store/hooks";
 
 function CartPage(props: CartPageProps) {
-  const {className} = props
+  const { className } = props
 
   const dispatch = useAppDispatch()
   const cart = useAppSelector(selectCart)
@@ -32,7 +32,10 @@ function CartPage(props: CartPageProps) {
     dispatch(fetchCartAction())
   }, [])
 
-  async function handleChangeCount(cartItem: CartEntitiesType, cartOperation: CartOperation) {
+  async function handleChangeCount(
+    cartItem: CartEntitiesType,
+    cartOperation: CartOperation
+  ) {
     switch (cartOperation) {
       case cartOperationTypes.increment:
         dispatch(addToCartAction(cartItem))

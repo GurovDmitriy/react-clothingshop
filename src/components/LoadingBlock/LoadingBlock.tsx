@@ -1,4 +1,3 @@
-import React from "react"
 import classNames from "classnames"
 import { FaReact } from "react-icons/fa"
 import "./style.scss"

@@ -15,7 +15,9 @@ type EmailPasswordType = {
   password: string
 }
 
-async function signUpFB(payload: EmailPasswordType): Promise<Firebase.User | any> {
+async function signUpFB(
+  payload: EmailPasswordType
+): Promise<Firebase.User | any> {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     payload.email,
@@ -37,7 +39,10 @@ async function signInFB(
   return userCredential.user
 }
 
-async function signInWithGoogleFB(): Promise<{ user: Firebase.User | any; token: any }> {
+async function signInWithGoogleFB(): Promise<{
+  user: Firebase.User | any
+  token: any
+}> {
   const result = await signInWithPopup(auth, provider)
   const credential = GoogleAuthProvider.credentialFromResult(result)
   const token = credential.accessToken

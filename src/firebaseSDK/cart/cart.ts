@@ -1,6 +1,6 @@
+import Firebase from "firebase/compat"
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { db } from "../config"
-import Firebase from "firebase/compat";
 
 type CartDocumentFBPayload = {
   userId: string
@@ -11,7 +11,9 @@ type CartDocumentFBPayload = {
   price: number
 }
 
-async function createCartDocumentFB(payload: CartDocumentFBPayload): Promise<void> {
+async function createCartDocumentFB(
+  payload: CartDocumentFBPayload
+): Promise<void> {
   const cartsRef = doc(db, "carts", payload.userId)
   await setDoc(
     cartsRef,
@@ -28,7 +30,9 @@ async function createCartDocumentFB(payload: CartDocumentFBPayload): Promise<voi
   )
 }
 
-async function updateCartDocumentFB(payload: CartDocumentFBPayload): Promise<void> {
+async function updateCartDocumentFB(
+  payload: CartDocumentFBPayload
+): Promise<void> {
   const cartsRef = doc(db, "carts", payload.userId)
   await updateDoc(cartsRef, {
     [String(payload.id)]: {
@@ -46,14 +50,18 @@ type DeleteCartFieldDocumentFBPayload = {
   id: string
 }
 
-async function deleteCartFieldDocumentFB(payload: DeleteCartFieldDocumentFBPayload): Promise<void> {
+async function deleteCartFieldDocumentFB(
+  payload: DeleteCartFieldDocumentFBPayload
+): Promise<void> {
   const cartsRef = doc(db, "carts", payload.userId)
   await updateDoc(cartsRef, {
     [String(payload.id)]: deleteField(),
   })
 }
 
-async function fetchCartDocumentFB(id: string): Promise<Firebase.firestore.DocumentData | null> {
+async function fetchCartDocumentFB(
+  id: string
+): Promise<Firebase.firestore.DocumentData | null> {
   const cartsRef = doc(db, `carts/${id}`)
   const docSnap = await getDoc(cartsRef)
 

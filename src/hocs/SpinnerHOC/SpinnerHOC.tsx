@@ -5,7 +5,7 @@ import "./style.scss"
 
 function SpinnerHOC(WrappedComponent: React.ElementType) {
   return function (props: SpinnerHOCProps) {
-    const {loading, className, ...otherProps} = props
+    const { loading, className, ...otherProps } = props
 
     const spinnerClass = classNames("spinner-hoc", className, {
       "spinner-hoc--visible": loading,

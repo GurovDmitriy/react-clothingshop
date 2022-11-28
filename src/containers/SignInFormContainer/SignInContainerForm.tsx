@@ -2,8 +2,8 @@ import classNames from "classnames"
 import api from "../../api/api"
 import SignInForm from "../../components/SignInForm/SignInForm"
 import { signInWithGoogleAction } from "../../store/auth/authAction"
+import { useAppDispatch } from "../../store/hooks"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
-import {useAppDispatch} from "../../store/hooks";
 
 function SignInContainerForm(props: SignInContainerFormPropsType) {
   const { className } = props
