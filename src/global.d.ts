@@ -1,8 +1,18 @@
 declare type ChildrenType = JSX.Element | string | number
 
-declare type ActionStatusType = "useless" | "pending" | "success" | "failure"
+declare enum ActionStatus {
+  useless = "useless",
+  pending = "pending",
+  success = "success",
+  failure = "failure",
+}
 
-declare type CartOperationType = "increment" | "decrement" | "delete" | "clear"
+declare enum CartOperation {
+  increment = "increment",
+  decrement = "decrement",
+  delete = "delete",
+  clear = "clear",
+}
 
 declare type CartEntitiesType = {
   imageUrl: string
@@ -30,4 +40,10 @@ declare type ShopType = {
     imageUrl: string
     price: number
   }[]
+}
+
+declare type CollectionPreviewItemEntities = {
+  name: string
+  imageUrl: string
+  price: number
 }

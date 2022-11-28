@@ -1,16 +1,7 @@
+import React from "react"
 import classNames from "classnames"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
-
-CartModal.defaultProps = {
-  entities: [],
-}
-
-type CartModalProps = {
-  className?: string
-  handlerToCart: () => void
-  entities?: Array<CartEntitiesType>
-} & typeof CartModal.defaultProps
 
 function CartModal(props: CartModalProps) {
   const { className, entities, handlerToCart } = props
@@ -31,6 +22,8 @@ function CartModal(props: CartModalProps) {
   }
 
   function getListItems() {
+    if(!entities || !entities.length) return null
+
     return entities.map((item) => {
       return (
         <div className="cart-modal__item" key={item.id}>
@@ -72,6 +65,12 @@ function CartModal(props: CartModalProps) {
       </div>
     </div>
   )
+}
+
+type CartModalProps = {
+  className?: string
+  handlerToCart: () => void
+  entities?: Array<CartEntitiesType>
 }
 
 export default CartModal

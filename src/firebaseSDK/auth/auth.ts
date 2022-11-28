@@ -5,9 +5,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth"
-import firebase from "firebase/compat"
+import Firebase from "firebase/compat"
 import { auth } from "../config"
-import UserCredential = firebase.auth.UserCredential
 
 const provider = new GoogleAuthProvider()
 
@@ -16,7 +15,7 @@ type EmailPasswordType = {
   password: string
 }
 
-async function signUpFB(payload: EmailPasswordType) {
+async function signUpFB(payload: EmailPasswordType): Promise<Firebase.User | any> {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     payload.email,
@@ -28,8 +27,8 @@ async function signUpFB(payload: EmailPasswordType) {
 
 async function signInFB(
   payload: EmailPasswordType
-): Promise<firebase.User | any> {
-  const userCredential: UserCredential = await signInWithEmailAndPassword(
+): Promise<Firebase.User | any> {
+  const userCredential = await signInWithEmailAndPassword(
     auth,
     payload.email,
     payload.password
@@ -38,7 +37,7 @@ async function signInFB(
   return userCredential.user
 }
 
-async function signInWithGoogleFB() {
+async function signInWithGoogleFB(): Promise<{ user: Firebase.User | any; token: any }> {
   const result = await signInWithPopup(auth, provider)
   const credential = GoogleAuthProvider.credentialFromResult(result)
   const token = credential.accessToken
@@ -62,7 +61,7 @@ type SignCheckFBResponseCurrentUserType = {
 }
 
 async function signCheckFB(): Promise<SignCheckFBType> {
-  const response: Firebase.User | null = await auth.currentUser
+  const response: Firebase.User | any = await auth.currentUser
 
   const data = {
     id: response.uid,
@@ -78,7 +77,7 @@ async function signOutFB() {
   return response
 }
 
-function subscribeStateChangeFB(cb) {
+function subscribeStateChangeFB(cb: (user: Firebase.User | any) => void) {
   return onAuthStateChanged(auth, (user) => {
     cb(user)
   })

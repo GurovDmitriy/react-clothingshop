@@ -1,3 +1,4 @@
+import React from "react"
 import classNames from "classnames"
 import { Link } from "react-router-dom"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
@@ -5,19 +6,6 @@ import ButtonIcon from "../ButtonIcon/ButtonIcon"
 import ButtonSimple from "../ButtonSimple/ButtonSimple"
 import CartModal from "../CartModal/CartModal"
 import "./style.scss"
-
-NavList.defaultProps = {
-  cartCountItems: 0,
-  cartListEntities: [],
-}
-
-type NavListProps = {
-  className: string
-  handlerToCart: () => void
-  activeButton: JSX.Element
-  cartCountItems: number | string
-  cartListEntities: Array<CartEntitiesType>
-} & typeof NavList.defaultProps
 
 function NavList(props: NavListProps) {
   const {
@@ -33,13 +21,13 @@ function NavList(props: NavListProps) {
   return (
     <div className={navListContainerClass}>
       <Link to="/shop">
-        <ButtonSimple tag="span">Shop</ButtonSimple>
+        <ButtonSimple as="span">Shop</ButtonSimple>
       </Link>
       <Link to="/about/contact">
-        <ButtonSimple tag="span">Contact</ButtonSimple>
+        <ButtonSimple as="span">Contact</ButtonSimple>
       </Link>
       <Link to="/about">
-        <ButtonSimple tag="span">About</ButtonSimple>
+        <ButtonSimple as="span">About</ButtonSimple>
       </Link>
       {activeButton}
       <div className="nav-list__button-icon-box">
@@ -61,6 +49,18 @@ function NavList(props: NavListProps) {
       </div>
     </div>
   )
+}
+
+NavList.defaultProps = {
+  cartCountItems: 0,
+}
+
+type NavListProps = {
+  className: string
+  handlerToCart: () => void
+  activeButton: JSX.Element
+  cartCountItems: number | string
+  cartListEntities: Array<CartEntitiesType>
 }
 
 export default NavList

@@ -1,15 +1,6 @@
+import React from "react"
 import classNames from "classnames"
 import { Link } from "react-router-dom"
-
-LogoBox.defaultProps = {
-  to: "/",
-}
-
-type LogoBoxProps = {
-  to?: string
-  children: JSX.Element | string
-  className?: string
-} & typeof LogoBox.defaultProps
 
 function LogoBox(props: LogoBoxProps) {
   const { className, to, children } = props
@@ -23,6 +14,16 @@ function LogoBox(props: LogoBoxProps) {
       </Link>
     </div>
   )
+}
+
+LogoBox.defaultProps = {
+  to: "/",
+}
+
+type LogoBoxProps = {
+  to: string
+  children: JSX.Element | string
+  className?: string
 }
 
 export default LogoBox

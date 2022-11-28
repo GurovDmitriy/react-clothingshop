@@ -1,17 +1,6 @@
+import React from "react"
 import classNames from "classnames"
 import "./style.scss"
-
-InputBox.defaultProps = {
-  isHiddenLabel: false,
-}
-
-type InputBoxProps = {
-  children?: string | number
-  className?: string
-  isHiddenLabel?: boolean
-  id?: string
-  [x: string]: any
-} & typeof InputBox.defaultProps
 
 function InputBox(props: InputBoxProps) {
   const { children, isHiddenLabel, className, id, ...otherProps } = props
@@ -29,6 +18,17 @@ function InputBox(props: InputBoxProps) {
       <input className="input-box__input" id={id} {...otherProps} />
     </div>
   )
+}
+
+InputBox.defaultProps = {
+  isHiddenLabel: false,
+}
+
+interface InputBoxProps extends React.ComponentPropsWithoutRef<"input"> {
+  children?: string | number
+  className?: string
+  isHiddenLabel?: boolean
+  id?: string
 }
 
 export default InputBox

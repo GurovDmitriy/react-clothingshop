@@ -1,7 +1,3 @@
-/**
- * @param {string} key
- * @returns {any}
- */
 function getItemLS(key) {
   try {
     return JSON.parse(localStorage.getItem(key))
@@ -10,10 +6,6 @@ function getItemLS(key) {
   }
 }
 
-/**
- * @param {string} key
- * @returns {any}
- */
 function setItemLS(key, data) {
   try {
     localStorage.setItem(key, JSON.stringify(data))
@@ -23,10 +15,6 @@ function setItemLS(key, data) {
   }
 }
 
-/**
- * @param {string} key
- * @returns {any}
- */
 function removeItemLS(key) {
   try {
     const data = JSON.parse(localStorage.getItem(key))

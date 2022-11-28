@@ -1,11 +1,8 @@
 import classNames from "classnames"
-import PropTypes from "prop-types"
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
-import cartOperationTypes from "../../helpers/cartOperationTypes"
-import actionStatusTypes from "../../helpers/constants"
+import {actionStatusTypes, cartOperationTypes} from "../../helpers/constants"
 import {
   addToCartAction,
   deleteFromCartAction,
@@ -18,12 +15,15 @@ import {
   selectCartTotalPrice,
 } from "../../store/cart/cartSelector"
 import "./style.scss"
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 
-function CartPage({ className }) {
-  const dispatch = useDispatch()
-  const cart = useSelector(selectCart)
-  const totalPrice = useSelector(selectCartTotalPrice)
-  const cartStateFetch = useSelector(selectCartStatusFetch)
+function CartPage(props: CartPageProps) {
+  const {className} = props
+
+  const dispatch = useAppDispatch()
+  const cart = useAppSelector(selectCart)
+  const totalPrice = useAppSelector(selectCartTotalPrice)
+  const cartStateFetch = useAppSelector(selectCartStatusFetch)
 
   const cartEntities = cart ? Object.values(cart) : []
   const loading = cartStateFetch === actionStatusTypes.pending
@@ -32,7 +32,7 @@ function CartPage({ className }) {
     dispatch(fetchCartAction())
   }, [])
 
-  async function handleChangeCount(cartItem, cartOperation) {
+  async function handleChangeCount(cartItem: CartEntitiesType, cartOperation: CartOperation) {
     switch (cartOperation) {
       case cartOperationTypes.increment:
         dispatch(addToCartAction(cartItem))
@@ -66,8 +66,8 @@ function CartPage({ className }) {
   )
 }
 
-CartPage.propTypes = {
-  className: PropTypes.string,
+type CartPageProps = {
+  className: string
 }
 
 export default CartPage

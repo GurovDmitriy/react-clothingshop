@@ -1,26 +1,7 @@
+import React from "react"
 import classNames from "classnames"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
-
-CollectionPreviewItem.defaultProps = {
-  entities: {
-    name: "name",
-    price: 100,
-    imageUrl: "",
-  },
-}
-
-type CollectionPreviewItemEntities = {
-  name: string
-  imageUrl: string
-  price: number
-}
-
-type CollectionPreviewItemProps = {
-  entities?: CollectionPreviewItemEntities
-  className?: string
-  handlerAddToCart: (entities: CollectionPreviewItemEntities) => void
-} & typeof CollectionPreviewItem.defaultProps
 
 function CollectionPreviewItem(props: CollectionPreviewItemProps) {
   const { entities, className, handlerAddToCart } = props
@@ -48,6 +29,12 @@ function CollectionPreviewItem(props: CollectionPreviewItemProps) {
       <div className="collection-preview-item__price">${entities.price}</div>
     </div>
   )
+}
+
+type CollectionPreviewItemProps = {
+  entities: CollectionPreviewItemEntities
+  className?: string
+  handlerAddToCart: (entities: CollectionPreviewItemEntities) => void
 }
 
 export default CollectionPreviewItem

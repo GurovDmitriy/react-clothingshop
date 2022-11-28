@@ -1,14 +1,17 @@
 import classNames from "classnames"
-import PropTypes from "prop-types"
+import React from "react"
 import { FaReact } from "react-icons/fa"
 import "./style.scss"
 
-const SpinnerHOC =
-  (WrappedComponent) =>
-  ({ loading, className, ...props }) => {
+function SpinnerHOC(WrappedComponent: React.ElementType) {
+  return function (props: SpinnerHOCProps) {
+    const {loading, className, ...otherProps} = props
+
     const spinnerClass = classNames("spinner-hoc", className, {
       "spinner-hoc--visible": loading,
     })
+
+    const Component = renderComponent()
 
     function renderComponent() {
       let component = null
@@ -23,23 +26,23 @@ const SpinnerHOC =
           </div>
         )
       } else {
-        component = <WrappedComponent {...props} />
+        component = <WrappedComponent {...otherProps} />
       }
 
       return component
     }
 
-    return renderComponent()
+    return Component
   }
+}
 
 SpinnerHOC.defaultProps = {
   loading: false,
 }
 
-SpinnerHOC.propTypes = {
-  className: PropTypes.string,
-  loading: PropTypes.bool,
-  WrappedComponent: PropTypes.element,
+type SpinnerHOCProps = {
+  className: string
+  loading: boolean
 }
 
 export default SpinnerHOC

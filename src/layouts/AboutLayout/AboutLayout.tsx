@@ -6,7 +6,7 @@ function AboutLayout() {
   return (
     <div className="about-layout">
       <Link to="/">
-        <ButtonDefault className="about-layout__button" tag="button">
+        <ButtonDefault className="about-layout__button" as="button">
           Go Home
         </ButtonDefault>
       </Link>

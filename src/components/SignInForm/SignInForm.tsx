@@ -48,7 +48,7 @@ function SignInForm(props: SignInFormPropsType) {
       >
         <InputBox
           className="sign-in-form__input-box"
-          onInput={(evt: HandlerInputEvtType) => {
+          onInput={(evt) => {
             handlerInput(evt, { name: "email" })
           }}
           value={state.email}
@@ -58,7 +58,7 @@ function SignInForm(props: SignInFormPropsType) {
         </InputBox>
         <InputBox
           className="sign-in-form__input-box"
-          onInput={(evt: HandlerInputEvtType) => {
+          onInput={(evt) => {
             handlerInput(evt, { name: "password" })
           }}
           value={state.password}
@@ -69,17 +69,17 @@ function SignInForm(props: SignInFormPropsType) {
 
         <div className="sign-in-form__button-box">
           <ButtonDefault
-            tag="button"
+            as="button"
             type="submit"
             className="sign-in-form__button-default"
           >
             Sign in
           </ButtonDefault>
           <ButtonDefault
-            tag="button"
+            as="button"
             type="button"
             className="sign-in-form__button-default"
-            handleClick={(evt: React.FormEvent<HTMLFormElement>) =>
+            handlerClick={(evt: React.FormEvent<HTMLFormElement>) =>
               handlerSubmit(evt, "google")
             }
           >

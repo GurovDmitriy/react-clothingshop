@@ -11,7 +11,7 @@ const createUserAction = createAsyncThunk(
       createdAt,
     })
 
-    const response = await api.user.getUserDocument(payload.id)
+    const response = await api.user.fetchUserDocument(payload.id)
 
     return {
       id: payload.id,
@@ -26,7 +26,7 @@ const fetchUserAction = createAsyncThunk(
   "user/fetchUserAction",
   async (payload, thunkAPI) => {
     const userId = thunkAPI.getState().auth?.entities?.id
-    const response = await api.user.getUserDocument(userId)
+    const response = await api.user.fetchUserDocument(userId)
 
     return {
       id: response.uid,

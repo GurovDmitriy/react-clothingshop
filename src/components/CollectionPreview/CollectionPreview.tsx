@@ -1,30 +1,7 @@
+import React from "react"
 import classNames from "classnames"
 import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
 import "./style.scss"
-
-CollectionPreview.defaultProps = {
-  entities: [],
-}
-
-type CollectionPreviewItems = {
-  id: string | number
-  name: string
-  imageUrl: string
-  price: number
-}
-
-type CollectionPreviewEntities = {
-  id: string | number
-  title: string
-  routeName: string
-  items: Array<CollectionPreviewItems>
-}
-
-type CollectionPreviewProps = {
-  entities: Array<CollectionPreviewEntities>
-  className: string
-  handlerAddToCart: (cartItem: any) => Promise<void>
-} & typeof CollectionPreview.defaultProps
 
 function CollectionPreview(props: CollectionPreviewProps) {
   const { entities, className, handlerAddToCart } = props
@@ -55,6 +32,26 @@ function CollectionPreview(props: CollectionPreviewProps) {
   }
 
   return <div className={collectionClass}>{collectionEntities}</div>
+}
+
+type CollectionPreviewItems = {
+  id: string | number
+  name: string
+  imageUrl: string
+  price: number
+}
+
+type CollectionPreviewEntities = {
+  id: string | number
+  title: string
+  routeName: string
+  items: Array<CollectionPreviewItems>
+}
+
+type CollectionPreviewProps = {
+  entities: Array<CollectionPreviewEntities>
+  className: string
+  handlerAddToCart: (cartItem: any) => Promise<void>
 }
 
 export default CollectionPreview

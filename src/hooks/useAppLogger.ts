@@ -1,4 +1,4 @@
-function useCustomLogger() {
+function useAppLogger() {
   function logger() {
     console.log("logger")
   }
@@ -6,4 +6,4 @@ function useCustomLogger() {
   return [logger]
 }
 
-export default useCustomLogger
+export default useAppLogger

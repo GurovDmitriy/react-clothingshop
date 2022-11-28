@@ -1,16 +1,15 @@
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "../config"
+import Firebase from "firebase/compat";
 
-/**
- *
- * @param {object} payload
- * @param {string} payload.id
- * @param {string} payload.email
- * @param {string} payload.displayName
- * @param {string} payload.createdAt
- * @returns {Promise<void>}
- */
-async function createUserDocumentFB(payload) {
+type CreateUserDocumentFBPayload = {
+  id: string
+  displayName: string
+  email: string
+  createdAt: string
+}
+
+async function createUserDocumentFB(payload: CreateUserDocumentFBPayload): Promise<void> {
   await setDoc(doc(db, "users", payload.id), {
     displayName: payload.displayName,
     email: payload.email,
@@ -18,11 +17,7 @@ async function createUserDocumentFB(payload) {
   })
 }
 
-/**
- * @param {string} id
- * @returns {Promise<DocumentData|null>}
- */
-async function getUserDocumentFB(id) {
+async function fetchUserDocumentFB(id: string): Promise<Firebase.firestore.DocumentData | null> {
   const docRef = doc(db, `users/${id}`)
   const docSnap = await getDoc(docRef)
 
@@ -35,5 +30,5 @@ async function getUserDocumentFB(id) {
 
 export default {
   createUserDocumentFB,
-  getUserDocumentFB,
+  fetchUserDocumentFB,
 }

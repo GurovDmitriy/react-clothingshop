@@ -1,18 +1,17 @@
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { db } from "../config"
+import Firebase from "firebase/compat";
 
-/**
- *
- * @param {object} payload
- * @param {string} payload.userId
- * @param {string} payload.id
- * @param {string} payload.name
- * @param {string} payload.imageUrl
- * @param {string} payload.count
- * @param {string} payload.price
- * @returns {Promise<void>}
- */
-async function createCartDocumentFB(payload) {
+type CartDocumentFBPayload = {
+  userId: string
+  id: string
+  name: string
+  imageUrl: string
+  count: number
+  price: number
+}
+
+async function createCartDocumentFB(payload: CartDocumentFBPayload): Promise<void> {
   const cartsRef = doc(db, "carts", payload.userId)
   await setDoc(
     cartsRef,
@@ -29,18 +28,7 @@ async function createCartDocumentFB(payload) {
   )
 }
 
-/**
- *
- * @param {object} payload
- * @param {string} payload.userId
- * @param {string} payload.id
- * @param {string} payload.name
- * @param {string} payload.imageUrl
- * @param {string} payload.count
- * @param {string} payload.price
- * @returns {Promise<void>}
- */
-async function updateCartDocumentFB(payload) {
+async function updateCartDocumentFB(payload: CartDocumentFBPayload): Promise<void> {
   const cartsRef = doc(db, "carts", payload.userId)
   await updateDoc(cartsRef, {
     [String(payload.id)]: {
@@ -53,25 +41,19 @@ async function updateCartDocumentFB(payload) {
   })
 }
 
-/**
- *
- * @param {object} payload
- * @param {string} payload.userId
- * @param {string} payload.id
- * @returns {Promise<void>}
- */
-async function deleteCartFieldDocumentFB(payload) {
+type DeleteCartFieldDocumentFBPayload = {
+  userId: string
+  id: string
+}
+
+async function deleteCartFieldDocumentFB(payload: DeleteCartFieldDocumentFBPayload): Promise<void> {
   const cartsRef = doc(db, "carts", payload.userId)
   await updateDoc(cartsRef, {
     [String(payload.id)]: deleteField(),
   })
 }
 
-/**
- * @param {string} id
- * @returns {Promise<DocumentData|null>}
- */
-async function fetchCartDocumentFB(id) {
+async function fetchCartDocumentFB(id: string): Promise<Firebase.firestore.DocumentData | null> {
   const cartsRef = doc(db, `carts/${id}`)
   const docSnap = await getDoc(cartsRef)
 

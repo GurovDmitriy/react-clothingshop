@@ -1,15 +1,7 @@
+import React from "react"
 import classNames from "classnames"
 import { FaReact } from "react-icons/fa"
 import "./style.scss"
-
-LoadingBlock.defaultProps = {
-  loading: false,
-}
-
-type LoadingBlockProps = {
-  className?: string
-  loading?: boolean
-} & typeof LoadingBlock.defaultProps
 
 function LoadingBlock(props: LoadingBlockProps) {
   const { className, loading } = props
@@ -26,6 +18,15 @@ function LoadingBlock(props: LoadingBlockProps) {
       </div>
     </div>
   )
+}
+
+LoadingBlock.defaultProps = {
+  loading: false,
+}
+
+type LoadingBlockProps = {
+  className?: string
+  loading?: boolean
 }
 
 export default LoadingBlock

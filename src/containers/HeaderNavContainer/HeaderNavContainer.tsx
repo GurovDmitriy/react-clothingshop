@@ -1,3 +1,4 @@
+import React from "react"
 import classNames from "classnames"
 import { ReactComponent as Logo } from "../../assets/images/crown.svg"
 import LogoBox from "../../components/LogoBox/LogoBox"

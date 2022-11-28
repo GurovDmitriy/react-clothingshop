@@ -26,7 +26,7 @@ function createUserDocument(
 type FetchUserDocumentResponse = Promise<Firebase.firestore.DocumentData | null>
 
 function fetchUserDocument(id: string): FetchUserDocumentResponse {
-  return firebaseSDK.user.getUserDocumentFB(id)
+  return firebaseSDK.user.fetchUserDocumentFB(id)
 }
 
 export default {

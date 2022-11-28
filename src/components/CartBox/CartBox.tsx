@@ -1,24 +1,9 @@
+import React from "react"
 import classNames from "classnames"
 import { ReactComponent as IconDec } from "../../assets/images/decrement.svg"
 import { ReactComponent as IconDel } from "../../assets/images/delete.svg"
 import { ReactComponent as IconInc } from "../../assets/images/increment.svg"
-import cartOperationTypes from "../../helpers/cartOperationTypes"
 import "./style.scss"
-
-CartBox.defaultProps = {
-  entities: [],
-  totalPrice: 0,
-}
-
-type CartBoxProps = {
-  className?: string
-  totalPrice?: number
-  entities?: Array<CartEntitiesType>
-  handlerChangeCount: (
-    item: CartEntitiesType,
-    operation: CartOperationType
-  ) => void
-} & typeof CartBox.defaultProps
 
 function CartBox(props: CartBoxProps) {
   const { className, entities, handlerChangeCount, totalPrice } = props
@@ -30,7 +15,7 @@ function CartBox(props: CartBoxProps) {
   function renderCartEntities() {
     let component = null
 
-    if (entities.length) {
+    if (entities && entities.length) {
       component = getCartBoxItems()
     } else {
       component = getCartBoxEmpty()
@@ -40,6 +25,8 @@ function CartBox(props: CartBoxProps) {
   }
 
   function getCartBoxItems() {
+    if(!entities || !entities.length) return null
+
     return entities.map((item) => {
       return (
         <tr key={item.id}>
@@ -62,7 +49,7 @@ function CartBox(props: CartBoxProps) {
               <button
                 className="cart-box__item-btn cart-box__item-btn--dec"
                 onClick={() =>
-                  handlerChangeCount(item, cartOperationTypes.decrement)
+                  handlerChangeCount(item, CartOperation.decrement)
                 }
               >
                 <IconDec />
@@ -71,7 +58,7 @@ function CartBox(props: CartBoxProps) {
               <button
                 className="cart-box__item-btn cart-box__item-btn--inc"
                 onClick={() =>
-                  handlerChangeCount(item, cartOperationTypes.increment)
+                  handlerChangeCount(item, CartOperation.increment)
                 }
               >
                 <IconInc />
@@ -85,7 +72,7 @@ function CartBox(props: CartBoxProps) {
             <button
               className="cart-box__item-btn cart-box__item-btn--del"
               onClick={() =>
-                handlerChangeCount(item, cartOperationTypes.delete)
+                handlerChangeCount(item, CartOperation.delete)
               }
             >
               <IconDel />
@@ -131,6 +118,20 @@ function CartBox(props: CartBoxProps) {
       </table>
     </div>
   )
+}
+
+CartBox.defaultProps = {
+  totalPrice: 0,
+}
+
+type CartBoxProps = {
+  className?: string
+  totalPrice?: number
+  entities?: Array<CartEntitiesType>
+  handlerChangeCount: (
+    item: CartEntitiesType,
+    operation: CartOperation
+  ) => void
 }
 
 export default CartBox

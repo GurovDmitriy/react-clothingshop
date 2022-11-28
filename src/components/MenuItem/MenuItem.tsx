@@ -1,20 +1,7 @@
+import React from "react"
 import classNames from "classnames"
 import { Link } from "react-router-dom"
 import "./style.scss"
-
-MenuItem.defaultProps = {
-  entities: {},
-}
-
-type MenuItemProps = {
-  entities: {
-    link: string
-    caption: string
-    description: string
-  }
-  className?: string
-  [x: string]: any
-}
 
 function MenuItem(props: MenuItemProps) {
   const { entities, className, ...otherProps } = props
@@ -29,6 +16,15 @@ function MenuItem(props: MenuItemProps) {
       </Link>
     </div>
   )
+}
+
+interface MenuItemProps extends React.ComponentPropsWithoutRef<"div"> {
+  entities: {
+    link: string
+    caption: string
+    description: string
+  }
+  className?: string
 }
 
 export default MenuItem

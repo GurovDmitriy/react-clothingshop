@@ -1,15 +1,7 @@
+import React from "react"
 import classNames from "classnames"
 import MenuItem from "../MenuItem/MenuItem"
 import "./style.scss"
-
-MenuList.defaultProps = {
-  entities: [],
-}
-
-type MenuListProps = {
-  entities: Array<CategoryType>
-  className?: string
-} & typeof MenuList.defaultProps
 
 function MenuList(props: MenuListProps) {
   const { className, entities } = props
@@ -31,6 +23,11 @@ function MenuList(props: MenuListProps) {
   const listClass = classNames("menu-list", className)
 
   return <section className={listClass}>{appMenuItems}</section>
+}
+
+type MenuListProps = {
+  entities: Array<CategoryType>
+  className?: string
 }
 
 export default MenuList

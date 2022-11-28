@@ -1,5 +1,5 @@
+import React from "react"
 import classNames from "classnames"
-import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import NavList from "../../components/NavList/NavList"
@@ -8,14 +8,15 @@ import { selectAuth } from "../../store/auth/authSelector"
 import { clearCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
 import { clearUserAction } from "../../store/user/userAction"
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 
 function NavListContainer(props: NavListContainerPropsType) {
   const { className } = props
 
-  const dispatch = useDispatch()
-  const authData = useSelector(selectAuth)
-  const cartData = useSelector(selectCart)
-  const cartCountItems = useSelector(selectCartCountItems)
+  const dispatch = useAppDispatch()
+  const authData = useAppSelector(selectAuth)
+  const cartData = useAppSelector(selectCart)
+  const cartCountItems = useAppSelector(selectCartCountItems)
   const navigate = useNavigate()
 
   const navListContainerClass = classNames("nav-list-container", className)
@@ -23,7 +24,7 @@ function NavListContainer(props: NavListContainerPropsType) {
   const cartListEntities = cartData ? Object.values(cartData) : []
   const activeButton = renderActiveButton()
 
-  async function handleSignOut() {
+  async function handlerSignOut() {
     dispatch(signOutAction())
     dispatch(clearUserAction())
     dispatch(clearCartAction())
@@ -47,7 +48,7 @@ function NavListContainer(props: NavListContainerPropsType) {
 
   function getButtonSignOut() {
     return (
-      <ButtonSimple tag="button" type="button" handleClick={handleSignOut}>
+      <ButtonSimple as="button" type="button" handlerClick={handlerSignOut}>
         Sign out
       </ButtonSimple>
     )
@@ -56,7 +57,7 @@ function NavListContainer(props: NavListContainerPropsType) {
   function getButtonSignIn() {
     return (
       <Link to="/sign">
-        <ButtonSimple tag="span">Sign in</ButtonSimple>
+        <ButtonSimple as="span">Sign in</ButtonSimple>
       </Link>
     )
   }
