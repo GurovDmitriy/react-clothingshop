@@ -2,14 +2,14 @@ import { default as Firebase, default as firebase } from "firebase/compat"
 import firebaseSDK from "../../firebaseSDK/firebaseSDK"
 import User = firebase.User
 
-type signUpPayload = {
+type SignPayload = {
   email: string
   password: string
 }
 
 type SignUpResponse = Promise<Firebase.User>
 
-function signUp(payload: signUpPayload): SignUpResponse {
+function signUp(payload: SignPayload): SignUpResponse {
   const data = {
     email: payload.email,
     password: payload.password,
@@ -18,12 +18,7 @@ function signUp(payload: signUpPayload): SignUpResponse {
   return firebaseSDK.auth.signUpFB(data)
 }
 
-type signInPayload = {
-  email: string
-  password: string
-}
-
-function signIn(payload: signInPayload): Promise<User> {
+function signIn(payload: SignPayload): Promise<User> {
   const data = {
     email: payload.email,
     password: payload.password,

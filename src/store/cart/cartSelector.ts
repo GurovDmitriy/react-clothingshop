@@ -1,33 +1,27 @@
 import { createSelector } from "@reduxjs/toolkit"
+import type { TypedUseSelectorHook } from "react-redux"
+import { RootState } from "../store"
 
-/**
- *  @param {object} state - State Redux
- *  @returns {string} - Cart status fetch
- */
-function selectCartStatusFetch(state) {
+interface CartState extends TypedUseSelectorHook<RootState> {
+  cart: {
+    entities: object
+    status: ActionStatus
+    error: string
+  }
+}
+
+function selectCartStatusFetch(state: CartState) {
   return state.cart.status
 }
 
-/**
- * @param {object} state - State Redux
- * @returns {string} - Cart error
- */
-function selectCartError(state) {
+function selectCartError(state: CartState) {
   return state.cart.error
 }
 
-/**
- * @param {object} state - State Redux
- * @returns {object} - Cart data
- */
-function selectCart(state) {
+function selectCart(state: CartState) {
   return state.cart.entities
 }
 
-/**
- * @param {object} state - State Redux
- * @returns {number} - Cart count items
- */
 const selectCartCountItems = createSelector([selectCart], (cart) => {
   if (cart && Object.values(cart).length) {
     return Object.values(cart).reduce((previousValue, currentValue) => {
@@ -37,10 +31,6 @@ const selectCartCountItems = createSelector([selectCart], (cart) => {
   return 0
 })
 
-/**
- * @param {object} state - State Redux
- * @returns {number} - Cart count items
- */
 const selectCartTotalPrice = createSelector([selectCart], (cart) => {
   if (cart && Object.values(cart).length) {
     return Object.values(cart).reduce((previousValue, currentValue) => {

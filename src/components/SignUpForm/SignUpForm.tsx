@@ -91,7 +91,7 @@ function SignUpForm(props: SignUpFormProps) {
 
 type SignUpFormProps = {
   className?: string
-  handlerSignUp: (state: signUpFormStateType) => void
+  handlerSignUp: (state: SignUpFormStateType) => void
 }
 
 type handleInputEvtType = {
@@ -104,7 +104,7 @@ type handlerInputPayload = {
   name: string
 }
 
-type signUpFormStateType = {
+type SignUpFormStateType = {
   name: string
   email: string
   password: string

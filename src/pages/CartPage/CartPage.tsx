@@ -32,7 +32,7 @@ function CartPage(props: CartPageProps) {
     dispatch(fetchCartAction())
   }, [])
 
-  async function handleChangeCount(
+  async function handlerChangeCount(
     cartItem: CartEntitiesType,
     cartOperation: CartOperation
   ) {
@@ -61,7 +61,7 @@ function CartPage(props: CartPageProps) {
       <LoadingBlock className="cart-page__loading-block" loading={loading} />
       <CartBox
         className="cart-page__cart-box"
-        handleChangeCount={handleChangeCount}
+        handlerChangeCount={handlerChangeCount}
         entities={cartEntities}
         totalPrice={totalPrice}
       />
@@ -70,7 +70,7 @@ function CartPage(props: CartPageProps) {
 }
 
 type CartPageProps = {
-  className: string
+  className?: string
 }
 
 export default CartPage

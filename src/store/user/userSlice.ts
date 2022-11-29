@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { actionStatusTypes } from "../../helpers/constants"
 import {
   clearUserAction,
   createUserAction,
@@ -14,7 +13,7 @@ interface UserState {
 
 const initialState: UserState = {
   entities: null,
-  status: actionStatusTypes.useless,
+  status: ActionStatus.useless,
   error: null,
 }
 
@@ -25,39 +24,39 @@ const userSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(createUserAction.pending, (state) => {
-        state.status = actionStatusTypes.pending
+        state.status = ActionStatus.pending
         state.error = null
       })
       .addCase(createUserAction.fulfilled, (state, action) => {
         state.entities = action.payload
-        state.status = actionStatusTypes.success
+        state.status = ActionStatus.success
       })
       .addCase(createUserAction.rejected, (state, action) => {
-        state.status = actionStatusTypes.failure
+        state.status = ActionStatus.failure
         state.error = action.error.message
       })
       .addCase(fetchUserAction.pending, (state) => {
-        state.status = actionStatusTypes.pending
+        state.status = ActionStatus.pending
         state.error = null
       })
       .addCase(fetchUserAction.fulfilled, (state, action) => {
         state.entities = action.payload
-        state.status = actionStatusTypes.success
+        state.status = ActionStatus.success
       })
       .addCase(fetchUserAction.rejected, (state, action) => {
-        state.status = actionStatusTypes.failure
+        state.status = ActionStatus.failure
         state.error = action.error.message
       })
       .addCase(clearUserAction.pending, (state) => {
-        state.status = actionStatusTypes.pending
+        state.status = ActionStatus.pending
         state.error = null
       })
       .addCase(clearUserAction.fulfilled, (state, action) => {
         state.entities = action.payload
-        state.status = actionStatusTypes.success
+        state.status = ActionStatus.success
       })
       .addCase(clearUserAction.rejected, (state, action) => {
-        state.status = actionStatusTypes.failure
+        state.status = ActionStatus.failure
         state.error = action.error.message
       })
   },

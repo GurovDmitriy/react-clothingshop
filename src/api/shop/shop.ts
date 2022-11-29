@@ -1,4 +1,4 @@
-import shopData from "../../data/shopData"
+import { getCollecitonList, getShopItems } from "../../data/shopItems"
 
 type FetchShopCollectionProps = {
   params: {
@@ -11,12 +11,7 @@ type FetchShopCollectionResponse = Promise<{ collectionList: unknown }>
 async function fetchShopCollection(
   props: FetchShopCollectionProps
 ): FetchShopCollectionResponse {
-  const collectionList = await new Promise((resolve) => {
-    const data = shopData.filter(
-      (item) => item.routeName === props.params.category
-    )
-    resolve(data)
-  })
+  const collectionList = getCollecitonList(props.params.category)
 
   return { collectionList }
 }
@@ -24,15 +19,7 @@ async function fetchShopCollection(
 type FetchShopItemsResponse = Promise<{ shopList: unknown }>
 
 async function fetchShopItems(): FetchShopItemsResponse {
-  const shopList = await new Promise((resolve) => {
-    const data = shopData.map((item) => {
-      return {
-        ...item,
-        items: item.items.filter((el, index) => index < 4),
-      }
-    })
-    resolve(data)
-  })
+  const shopList = await getShopItems()
   return { shopList }
 }
 

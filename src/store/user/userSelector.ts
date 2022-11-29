@@ -1,8 +1,16 @@
-function selectUserStatusFetch(state) {
+type userState = {
+  user: {
+    entities: object
+    status: ActionStatus
+    error: string
+  }
+}
+
+function selectUserStatusFetch(state: userState) {
   return state.user.status
 }
 
-function selectUser(state) {
+function selectUser(state: userState) {
   return state.user.entities
 }
 

@@ -11,7 +11,9 @@ type CategoryDataResponse = {
 }
 
 async function fetchCategory(): Promise<CategoryDataResponse> {
-  const menuList = await new Promise((resolve) => resolve(categoryData))
+  const menuList = await new Promise<CategoryType[]>((resolve) =>
+    resolve(categoryData)
+  )
   return { menuList }
 }
 

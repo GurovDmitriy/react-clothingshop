@@ -1,7 +1,9 @@
 import classNames from "classnames"
-import api from "../../api/api"
 import SignInForm from "../../components/SignInForm/SignInForm"
-import { signInWithGoogleAction } from "../../store/auth/authAction"
+import {
+  signInAction,
+  signInWithGoogleAction,
+} from "../../store/auth/authAction"
 import { useAppDispatch } from "../../store/hooks"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 
@@ -37,10 +39,12 @@ function SignInContainerForm(props: SignInContainerFormPropsType) {
   }
 
   async function handleSignInDefault(data: HandleSignInDefaultDataType) {
-    await api.auth.signIn({
-      email: data.email,
-      password: data.password,
-    })
+    await dispatch(
+      signInAction({
+        email: data.email,
+        password: data.password,
+      })
+    )
   }
 
   const formClass = classNames("sign-in-form-container", className)

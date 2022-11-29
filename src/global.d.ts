@@ -1,5 +1,3 @@
-declare type ChildrenType = JSX.Element | string | number
-
 declare enum ActionStatus {
   useless = "useless",
   pending = "pending",
@@ -17,7 +15,7 @@ declare enum CartOperation {
 declare type CartEntitiesType = {
   imageUrl: string
   name: string
-  id: string | number
+  id: string
   count: number
   price: number
 }

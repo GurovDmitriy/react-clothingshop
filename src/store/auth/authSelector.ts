@@ -1,16 +1,19 @@
-/**
- *  @param {object} state - State Redux
- *  @returns {string} - Auth status fetch
- */
-function selectAuthStatusFetch(state) {
+import type { TypedUseSelectorHook } from "react-redux"
+import { RootState } from "../store"
+
+interface AuthState extends TypedUseSelectorHook<RootState> {
+  auth: {
+    entities: object
+    status: ActionStatus
+    error: string
+  }
+}
+
+function selectAuthStatusFetch(state: AuthState) {
   return state.auth.status
 }
 
-/**
- *  @param {object} state - State Redux
- *  @returns {object} - Auth data
- */
-function selectAuth(state) {
+function selectAuth(state: AuthState) {
   return state.auth.entities
 }
 

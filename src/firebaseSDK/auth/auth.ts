@@ -45,7 +45,7 @@ async function signInWithGoogleFB(): Promise<{
 }> {
   const result = await signInWithPopup(auth, provider)
   const credential = GoogleAuthProvider.credentialFromResult(result)
-  const token = credential.accessToken
+  const token = credential?.accessToken
 
   return {
     user: result.user,
@@ -56,12 +56,6 @@ async function signInWithGoogleFB(): Promise<{
 type SignCheckFBType = {
   displayName: string
   id: string
-  email: string
-}
-
-type SignCheckFBResponseCurrentUserType = {
-  uid: string
-  displayName: string
   email: string
 }
 
