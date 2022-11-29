@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import FormSignInContainer from "../../containers/FormSignInContainer/FormSignInContainer"
-import FormSignUpContainer from "../../containers/FormSignUpContainer/FormSignUpContainer"
+import SignInContainerForm from "../../containers/SignInFormContainer/SignInContainerForm"
+import SignUpFormContainer from "../../containers/SignUpFormContainer/SignUpFormContainer"
 import {
   selectAuth,
   selectAuthStatusFetch,
@@ -23,8 +23,8 @@ function SignPage() {
   return (
     <section className="page-sign">
       <h2 className="page-sign__caption">Form Sign in and Sign up</h2>
-      <FormSignInContainer className="page-sign__container-form-sign-in" />
-      <FormSignUpContainer className="page-sign__container-form-sign-up" />
+      <SignInContainerForm className="page-sign__container-sign-in-form" />
+      <SignUpFormContainer className="page-sign__container-sign-up-form" />
     </section>
   )
 }

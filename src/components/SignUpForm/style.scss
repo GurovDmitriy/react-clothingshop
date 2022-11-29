@@ -1,18 +1,16 @@
-.form-sign-in {
+.sign-up-form {
   width: 46%;
 }
 
-.form-sign-in__button-box {
+.sign-up-form__button-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 -20px;
 }
 
-.form-sign-in__button-default {
+.sign-up-form__button-default {
   margin: 0 20px 20px;
 
-  &:first-child {
-    background-color: #000000;
-  }
+  background-color: #000000;
 }

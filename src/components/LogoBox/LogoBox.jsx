@@ -2,7 +2,9 @@ import classNames from "classnames"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 
-function LogoBox({ className, to, children }) {
+function LogoBox(props) {
+  const { className, to, children } = props
+
   const logoBoxClass = classNames("logo-box", className)
 
   return (

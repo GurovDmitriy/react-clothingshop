@@ -6,7 +6,9 @@ import { ReactComponent as IconInc } from "../../assets/images/increment.svg"
 import cartOperationTypes from "../../store/types/cartOperationTypes"
 import "./style.scss"
 
-function CartBox({ className, entities, handleChangeCount, totalPrice }) {
+function CartBox(props) {
+  const { className, entities, handleChangeCount, totalPrice } = props
+
   function renderCartBoxItems() {
     return entities.map((item) => {
       return (
@@ -80,6 +82,8 @@ function CartBox({ className, entities, handleChangeCount, totalPrice }) {
     return component
   }
 
+  const cartEntities = renderCartEntities()
+
   const cartPageClass = classNames("cart-box", className)
 
   return (
@@ -94,7 +98,7 @@ function CartBox({ className, entities, handleChangeCount, totalPrice }) {
             <th>Remove</th>
           </tr>
         </thead>
-        <tbody>{renderCartEntities()}</tbody>
+        <tbody>{cartEntities}</tbody>
         <tfoot>
           <tr>
             <td></td>

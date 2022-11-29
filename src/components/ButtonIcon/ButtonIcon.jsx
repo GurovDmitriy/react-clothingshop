@@ -2,15 +2,17 @@ import classNames from "classnames"
 import PropTypes from "prop-types"
 import "./style.scss"
 
-function ButtonIcon({
-  tag,
-  icon,
-  isHiddenLabel,
-  className,
-  handleClick,
-  children,
-  ...propsButton
-}) {
+function ButtonIcon(props) {
+  const {
+    tag,
+    icon,
+    isHiddenLabel,
+    className,
+    handleClick,
+    children,
+    ...propsButton
+  } = props
+
   const TagCustom = tag
   const IconCustom = icon
   const buttonClass = classNames("button-icon", className)
@@ -36,7 +38,7 @@ ButtonIcon.defaultProps = {
 
 ButtonIcon.propTypes = {
   handleClick: PropTypes.func,
-  children: PropTypes.any,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   tag: PropTypes.any,
   className: PropTypes.string,
   isHiddenLabel: PropTypes.bool,
