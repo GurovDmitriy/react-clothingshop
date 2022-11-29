@@ -1,9 +1,8 @@
 import classNames from "classnames"
 import PropTypes from "prop-types"
 import { useDispatch } from "react-redux"
-import api from "../../api"
 import FormSignIn from "../../components/FormSignIn/FormSignIn"
-import { signInWithGoogleAction } from "../../store/auth/authAction"
+import {signInAction, signInWithGoogleAction} from "../../store/auth/authAction"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 
 function FormSignInContainer({ className }) {
@@ -36,10 +35,14 @@ function FormSignInContainer({ className }) {
   }
 
   async function handleSignInDefault(data) {
-    await api.auth.signIn({
+    // await api.auth.signIn({
+    //   email: data.email,
+    //   password: data.password,
+    // })
+    await dispatch(signInAction({
       email: data.email,
       password: data.password,
-    })
+    }))
   }
 
   const formClass = classNames("form-sign-in-container", className)

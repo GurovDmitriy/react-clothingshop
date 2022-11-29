@@ -15,6 +15,7 @@ const signUpAction = createAsyncThunk("auth/signUpAction", async (payload) => {
 
 const signInAction = createAsyncThunk("auth/signInAction", async (payload) => {
   const response = await api.auth.signIn(payload)
+  console.log('testtttt', response)
   return response.data
 })
 
