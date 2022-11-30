@@ -2,7 +2,6 @@ import classNames from "classnames"
 import { useEffect } from "react"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
-import { actionStatusTypes, cartOperationTypes } from "../../helpers/constants"
 import {
   addToCartAction,
   deleteFromCartAction,
@@ -21,12 +20,18 @@ function CartPage(props: CartPageProps) {
   const { className } = props
 
   const dispatch = useAppDispatch()
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const cart = useAppSelector(selectCart)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const totalPrice = useAppSelector(selectCartTotalPrice)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const cartStateFetch = useAppSelector(selectCartStatusFetch)
 
   const cartEntities = cart ? Object.values(cart) : []
-  const loading = cartStateFetch === actionStatusTypes.pending
+  const loading = cartStateFetch === ActionStatus.pending
 
   useEffect(() => {
     dispatch(fetchCartAction())
@@ -37,15 +42,15 @@ function CartPage(props: CartPageProps) {
     cartOperation: CartOperation
   ) {
     switch (cartOperation) {
-      case cartOperationTypes.increment:
+      case CartOperation.increment:
         dispatch(addToCartAction(cartItem))
         break
 
-      case cartOperationTypes.decrement:
+      case CartOperation.decrement:
         dispatch(removeFromCartAction(cartItem))
         break
 
-      case cartOperationTypes.delete:
+      case CartOperation.delete:
         dispatch(deleteFromCartAction(cartItem))
         break
 

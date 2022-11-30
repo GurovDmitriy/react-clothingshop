@@ -1,6 +1,5 @@
-import { default as Firebase, default as firebase } from "firebase/compat"
+import Firebase from "firebase/compat"
 import firebaseSDK from "../../firebaseSDK/firebaseSDK"
-import User = firebase.User
 
 type SignPayload = {
   email: string
@@ -18,7 +17,7 @@ function signUp(payload: SignPayload): SignUpResponse {
   return firebaseSDK.auth.signUpFB(data)
 }
 
-function signIn(payload: SignPayload): Promise<User> {
+function signIn(payload: SignPayload): Promise<Firebase.User> {
   const data = {
     email: payload.email,
     password: payload.password,

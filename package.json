@@ -1,5 +1,5 @@
 {
-  "name": "learn-react-clothingshop",
+  "name": "react-clothingshop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -47,7 +47,7 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.{jsx,js}": "eslint --fix",
+    "src/**/*.{jsx,js,ts,tsx}": "eslint --fix",
     "src/**/*.{css,less,scss,html}": "stylelint --fix",
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"

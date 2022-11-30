@@ -1,4 +1,10 @@
-const setItemCO = (cookie, key, data) => {
+const setItemCO = (
+  cookie: {
+    set: (arg0: any, arg1: any, arg2: { path: string; maxAge: number }) => void
+  },
+  key: any,
+  data: any
+) => {
   try {
     const options = {
       path: "/",
@@ -11,7 +17,17 @@ const setItemCO = (cookie, key, data) => {
   }
 }
 
-const removeItemCO = (cookie, key, data) => {
+const removeItemCO = (
+  cookie: {
+    remove: (
+      arg0: any,
+      arg1: any,
+      arg2: { path: string; maxAge: number }
+    ) => void
+  },
+  key: any,
+  data: any
+) => {
   try {
     const options = {
       path: "/",

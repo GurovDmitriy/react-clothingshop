@@ -5,6 +5,8 @@ import {
   fetchUserAction,
 } from "./userAction"
 
+import { ActionStatus } from "../../helpers/constants"
+
 interface UserState {
   entities?: object | null
   status: string

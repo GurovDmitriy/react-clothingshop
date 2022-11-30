@@ -24,7 +24,11 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
 
     await dispatch(
       createUserAction({
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         id: signUpResponse.payload.id,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         displayName: data.name,
         email: data.email,
       })
@@ -33,6 +37,8 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
 
   const formClass = classNames("sign-up-form-container", className)
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return <SignUpForm className={formClass} handlerSignUp={handlerSignUp} />
 }
 

@@ -17,14 +17,17 @@ function SignUpForm(props: SignUpFormProps) {
 
   const formClass = classNames("sign-up-form", className)
 
-  function handleInput(evt: handleInputEvtType, { name }: handlerInputPayload) {
+  function handlerInput(
+    evt: handleInputEvtType,
+    { name }: handlerInputPayload
+  ) {
     setState({
       ...state,
       [name]: evt.target.value,
     })
   }
 
-  async function handleSubmit(evt: { preventDefault: () => void }) {
+  async function handlerSubmit(evt: { preventDefault: () => void }) {
     evt.preventDefault()
     handlerSignUp(state)
   }
@@ -40,36 +43,44 @@ function SignUpForm(props: SignUpFormProps) {
         className="sign-up-form__form"
         action="src/components/SignUpForm/SignUpForm.tsx"
         method="POST"
-        onSubmit={handleSubmit}
+        onSubmit={handlerSubmit}
       >
         <InputBox
           className="sign-up-form__input-box"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           onInput={(evt: handleInputEvtType) => {
-            handleInput(evt, { name: "name" })
+            handlerInput(evt, { name: "name" })
           }}
           value={state.name}
           {...configInput.name}
         />
         <InputBox
           className="sign-up-form__input-box"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           onInput={(evt: handleInputEvtType) => {
-            handleInput(evt, { name: "email" })
+            handlerInput(evt, { name: "email" })
           }}
           value={state.email}
           {...configInput.email}
         />
         <InputBox
           className="sign-up-form__input-box"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           onInput={(evt: handleInputEvtType) => {
-            handleInput(evt, { name: "password" })
+            handlerInput(evt, { name: "password" })
           }}
           value={state.password}
           {...configInput.password}
         />
         <InputBox
           className="sign-up-form__input-box"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           onInput={(evt: handleInputEvtType) => {
-            handleInput(evt, { name: "passwordConfirm" })
+            handlerInput(evt, { name: "passwordConfirm" })
           }}
           value={state.passwordConfirm}
           {...configInput.passwordConfirm}
@@ -78,7 +89,7 @@ function SignUpForm(props: SignUpFormProps) {
         <div className="sign-up-form__button-box">
           <ButtonDefault
             className="sign-up-form__button-default"
-            tag="button"
+            as="button"
             type="submit"
           >
             Sign Up

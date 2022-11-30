@@ -4,8 +4,12 @@ import { Provider } from "react-redux"
 import { RouterProvider } from "react-router-dom"
 import "./assets/styles/main.scss"
 import router from "./router"
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import store from "./store/store"
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
 root.render(

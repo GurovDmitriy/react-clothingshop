@@ -30,10 +30,16 @@ function SignInContainerForm(props: SignInContainerFormPropsType) {
   async function handleClickSignInWithGoogle() {
     const responseSign = await dispatch(signInWithGoogleAction())
     const responseUser = await dispatch(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       fetchUserAction(responseSign.payload.id)
     )
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (!responseUser.payload || !responseUser.payload.id) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       await dispatch(createUserAction(responseSign.payload))
     }
   }

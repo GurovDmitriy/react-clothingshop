@@ -13,12 +13,11 @@ function SignInForm(props: SignInFormPropsType) {
     password: "",
   })
 
-  function handlerInput(
-    evt: HandlerInputEvtType,
-    { name }: HandlerInputPayloadType
-  ) {
+  function handlerInput(evt: HandlerInputEvtType, name: { name: string }) {
     setState({
       ...state,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       [name]: evt.target.value,
     })
   }
@@ -49,6 +48,8 @@ function SignInForm(props: SignInFormPropsType) {
         <InputBox
           className="sign-in-form__input-box"
           onInput={(evt) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             handlerInput(evt, { name: "email" })
           }}
           value={state.email}
@@ -59,6 +60,8 @@ function SignInForm(props: SignInFormPropsType) {
         <InputBox
           className="sign-in-form__input-box"
           onInput={(evt) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             handlerInput(evt, { name: "password" })
           }}
           value={state.password}

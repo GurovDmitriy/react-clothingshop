@@ -1,7 +1,5 @@
 import classNames from "classnames"
 import { Link } from "react-router-dom"
-import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
-import ButtonIcon from "../ButtonIcon/ButtonIcon"
 import ButtonSimple from "../ButtonSimple/ButtonSimple"
 import CartModal from "../CartModal/CartModal"
 import "./style.scss"
@@ -31,14 +29,14 @@ function NavList(props: NavListProps) {
       {activeButton}
       <div className="nav-list__button-icon-box">
         <Link to="/cart">
-          <ButtonIcon
-            as="span"
-            isHiddenLabel={false}
-            icon={CartIcon}
-            title="title"
-          >
-            {cartCountItems}
-          </ButtonIcon>
+          {/*<ButtonIcon*/}
+          {/*  as="span"*/}
+          {/*  isHiddenLabel={false}*/}
+          {/*  icon={CartIcon}*/}
+          {/*  title="title"*/}
+          {/*>*/}
+          {/*  {cartCountItems}*/}
+          {/*</ButtonIcon>*/}
         </Link>
         <CartModal
           className="nav-list__cart-modal"
