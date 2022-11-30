@@ -13,8 +13,14 @@ function NavListContainer(props: NavListContainerPropsType) {
   const { className } = props
 
   const dispatch = useAppDispatch()
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const authData = useAppSelector(selectAuth)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const cartData = useAppSelector(selectCart)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const cartCountItems = useAppSelector(selectCartCountItems)
   const navigate = useNavigate()
 
@@ -36,6 +42,8 @@ function NavListContainer(props: NavListContainerPropsType) {
   function renderActiveButton() {
     let component = null
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (authData && authData.id) {
       component = getButtonSignOut()
     } else {

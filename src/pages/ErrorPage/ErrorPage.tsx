@@ -3,7 +3,7 @@ import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import "./style.scss"
 
 function ErrorPage() {
-  const error = useRouteError()
+  const error: any = useRouteError()
   console.error(error)
 
   return (
@@ -15,9 +15,11 @@ function ErrorPage() {
       <p className="error-page__error-content">
         {error.statusText || error.message}
       </p>
-      <ButtonDefault tag={Link} to="/">
-        Go Home
-      </ButtonDefault>
+      <Link to="/">
+        <ButtonDefault as="span">
+          Go Home
+        </ButtonDefault>
+      </Link>
     </div>
   )
 }

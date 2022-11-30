@@ -31,14 +31,14 @@ function NavList(props: NavListProps) {
       {activeButton}
       <div className="nav-list__button-icon-box">
         <Link to="/cart">
-          <ButtonIcon
-            as="span"
-            isHiddenLabel={false}
-            icon={CartIcon}
-            title="title"
-          >
-            {cartCountItems}
-          </ButtonIcon>
+          {/*<ButtonIcon*/}
+          {/*  as="span"*/}
+          {/*  isHiddenLabel={false}*/}
+          {/*  icon={CartIcon}*/}
+          {/*  title="title"*/}
+          {/*>*/}
+          {/*  {cartCountItems}*/}
+          {/*</ButtonIcon>*/}
         </Link>
         <CartModal
           className="nav-list__cart-modal"

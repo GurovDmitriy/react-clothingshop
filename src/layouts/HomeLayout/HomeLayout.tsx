@@ -14,13 +14,19 @@ import "./style.scss"
 
 function HomeLayout() {
   const dispatch = useAppDispatch()
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const authStateFetch = useAppSelector(selectAuthStatusFetch)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const cartStateFetch = useAppSelector(selectCartStatusFetch)
 
   const authLoading = authStateFetch === actionStatusTypes.pending
   const cartLoading = cartStateFetch === actionStatusTypes.pending
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const unsubscribeAuth = api.auth.subscribeStateChange(async (user) => {
       if (user) {
         await dispatch(signCheckAction())

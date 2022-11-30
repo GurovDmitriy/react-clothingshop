@@ -6,6 +6,7 @@ import {
   signOutAction,
   signUpAction,
 } from "./authAction"
+import {ActionStatus} from "../../helpers/constants"
 
 interface AuthState {
   entities?: object | null

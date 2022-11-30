@@ -7,6 +7,8 @@ import {
   removeFromCartAction,
 } from "./cartAction"
 
+import {ActionStatus} from "../../helpers/constants"
+
 interface CartState {
   entities?: object | null
   status: string

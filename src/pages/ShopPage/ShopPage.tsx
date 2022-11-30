@@ -4,9 +4,13 @@ import { addToCartAction } from "../../store/cart/cartAction"
 import { useAppDispatch } from "../../store/hooks"
 
 function ShopPage() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const { shopList } = useLoaderData()
   const dispatch = useAppDispatch()
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   async function handlerAddToCart(cartItem) {
     await dispatch(addToCartAction(cartItem))
   }
