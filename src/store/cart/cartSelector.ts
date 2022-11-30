@@ -2,7 +2,6 @@ import { createSelector } from "@reduxjs/toolkit"
 import type { TypedUseSelectorHook } from "react-redux"
 import { ActionStatus } from "../../helpers/constants"
 import { RootState } from "../store"
-import {ActionStatus} from "../../helpers/constants"
 
 interface CartState extends TypedUseSelectorHook<RootState> {
   cart: {
