@@ -6,12 +6,15 @@ import {
   fetchCartAction,
   removeFromCartAction,
 } from "./cartAction"
-
 import { ActionStatus } from "../../helpers/constants"
 
-interface CartState {
-  entities?: object | null
-  status: string
+export type CartEntitiesItem = {
+  [id: string]: CartEntitiesType
+}
+
+export type CartState = {
+  entities?: CartEntitiesItem | null
+  status: ActionStatus
   error?: string | null
 }
 

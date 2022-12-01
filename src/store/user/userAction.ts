@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import Firebase from "firebase/compat"
 import api from "../../api/api"
+import {createAppAsyncThunk} from "../store";
 
 type CreateUserData = {
   id: string
@@ -8,14 +9,7 @@ type CreateUserData = {
   email: string
 }
 
-type CreateUserResponse = {
-  id: string
-  displayName: string
-  email: string
-  createdAt: string
-}
-
-const createUserAction = createAsyncThunk(
+const createUserAction = createAppAsyncThunk(
   "user/createUserAction",
   async (payload: CreateUserData) => {
     const createdAt: any = new Date()
@@ -37,21 +31,23 @@ const createUserAction = createAsyncThunk(
   }
 )
 
-const fetchUserAction = createAsyncThunk(
+type FetchUserDocumentResponse = Firebase.firestore.DocumentData | null
+
+const fetchUserAction = createAppAsyncThunk(
   "user/fetchUserAction",
   async (payload, thunkAPI) => {
+    const userId: string | null = thunkAPI.getState().auth?.entities?.id || null
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const userId = thunkAPI.getState().auth?.entities?.id
-    const response: Firebase.firestore.DocumentData | null =
-      await api.user.fetchUserDocument(userId)
+      const response: FetchUserDocumentResponse = await api.user.fetchUserDocument(userId)
 
-    return {
-      id: response?.uid,
-      displayName: response?.displayName,
-      email: response?.email,
-      createdAt: response?.createdAt.toDate().toString(),
-    }
+      return {
+        id: response?.uid,
+        displayName: response?.displayName,
+        email: response?.email,
+        createdAt: response?.createdAt.toDate().toString(),
+      }
   }
 )
 

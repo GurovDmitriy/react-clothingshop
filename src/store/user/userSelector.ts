@@ -1,18 +1,14 @@
-import { ActionStatus } from "../../helpers/constants"
+import {UserState} from "./userSlice";
 
-type userState = {
-  user: {
-    entities: object
-    status: ActionStatus
-    error: string
-  }
+type UserModule = {
+  user: UserState
 }
 
-function selectUserStatusFetch(state: userState) {
+function selectUserStatusFetch(state: UserModule) {
   return state.user.status
 }
 
-function selectUser(state: userState) {
+function selectUser(state: UserModule) {
   return state.user.entities
 }
 

@@ -8,9 +8,13 @@ import {
   signUpAction,
 } from "./authAction"
 
-interface AuthState {
-  entities?: object | null
-  status: string
+export type AuthEntities = {
+  id: string
+}
+
+export type AuthState = {
+  entities?: AuthEntities | null
+  status: ActionStatus
   error?: string | null
 }
 

@@ -1,20 +1,14 @@
-import type { TypedUseSelectorHook } from "react-redux"
-import { RootState } from "../store"
-import {ActionStatus} from "../../helpers/constants"
+import {AuthState} from "./authSlice"
 
-interface AuthState extends TypedUseSelectorHook<RootState> {
-  auth: {
-    entities: object
-    status: ActionStatus
-    error: string
-  }
+type AuthModule = {
+  auth: AuthState
 }
 
-function selectAuthStatusFetch(state: AuthState) {
+function selectAuthStatusFetch(state: AuthModule) {
   return state.auth.status
 }
 
-function selectAuth(state: AuthState) {
+function selectAuth(state: AuthModule) {
   return state.auth.entities
 }
 

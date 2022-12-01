@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api/api"
+import {createAppAsyncThunk} from "../store";
 
-const fetchCartAction = createAsyncThunk(
+const fetchCartAction = createAppAsyncThunk(
   "cart/fetchCartAction",
   async (payload, thunkAPI) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -17,12 +18,12 @@ const fetchCartAction = createAsyncThunk(
   }
 )
 
-const addToCartAction = createAsyncThunk(
+const addToCartAction = createAppAsyncThunk(
   "cart/addToCartAction",
   async (payload: CartEntitiesType, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const userId = thunkAPI.getState().auth?.entities?.id
     const cartOld = await api.cart.fetchCartDocument(userId)
 
     const existItem = cartOld?.[String(payload.id)]
@@ -33,6 +34,8 @@ const addToCartAction = createAsyncThunk(
     }
 
     await api.cart.createCartDocument({
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       userId,
       id: payload.id,
       name: payload.name,
@@ -41,18 +44,20 @@ const addToCartAction = createAsyncThunk(
       count,
     })
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const cartNew = await api.cart.fetchCartDocument(userId)
 
     return cartNew
   }
 )
 
-const removeFromCartAction = createAsyncThunk(
+const removeFromCartAction = createAppAsyncThunk(
   "cart/removeFromCartAction",
   async (payload: CartEntitiesType, thunkAPI) => {
+    const userId = thunkAPI.getState().auth?.entities?.id
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const userId = thunkAPI.getState().auth?.entities?.id
     const cartOld = await api.cart.fetchCartDocument(userId)
 
     const existItem = cartOld?.[String(payload.id)]
@@ -65,6 +70,8 @@ const removeFromCartAction = createAsyncThunk(
     switch (count) {
       case 0:
         await api.cart.deleteCartFieldDocument({
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           userId,
           id: payload.id,
         })
@@ -72,6 +79,8 @@ const removeFromCartAction = createAsyncThunk(
 
       default:
         await api.cart.updateCartDocument({
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           userId,
           id: payload.id,
           name: payload.name,
@@ -81,24 +90,28 @@ const removeFromCartAction = createAsyncThunk(
         })
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const cartNew = await api.cart.fetchCartDocument(userId)
 
     return cartNew
   }
 )
 
-const deleteFromCartAction = createAsyncThunk(
+const deleteFromCartAction = createAppAsyncThunk(
   "cart/deleteFromCartAction",
   async (payload: CartEntitiesType, thunkAPI) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const userId = thunkAPI.getState().auth?.entities?.id
 
     await api.cart.deleteCartFieldDocument({
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       userId,
       id: payload.id,
     })
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const cartNew = await api.cart.fetchCartDocument(userId)
 
     return cartNew

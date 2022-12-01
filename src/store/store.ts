@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit"
+import {configureStore, createAsyncThunk} from "@reduxjs/toolkit"
 import { authReducer } from "./auth/authSlice"
 import { cartReducer } from "./cart/cartSlice"
 import { userReducer } from "./user/userSlice"
@@ -11,9 +11,14 @@ export const store = configureStore({
   },
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
+
+export const createAppAsyncThunk = createAsyncThunk.withTypes<{
+  state: RootState
+  dispatch: AppDispatch
+  rejectValue: string
+  extra: { s: string; n: number }
+}>()
 
 export default store

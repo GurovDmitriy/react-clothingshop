@@ -7,8 +7,14 @@ import {
 
 import { ActionStatus } from "../../helpers/constants"
 
-interface UserState {
-  entities?: object | null
+export type UserEntities = {
+  displayName: string
+  email: string
+  createdAt: string
+}
+
+export type UserState = {
+  entities: UserEntities | null
   status: string
   error?: string | null
 }

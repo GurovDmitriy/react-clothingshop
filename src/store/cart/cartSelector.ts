@@ -1,25 +1,19 @@
 import { createSelector } from "@reduxjs/toolkit"
-import type { TypedUseSelectorHook } from "react-redux"
-import { ActionStatus } from "../../helpers/constants"
-import { RootState } from "../store"
+import {CartState} from "./cartSlice";
 
-interface CartState extends TypedUseSelectorHook<RootState> {
-  cart: {
-    entities: object
-    status: ActionStatus
-    error: string
-  }
+type CartModule = {
+  cart: CartState
 }
 
-function selectCartStatusFetch(state: CartState) {
+function selectCartStatusFetch(state: CartModule) {
   return state.cart.status
 }
 
-function selectCartError(state: CartState) {
+function selectCartError(state: CartModule) {
   return state.cart.error
 }
 
-function selectCart(state: CartState) {
+function selectCart(state: CartModule) {
   return state.cart.entities
 }
 
