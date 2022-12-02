@@ -12,6 +12,8 @@ function ShopPage() {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   async function handlerAddToCart(cartItem) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     await dispatch(addToCartAction(cartItem))
   }
 

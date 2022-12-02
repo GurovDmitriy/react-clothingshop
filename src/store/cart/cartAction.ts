@@ -1,6 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api/api"
-import {createAppAsyncThunk} from "../store";
+import { createAppAsyncThunk } from "../store"
 
 const fetchCartAction = createAppAsyncThunk(
   "cart/fetchCartAction",
@@ -118,9 +117,12 @@ const deleteFromCartAction = createAppAsyncThunk(
   }
 )
 
-const clearCartAction = createAsyncThunk("cart/clearCartAction", async () => {
-  return null
-})
+const clearCartAction = createAppAsyncThunk(
+  "cart/clearCartAction",
+  async () => {
+    return null
+  }
+)
 
 export {
   fetchCartAction,

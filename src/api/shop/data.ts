@@ -1,4 +1,18 @@
-const data: ShopType[] = [
+export type ShopItem = {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+}
+
+export type Shop = {
+  id: number
+  title: string
+  routeName: string
+  items: Array<ShopItem>
+}
+
+const data: Array<Shop> = [
   {
     id: 1,
     title: "Hats",
@@ -246,4 +260,27 @@ const data: ShopType[] = [
   },
 ]
 
-export default data
+export type GetShopItemsResponse = Promise<Array<Shop>>
+
+function getShopItems(): GetShopItemsResponse {
+  return new Promise((resolve) => {
+    const resultData = data.map((item) => {
+      return {
+        ...item,
+        items: item.items.filter((el, index) => index < 4),
+      }
+    })
+    resolve(resultData)
+  })
+}
+
+export type GetCollectionListResponse = Promise<Array<Shop>>
+
+function getCollectionList(category: string): GetCollectionListResponse {
+  return new Promise((resolve) => {
+    const resultData = data.filter((item) => item.routeName === category)
+    resolve(resultData)
+  })
+}
+
+export { getShopItems, getCollectionList }

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import { fetchCategory as rootLoader } from "../api/category/category"
 import {
-  fetchShopCollection as collectionLoader,
+  fetchCollectionList as collectionLoader,
   fetchShopItems as shopLoader,
 } from "../api/shop/shop"
 import AboutLayout from "../layouts/AboutLayout/AboutLayout"

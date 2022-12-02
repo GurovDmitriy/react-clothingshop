@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { ActionStatus } from "../../helpers/constants"
 import {
   addToCartAction,
   clearCartAction,
@@ -6,7 +7,6 @@ import {
   fetchCartAction,
   removeFromCartAction,
 } from "./cartAction"
-import { ActionStatus } from "../../helpers/constants"
 
 export type CartEntitiesItem = {
   [id: string]: CartEntitiesType

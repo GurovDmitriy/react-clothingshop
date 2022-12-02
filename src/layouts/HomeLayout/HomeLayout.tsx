@@ -29,8 +29,14 @@ function HomeLayout() {
     // @ts-ignore
     const unsubscribeAuth = api.auth.subscribeStateChange(async (user) => {
       if (user) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         await dispatch(signCheckAction())
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         await dispatch(fetchUserAction())
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         await dispatch(fetchCartAction())
       }
     })

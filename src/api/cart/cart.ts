@@ -1,20 +1,16 @@
-import Firebase from "firebase/compat"
+import {
+  CartDocumentPayload,
+  CartDocumentResponse,
+  DeleteCartFieldDocumentPayload,
+  DeleteCartFieldDocumentResponse,
+  FetchCartDocumentPayload,
+  FetchCartDocumentResponse,
+} from "../../firebaseSDK/cart/cart"
 import firebaseSDK from "../../firebaseSDK/firebaseSDK"
 
-type CreateCartDocumentPayload = {
-  userId: string
-  id: string
-  name: string
-  imageUrl: string
-  count: number
-  price: number
-}
-
-type CreateCartDocumentResponse = Promise<void>
-
 function createCartDocument(
-  payload: CreateCartDocumentPayload
-): CreateCartDocumentResponse {
+  payload: CartDocumentPayload
+): CartDocumentResponse {
   const data = {
     userId: payload.userId,
     id: payload.id,
@@ -24,23 +20,12 @@ function createCartDocument(
     price: payload.price,
   }
 
-  return firebaseSDK.cart.createCartDocumentFB(data)
+  return firebaseSDK.cart.createCartDocument(data)
 }
-
-type UpdateCartDocumentPayload = {
-  userId: string
-  id: string
-  name: string
-  imageUrl: string
-  count: number
-  price: number
-}
-
-type UpdateCartDocumentResponse = Promise<void>
 
 function updateCartDocument(
-  payload: UpdateCartDocumentPayload
-): UpdateCartDocumentResponse {
+  payload: CartDocumentPayload
+): CartDocumentResponse {
   const data = {
     userId: payload.userId,
     id: payload.id,
@@ -50,15 +35,8 @@ function updateCartDocument(
     price: payload.price,
   }
 
-  return firebaseSDK.cart.updateCartDocumentFB(data)
+  return firebaseSDK.cart.updateCartDocument(data)
 }
-
-type DeleteCartFieldDocumentPayload = {
-  userId: string
-  id: string
-}
-
-type DeleteCartFieldDocumentResponse = Promise<void>
 
 function deleteCartFieldDocument(
   payload: DeleteCartFieldDocumentPayload
@@ -68,13 +46,13 @@ function deleteCartFieldDocument(
     id: payload.id,
   }
 
-  return firebaseSDK.cart.deleteCartFieldDocumentFB(data)
+  return firebaseSDK.cart.deleteCartFieldDocument(data)
 }
 
-type FetchCartDocumentResponse = Promise<Firebase.firestore.DocumentData | null>
-
-function fetchCartDocument(id: string): FetchCartDocumentResponse {
-  return firebaseSDK.cart.fetchCartDocumentFB(id)
+function fetchCartDocument(
+  id: FetchCartDocumentPayload
+): FetchCartDocumentResponse {
+  return firebaseSDK.cart.fetchCartDocument(id)
 }
 
 export default {

@@ -1,4 +1,12 @@
-const data: CategoryType[] = [
+export type Category = {
+  id: number
+  caption: string
+  description: string
+  link: string
+  image: string
+}
+
+const data: Array<Category> = [
   {
     id: 1,
     caption: "Hats",

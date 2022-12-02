@@ -1,4 +1,4 @@
-import {UserState} from "./userSlice";
+import { UserState } from "./userSlice"
 
 type UserModule = {
   user: UserState

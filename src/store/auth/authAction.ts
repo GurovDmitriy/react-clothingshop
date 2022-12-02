@@ -1,5 +1,5 @@
 import api from "../../api/api"
-import {createAppAsyncThunk} from "../store";
+import { createAppAsyncThunk } from "../store"
 
 type SignPayload = {
   email: string
@@ -51,10 +51,13 @@ const signInWithGoogleAction = createAppAsyncThunk(
   }
 )
 
-const signCheckAction = createAppAsyncThunk("auth/signCheckAction", async () => {
-  const response = await api.auth.signCheck()
-  return response
-})
+const signCheckAction = createAppAsyncThunk(
+  "auth/signCheckAction",
+  async () => {
+    const response = await api.auth.signCheck()
+    return response
+  }
+)
 
 const signOutAction = createAppAsyncThunk("auth/signOutAction", async () => {
   await api.auth.signOut()

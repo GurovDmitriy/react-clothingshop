@@ -1,26 +1,28 @@
-import { getCollecitonList, getShopItems } from "../../data/shopItems"
+import { getCollectionList, getShopItems, Shop } from "./data"
 
-type FetchShopCollectionProps = {
+export type FetchShopCollectionProps = {
   params: {
     category: string
   }
 }
 
-type FetchShopCollectionResponse = Promise<{ collectionList: unknown }>
+export type FetchShopCollectionResponse = Promise<{
+  collectionList: Array<Shop>
+}>
 
-async function fetchShopCollection(
+async function fetchCollectionList(
   props: FetchShopCollectionProps
 ): FetchShopCollectionResponse {
-  const collectionList = getCollecitonList(props.params.category)
+  const collectionList = await getCollectionList(props.params.category)
 
   return { collectionList }
 }
 
-type FetchShopItemsResponse = Promise<{ shopList: unknown }>
+export type FetchShopResponse = Promise<{ shopList: Array<Shop> }>
 
-async function fetchShopItems(): FetchShopItemsResponse {
+async function fetchShopItems(): FetchShopResponse {
   const shopList = await getShopItems()
   return { shopList }
 }
 
-export { fetchShopItems, fetchShopCollection }
+export { fetchShopItems, fetchCollectionList }

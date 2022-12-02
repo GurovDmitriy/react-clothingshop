@@ -2,7 +2,7 @@ import Firebase from "firebase/compat"
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { db } from "../config"
 
-type CartDocumentFBPayload = {
+export type CartDocumentPayload = {
   userId: string
   id: string
   name: string
@@ -11,9 +11,11 @@ type CartDocumentFBPayload = {
   price: number
 }
 
-async function createCartDocumentFB(
-  payload: CartDocumentFBPayload
-): Promise<void> {
+export type CartDocumentResponse = Promise<void>
+
+async function createCartDocument(
+  payload: CartDocumentPayload
+): CartDocumentResponse {
   const cartsRef = doc(db, "carts", payload.userId)
   await setDoc(
     cartsRef,
@@ -30,9 +32,9 @@ async function createCartDocumentFB(
   )
 }
 
-async function updateCartDocumentFB(
-  payload: CartDocumentFBPayload
-): Promise<void> {
+async function updateCartDocument(
+  payload: CartDocumentPayload
+): CartDocumentResponse {
   const cartsRef = doc(db, "carts", payload.userId)
   await updateDoc(cartsRef, {
     [String(payload.id)]: {
@@ -45,23 +47,30 @@ async function updateCartDocumentFB(
   })
 }
 
-type DeleteCartFieldDocumentFBPayload = {
+export type DeleteCartFieldDocumentPayload = {
   userId: string
   id: string
 }
 
-async function deleteCartFieldDocumentFB(
-  payload: DeleteCartFieldDocumentFBPayload
-): Promise<void> {
+export type DeleteCartFieldDocumentResponse = Promise<void>
+
+async function deleteCartFieldDocument(
+  payload: DeleteCartFieldDocumentPayload
+): DeleteCartFieldDocumentResponse {
   const cartsRef = doc(db, "carts", payload.userId)
   await updateDoc(cartsRef, {
     [String(payload.id)]: deleteField(),
   })
 }
 
-async function fetchCartDocumentFB(
-  id: string
-): Promise<Firebase.firestore.DocumentData | null> {
+export type FetchCartDocumentPayload = string
+
+export type FetchCartDocumentResponse =
+  Promise<Firebase.firestore.DocumentData | null>
+
+async function fetchCartDocument(
+  id: FetchCartDocumentPayload
+): FetchCartDocumentResponse {
   const cartsRef = doc(db, `carts/${id}`)
   const docSnap = await getDoc(cartsRef)
 
@@ -73,8 +82,8 @@ async function fetchCartDocumentFB(
 }
 
 export default {
-  createCartDocumentFB,
-  updateCartDocumentFB,
-  deleteCartFieldDocumentFB,
-  fetchCartDocumentFB,
+  createCartDocument,
+  updateCartDocument,
+  deleteCartFieldDocument,
+  fetchCartDocument,
 }

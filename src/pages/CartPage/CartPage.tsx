@@ -34,6 +34,8 @@ function CartPage(props: CartPageProps) {
   const loading = cartStateFetch === ActionStatus.pending
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     dispatch(fetchCartAction())
   }, [])
 
@@ -43,14 +45,20 @@ function CartPage(props: CartPageProps) {
   ) {
     switch (cartOperation) {
       case CartOperation.increment:
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         dispatch(addToCartAction(cartItem))
         break
 
       case CartOperation.decrement:
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         dispatch(removeFromCartAction(cartItem))
         break
 
       case CartOperation.delete:
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         dispatch(deleteFromCartAction(cartItem))
         break
 

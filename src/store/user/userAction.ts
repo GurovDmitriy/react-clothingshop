@@ -1,7 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
 import Firebase from "firebase/compat"
 import api from "../../api/api"
-import {createAppAsyncThunk} from "../store";
+import { createAppAsyncThunk } from "../store"
 
 type CreateUserData = {
   id: string
@@ -40,19 +39,23 @@ const fetchUserAction = createAppAsyncThunk(
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-      const response: FetchUserDocumentResponse = await api.user.fetchUserDocument(userId)
+    const response: FetchUserDocumentResponse =
+      await api.user.fetchUserDocument(userId)
 
-      return {
-        id: response?.uid,
-        displayName: response?.displayName,
-        email: response?.email,
-        createdAt: response?.createdAt.toDate().toString(),
-      }
+    return {
+      id: response?.uid,
+      displayName: response?.displayName,
+      email: response?.email,
+      createdAt: response?.createdAt.toDate().toString(),
+    }
   }
 )
 
-const clearUserAction = createAsyncThunk("user/clearUserAction", async () => {
-  return null
-})
+const clearUserAction = createAppAsyncThunk(
+  "user/clearUserAction",
+  async () => {
+    return null
+  }
+)
 
 export { fetchUserAction, createUserAction, clearUserAction }

@@ -1,17 +1,9 @@
-import categoryData from "../../data/categoryData"
+import categoryData, { Category } from "./data"
 
-type CategoryDataResponse = {
-  menuList: {
-    id: number
-    caption: string
-    description: string
-    link: string
-    image: string
-  }[]
-}
+export type FetchCategoryResponse = Promise<{ menuList: Array<Category> }>
 
-async function fetchCategory(): Promise<CategoryDataResponse> {
-  const menuList = await new Promise<CategoryType[]>((resolve) =>
+async function fetchCategory(): FetchCategoryResponse {
+  const menuList = await new Promise<Array<Category>>((resolve) =>
     resolve(categoryData)
   )
   return { menuList }

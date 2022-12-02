@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit"
-import {CartState} from "./cartSlice";
+import { CartState } from "./cartSlice"
 
 type CartModule = {
   cart: CartState

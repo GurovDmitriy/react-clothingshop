@@ -16,6 +16,8 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
     }
 
     const signUpResponse = await dispatch(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       signUpAction({
         email: data.email,
         password: data.password,
@@ -23,6 +25,8 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
     )
 
     await dispatch(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       createUserAction({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

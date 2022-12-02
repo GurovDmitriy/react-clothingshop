@@ -1,41 +1,37 @@
 import Firebase from "firebase/compat"
+import {
+  SignOutResponse,
+  SignPayload,
+  SignResponse,
+  SignWithGoogleResponse,
+  SubscribeStateChangePayload,
+} from "../../firebaseSDK/auth/auth"
 import firebaseSDK from "../../firebaseSDK/firebaseSDK"
 
-type SignPayload = {
-  email: string
-  password: string
-}
-
-type SignUpResponse = Promise<Firebase.User>
-
-function signUp(payload: SignPayload): SignUpResponse {
+function signUp(payload: SignPayload): SignResponse {
   const data = {
     email: payload.email,
     password: payload.password,
   }
 
-  return firebaseSDK.auth.signUpFB(data)
+  return firebaseSDK.auth.signUp(data)
 }
 
-function signIn(payload: SignPayload): Promise<Firebase.User> {
+function signIn(payload: SignPayload): SignResponse {
   const data = {
     email: payload.email,
     password: payload.password,
   }
 
-  return firebaseSDK.auth.signInFB(data)
+  return firebaseSDK.auth.signIn(data)
 }
 
-type SignInWithGoogleResponse = Promise<{ user: Firebase.User; token: string }>
-
-function signInWithGoogle(): SignInWithGoogleResponse {
-  return firebaseSDK.auth.signInWithGoogleFB()
+function signInWithGoogle(): SignWithGoogleResponse {
+  return firebaseSDK.auth.signInWithGoogle()
 }
-
-type SignOutResponse = Promise<void>
 
 function signOut(): SignOutResponse {
-  return firebaseSDK.auth.signOutFB()
+  return firebaseSDK.auth.signOut()
 }
 
 type SignCheckResponse = Promise<{
@@ -45,19 +41,15 @@ type SignCheckResponse = Promise<{
 }>
 
 function signCheck(): SignCheckResponse {
-  return firebaseSDK.auth.signCheckFB()
+  return firebaseSDK.auth.signCheck()
 }
 
 type SubscribeStateChangeResponse = Firebase.Unsubscribe
 
-type subscribeStateChangeCallBack = {
-  (): void
-}
-
 function subscribeStateChange(
-  cb: subscribeStateChangeCallBack
+  cb: SubscribeStateChangePayload
 ): SubscribeStateChangeResponse {
-  return firebaseSDK.auth.subscribeStateChangeFB(cb)
+  return firebaseSDK.auth.subscribeStateChange(cb)
 }
 
 export default {

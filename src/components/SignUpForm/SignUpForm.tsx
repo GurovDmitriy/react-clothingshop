@@ -4,7 +4,6 @@ import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import InputBox from "../InputBox/InputBox"
 import { configInput } from "./data"
 import "./style.scss"
-import React from "react"
 
 function SignUpForm(props: SignUpFormProps) {
   const { className, handlerSignUp } = props

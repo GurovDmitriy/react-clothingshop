@@ -30,8 +30,14 @@ function NavListContainer(props: NavListContainerPropsType) {
   const activeButton = renderActiveButton()
 
   async function handlerSignOut() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     dispatch(signOutAction())
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     dispatch(clearUserAction())
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     dispatch(clearCartAction())
   }
 

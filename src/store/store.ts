@@ -1,4 +1,4 @@
-import {configureStore, createAsyncThunk} from "@reduxjs/toolkit"
+import { configureStore, createAsyncThunk } from "@reduxjs/toolkit"
 import { authReducer } from "./auth/authSlice"
 import { cartReducer } from "./cart/cartSlice"
 import { userReducer } from "./user/userSlice"

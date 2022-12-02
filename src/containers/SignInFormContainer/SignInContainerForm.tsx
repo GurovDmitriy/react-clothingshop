@@ -28,6 +28,8 @@ function SignInContainerForm(props: SignInContainerFormPropsType) {
   }
 
   async function handleClickSignInWithGoogle() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const responseSign = await dispatch(signInWithGoogleAction())
     const responseUser = await dispatch(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -46,6 +48,8 @@ function SignInContainerForm(props: SignInContainerFormPropsType) {
 
   async function handleSignInDefault(data: HandleSignInDefaultDataType) {
     await dispatch(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       signInAction({
         email: data.email,
         password: data.password,

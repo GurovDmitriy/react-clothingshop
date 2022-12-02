@@ -10,14 +10,14 @@ import { auth } from "../config"
 
 const provider = new GoogleAuthProvider()
 
-type EmailPasswordType = {
+export type SignPayload = {
   email: string
   password: string
 }
 
-async function signUpFB(
-  payload: EmailPasswordType
-): Promise<Firebase.User | any> {
+export type SignResponse = Promise<Firebase.User | any>
+
+async function signUp(payload: SignPayload): SignResponse {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     payload.email,
@@ -27,9 +27,7 @@ async function signUpFB(
   return userCredential.user
 }
 
-async function signInFB(
-  payload: EmailPasswordType
-): Promise<Firebase.User | any> {
+async function signIn(payload: SignPayload): SignResponse {
   const userCredential = await signInWithEmailAndPassword(
     auth,
     payload.email,
@@ -39,10 +37,12 @@ async function signInFB(
   return userCredential.user
 }
 
-async function signInWithGoogleFB(): Promise<{
+export type SignWithGoogleResponse = Promise<{
   user: Firebase.User | any
-  token: any
-}> {
+  token: string | object | null | undefined
+}>
+
+async function signInWithGoogle(): SignWithGoogleResponse {
   const result = await signInWithPopup(auth, provider)
   const credential = GoogleAuthProvider.credentialFromResult(result)
   const token = credential?.accessToken
@@ -53,14 +53,16 @@ async function signInWithGoogleFB(): Promise<{
   }
 }
 
-type SignCheckFBType = {
+export type AuthCurrentUserResponse = Firebase.User | any
+
+export type SignCheckResponse = Promise<{
   displayName: string
   id: string
   email: string
-}
+}>
 
-async function signCheckFB(): Promise<SignCheckFBType> {
-  const response: Firebase.User | any = await auth.currentUser
+async function signCheck(): SignCheckResponse {
+  const response: AuthCurrentUserResponse = await auth.currentUser
 
   const data = {
     id: response.uid,
@@ -71,22 +73,26 @@ async function signCheckFB(): Promise<SignCheckFBType> {
   return data
 }
 
-async function signOutFB() {
+export type SignOutResponse = Promise<void>
+
+async function signOut(): SignOutResponse {
   const response = await auth.signOut()
   return response
 }
 
-function subscribeStateChangeFB(cb: (user: Firebase.User | any) => void) {
+export type SubscribeStateChangePayload = (user: Firebase.User | any) => void
+
+function subscribeStateChange(cb: SubscribeStateChangePayload) {
   return onAuthStateChanged(auth, (user) => {
     cb(user)
   })
 }
 
 export default {
-  signUpFB,
-  signInFB,
-  signInWithGoogleFB,
-  signOutFB,
-  subscribeStateChangeFB,
-  signCheckFB,
+  signUp,
+  signIn,
+  signInWithGoogle,
+  signOut,
+  subscribeStateChange,
+  signCheck,
 }

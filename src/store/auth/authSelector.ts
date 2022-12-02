@@ -1,4 +1,4 @@
-import {AuthState} from "./authSlice"
+import { AuthState } from "./authSlice"
 
 type AuthModule = {
   auth: AuthState
