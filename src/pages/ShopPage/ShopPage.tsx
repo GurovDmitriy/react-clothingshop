@@ -1,19 +1,14 @@
 import { useLoaderData } from "react-router-dom"
+import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { addToCartAction } from "../../store/cart/cartAction"
 import { useAppDispatch } from "../../store/hooks"
 
 function ShopPage() {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { shopList } = useLoaderData()
+  const { shopList }: any = useLoaderData()
   const dispatch = useAppDispatch()
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  async function handlerAddToCart(cartItem) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+  async function handlerAddToCart(cartItem: CollectionPreviewItemEntities) {
     await dispatch(addToCartAction(cartItem))
   }
 

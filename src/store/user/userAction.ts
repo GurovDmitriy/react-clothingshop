@@ -37,8 +37,6 @@ const fetchUserAction = createAppAsyncThunk(
   async (payload, thunkAPI) => {
     const userId: string | null = thunkAPI.getState().auth?.entities?.id || null
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const response: FetchUserDocumentResponse =
       await api.user.fetchUserDocument(userId)
 

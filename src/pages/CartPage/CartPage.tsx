@@ -2,6 +2,7 @@ import classNames from "classnames"
 import { useEffect } from "react"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
+import { CartEntities, CartOperation } from "../../firebaseSDK/cart/cart"
 import {
   addToCartAction,
   deleteFromCartAction,
@@ -14,51 +15,38 @@ import {
   selectCartTotalPrice,
 } from "../../store/cart/cartSelector"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import { ActionStatus } from "../../store/store"
 import "./style.scss"
 
 function CartPage(props: CartPageProps) {
   const { className } = props
 
   const dispatch = useAppDispatch()
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cart = useAppSelector(selectCart)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const totalPrice = useAppSelector(selectCartTotalPrice)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartStateFetch = useAppSelector(selectCartStatusFetch)
 
   const cartEntities = cart ? Object.values(cart) : []
   const loading = cartStateFetch === ActionStatus.pending
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     dispatch(fetchCartAction())
   }, [])
 
   async function handlerChangeCount(
-    cartItem: CartEntitiesType,
+    cartItem: CartEntities,
     cartOperation: CartOperation
   ) {
     switch (cartOperation) {
       case CartOperation.increment:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         dispatch(addToCartAction(cartItem))
         break
 
       case CartOperation.decrement:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         dispatch(removeFromCartAction(cartItem))
         break
 
       case CartOperation.delete:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         dispatch(deleteFromCartAction(cartItem))
         break
 

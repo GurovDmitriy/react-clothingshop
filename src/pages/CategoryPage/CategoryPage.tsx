@@ -1,19 +1,14 @@
 import { useLoaderData } from "react-router-dom"
+import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { addToCartAction } from "../../store/cart/cartAction"
 import { useAppDispatch } from "../../store/hooks"
 
 function CategoryPage() {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { collectionList } = useLoaderData()
+  const { collectionList }: any = useLoaderData()
   const dispatch = useAppDispatch()
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  async function handlerAddToCart(cartItem) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+  async function handlerAddToCart(cartItem: CollectionPreviewItemEntities) {
     await dispatch(addToCartAction(cartItem))
   }
 
@@ -21,8 +16,6 @@ function CategoryPage() {
     <div className="category-page">
       <CollectionPreview
         entities={collectionList}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         handlerAddToCart={handlerAddToCart}
         className="category-page__collection-preview"
       />

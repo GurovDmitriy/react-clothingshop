@@ -1,5 +1,9 @@
 import classNames from "classnames"
-import SignInForm from "../../components/SignInForm/SignInForm"
+import SignInForm, {
+  HandlerSubmitEvt,
+  MethodSign,
+  SignInFormState,
+} from "../../components/SignInForm/SignInForm"
 import {
   signInAction,
   signInWithGoogleAction,
@@ -7,18 +11,22 @@ import {
 import { useAppDispatch } from "../../store/hooks"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 
-function SignInContainerForm(props: SignInContainerFormPropsType) {
+function SignInContainerForm(props: SignInContainerFormProps) {
   const { className } = props
 
   const dispatch = useAppDispatch()
 
-  async function handlerSignIn(evt: any, methodSign: any, data: any) {
+  async function handlerSignIn(
+    evt: HandlerSubmitEvt,
+    methodSign: MethodSign,
+    data: SignInFormState
+  ) {
     switch (methodSign) {
-      case "default":
+      case MethodSign.default:
         await handleSignInDefault(data)
         break
 
-      case "google":
+      case MethodSign.google:
         await handleClickSignInWithGoogle()
         break
 
@@ -28,28 +36,18 @@ function SignInContainerForm(props: SignInContainerFormPropsType) {
   }
 
   async function handleClickSignInWithGoogle() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const responseSign = await dispatch(signInWithGoogleAction())
     const responseUser = await dispatch(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       fetchUserAction(responseSign.payload.id)
     )
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     if (!responseUser.payload || !responseUser.payload.id) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       await dispatch(createUserAction(responseSign.payload))
     }
   }
 
-  async function handleSignInDefault(data: HandleSignInDefaultDataType) {
+  async function handleSignInDefault(data: SignInFormState) {
     await dispatch(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       signInAction({
         email: data.email,
         password: data.password,
@@ -62,13 +60,8 @@ function SignInContainerForm(props: SignInContainerFormPropsType) {
   return <SignInForm handlerSignIn={handlerSignIn} className={formClass} />
 }
 
-type SignInContainerFormPropsType = {
+type SignInContainerFormProps = {
   className?: string
-}
-
-type HandleSignInDefaultDataType = {
-  email: string
-  password: string
 }
 
 export default SignInContainerForm

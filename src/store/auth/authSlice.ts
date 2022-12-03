@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ActionStatus } from "../../helpers/constants"
+import { ActionStatus } from "../store"
 import {
   signCheckAction,
   signInAction,

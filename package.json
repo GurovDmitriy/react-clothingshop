@@ -71,6 +71,5 @@
     "stylelint-config-rational-order-fix": "^0.1.9",
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-order": "^5.0.0"
-  },
-  "packageManager": "yarn@3.3.0"
+  }
 }

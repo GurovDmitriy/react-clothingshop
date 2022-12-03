@@ -90,15 +90,15 @@ enum HandlerInputPayload {
   password = "password",
 }
 
-enum MethodSign {
+export enum MethodSign {
   default = "default",
   google = "google",
 }
 
 type HandlerInputEvt = React.ChangeEvent<HTMLInputElement>
-type HandlerSubmitEvt = React.FormEvent<HTMLFormElement>
+export type HandlerSubmitEvt = React.FormEvent<HTMLFormElement>
 
-type SignInFormState = {
+export type SignInFormState = {
   email: string
   password: string
 }

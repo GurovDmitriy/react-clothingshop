@@ -9,18 +9,13 @@ import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { clearUserAction } from "../../store/user/userAction"
 
-function NavListContainer(props: NavListContainerPropsType) {
+function NavListContainer(props: NavListContainerProps) {
   const { className } = props
 
   const dispatch = useAppDispatch()
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+
   const authData = useAppSelector(selectAuth)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartData = useAppSelector(selectCart)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartCountItems = useAppSelector(selectCartCountItems)
   const navigate = useNavigate()
 
@@ -30,14 +25,8 @@ function NavListContainer(props: NavListContainerPropsType) {
   const activeButton = renderActiveButton()
 
   async function handlerSignOut() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     dispatch(signOutAction())
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     dispatch(clearUserAction())
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     dispatch(clearCartAction())
   }
 
@@ -48,8 +37,6 @@ function NavListContainer(props: NavListContainerPropsType) {
   function renderActiveButton() {
     let component = null
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     if (authData && authData.id) {
       component = getButtonSignOut()
     } else {
@@ -86,7 +73,7 @@ function NavListContainer(props: NavListContainerPropsType) {
   )
 }
 
-type NavListContainerPropsType = {
+type NavListContainerProps = {
   className?: string
 }
 

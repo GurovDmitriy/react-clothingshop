@@ -1,4 +1,4 @@
-function getClone(obj: any) {
+function getClone(obj: object) {
   return JSON.parse(JSON.stringify(obj))
 }
 

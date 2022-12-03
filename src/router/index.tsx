@@ -37,8 +37,6 @@ const router = createBrowserRouter([
       {
         path: "shop/:category",
         element: <CategoryPage />,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         loader: collectionLoader,
       },
 

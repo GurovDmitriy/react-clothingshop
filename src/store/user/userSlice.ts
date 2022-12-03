@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { ActionStatus } from "../store"
 import {
   clearUserAction,
   createUserAction,
   fetchUserAction,
 } from "./userAction"
-
-import { ActionStatus } from "../../helpers/constants"
 
 export type UserEntities = {
   displayName: string
