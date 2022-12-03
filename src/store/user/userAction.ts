@@ -2,10 +2,17 @@ import Firebase from "firebase/compat"
 import api from "../../api/api"
 import { createAppAsyncThunk } from "../store"
 
-type CreateUserData = {
+export type CreateUserData = {
   id: string
   displayName: string
   email: string
+}
+
+export type UserDataReturn = {
+  id: string
+  displayName: string
+  email: string
+  createdAt: string
 }
 
 const createUserAction = createAppAsyncThunk(
@@ -26,7 +33,7 @@ const createUserAction = createAppAsyncThunk(
       displayName: response?.displayName,
       email: response?.email,
       createdAt: response?.createdAt.toDate().toString(),
-    }
+    } as UserDataReturn
   }
 )
 
@@ -45,7 +52,7 @@ const fetchUserAction = createAppAsyncThunk(
       displayName: response?.displayName,
       email: response?.email,
       createdAt: response?.createdAt.toDate().toString(),
-    }
+    } as UserDataReturn
   }
 )
 

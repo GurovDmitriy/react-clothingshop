@@ -6,6 +6,12 @@ type SignPayload = {
   password: string
 }
 
+type SignReturnData = {
+  id: string
+  displayName: string
+  email: string
+}
+
 const signUpAction = createAppAsyncThunk(
   "auth/signUpAction",
   async (payload: SignPayload) => {
@@ -17,7 +23,7 @@ const signUpAction = createAppAsyncThunk(
       email: response.email,
     }
 
-    return data
+    return data as SignReturnData
   }
 )
 
@@ -32,7 +38,7 @@ const signInAction = createAppAsyncThunk(
       email: response.email,
     }
 
-    return data
+    return data as SignReturnData
   }
 )
 
@@ -47,7 +53,7 @@ const signInWithGoogleAction = createAppAsyncThunk(
       email: response.user.email,
     }
 
-    return data
+    return data as SignReturnData
   }
 )
 
@@ -55,7 +61,7 @@ const signCheckAction = createAppAsyncThunk(
   "auth/signCheckAction",
   async () => {
     const response = await api.auth.signCheck()
-    return response
+    return response as SignReturnData
   }
 )
 
