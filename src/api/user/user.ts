@@ -1,18 +1,13 @@
-import Firebase from "firebase/compat"
 import firebaseSDK from "../../firebaseSDK/firebaseSDK"
-
-type CreateUserDocumentPayload = {
-  id: string
-  email: string
-  displayName: string
-  createdAt: string
-}
-
-type CreateUserDocumentResponse = Promise<void>
+import {
+  CreateUserPayload,
+  CreateUserResponse,
+  FetchUserPayload, FetchUserResponse
+} from "../../firebaseSDK/user/user";
 
 function createUserDocument(
-  payload: CreateUserDocumentPayload
-): CreateUserDocumentResponse {
+  payload: CreateUserPayload
+): CreateUserResponse {
   const data = {
     id: payload.id,
     email: payload.email,
@@ -20,13 +15,11 @@ function createUserDocument(
     createdAt: payload.createdAt,
   }
 
-  return firebaseSDK.user.createUserDocumentFB(data)
+  return firebaseSDK.user.createUserDocument(data)
 }
 
-type FetchUserDocumentResponse = Promise<Firebase.firestore.DocumentData | null>
-
-function fetchUserDocument(id: string): FetchUserDocumentResponse {
-  return firebaseSDK.user.fetchUserDocumentFB(id)
+function fetchUserDocument(id: FetchUserPayload): FetchUserResponse {
+  return firebaseSDK.user.fetchUserDocument(id)
 }
 
 export default {
