@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { useState } from "react"
+import React, { useState } from "react"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import InputBox from "../InputBox/InputBox"
 import { configInput } from "./data"
@@ -17,17 +17,14 @@ function SignUpForm(props: SignUpFormProps) {
 
   const formClass = classNames("sign-up-form", className)
 
-  function handlerInput(
-    evt: handleInputEvtType,
-    { name }: handlerInputPayload
-  ) {
+  function handlerInput(evt: HandlerInputEvt, name: HandlerInputPayload) {
     setState({
       ...state,
       [name]: evt.target.value,
     })
   }
 
-  async function handlerSubmit(evt: { preventDefault: () => void }) {
+  async function handlerSubmit(evt: HandlerSubmitEvt) {
     evt.preventDefault()
     handlerSignUp(state)
   }
@@ -47,40 +44,32 @@ function SignUpForm(props: SignUpFormProps) {
       >
         <InputBox
           className="sign-up-form__input-box"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          onInput={(evt: handleInputEvtType) => {
-            handlerInput(evt, { name: "name" })
+          onInput={(evt: HandlerInputEvt) => {
+            handlerInput(evt, HandlerInputPayload.name)
           }}
           value={state.name}
           {...configInput.name}
         />
         <InputBox
           className="sign-up-form__input-box"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          onInput={(evt: handleInputEvtType) => {
-            handlerInput(evt, { name: "email" })
+          onInput={(evt: HandlerInputEvt) => {
+            handlerInput(evt, HandlerInputPayload.email)
           }}
           value={state.email}
           {...configInput.email}
         />
         <InputBox
           className="sign-up-form__input-box"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          onInput={(evt: handleInputEvtType) => {
-            handlerInput(evt, { name: "password" })
+          onInput={(evt: HandlerInputEvt) => {
+            handlerInput(evt, HandlerInputPayload.password)
           }}
           value={state.password}
           {...configInput.password}
         />
         <InputBox
           className="sign-up-form__input-box"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          onInput={(evt: handleInputEvtType) => {
-            handlerInput(evt, { name: "passwordConfirm" })
+          onInput={(evt: HandlerInputEvt) => {
+            handlerInput(evt, HandlerInputPayload.passwordConfirm)
           }}
           value={state.passwordConfirm}
           {...configInput.passwordConfirm}
@@ -100,22 +89,22 @@ function SignUpForm(props: SignUpFormProps) {
   )
 }
 
+enum HandlerInputPayload {
+  name = "name",
+  email = "email",
+  password = "password",
+  passwordConfirm = "passwordConfirm",
+}
+
 type SignUpFormProps = {
   className?: string
-  handlerSignUp: (state: SignUpFormStateType) => void
+  handlerSignUp: (state: SignUpFormState) => void
 }
 
-type handleInputEvtType = {
-  target: {
-    value: any
-  }
-}
+type HandlerInputEvt = React.ChangeEvent<HTMLInputElement>
+type HandlerSubmitEvt = React.FormEvent<HTMLFormElement>
 
-type handlerInputPayload = {
-  name: string
-}
-
-type SignUpFormStateType = {
+type SignUpFormState = {
   name: string
   email: string
   password: string

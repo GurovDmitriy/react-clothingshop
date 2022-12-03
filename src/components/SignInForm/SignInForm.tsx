@@ -5,7 +5,7 @@ import InputBox from "../InputBox/InputBox"
 import { configInput } from "./data"
 import "./style.scss"
 
-function SignInForm(props: SignInFormPropsType) {
+function SignInForm(props: SignInFormProps) {
   const { className, handlerSignIn } = props
 
   const [state, setState] = useState({
@@ -13,21 +13,16 @@ function SignInForm(props: SignInFormPropsType) {
     password: "",
   })
 
-  function handlerInput(evt: HandlerInputEvtType, name: { name: string }) {
+  function handlerInput(evt: HandlerInputEvt, name: HandlerInputPayload) {
     setState({
       ...state,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       [name]: evt.target.value,
     })
   }
 
-  async function handlerSubmit(
-    evt: React.FormEvent<HTMLFormElement>,
-    methodSign: string
-  ) {
+  async function handlerSubmit(evt: HandlerSubmitEvt, methodSign: MethodSign) {
     evt.preventDefault()
-    handlerSignIn(evt, methodSign as "default" | "google", state)
+    handlerSignIn(evt, methodSign, state)
   }
 
   const formClass = classNames("sign-in-form", className)
@@ -43,14 +38,12 @@ function SignInForm(props: SignInFormPropsType) {
         className="sign-in-form__form"
         action="src/components/SignInForm/SignInForm.tsx"
         method="POST"
-        onSubmit={(evt) => handlerSubmit(evt, "default")}
+        onSubmit={(evt) => handlerSubmit(evt, MethodSign.default)}
       >
         <InputBox
           className="sign-in-form__input-box"
-          onInput={(evt) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            handlerInput(evt, { name: "email" })
+          onInput={(evt: HandlerInputEvt) => {
+            handlerInput(evt, HandlerInputPayload.email)
           }}
           value={state.email}
           {...configInput.email}
@@ -59,10 +52,8 @@ function SignInForm(props: SignInFormPropsType) {
         </InputBox>
         <InputBox
           className="sign-in-form__input-box"
-          onInput={(evt) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            handlerInput(evt, { name: "password" })
+          onInput={(evt: HandlerInputEvt) => {
+            handlerInput(evt, HandlerInputPayload.password)
           }}
           value={state.password}
           {...configInput.password}
@@ -82,8 +73,8 @@ function SignInForm(props: SignInFormPropsType) {
             as="button"
             type="button"
             className="sign-in-form__button-default"
-            handlerClick={(evt: React.FormEvent<HTMLFormElement>) =>
-              handlerSubmit(evt, "google")
+            handlerClick={(evt: HandlerSubmitEvt) =>
+              handlerSubmit(evt, MethodSign.google)
             }
           >
             Sign in with Google
@@ -94,30 +85,31 @@ function SignInForm(props: SignInFormPropsType) {
   )
 }
 
-type SignInFormStateType = {
+enum HandlerInputPayload {
+  email = "email",
+  password = "password",
+}
+
+enum MethodSign {
+  default = "default",
+  google = "google",
+}
+
+type HandlerInputEvt = React.ChangeEvent<HTMLInputElement>
+type HandlerSubmitEvt = React.FormEvent<HTMLFormElement>
+
+type SignInFormState = {
   email: string
   password: string
 }
 
-type SignInFormPropsType = {
+type SignInFormProps = {
   className: string
   handlerSignIn: (
-    evt: React.FormEvent<HTMLFormElement>,
-    methodSign: MethodSignType,
-    state: SignInFormStateType
+    evt: HandlerSubmitEvt,
+    methodSign: MethodSign,
+    state: SignInFormState
   ) => void
 }
-
-type HandlerInputEvtType = {
-  target: {
-    value: any
-  }
-}
-
-type HandlerInputPayloadType = {
-  name: "email" | "password"
-}
-
-type MethodSignType = "default" | "google"
 
 export default SignInForm

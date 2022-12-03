@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
 
@@ -33,7 +34,7 @@ function CollectionPreviewItem(props: CollectionPreviewItemProps) {
 type CollectionPreviewItemProps = {
   entities: CollectionPreviewItemEntities
   className?: string
-  handlerAddToCart: (entities: CollectionPreviewItemEntities) => void
+  handlerAddToCart: (entities: CollectionPreviewItemEntities) => Promise<void>
 }
 
 export default CollectionPreviewItem

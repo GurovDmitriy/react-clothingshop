@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { Link } from "react-router-dom"
+import { CartEntities } from "../../firebaseSDK/cart/cart"
 import ButtonSimple from "../ButtonSimple/ButtonSimple"
 import CartModal from "../CartModal/CartModal"
 import "./style.scss"
@@ -57,7 +58,7 @@ type NavListProps = {
   handlerToCart: () => void
   activeButton: JSX.Element
   cartCountItems: number | string
-  cartListEntities: Array<CartEntitiesType>
+  cartListEntities: Array<CartEntities>
 }
 
 export default NavList

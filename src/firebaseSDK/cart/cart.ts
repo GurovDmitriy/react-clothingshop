@@ -81,6 +81,21 @@ async function fetchCartDocument(
   }
 }
 
+export enum CartOperation {
+  increment = "increment",
+  decrement = "decrement",
+  delete = "delete",
+  clear = "clear",
+}
+
+export type CartEntities = {
+  imageUrl: string
+  name: string
+  id: string
+  count: number
+  price: number
+}
+
 export default {
   createCartDocument,
   updateCartDocument,

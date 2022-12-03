@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { CartEntities } from "../../firebaseSDK/cart/cart"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
 
@@ -68,8 +69,8 @@ function CartModal(props: CartModalProps) {
 
 type CartModalProps = {
   className?: string
-  handlerToCart: () => void
-  entities?: Array<CartEntitiesType>
+  handlerToCart: (...args: any[]) => void
+  entities?: Array<CartEntities>
 }
 
 export default CartModal

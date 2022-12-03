@@ -21,4 +21,11 @@ export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   extra: { s: string; n: number }
 }>()
 
+export enum ActionStatus {
+  useless = "useless",
+  pending = "pending",
+  success = "success",
+  failure = "failure",
+}
+
 export default store

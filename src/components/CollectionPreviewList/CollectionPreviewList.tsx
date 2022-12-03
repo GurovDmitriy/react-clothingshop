@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { Link } from "react-router-dom"
+import { CollectionPreviewItemEntities, ShopItem } from "../../api/shop/data"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
 import "./style.scss"
 
@@ -44,18 +45,11 @@ function CollectionPreviewList(props: CollectionPreviewListProps) {
   )
 }
 
-type CollectionPreviewListItems = {
-  id: string | number
-  name: string
-  price: number
-  imageUrl: string
-}
-
 type CollectionPreviewListProps = {
   entities: {
     title: string
     routeName: string
-    items: Array<CollectionPreviewListItems>
+    items: Array<ShopItem>
   }
   className?: string
   handlerAddToCart: (cartItem: CollectionPreviewItemEntities) => Promise<void>

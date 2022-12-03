@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { Category } from "../../api/category/data"
 import MenuItem from "../MenuItem/MenuItem"
 import "./style.scss"
 
@@ -25,7 +26,7 @@ function MenuList(props: MenuListProps) {
 }
 
 type MenuListProps = {
-  entities: Array<CategoryType>
+  entities: Array<Category>
   className?: string
 }
 

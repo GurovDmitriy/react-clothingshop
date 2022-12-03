@@ -1,3 +1,9 @@
+export type CollectionPreviewItemEntities = {
+  name: string
+  imageUrl: string
+  price: number
+}
+
 export type ShopItem = {
   id: number
   name: string

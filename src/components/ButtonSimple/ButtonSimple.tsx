@@ -21,7 +21,7 @@ ButtonSimple.defaultProps = {
 
 interface ButtonSimpleProps extends React.ComponentPropsWithoutRef<"button"> {
   as: React.ElementType
-  handlerClick?: () => void
+  handlerClick?: (...args: any[]) => void
   children?: string | number
   className?: string
 }

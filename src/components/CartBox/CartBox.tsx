@@ -2,6 +2,7 @@ import classNames from "classnames"
 import { ReactComponent as IconDec } from "../../assets/images/decrement.svg"
 import { ReactComponent as IconDel } from "../../assets/images/delete.svg"
 import { ReactComponent as IconInc } from "../../assets/images/increment.svg"
+import { CartEntities, CartOperation } from "../../firebaseSDK/cart/cart"
 import "./style.scss"
 
 function CartBox(props: CartBoxProps) {
@@ -124,8 +125,8 @@ CartBox.defaultProps = {
 type CartBoxProps = {
   className?: string
   totalPrice?: number
-  entities?: Array<CartEntitiesType>
-  handlerChangeCount: (item: CartEntitiesType, operation: CartOperation) => void
+  entities?: Array<CartEntities>
+  handlerChangeCount: (item: CartEntities, operation: CartOperation) => void
 }
 
 export default CartBox

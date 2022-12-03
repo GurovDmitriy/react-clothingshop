@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { CollectionPreviewItemEntities, Shop } from "../../api/shop/data"
 import CollectionPreviewList from "../CollectionPreviewList/CollectionPreviewList"
 import "./style.scss"
 
@@ -33,24 +34,10 @@ function CollectionPreview(props: CollectionPreviewProps) {
   return <div className={collectionClass}>{collectionEntities}</div>
 }
 
-type CollectionPreviewItems = {
-  id: string | number
-  name: string
-  imageUrl: string
-  price: number
-}
-
-type CollectionPreviewEntities = {
-  id: string | number
-  title: string
-  routeName: string
-  items: Array<CollectionPreviewItems>
-}
-
 type CollectionPreviewProps = {
-  entities: Array<CollectionPreviewEntities>
+  entities: Array<Shop>
   className: string
-  handlerAddToCart: (cartItem: any) => Promise<void>
+  handlerAddToCart: (cartItem: CollectionPreviewItemEntities) => Promise<void>
 }
 
 export default CollectionPreview
