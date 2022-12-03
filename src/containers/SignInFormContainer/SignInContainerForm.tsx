@@ -8,7 +8,7 @@ import {
   signInAction,
   signInWithGoogleAction,
 } from "../../store/auth/authAction"
-import { useAppDispatch } from "../../store/hooks"
+import { useAppDispatch } from "../../store/store"
 import { createUserAction, fetchUserAction } from "../../store/user/userAction"
 
 function SignInContainerForm(props: SignInContainerFormProps) {
@@ -38,10 +38,16 @@ function SignInContainerForm(props: SignInContainerFormProps) {
   async function handleClickSignInWithGoogle() {
     const responseSign = await dispatch(signInWithGoogleAction())
     const responseUser = await dispatch(
-      fetchUserAction(responseSign.payload.id)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      fetchUserAction(responseSign?.payload?.id)
     )
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (!responseUser.payload || !responseUser.payload.id) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       await dispatch(createUserAction(responseSign.payload))
     }
   }

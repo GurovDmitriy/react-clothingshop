@@ -15,7 +15,7 @@ export type SignPayload = {
   password: string
 }
 
-export type SignResponse = Promise<Firebase.User | any>
+export type SignResponse = Promise<Firebase.User>
 
 async function signUp(payload: SignPayload): SignResponse {
   const userCredential = await createUserWithEmailAndPassword(
@@ -24,7 +24,7 @@ async function signUp(payload: SignPayload): SignResponse {
     payload.password
   )
 
-  return userCredential.user
+  return userCredential.user as Firebase.User
 }
 
 async function signIn(payload: SignPayload): SignResponse {
@@ -34,7 +34,7 @@ async function signIn(payload: SignPayload): SignResponse {
     payload.password
   )
 
-  return userCredential.user
+  return userCredential.user as Firebase.User
 }
 
 export type SignWithGoogleResponse = Promise<{

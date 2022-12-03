@@ -104,7 +104,7 @@ type SignUpFormProps = {
 type HandlerInputEvt = React.ChangeEvent<HTMLInputElement>
 type HandlerSubmitEvt = React.FormEvent<HTMLFormElement>
 
-type SignUpFormState = {
+export type SignUpFormState = {
   name: string
   email: string
   password: string

@@ -1,7 +1,9 @@
 import classNames from "classnames"
-import SignUpForm from "../../components/SignUpForm/SignUpForm"
+import SignUpForm, {
+  SignUpFormState,
+} from "../../components/SignUpForm/SignUpForm"
 import { signUpAction } from "../../store/auth/authAction"
-import { useAppDispatch } from "../../store/hooks"
+import { useAppDispatch } from "../../store/store"
 import { createUserAction } from "../../store/user/userAction"
 
 function SignUpFormContainer(props: SignUpFormContainerProps) {
@@ -9,7 +11,7 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
 
   const dispatch = useAppDispatch()
 
-  async function handlerSignUp(data: SignUpFormFields) {
+  async function handlerSignUp(data: SignUpFormState) {
     if (data.password !== data.passwordConfirm) {
       alert("password don't match")
       return
@@ -24,7 +26,9 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
 
     await dispatch(
       createUserAction({
-        id: signUpResponse.payload.id,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        id: signUpResponse.payload?.id,
         displayName: data.name,
         email: data.email,
       })
@@ -34,13 +38,6 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
   const formClass = classNames("sign-up-form-container", className)
 
   return <SignUpForm className={formClass} handlerSignUp={handlerSignUp} />
-}
-
-type SignUpFormFields = {
-  displayName: string
-  email: string
-  password: string
-  passwordConfirm: string
 }
 
 type SignUpFormContainerProps = {

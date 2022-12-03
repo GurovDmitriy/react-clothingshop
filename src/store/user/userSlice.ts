@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ActionStatus } from "../store"
+import { ActionStatus } from "../types"
 import {
   clearUserAction,
   createUserAction,

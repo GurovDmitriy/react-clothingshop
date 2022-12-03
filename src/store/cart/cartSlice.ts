@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { CartEntities } from "../../firebaseSDK/cart/cart"
-import { ActionStatus } from "../store"
+import { ActionStatus } from "../types"
 import {
   addToCartAction,
   clearCartAction,
@@ -10,7 +10,7 @@ import {
 } from "./cartAction"
 
 export type CartEntitiesItem = {
-  [id: string]: CartEntities
+  [id: string | number]: CartEntities
 }
 
 export type CartState = {

@@ -7,7 +7,7 @@
   margin: 0;
   padding: 5px 10px;
 
-  color: inherit;
+  color: #000000;
   font-size: 14px;
   line-height: 1.2;
   text-transform: uppercase;
@@ -22,6 +22,10 @@
 
 .button-icon__label {
   margin-right: 4px;
+
+  color: #000000;
+
+  text-decoration: none;
 
   &--hidden {
     @include sr-only;

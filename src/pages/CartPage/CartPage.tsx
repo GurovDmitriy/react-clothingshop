@@ -14,8 +14,8 @@ import {
   selectCartStatusFetch,
   selectCartTotalPrice,
 } from "../../store/cart/cartSelector"
-import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import { ActionStatus } from "../../store/store"
+import { useAppDispatch, useAppSelector } from "../../store/store"
+import { ActionStatus } from "../../store/types"
 import "./style.scss"
 
 function CartPage(props: CartPageProps) {

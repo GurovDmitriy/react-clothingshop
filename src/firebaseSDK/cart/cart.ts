@@ -4,7 +4,7 @@ import { db } from "../config"
 
 export type CartDocumentPayload = {
   userId: string
-  id: string
+  id: string | number
   name: string
   imageUrl: string
   count: number

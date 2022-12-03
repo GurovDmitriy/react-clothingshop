@@ -6,7 +6,7 @@ import {
   selectAuth,
   selectAuthStatusFetch,
 } from "../../store/auth/authSelector"
-import { useAppSelector } from "../../store/hooks"
+import { useAppSelector } from "../../store/store"
 import "./style.scss"
 
 function SignPage() {

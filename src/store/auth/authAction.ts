@@ -1,20 +1,20 @@
+import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api/api"
-import { createAppAsyncThunk } from "../store"
 
 type SignPayload = {
   email: string
   password: string
 }
 
-type SignReturnData = {
+export type SignReturnData = {
   id: string
   displayName: string
   email: string
 }
 
-const signUpAction = createAppAsyncThunk(
+const signUpAction = createAsyncThunk<SignReturnData, SignPayload>(
   "auth/signUpAction",
-  async (payload: SignPayload) => {
+  async (payload) => {
     const response = await api.auth.signUp(payload)
 
     const data = {
@@ -27,7 +27,7 @@ const signUpAction = createAppAsyncThunk(
   }
 )
 
-const signInAction = createAppAsyncThunk(
+const signInAction = createAsyncThunk(
   "auth/signInAction",
   async (payload: SignPayload) => {
     const response = await api.auth.signIn(payload)
@@ -42,7 +42,7 @@ const signInAction = createAppAsyncThunk(
   }
 )
 
-const signInWithGoogleAction = createAppAsyncThunk(
+const signInWithGoogleAction = createAsyncThunk(
   "auth/signUpWithGoogleAction",
   async () => {
     const response = await api.auth.signInWithGoogle()
@@ -57,15 +57,12 @@ const signInWithGoogleAction = createAppAsyncThunk(
   }
 )
 
-const signCheckAction = createAppAsyncThunk(
-  "auth/signCheckAction",
-  async () => {
-    const response = await api.auth.signCheck()
-    return response as SignReturnData
-  }
-)
+const signCheckAction = createAsyncThunk("auth/signCheckAction", async () => {
+  const response = await api.auth.signCheck()
+  return response as SignReturnData
+})
 
-const signOutAction = createAppAsyncThunk("auth/signOutAction", async () => {
+const signOutAction = createAsyncThunk("auth/signOutAction", async () => {
   await api.auth.signOut()
   return null
 })

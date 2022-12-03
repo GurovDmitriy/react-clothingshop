@@ -6,7 +6,7 @@ import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { clearCartAction } from "../../store/cart/cartAction"
 import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
-import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import { useAppDispatch, useAppSelector } from "../../store/store"
 import { clearUserAction } from "../../store/user/userAction"
 
 function NavListContainer(props: NavListContainerProps) {

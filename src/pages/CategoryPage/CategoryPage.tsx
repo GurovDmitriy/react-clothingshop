@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom"
 import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { addToCartAction } from "../../store/cart/cartAction"
-import { useAppDispatch } from "../../store/hooks"
+import { useAppDispatch } from "../../store/store"
 
 function CategoryPage() {
   const { collectionList }: any = useLoaderData()

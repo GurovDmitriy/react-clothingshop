@@ -38,7 +38,7 @@ interface ButtonIconProps extends React.ComponentPropsWithoutRef<"button"> {
   as: React.ElementType
   className?: string
   isHiddenLabel?: boolean
-  icon: JSX.Element
+  icon?: JSX.Element
 }
 
 export default ButtonIcon
