@@ -1,0 +1,16 @@
+.sign-up-form {
+  width: 46%;
+}
+
+.sign-up-form__button-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -20px;
+}
+
+.sign-up-form__button-default {
+  margin: 0 20px 20px;
+
+  background-color: #000000;
+}

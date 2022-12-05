@@ -1,3 +1,3 @@
-# Learn React - Clothing Shop
+# React - Clothing Shop
 
 ---
