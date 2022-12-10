@@ -5,8 +5,8 @@ import {
   signInAction,
   signInWithGoogleAction,
   signOutAction,
-  signUpAction,
 } from "./authAction"
+import { AuthActionTypes } from "./authActionTypes"
 
 export type AuthEntities = {
   id: string
@@ -27,21 +27,37 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    signUpAction(state, action) {
+      switch (action.type) {
+        case AuthActionTypes.SIGN_ACTION_PENDING:
+          console.log("test")
+          break
+
+        case AuthActionTypes.SIGN_ACTION_SUCCESS:
+          console.log("test")
+          break
+
+        case AuthActionTypes.SIGN_ACTION_FAILURE:
+          console.log("test")
+          break
+      }
+    },
+  },
   extraReducers(builder) {
     builder
-      .addCase(signUpAction.pending, (state) => {
-        state.status = ActionStatus.pending
-        state.error = null
-      })
-      .addCase(signUpAction.fulfilled, (state, action) => {
-        state.entities = action.payload
-        state.status = ActionStatus.success
-      })
-      .addCase(signUpAction.rejected, (state, action) => {
-        state.status = ActionStatus.failure
-        state.error = action.error.message
-      })
+      // .addCase(signUpAction.pending, (state) => {
+      //   state.status = ActionStatus.pending
+      //   state.error = null
+      // })
+      // .addCase(signUpAction.fulfilled, (state, action) => {
+      //   state.entities = action.payload
+      //   state.status = ActionStatus.success
+      // })
+      // .addCase(signUpAction.rejected, (state, action) => {
+      //   state.status = ActionStatus.failure
+      //   state.error = action.error.message
+      // })
       .addCase(signInAction.pending, (state) => {
         state.status = ActionStatus.pending
         state.error = null
@@ -93,6 +109,7 @@ const authSlice = createSlice({
   },
 })
 
+const { signUpAction } = authSlice.actions
 const authReducer = authSlice.reducer
 
-export { authReducer }
+export { authReducer, signUpAction }

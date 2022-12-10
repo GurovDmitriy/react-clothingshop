@@ -12,20 +12,20 @@ export type SignReturnData = {
   email: string
 }
 
-const signUpAction = createAsyncThunk<SignReturnData, SignPayload>(
-  "auth/signUpAction",
-  async (payload) => {
-    const response = await api.auth.signUp(payload)
-
-    const data = {
-      id: response.uid,
-      displayName: response.displayName,
-      email: response.email,
-    }
-
-    return data as SignReturnData
-  }
-)
+// const signUpAction = createAsyncThunk<SignReturnData, SignPayload>(
+//   "auth/signUpAction",
+//   async (payload) => {
+//     const response = await api.auth.signUp(payload)
+//
+//     const data = {
+//       id: response.uid,
+//       displayName: response.displayName,
+//       email: response.email,
+//     }
+//
+//     return data as SignReturnData
+//   }
+// )
 
 const signInAction = createAsyncThunk(
   "auth/signInAction",
@@ -69,7 +69,7 @@ const signOutAction = createAsyncThunk("auth/signOutAction", async () => {
 
 export {
   signInAction,
-  signUpAction,
+  // signUpAction,
   signInWithGoogleAction,
   signOutAction,
   signCheckAction,
