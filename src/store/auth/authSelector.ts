@@ -1,8 +1,4 @@
-import { AuthState } from "./authSlice"
-
-type AuthModule = {
-  auth: AuthState
-}
+import { AuthModule } from "./authType"
 
 function selectAuthStatusFetch(state: AuthModule) {
   return state.auth.status

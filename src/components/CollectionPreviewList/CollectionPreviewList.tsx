@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { BsArrowRightShort } from "react-icons/bs"
 import { Link } from "react-router-dom"
 import { CollectionPreviewItemEntities, ShopItem } from "../../api/shop/data"
 import CollectionPreviewItem from "../CollectionPreviewItem/CollectionPreviewItem"
@@ -36,7 +37,10 @@ function CollectionPreviewList(props: CollectionPreviewListProps) {
   return (
     <div className={collectionClass}>
       <Link className="collection-preview-list__title" to={entities.routeName}>
-        {entities.title}
+        <span className="collection-preview-list__title-content">
+          {entities.title}
+        </span>
+        <BsArrowRightShort className="collection-preview-list__title-icon" />
       </Link>
       <div className="collection-preview-list__preview">
         {collectionEntities}

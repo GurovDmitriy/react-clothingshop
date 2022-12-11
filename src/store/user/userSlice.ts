@@ -1,22 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ActionStatus } from "../types"
+import { ActionStatus } from "../storeType"
 import {
   clearUserAction,
   createUserAction,
   fetchUserAction,
 } from "./userAction"
-
-export type UserEntities = {
-  displayName: string
-  email: string
-  createdAt: string
-}
-
-export type UserState = {
-  entities: UserEntities | null
-  status: string
-  error?: string | null
-}
+import { UserState } from "./userType"
 
 const initialState: UserState = {
   entities: null,

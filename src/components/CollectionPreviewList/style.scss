@@ -1,3 +1,5 @@
+@import "./src/assets/styles/variables";
+
 .collection-preview-list {
   margin-bottom: 40px;
 }
@@ -6,8 +8,21 @@
   display: block;
   margin-bottom: 20px;
 
-  color: #000000;
+  color: inherit;
   text-decoration: none;
+}
+
+.collection-preview-list__title-content {
+  display: inline-block;
+
+  vertical-align: middle;
+}
+
+.collection-preview-list__title-icon {
+  display: inline-block;
+  margin-left: $space-sm;
+
+  vertical-align: middle;
 }
 
 .collection-preview-list__preview {

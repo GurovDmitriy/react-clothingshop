@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ActionStatus } from "../types"
+import { ActionStatus } from "../storeType"
 import {
   signCheckAction,
   signInAction,
@@ -7,16 +7,7 @@ import {
   signOutAction,
   signUpAction,
 } from "./authAction"
-
-export type AuthEntities = {
-  id: string
-}
-
-export type AuthState = {
-  entities?: AuthEntities | null
-  status: ActionStatus
-  error?: string | null
-}
+import { AuthState } from "./authType"
 
 const initialState: AuthState = {
   entities: null,

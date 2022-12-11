@@ -1,4 +1,6 @@
-# Convention
+# Docs
+
+## Component
 
 ```jsx
 function ButtonDefault(props) {

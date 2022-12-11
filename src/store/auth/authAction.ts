@@ -1,16 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api/api"
-
-type SignPayload = {
-  email: string
-  password: string
-}
-
-export type SignReturnData = {
-  id: string
-  displayName: string
-  email: string
-}
+import { SignPayload, SignReturnData } from "./authType"
 
 const signUpAction = createAsyncThunk<SignReturnData, SignPayload>(
   "auth/signUpAction",

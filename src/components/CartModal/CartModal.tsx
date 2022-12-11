@@ -48,7 +48,7 @@ function CartModal(props: CartModalProps) {
   }
 
   function getListEmpty() {
-    return <span>Empty</span>
+    return <span className="cart-modal__empty">Empty</span>
   }
 
   return (

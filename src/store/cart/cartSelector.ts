@@ -1,9 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit"
-import { CartState } from "./cartSlice"
-
-type CartModule = {
-  cart: CartState
-}
+import { CartModule } from "./cartType"
 
 function selectCartStatusFetch(state: CartModule) {
   return state.cart.status
