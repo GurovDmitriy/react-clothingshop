@@ -1,15 +1,20 @@
+@import "./src/assets/styles/variables";
+
 .menu-item {
   position: relative;
 
   flex-grow: 1;
   flex-shrink: 1;
-  width: calc(30% - 10px);
   height: 200px;
   margin: 10px;
 
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
+  @media (min-width: $viewport-width-md) {
+    width: calc(30% - 10px);
+  }
 }
 
 .menu-item__box-content {

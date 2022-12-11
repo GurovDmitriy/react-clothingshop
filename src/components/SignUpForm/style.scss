@@ -1,3 +1,5 @@
+@import "./src/assets/styles/variables";
+
 .sign-up-form {
   width: 46%;
 }
@@ -13,4 +15,14 @@
   margin: 0 20px 20px;
 
   background-color: #000000;
+}
+
+.sign-up-form__button-default.button-default {
+  color: $color-white;
+}
+
+.dark .sign-up-form__button-default.button-default {
+  color: $color-black;
+
+  background-color: $color-white;
 }

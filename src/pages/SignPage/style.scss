@@ -1,9 +1,15 @@
 @import "./src/assets/styles/mixins";
+@import "./src/assets/styles/variables";
 
 .page-sign {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media (min-width: $viewport-width-md) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }
 
 .page-sign__caption {

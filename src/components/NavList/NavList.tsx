@@ -33,9 +33,11 @@ function NavList(props: NavListProps) {
       </Link>
       {activeButton}
       <ButtonIcon
-        as="span"
+        as="button"
+        type="button"
+        onClick={handlerThemeToggle}
         isHiddenLabel={true}
-        icon={<BsLightbulb onClick={handlerThemeToggle} />}
+        icon={<BsLightbulb />}
         title="title"
       />
       <div className="nav-list__button-icon-box">

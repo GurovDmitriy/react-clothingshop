@@ -1,3 +1,4 @@
+import classNames from "classnames"
 import { useContext } from "react"
 import { Link, Outlet } from "react-router-dom"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
@@ -6,10 +7,11 @@ import "./style.scss"
 
 function AboutLayout() {
   const theme = useContext(ThemeContext)
+  const aboutLayoutClass = classNames("about-layout", theme.themeValue)
 
   return (
     <div
-      className="about-layout"
+      className={aboutLayoutClass}
       style={{
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

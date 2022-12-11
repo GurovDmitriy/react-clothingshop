@@ -1,7 +1,26 @@
+@import "./src/assets/styles/variables";
+
 .header-nav-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
   padding: 20px 0;
+
+  @media (min-width: $viewport-width-md) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.header-nav-container__logo-box {
+  margin-bottom: $space-lg;
+
+  @media (min-width: $viewport-width-md) {
+    margin-bottom: 0;
+  }
+}
+
+.header-nav-container__logo-box svg {
+  display: block;
+  width: 30px;
+  height: auto;
 }

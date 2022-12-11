@@ -2,6 +2,8 @@
 
 .home-layout {
   @include container;
+
+  flex-grow: 1;
 }
 
 .home-layout * {

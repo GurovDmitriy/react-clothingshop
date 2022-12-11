@@ -1,15 +1,23 @@
 @import "../../assets/styles/mixins";
+@import "./src/assets/styles/variables";
 
 .about-layout {
   @include container;
 
   display: flex;
   flex-direction: column;
+
+  flex-grow: 1;
   align-items: center;
+  justify-content: center;
 
   padding: 20px 0;
 }
 
 .about-layout * {
   color: inherit;
+}
+
+.about-layout .button-default {
+  color: $color-white;
 }

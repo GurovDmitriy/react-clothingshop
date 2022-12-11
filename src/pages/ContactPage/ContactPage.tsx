@@ -1,9 +1,15 @@
+import { BsGithub } from "react-icons/bs"
 import "./style.scss"
 
 function ContactPage() {
   return (
     <div className="contact-page">
-      <a href="https://github.com/GurovDmitriy">GitHub</a>
+      <div className="contact-page__link">
+        <a href="https://github.com/GurovDmitriy">
+          <BsGithub />
+          <span>Gurov Dmitriy</span>
+        </a>
+      </div>
     </div>
   )
 }

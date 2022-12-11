@@ -1,15 +1,17 @@
+@import "./src/assets/styles/variables";
+
 .button-default {
   margin: 0;
   padding: 10px 20px;
 
-  color: #ffffff;
+  color: $color-white;
   font-size: 14px;
   line-height: 1.2;
   text-transform: uppercase;
   text-decoration: none;
   vertical-align: middle;
 
-  background-color: #000000;
+  background-color: $color-black;
   border: none;
 
   cursor: pointer;

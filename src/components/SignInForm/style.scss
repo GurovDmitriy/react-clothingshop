@@ -1,5 +1,9 @@
+@import "./src/assets/styles/variables";
+
 .sign-in-form {
-  width: 46%;
+  @media (min-width: $viewport-width-md) {
+    width: 46%;
+  }
 }
 
 .sign-in-form__button-box {
@@ -15,4 +19,14 @@
   &:first-child {
     background-color: #000000;
   }
+}
+
+.sign-in-form__button-default.button-default {
+  color: $color-white;
+}
+
+.dark .sign-in-form__button-default.button-default {
+  color: $color-black;
+
+  background-color: $color-white;
 }

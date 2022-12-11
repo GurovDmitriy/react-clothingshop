@@ -1,12 +1,19 @@
+@import "./src/assets/styles/variables";
+
 .collection-preview-item {
-  width: calc(25% - 20px);
+  width: calc(50% - 20px);
   margin: 10px;
+
+  @media (min-width: $viewport-width-md) {
+    width: calc(25% - 20px);
+  }
 }
 
 .collection-preview-item__image-box {
   position: relative;
 
   width: 100%;
+  margin-bottom: $space-lg;
   padding-bottom: 110%;
   overflow: hidden;
 }
@@ -37,6 +44,10 @@
   opacity: 0;
 
   transition: opacity 0.2s;
+}
+
+.collection-preview-item__button.button-default {
+  color: $color-white;
 }
 
 .collection-preview-item__image-box:hover .collection-preview-item__button {

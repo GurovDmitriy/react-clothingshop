@@ -1,3 +1,4 @@
+import classNames from "classnames"
 import { useContext, useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import api from "../../api/api"
@@ -36,9 +37,11 @@ function HomeLayout() {
     }
   }, [])
 
+  const aboutLayoutClass = classNames("home-layout", theme.themeValue)
+
   return (
     <div
-      className="home-layout"
+      className={aboutLayoutClass}
       style={{
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

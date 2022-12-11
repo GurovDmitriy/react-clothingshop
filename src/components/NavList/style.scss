@@ -1,12 +1,21 @@
+@import "./src/assets/styles/variables";
+
 .nav-list {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
   margin: 0 -10px;
+
+  @media (min-width: $viewport-width-md) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .nav-list a {
+  display: block;
+
   text-decoration: none;
 }
 
@@ -24,6 +33,8 @@
 
 .nav-list__button-icon-box {
   position: relative;
+
+  align-self: flex-end;
 }
 
 .nav-list__cart-modal {
@@ -33,6 +44,10 @@
   z-index: 10;
 
   display: none;
+}
+
+.nav-list__cart-modal .button-default {
+  color: $color-white;
 }
 
 .nav-list__button-icon-box:hover .nav-list__cart-modal {

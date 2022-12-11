@@ -1,5 +1,10 @@
+@import "./src/assets/styles/variables";
+
 .menu-list {
-  display: flex;
-  flex-wrap: wrap;
   margin: -10px;
+
+  @media (min-width: $viewport-width-md) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
