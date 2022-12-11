@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 import createSagaMiddleware from "redux-saga"
+import { signUpSaga } from "./auth/authSaga"
 import { authReducer } from "./auth/authSlice"
 import { cartReducer } from "./cart/cartSlice"
 import { userReducer } from "./user/userSlice"
@@ -17,6 +18,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),
 })
+
+sagaMiddleware.run(signUpSaga)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

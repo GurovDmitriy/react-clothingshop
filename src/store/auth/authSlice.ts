@@ -6,7 +6,6 @@ import {
   signInWithGoogleAction,
   signOutAction,
 } from "./authAction"
-import { AuthActionTypes } from "./authActionTypes"
 
 export type AuthEntities = {
   id: string
@@ -28,20 +27,19 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signUpAction(state, action) {
-      switch (action.type) {
-        case AuthActionTypes.SIGN_ACTION_PENDING:
-          console.log("test")
-          break
+    signUpActionPending(state) {
+      state.status = ActionStatus.pending
+      state.error = null
+    },
 
-        case AuthActionTypes.SIGN_ACTION_SUCCESS:
-          console.log("test")
-          break
+    signUpActionSuccess(state, action) {
+      state.entities = action.payload
+      state.status = ActionStatus.success
+    },
 
-        case AuthActionTypes.SIGN_ACTION_FAILURE:
-          console.log("test")
-          break
-      }
+    signUpActionFailure(state) {
+      state.status = ActionStatus.failure
+      state.error = "Error sign up"
     },
   },
   extraReducers(builder) {
@@ -109,7 +107,6 @@ const authSlice = createSlice({
   },
 })
 
-const { signUpAction } = authSlice.actions
 const authReducer = authSlice.reducer
 
-export { authReducer, signUpAction }
+export { authReducer }
