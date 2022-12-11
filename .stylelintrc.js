@@ -30,5 +30,6 @@ module.exports = {
     "selector-class-pattern": /\w+/,
     "at-rule-no-unknown": null,
     "selector-id-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": null,
   },
 }
