@@ -2,19 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import Firebase from "firebase/compat"
 import api from "../../api/api"
 import { AppDispatch, RootState } from "../store"
-
-export type CreateUserPayload = {
-  id: string
-  displayName: string
-  email: string
-}
-
-export type UserDataReturn = {
-  id: string
-  displayName: string
-  email: string
-  createdAt: string
-}
+import { CreateUserPayload, UserDataReturn } from "./userType"
 
 const createUserAction = createAsyncThunk<UserDataReturn, CreateUserPayload>(
   "user/createUserAction",

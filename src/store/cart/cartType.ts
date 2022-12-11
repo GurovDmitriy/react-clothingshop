@@ -1,5 +1,5 @@
 import { CartEntities } from "../../firebaseSDK/cart/cart"
-import { ActionStatus } from "../types"
+import { ActionStatus } from "../storeType"
 
 export type CartEntitiesItem = {
   [id: string | number]: CartEntities

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ActionStatus } from "../types"
-import { CartState } from "./cart"
+import { ActionStatus } from "../storeType"
 import {
   addToCartAction,
   clearCartAction,
@@ -8,6 +7,7 @@ import {
   fetchCartAction,
   removeFromCartAction,
 } from "./cartAction"
+import { CartState } from "./cartType"
 
 const initialState: CartState = {
   entities: null,

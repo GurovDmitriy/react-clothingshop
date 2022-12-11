@@ -10,7 +10,7 @@ import { selectAuthStatusFetch } from "../../store/auth/authSelector"
 import { fetchCartAction } from "../../store/cart/cartAction"
 import { selectCartStatusFetch } from "../../store/cart/cartSelector"
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import { ActionStatus } from "../../store/types"
+import { ActionStatus } from "../../store/storeType"
 import { fetchUserAction } from "../../store/user/userAction"
 import "./style.scss"
 

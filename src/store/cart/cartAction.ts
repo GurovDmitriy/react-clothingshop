@@ -3,7 +3,7 @@ import api from "../../api/api"
 import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import { CartEntities } from "../../firebaseSDK/cart/cart"
 import { RootState } from "../store"
-import { CartEntitiesItem } from "./cart"
+import { CartEntitiesItem } from "./cartType"
 
 const fetchCartAction = createAsyncThunk<
   CartEntitiesItem,

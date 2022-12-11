@@ -1,8 +1,4 @@
-import { UserState } from "./userSlice"
-
-type UserModule = {
-  user: UserState
-}
+import { UserModule } from "./userType"
 
 function selectUserStatusFetch(state: UserModule) {
   return state.user.status
