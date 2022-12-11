@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { BsLightbulb } from "react-icons/bs"
 import { Link } from "react-router-dom"
 import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
 import { CartEntities } from "../../firebaseSDK/cart/cart"
@@ -14,6 +15,7 @@ function NavList(props: NavListProps) {
     activeButton,
     cartCountItems,
     cartListEntities,
+    handlerThemeToggle,
   } = props
 
   const navListContainerClass = classNames("nav-list", className)
@@ -30,6 +32,12 @@ function NavList(props: NavListProps) {
         <ButtonSimple as="span">About</ButtonSimple>
       </Link>
       {activeButton}
+      <ButtonIcon
+        as="span"
+        isHiddenLabel={true}
+        icon={<BsLightbulb onClick={handlerThemeToggle} />}
+        title="title"
+      />
       <div className="nav-list__button-icon-box">
         <Link to="/cart">
           <ButtonIcon
@@ -58,6 +66,7 @@ NavList.defaultProps = {
 type NavListProps = {
   className: string
   handlerToCart: () => void
+  handlerThemeToggle: () => void
   activeButton: JSX.Element
   cartCountItems: number | string
   cartListEntities: Array<CartEntities>

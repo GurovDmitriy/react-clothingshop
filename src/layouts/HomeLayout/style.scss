@@ -3,3 +3,7 @@
 .home-layout {
   @include container;
 }
+
+.home-layout * {
+  color: inherit;
+}

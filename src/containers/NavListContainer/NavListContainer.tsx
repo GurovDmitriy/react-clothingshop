@@ -1,7 +1,9 @@
 import classNames from "classnames"
+import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import NavList from "../../components/NavList/NavList"
+import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
 import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { clearCartAction } from "../../store/cart/cartAction"
@@ -12,6 +14,7 @@ import { clearUserAction } from "../../store/user/userAction"
 function NavListContainer(props: NavListContainerProps) {
   const { className } = props
 
+  const theme = useContext(ThemeContext)
   const dispatch = useAppDispatch()
 
   const authData = useAppSelector(selectAuth)
@@ -65,6 +68,7 @@ function NavListContainer(props: NavListContainerProps) {
   return (
     <NavList
       className={navListContainerClass}
+      handlerThemeToggle={theme.toggle}
       handlerToCart={handlerToCart}
       activeButton={activeButton}
       cartCountItems={cartCountItems}
