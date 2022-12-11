@@ -15,7 +15,9 @@ const theme = {
   themeValue: ThemeContextValue.light,
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  toggle(): void {},
+  toggle(): ThemeContextValue {
+    return ThemeContextValue.light
+  },
 }
 
 export const ThemeContext = React.createContext(theme)
@@ -24,12 +26,18 @@ function ThemeProvider(props: ThemeContextProps) {
   const { children } = props
   const [themeValue, setThemeValue] = useState(ThemeContextValue.light)
 
-  function toggle(): void {
+  function toggle(): ThemeContextValue {
     if (themeValue === ThemeContextValue.light) {
       setThemeValue(ThemeContextValue.dark)
+
+      return ThemeContextValue.dark
     } else {
       setThemeValue(ThemeContextValue.light)
+
+      return ThemeContextValue.light
     }
+
+    return ThemeContextValue.light
   }
 
   return (

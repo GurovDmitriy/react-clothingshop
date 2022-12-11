@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import NavList from "../../components/NavList/NavList"
 import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
+import { ThemeContextValue } from "../../providers/ThemeContext/themeContextType"
 import { signOutAction } from "../../store/auth/authAction"
 import { selectAuth } from "../../store/auth/authSelector"
 import { clearCartAction } from "../../store/cart/cartAction"
@@ -37,6 +38,15 @@ function NavListContainer(props: NavListContainerProps) {
     navigate("/cart")
   }
 
+  function handlerThemeToggle(toggleCB: () => ThemeContextValue) {
+    const themeValue = toggleCB()
+
+    dispatch({
+      type: "theme/setThemeActionPending",
+      payload: themeValue,
+    })
+  }
+
   function renderActiveButton() {
     let component = null
 
@@ -68,7 +78,7 @@ function NavListContainer(props: NavListContainerProps) {
   return (
     <NavList
       className={navListContainerClass}
-      handlerThemeToggle={theme.toggle}
+      handlerThemeToggle={() => handlerThemeToggle(theme.toggle)}
       handlerToCart={handlerToCart}
       activeButton={activeButton}
       cartCountItems={cartCountItems}
