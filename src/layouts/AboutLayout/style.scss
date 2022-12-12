@@ -21,3 +21,9 @@
 .about-layout .button-default {
   color: $color-white;
 }
+
+.dark .button-default {
+  color: $color-black;
+
+  background-color: $color-white;
+}
