@@ -48,3 +48,13 @@
 .dark .cart-modal__empty {
   color: $color-black;
 }
+
+.dark .cart-modal {
+  color: $color-black;
+}
+
+.dark .cart-modal .button-default {
+  color: $color-white;
+
+  background-color: $color-black;
+}
