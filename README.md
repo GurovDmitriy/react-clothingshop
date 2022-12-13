@@ -12,6 +12,6 @@
 
 - TypeScript
 - MobX
-- Redux (Redux Toolkit, Thunk, Saga)
+- Redux (Toolkit, Thunk, Saga)
 - Firebase
 
