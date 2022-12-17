@@ -2,7 +2,7 @@ import classNames from "classnames"
 import SignUpForm, {
   SignUpFormState,
 } from "../../components/SignUpForm/SignUpForm"
-// import { signUpAction } from "../../store/auth/authAction"
+import { signUpAction } from "../../store/auth/authAction"
 import { useAppDispatch } from "../../store/store"
 import { createUserAction } from "../../store/user/userAction"
 
@@ -17,22 +17,12 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
       return
     }
 
-    // const signUpResponse = await dispatch(
-    //   signUpAction({
-    //     email: data.email,
-    //     password: data.password,
-    //   })
-    // )
-
-    const signUpResponse = dispatch({
-      type: "auth/signUpActionPending",
-      payload: {
+    const signUpResponse = await dispatch(
+      signUpAction({
         email: data.email,
         password: data.password,
-      },
-    })
-
-    console.log(signUpResponse)
+      })
+    )
 
     await dispatch(
       createUserAction({
