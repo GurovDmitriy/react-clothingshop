@@ -6,7 +6,7 @@ import SignUpFormContainer from "../../containers/SignUpFormContainer/SignUpForm
 import { StoreContext } from "../../providers/StoreContext/StoreContext"
 import "./style.scss"
 
-const SignPage = observer(function SignPage() {
+function SignPage() {
   const store = useContext(StoreContext)
   const navigate = useNavigate()
 
@@ -26,6 +26,6 @@ const SignPage = observer(function SignPage() {
       <SignUpFormContainer className="page-sign__container-sign-up-form" />
     </section>
   )
-})
+}
 
-export default SignPage
+export default observer(SignPage)

@@ -1,5 +1,5 @@
 import Firebase from "firebase/compat"
-import { action, makeObservable, observable } from "mobx"
+import { action, makeObservable, observable, runInAction } from "mobx"
 import api from "../../api/api"
 import authStore from "../auth/authStore"
 import { ActionStatus } from "../storeType"
@@ -24,10 +24,10 @@ class UserStore {
   async createUser(
     payload: CreateUserPayload
   ): Promise<UserDataReturn | undefined> {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       const createdAt: any = new Date()
 
       await api.user.createUserDocument({
@@ -45,22 +45,26 @@ class UserStore {
         createdAt: response?.createdAt.toDate().toString(),
       }
 
-      this.entities = user
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = user
+        this.status = ActionStatus.success
+      })
 
       return user as UserDataReturn
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async fetchUser(): Promise<UserDataReturn | undefined> {
+    this.status = ActionStatus.pending
+    this.error = null
+
     try {
       const userId: any = authStore?.entities?.id || null
-
-      this.status = ActionStatus.pending
-      this.error = null
 
       const response: Firebase.firestore.DocumentData | null =
         await api.user.fetchUserDocument(userId)
@@ -72,21 +76,25 @@ class UserStore {
         createdAt: response?.createdAt.toDate().toString(),
       }
 
-      this.entities = user
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = user
+        this.status = ActionStatus.success
+      })
 
       return user as UserDataReturn
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   clearUser() {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       this.entities = null
       this.status = ActionStatus.success
 

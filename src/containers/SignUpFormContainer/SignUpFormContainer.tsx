@@ -6,9 +6,7 @@ import SignUpForm, {
 } from "../../components/SignUpForm/SignUpForm"
 import { StoreContext } from "../../providers/StoreContext/StoreContext"
 
-const SignUpFormContainer = observer(function SignUpFormContainer(
-  props: SignUpFormContainerProps
-) {
+function SignUpFormContainer(props: SignUpFormContainerProps) {
   const { className } = props
 
   const store = useContext(StoreContext)
@@ -36,10 +34,10 @@ const SignUpFormContainer = observer(function SignUpFormContainer(
   const formClass = classNames("sign-up-form-container", className)
 
   return <SignUpForm className={formClass} handlerSignUp={handlerSignUp} />
-})
+}
 
 type SignUpFormContainerProps = {
   className: string
 }
 
-export default SignUpFormContainer
+export default observer(SignUpFormContainer)

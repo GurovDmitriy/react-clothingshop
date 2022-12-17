@@ -9,9 +9,7 @@ import { StoreContext } from "../../providers/StoreContext/StoreContext"
 import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
 import { ThemeContextValue } from "../../providers/ThemeContext/themeContextType"
 
-const NavListContainer = observer(function NavListContainer(
-  props: NavListContainerProps
-) {
+function NavListContainer(props: NavListContainerProps) {
   const { className } = props
 
   const theme = useContext(ThemeContext)
@@ -81,10 +79,10 @@ const NavListContainer = observer(function NavListContainer(
       cartListEntities={cartListEntities}
     />
   )
-})
+}
 
 type NavListContainerProps = {
   className?: string
 }
 
-export default NavListContainer
+export default observer(NavListContainer)

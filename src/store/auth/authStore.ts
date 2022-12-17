@@ -1,4 +1,10 @@
-import { action, makeObservable, observable } from "mobx"
+import {
+  action,
+  flowResult,
+  makeObservable,
+  observable,
+  runInAction,
+} from "mobx"
 import api from "../../api/api"
 import {
   SignResponse,
@@ -30,9 +36,10 @@ class AuthStore {
   }
 
   async signUp(payload: SignPayload): Promise<SignResponse | null | undefined> {
+    this.status = ActionStatus.pending
+    this.error = null
+
     try {
-      this.status = ActionStatus.pending
-      this.error = null
       const response = await api.auth.signUp(payload)
 
       const data = {
@@ -41,20 +48,25 @@ class AuthStore {
         email: response.email,
       }
 
-      this.entities = data
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = data
+        this.status = ActionStatus.success
+      })
 
-      return response
+      return flowResult(response)
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async signIn(payload: SignPayload): Promise<SignResponse | null | undefined> {
+    this.status = ActionStatus.pending
+    this.error = null
+
     try {
-      this.status = ActionStatus.pending
-      this.error = null
       const response = await api.auth.signIn(payload)
 
       const data = {
@@ -63,20 +75,25 @@ class AuthStore {
         email: response.email,
       }
 
-      this.entities = data
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = data
+        this.status = ActionStatus.success
+      })
 
       return response
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async signInWithGoogle(): Promise<SignWithGoogleResponse | null | undefined> {
+    this.status = ActionStatus.pending
+    this.error = null
+
     try {
-      this.status = ActionStatus.pending
-      this.error = null
       const response = await api.auth.signInWithGoogle()
 
       const data = {
@@ -85,47 +102,59 @@ class AuthStore {
         email: response.user.email,
       }
 
-      this.entities = data
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = data
+        this.status = ActionStatus.success
+      })
 
       return response
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async signCheck() {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       const response = await api.auth.signCheck()
 
-      this.entities = response
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = response
+        this.status = ActionStatus.success
+      })
 
       return response as SignReturnData
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async signOut() {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       await api.auth.signOut()
 
-      this.entities = null
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = null
+        this.status = ActionStatus.success
+      })
 
       return null
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 }

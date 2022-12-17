@@ -5,7 +5,7 @@ import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
 import { StoreContext } from "../../providers/StoreContext/StoreContext"
 
-const ShopPage = observer(function ShopPage() {
+function ShopPage() {
   const { shopList }: any = useLoaderData()
   const store = useContext(StoreContext)
   const navigate = useNavigate()
@@ -29,6 +29,6 @@ const ShopPage = observer(function ShopPage() {
       />
     </div>
   )
-})
+}
 
-export default ShopPage
+export default observer(ShopPage)

@@ -8,7 +8,7 @@ import { StoreContext } from "../../providers/StoreContext/StoreContext"
 import { ActionStatus } from "../../store/storeType"
 import "./style.scss"
 
-const CartPage = observer(function CartPage(props: CartPageProps) {
+function CartPage(props: CartPageProps) {
   const { className } = props
 
   const store = useContext(StoreContext)
@@ -59,10 +59,10 @@ const CartPage = observer(function CartPage(props: CartPageProps) {
       />
     </div>
   )
-})
+}
 
 type CartPageProps = {
   className?: string
 }
 
-export default CartPage
+export default observer(CartPage)

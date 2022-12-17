@@ -10,7 +10,7 @@ import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
 import { ActionStatus } from "../../store/storeType"
 import "./style.scss"
 
-const HomeLayout = observer(function HomeLayout() {
+function HomeLayout() {
   const theme = useContext(ThemeContext)
   const store = useContext(StoreContext)
 
@@ -54,6 +54,6 @@ const HomeLayout = observer(function HomeLayout() {
       </div>
     </div>
   )
-})
+}
 
-export default HomeLayout
+export default observer(HomeLayout)

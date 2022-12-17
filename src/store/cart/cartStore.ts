@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from "mobx"
+import { action, computed, makeObservable, observable, runInAction } from "mobx"
 import api from "../../api/api"
 import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import { CartEntities } from "../../firebaseSDK/cart/cart"
@@ -52,35 +52,38 @@ class CartStore {
   }
 
   async fetchCart(): Promise<CartEntitiesItem | undefined> {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       const userId: any = authStore?.entities?.id
-      console.log(authStore)
-      let cartOld = null
+      let cartOld: any = null
 
       if (userId) {
         cartOld = await api.cart.fetchCartDocument(userId)
-      }
 
-      this.entities = cartOld
-      this.status = ActionStatus.success
+        runInAction(() => {
+          this.entities = cartOld
+          this.status = ActionStatus.success
+        })
+      }
 
       return cartOld as CartEntitiesItem
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async addToCart(
     payload: CollectionPreviewItemEntities
   ): Promise<CartEntitiesItem | undefined> {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       const userId: any = authStore?.entities?.id
       const cartOld = await api.cart.fetchCartDocument(userId)
 
@@ -105,20 +108,27 @@ class CartStore {
       this.entities = cartNew
       this.status = ActionStatus.success
 
+      runInAction(() => {
+        this.entities = cartNew
+        this.status = ActionStatus.success
+      })
+
       return cartNew as CartEntitiesItem
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async removeFromCart(
     payload: CartEntities
   ): Promise<CartEntitiesItem | undefined> {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       const userId: any = authStore?.entities?.id
       const cartOld = await api.cart.fetchCartDocument(userId)
 
@@ -150,23 +160,27 @@ class CartStore {
 
       const cartNew = await api.cart.fetchCartDocument(userId)
 
-      this.entities = cartNew
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = cartNew
+        this.status = ActionStatus.success
+      })
 
       return cartNew as CartEntitiesItem
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   async deleteFromCart(
     payload: CartEntities
   ): Promise<CartEntitiesItem | undefined> {
-    try {
-      this.status = ActionStatus.pending
-      this.error = null
+    this.status = ActionStatus.pending
+    this.error = null
 
+    try {
       const userId: any = authStore?.entities?.id
 
       await api.cart.deleteCartFieldDocument({
@@ -176,21 +190,22 @@ class CartStore {
 
       const cartNew = await api.cart.fetchCartDocument(userId)
 
-      this.entities = cartNew
-      this.status = ActionStatus.success
+      runInAction(() => {
+        this.entities = cartNew
+        this.status = ActionStatus.success
+      })
 
       return cartNew as CartEntitiesItem
     } catch (err) {
-      this.status = ActionStatus.failure
-      this.error = "error"
+      runInAction(() => {
+        this.status = ActionStatus.failure
+        this.error = "error"
+      })
     }
   }
 
   clearCart() {
     try {
-      this.status = ActionStatus.pending
-      this.error = null
-
       this.entities = null
       this.status = ActionStatus.success
 
