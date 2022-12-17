@@ -1,24 +1,24 @@
 import classNames from "classnames"
+import { observer } from "mobx-react-lite"
 import { useContext, useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import api from "../../api/api"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
 import HeaderNavContainer from "../../containers/HeaderNavContainer/HeaderNavContainer"
+import { StoreContext } from "../../providers/StoreContext/StoreContext"
 import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
-import { signCheckAction } from "../../store/auth/authAction"
-import { selectAuthStatusFetch } from "../../store/auth/authSelector"
-import { fetchCartAction } from "../../store/cart/cartAction"
-import { selectCartStatusFetch } from "../../store/cart/cartSelector"
-import { useAppDispatch, useAppSelector } from "../../store/store"
 import { ActionStatus } from "../../store/storeType"
-import { fetchUserAction } from "../../store/user/userAction"
 import "./style.scss"
 
-function HomeLayout() {
+const HomeLayout = observer(function HomeLayout() {
   const theme = useContext(ThemeContext)
-  const dispatch = useAppDispatch()
-  const authStateFetch = useAppSelector(selectAuthStatusFetch)
-  const cartStateFetch = useAppSelector(selectCartStatusFetch)
+  const store = useContext(StoreContext)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const authStateFetch = store.auth.status
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const cartStateFetch = store.cart.status
 
   const authLoading = authStateFetch === ActionStatus.pending
   const cartLoading = cartStateFetch === ActionStatus.pending
@@ -26,9 +26,15 @@ function HomeLayout() {
   useEffect(() => {
     const unsubscribeAuth = api.auth.subscribeStateChange(async (user) => {
       if (user) {
-        await dispatch(signCheckAction())
-        await dispatch(fetchUserAction())
-        await dispatch(fetchCartAction())
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await store.auth.signCheck()
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await store.user.fetchUser()
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await store.cart.fetchCart()
       }
     })
 
@@ -61,6 +67,6 @@ function HomeLayout() {
       </div>
     </div>
   )
-}
+})
 
 export default HomeLayout

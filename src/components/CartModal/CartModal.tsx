@@ -70,7 +70,7 @@ function CartModal(props: CartModalProps) {
 type CartModalProps = {
   className?: string
   handlerToCart: (...args: any[]) => void
-  entities?: Array<CartEntities>
+  entities?: Array<CartEntities> | null
 }
 
 export default CartModal

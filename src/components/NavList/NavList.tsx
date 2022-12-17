@@ -71,7 +71,7 @@ type NavListProps = {
   handlerThemeToggle: () => void
   activeButton: JSX.Element
   cartCountItems: number | string
-  cartListEntities: Array<CartEntities>
+  cartListEntities: Array<CartEntities> | null
 }
 
 export default NavList

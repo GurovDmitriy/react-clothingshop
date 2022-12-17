@@ -1,13 +1,22 @@
 import React, { Suspense } from "react"
 import ReactDOM from "react-dom/client"
-import { Provider } from "react-redux"
 import { RouterProvider } from "react-router-dom"
 import "./assets/styles/main.scss"
 import LoadingBlock from "./components/LoadingBlock/LoadingBlock"
+import StoreProvider from "./providers/StoreContext/StoreContext"
 import ThemeProvider from "./providers/ThemeContext/ThemeContext"
 import router from "./router"
-import store from "./store/store"
 // import reportWebVitals from "./reportWebVitals"
+
+// eslint-disable-next-line no-prototype-builtins
+// ts-ignore
+// eslint-disable-next-line no-prototype-builtins
+// if (
+//   !new (class {
+//     x: unknown
+//   })().hasOwnProperty("x")
+// )
+//   throw new Error("Transpiler is not configured correctly")
 
 const rootElement = document.getElementById("root")
 if (!rootElement) throw new Error("Failed to find the root element")
@@ -15,13 +24,13 @@ const root = ReactDOM.createRoot(rootElement)
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Suspense fallback={<LoadingBlock loading={true} />}>
-        <ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider>
+        <Suspense fallback={<LoadingBlock loading={true} />}>
           <RouterProvider router={router} />
-        </ThemeProvider>
-      </Suspense>
-    </Provider>
+        </Suspense>
+      </ThemeProvider>
+    </StoreProvider>
   </React.StrictMode>
 )
 

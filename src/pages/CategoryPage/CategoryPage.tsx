@@ -1,22 +1,28 @@
-import { useSelector } from "react-redux"
+import { observer } from "mobx-react-lite"
+import { useContext } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom"
 import { CollectionPreviewItemEntities } from "../../api/shop/data"
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview"
-import { selectAuth } from "../../store/auth/authSelector"
-import { addToCartAction } from "../../store/cart/cartAction"
-import { useAppDispatch } from "../../store/store"
+import { StoreContext } from "../../providers/StoreContext/StoreContext"
 
-function CategoryPage() {
+const CategoryPage = observer(function CategoryPage() {
   const { collectionList }: any = useLoaderData()
-  const dispatch = useAppDispatch()
+  const store = useContext(StoreContext)
   const navigate = useNavigate()
-  const auth = useSelector(selectAuth)
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const auth = store.auth.entities
 
   async function handlerAddToCart(cartItem: CollectionPreviewItemEntities) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (!auth || !auth.id) {
       navigate("/sign")
     } else {
-      await dispatch(addToCartAction(cartItem))
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      await store.cart.addToCart(cartItem)
     }
   }
 
@@ -29,6 +35,6 @@ function CategoryPage() {
       />
     </div>
   )
-}
+})
 
 export default CategoryPage
