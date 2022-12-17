@@ -12,22 +12,15 @@ const CartPage = observer(function CartPage(props: CartPageProps) {
   const { className } = props
 
   const store = useContext(StoreContext)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+
   const cart = store.cart.entities
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const totalPrice = store.cart.cartTotalPrice
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartStateFetch = store.cart.status
 
   const cartEntities: CartEntities[] = cart ? Object.values(cart) : []
   const loading = cartStateFetch === ActionStatus.pending
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     store.cart.fetchCart()
   }, [])
 
@@ -37,21 +30,15 @@ const CartPage = observer(function CartPage(props: CartPageProps) {
   ) {
     switch (cartOperation) {
       case CartOperation.increment:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        store.cart.addToCart(cartItem)
+        await store.cart.addToCart(cartItem)
         break
 
       case CartOperation.decrement:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        store.cart.removeFromCart(cartItem)
+        await store.cart.removeFromCart(cartItem)
         break
 
       case CartOperation.delete:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        store.cart.deleteFromCart(cartItem)
+        await store.cart.deleteFromCart(cartItem)
         break
 
       default:

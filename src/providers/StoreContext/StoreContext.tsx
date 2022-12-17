@@ -2,7 +2,7 @@ import React from "react"
 import store from "../../store/store"
 import { StoreContextProps } from "./storeContextType"
 
-export const StoreContext = React.createContext({})
+export const StoreContext = React.createContext<typeof store>(store)
 
 function StoreProvider(props: StoreContextProps) {
   const { children } = props

@@ -10,16 +10,10 @@ const SignPage = observer(function SignPage() {
   const store = useContext(StoreContext)
   const navigate = useNavigate()
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const authState = store.auth.entities
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const authStatusFetch = store.auth.status
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     if (authState && authState.id) {
       navigate("/")
     }

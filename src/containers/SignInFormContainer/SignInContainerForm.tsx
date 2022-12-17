@@ -35,24 +35,14 @@ const SignInContainerForm = observer(function SignInContainerForm(
   }
 
   async function handleClickSignInWithGoogle() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const responseSign = await store.auth.signInWithGoogle()
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const responseUser = await store.user.fetchUser(responseSign?.payload?.id)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (!responseUser.payload || !responseUser.payload.id) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      const responseUser = await store.user.createUser(responseSign.payload)
+    const responseUser = await store.user.fetchUser()
+    if (!responseUser || !responseUser.id) {
+      await store.user.createUser(responseSign?.user)
     }
   }
 
   async function handleSignInDefault(data: SignInFormState) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     await store.auth.signIn({
       email: data.email,
       password: data.password,

@@ -13,11 +13,8 @@ import "./style.scss"
 const HomeLayout = observer(function HomeLayout() {
   const theme = useContext(ThemeContext)
   const store = useContext(StoreContext)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+
   const authStateFetch = store.auth.status
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartStateFetch = store.cart.status
 
   const authLoading = authStateFetch === ActionStatus.pending
@@ -26,14 +23,8 @@ const HomeLayout = observer(function HomeLayout() {
   useEffect(() => {
     const unsubscribeAuth = api.auth.subscribeStateChange(async (user) => {
       if (user) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         await store.auth.signCheck()
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         await store.user.fetchUser()
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         await store.cart.fetchCart()
       }
     })
@@ -49,11 +40,7 @@ const HomeLayout = observer(function HomeLayout() {
     <div
       className={aboutLayoutClass}
       style={{
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         background: theme[theme.themeValue].background,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         color: theme[theme.themeValue].color,
       }}
     >

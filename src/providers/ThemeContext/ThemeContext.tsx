@@ -20,7 +20,7 @@ const theme = {
   },
 }
 
-export const ThemeContext = React.createContext(theme)
+export const ThemeContext = React.createContext<typeof theme>(theme)
 
 function ThemeProvider(props: ThemeContextProps) {
   const { children } = props

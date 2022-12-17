@@ -8,11 +8,15 @@ import { ActionStatus } from "../storeType"
 import { AuthEntities, SignPayload, SignReturnData } from "./authType"
 
 class AuthStore {
-  entities: AuthEntities | null = null
-  status: ActionStatus = ActionStatus.useless
-  error: string | null = null
+  entities: AuthEntities | null
+  status: ActionStatus
+  error: string | null
 
   constructor() {
+    this.entities = null
+    this.status = ActionStatus.useless
+    this.error = null
+
     makeObservable(this, {
       entities: observable,
       status: observable,

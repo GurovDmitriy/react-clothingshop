@@ -17,14 +17,8 @@ const NavListContainer = observer(function NavListContainer(
   const theme = useContext(ThemeContext)
   const store = useContext(StoreContext)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const authData = store.auth.entities
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartData = store.cart.entities
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const cartCountItems = store.cart.cartCountItems
   const navigate = useNavigate()
 
@@ -36,14 +30,8 @@ const NavListContainer = observer(function NavListContainer(
   const activeButton = renderActiveButton()
 
   async function handlerSignOut() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    store.auth.signOut()
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    await store.auth.signOut()
     store.user.clearUser()
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     store.cart.clearCart()
   }
 

@@ -19,20 +19,18 @@ const SignUpFormContainer = observer(function SignUpFormContainer(
       return
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const signUpResponse = await store.auth.signUp({
       email: data.email,
       password: data.password,
     })
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    await store.user.createUser({
-      id: signUpResponse.payload?.id,
-      displayName: data.name,
-      email: data.email,
-    })
+    if (signUpResponse && signUpResponse.uid) {
+      await store.user.createUser({
+        id: signUpResponse.uid,
+        displayName: data.name,
+        email: data.email,
+      })
+    }
   }
 
   const formClass = classNames("sign-up-form-container", className)

@@ -10,18 +10,12 @@ const CategoryPage = observer(function CategoryPage() {
   const store = useContext(StoreContext)
   const navigate = useNavigate()
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const auth = store.auth.entities
 
   async function handlerAddToCart(cartItem: CollectionPreviewItemEntities) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     if (!auth || !auth.id) {
       navigate("/sign")
     } else {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       await store.cart.addToCart(cartItem)
     }
   }

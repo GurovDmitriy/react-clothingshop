@@ -55,9 +55,7 @@ class UserStore {
     }
   }
 
-  async fetchUser(
-    payload: CreateUserPayload
-  ): Promise<UserDataReturn | undefined> {
+  async fetchUser(): Promise<UserDataReturn | undefined> {
     try {
       const userId: any = authStore?.entities?.id || null
 
