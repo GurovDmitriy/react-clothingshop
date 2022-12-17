@@ -125,7 +125,7 @@ CartBox.defaultProps = {
 type CartBoxProps = {
   className?: string
   totalPrice?: number
-  entities?: Array<CartEntities>
+  entities?: Array<CartEntities> | null
   handlerChangeCount: (item: CartEntities, operation: CartOperation) => void
 }
 

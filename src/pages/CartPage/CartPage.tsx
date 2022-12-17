@@ -1,36 +1,34 @@
 import classNames from "classnames"
-import { useEffect } from "react"
+import { observer } from "mobx-react-lite"
+import { useContext, useEffect } from "react"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
 import { CartEntities, CartOperation } from "../../firebaseSDK/cart/cart"
-import {
-  addToCartAction,
-  deleteFromCartAction,
-  fetchCartAction,
-  removeFromCartAction,
-} from "../../store/cart/cartAction"
-import {
-  selectCart,
-  selectCartStatusFetch,
-  selectCartTotalPrice,
-} from "../../store/cart/cartSelector"
-import { useAppDispatch, useAppSelector } from "../../store/store"
+import { StoreContext } from "../../providers/StoreContext/StoreContext"
 import { ActionStatus } from "../../store/storeType"
 import "./style.scss"
 
-function CartPage(props: CartPageProps) {
+const CartPage = observer(function CartPage(props: CartPageProps) {
   const { className } = props
 
-  const dispatch = useAppDispatch()
-  const cart = useAppSelector(selectCart)
-  const totalPrice = useAppSelector(selectCartTotalPrice)
-  const cartStateFetch = useAppSelector(selectCartStatusFetch)
+  const store = useContext(StoreContext)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const cart = store.cart.entities
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const totalPrice = store.cart.cartTotalPrice
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const cartStateFetch = store.cart.status
 
-  const cartEntities = cart ? Object.values(cart) : []
+  const cartEntities: CartEntities[] = cart ? Object.values(cart) : []
   const loading = cartStateFetch === ActionStatus.pending
 
   useEffect(() => {
-    dispatch(fetchCartAction())
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    store.cart.fetchCart()
   }, [])
 
   async function handlerChangeCount(
@@ -39,15 +37,21 @@ function CartPage(props: CartPageProps) {
   ) {
     switch (cartOperation) {
       case CartOperation.increment:
-        dispatch(addToCartAction(cartItem))
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        store.cart.addToCart(cartItem)
         break
 
       case CartOperation.decrement:
-        dispatch(removeFromCartAction(cartItem))
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        store.cart.removeFromCart(cartItem)
         break
 
       case CartOperation.delete:
-        dispatch(deleteFromCartAction(cartItem))
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        store.cart.deleteFromCart(cartItem)
         break
 
       default:
@@ -68,7 +72,7 @@ function CartPage(props: CartPageProps) {
       />
     </div>
   )
-}
+})
 
 type CartPageProps = {
   className?: string

@@ -1,11 +1,12 @@
 import classNames from "classnames"
+import { observer } from "mobx-react-lite"
 import { useContext } from "react"
 import { Link, Outlet } from "react-router-dom"
 import ButtonDefault from "../../components/ButtonDefault/ButtonDefault"
 import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
 import "./style.scss"
 
-function AboutLayout() {
+const AboutLayout = observer(function AboutLayout() {
   const theme = useContext(ThemeContext)
   const aboutLayoutClass = classNames("about-layout", theme.themeValue)
 
@@ -31,6 +32,6 @@ function AboutLayout() {
       </div>
     </div>
   )
-}
+})
 
 export default AboutLayout

@@ -1,37 +1,50 @@
 import classNames from "classnames"
+import { observer } from "mobx-react-lite"
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import ButtonSimple from "../../components/ButtonSimple/ButtonSimple"
 import NavList from "../../components/NavList/NavList"
+import { CartEntities } from "../../firebaseSDK/cart/cart"
+import { StoreContext } from "../../providers/StoreContext/StoreContext"
 import { ThemeContext } from "../../providers/ThemeContext/ThemeContext"
 import { ThemeContextValue } from "../../providers/ThemeContext/themeContextType"
-import { signOutAction } from "../../store/auth/authAction"
-import { selectAuth } from "../../store/auth/authSelector"
-import { clearCartAction } from "../../store/cart/cartAction"
-import { selectCart, selectCartCountItems } from "../../store/cart/cartSelector"
-import { useAppDispatch, useAppSelector } from "../../store/store"
-import { clearUserAction } from "../../store/user/userAction"
 
-function NavListContainer(props: NavListContainerProps) {
+const NavListContainer = observer(function NavListContainer(
+  props: NavListContainerProps
+) {
   const { className } = props
 
   const theme = useContext(ThemeContext)
-  const dispatch = useAppDispatch()
+  const store = useContext(StoreContext)
 
-  const authData = useAppSelector(selectAuth)
-  const cartData = useAppSelector(selectCart)
-  const cartCountItems = useAppSelector(selectCartCountItems)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const authData = store.auth.entities
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const cartData = store.cart.entities
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const cartCountItems = store.cart.cartCountItems
   const navigate = useNavigate()
 
   const navListContainerClass = classNames("nav-list-container", className)
 
-  const cartListEntities = cartData ? Object.values(cartData) : []
+  const cartListEntities: CartEntities[] = cartData
+    ? Object.values(cartData)
+    : []
   const activeButton = renderActiveButton()
 
   async function handlerSignOut() {
-    dispatch(signOutAction())
-    dispatch(clearUserAction())
-    dispatch(clearCartAction())
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    store.auth.signOut()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    store.user.clearUser()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    store.cart.clearCart()
   }
 
   function handlerToCart() {
@@ -39,12 +52,7 @@ function NavListContainer(props: NavListContainerProps) {
   }
 
   function handlerThemeToggle(toggleCB: () => ThemeContextValue) {
-    const themeValue = toggleCB()
-
-    dispatch({
-      type: "theme/setThemeActionPending",
-      payload: themeValue,
-    })
+    toggleCB()
   }
 
   function renderActiveButton() {
@@ -85,7 +93,7 @@ function NavListContainer(props: NavListContainerProps) {
       cartListEntities={cartListEntities}
     />
   )
-}
+})
 
 type NavListContainerProps = {
   className?: string
