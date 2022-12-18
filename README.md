@@ -4,7 +4,7 @@
 
 ## Branch
 
-- main branch - MobX
+- main - MobX
 - example_redux - Redux
 - dev - development
 
@@ -12,6 +12,5 @@
 
 - TypeScript
 - MobX
-- Redux (Redux Toolkit, Thunk, Saga)
+- Redux (Toolkit, Thunk, Saga)
 - Firebase
-
