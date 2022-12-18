@@ -1,8 +1,8 @@
-import React from "react"
+import React, { Suspense } from "react"
 import ReactDOM from "react-dom/client"
 import { RouterProvider } from "react-router-dom"
 import "./assets/styles/main.scss"
-// import LoadingBlock from "./components/LoadingBlock/LoadingBlock"
+import LoadingBlock from "./components/LoadingBlock/LoadingBlock"
 import StoreProvider from "./providers/StoreContext/StoreContext"
 import ThemeProvider from "./providers/ThemeContext/ThemeContext"
 import router from "./router"
@@ -26,9 +26,9 @@ root.render(
   <React.StrictMode>
     <StoreProvider>
       <ThemeProvider>
-        {/*<Suspense fallback={<LoadingBlock loading={true} />}>*/}
-        <RouterProvider router={router} />
-        {/*</Suspense>*/}
+        <Suspense fallback={<LoadingBlock loading={true} />}>
+          <RouterProvider router={router} />
+        </Suspense>
       </ThemeProvider>
     </StoreProvider>
   </React.StrictMode>
