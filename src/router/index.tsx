@@ -1,5 +1,5 @@
 // import { lazy } from "react"
-import { createBrowserRouter } from "react-router-dom"
+import { createHashRouter } from "react-router-dom"
 // import { fetchCategory as rootLoader } from "../api/category/category"
 import { fetchCollectionList as collectionLoader } from "../api/shop/shop"
 import AboutLayout from "../layouts/AboutLayout/AboutLayout"
@@ -20,7 +20,7 @@ import SignPage from "../pages/SignPage/SignPage"
 // const ShopPage = lazy(() => import("../pages/ShopPage/ShopPage"))
 // const SignPage = lazy(() => import("../pages/SignPage/SignPage"))
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",
