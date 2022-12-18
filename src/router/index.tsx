@@ -17,62 +17,65 @@ const ShopPage = lazy(() => import("../pages/ShopPage/ShopPage"))
 const SignPage = lazy(() => import("../pages/SignPage/SignPage"))
 const AboutLayout = lazy(() => import("../layouts/AboutLayout/AboutLayout"))
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomeLayout />,
-    errorElement: <ErrorPage />,
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <HomeLayout />,
+      errorElement: <ErrorPage />,
 
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-        loader: rootLoader,
-      },
+      children: [
+        {
+          index: true,
+          element: <HomePage />,
+          loader: rootLoader,
+        },
 
-      {
-        path: "shop",
-        element: <ShopPage />,
-        loader: shopLoader,
-      },
+        {
+          path: "shop",
+          element: <ShopPage />,
+          loader: shopLoader,
+        },
 
-      {
-        path: "shop/:category",
-        element: <CategoryPage />,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        loader: collectionLoader,
-      },
+        {
+          path: "shop/:category",
+          element: <CategoryPage />,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          loader: collectionLoader,
+        },
 
-      {
-        path: "sign",
-        element: <SignPage />,
-      },
+        {
+          path: "sign",
+          element: <SignPage />,
+        },
 
-      {
-        path: "cart",
-        element: <CartPage />,
-      },
-    ],
-  },
+        {
+          path: "cart",
+          element: <CartPage />,
+        },
+      ],
+    },
 
-  {
-    path: "/about",
-    element: <AboutLayout />,
-    errorElement: <ErrorPage />,
+    {
+      path: "/about",
+      element: <AboutLayout />,
+      errorElement: <ErrorPage />,
 
-    children: [
-      {
-        index: true,
-        element: <AboutPage />,
-      },
+      children: [
+        {
+          index: true,
+          element: <AboutPage />,
+        },
 
-      {
-        path: "contact",
-        element: <ContactPage />,
-      },
-    ],
-  },
-])
+        {
+          path: "contact",
+          element: <ContactPage />,
+        },
+      ],
+    },
+  ],
+  { basename: process.env.PUBLIC_URL }
+)
 
 export default router
