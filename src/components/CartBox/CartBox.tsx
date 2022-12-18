@@ -1,7 +1,8 @@
 import classNames from "classnames"
-import { ReactComponent as IconDec } from "../../assets/images/decrement.svg"
-import { ReactComponent as IconDel } from "../../assets/images/delete.svg"
-import { ReactComponent as IconInc } from "../../assets/images/increment.svg"
+import { BsChevronLeft, BsChevronRight, BsDashSquare } from "react-icons/bs"
+// import { ReactComponent as IconDec } from "../../assets/images/decrement.svg"
+// import { ReactComponent as IconDel } from "../../assets/images/delete.svg"
+// import { ReactComponent as IconInc } from "../../assets/images/increment.svg"
 import { CartEntities, CartOperation } from "../../firebaseSDK/cart/cart"
 import "./style.scss"
 
@@ -52,7 +53,7 @@ function CartBox(props: CartBoxProps) {
                   handlerChangeCount(item, CartOperation.decrement)
                 }
               >
-                <IconDec />
+                <BsChevronLeft />
               </button>
               <span className="cart-box__item-quantity">{item.count}</span>
               <button
@@ -61,7 +62,7 @@ function CartBox(props: CartBoxProps) {
                   handlerChangeCount(item, CartOperation.increment)
                 }
               >
-                <IconInc />
+                <BsChevronRight />
               </button>
             </span>
           </td>
@@ -73,7 +74,7 @@ function CartBox(props: CartBoxProps) {
               className="cart-box__item-btn cart-box__item-btn--del"
               onClick={() => handlerChangeCount(item, CartOperation.delete)}
             >
-              <IconDel />
+              <BsDashSquare />
             </button>
           </td>
         </tr>

@@ -1,7 +1,7 @@
 import classNames from "classnames"
-import { BsLightbulb } from "react-icons/bs"
+import { BsCart3, BsLightbulb } from "react-icons/bs"
 import { Link } from "react-router-dom"
-import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
+// import { ReactComponent as CartIcon } from "../../assets/images/cart.svg"
 import { CartEntities } from "../../firebaseSDK/cart/cart"
 import ButtonIcon from "../ButtonIcon/ButtonIcon"
 import ButtonSimple from "../ButtonSimple/ButtonSimple"
@@ -45,7 +45,7 @@ function NavList(props: NavListProps) {
           <ButtonIcon
             as="span"
             isHiddenLabel={false}
-            icon={<CartIcon />}
+            icon={<BsCart3 />}
             title="title"
           >
             {cartCountItems}
