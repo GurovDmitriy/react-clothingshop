@@ -14,4 +14,3 @@
 - MobX
 - Redux (Toolkit, Thunk, Saga)
 - Firebase
-
