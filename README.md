@@ -4,7 +4,7 @@
 
 ## Branch
 
-- main branch - MobX
+- main - MobX
 - example_redux - Redux
 - dev - development
 

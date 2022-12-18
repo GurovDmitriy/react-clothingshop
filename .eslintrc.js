@@ -8,7 +8,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:mobx/recommended",
+    // "plugin:mobx/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -18,7 +18,11 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "mobx"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    // "mobx"
+  ],
   rules: {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
@@ -27,11 +31,11 @@ module.exports = {
       1,
       { extensions: [".js", ".jsx", ".ts", ".tsx"] },
     ], //should add ".ts" if typescript project
-    "mobx/exhaustive-make-observable": "warn",
-    "mobx/unconditional-make-observable": "error",
-    "mobx/missing-make-observable": "error",
-    "mobx/missing-observer": "warn",
-    "mobx/no-anonymous-observer": "warn",
+    // "mobx/exhaustive-make-observable": "warn",
+    // "mobx/unconditional-make-observable": "error",
+    // "mobx/missing-make-observable": "error",
+    // "mobx/missing-observer": "warn",
+    // "mobx/no-anonymous-observer": "warn",
   },
   settings: {
     react: {
