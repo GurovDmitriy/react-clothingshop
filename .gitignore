@@ -89,3 +89,4 @@ pnpm-debug.log*
 *.psd
 *.sublime*
 .env
+.firebase
