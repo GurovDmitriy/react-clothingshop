@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { createHashRouter } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 import { fetchCategory as rootLoader } from "../api/category/category"
 import {
   fetchCollectionList as collectionLoader,
@@ -17,7 +17,7 @@ const ContactPage = lazy(() => import("../pages/ContactPage/ContactPage"))
 const ShopPage = lazy(() => import("../pages/ShopPage/ShopPage"))
 const SignPage = lazy(() => import("../pages/SignPage/SignPage"))
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,

@@ -88,3 +88,5 @@ pnpm-debug.log*
 *.pdf
 *.psd
 *.sublime*
+.env
+.firebase
