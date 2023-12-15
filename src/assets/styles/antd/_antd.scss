@@ -1,0 +1,25 @@
+@use "sass:map";
+
+.ant-layout {
+  height: auto;
+  margin: 0;
+  padding: 0;
+
+  line-height: initial;
+
+  background: var(--white);
+}
+
+.ant-layout-header {
+  margin: 0;
+  padding: 0;
+
+  background: var(--white);
+}
+
+.ant-layout-footer {
+  margin: 0;
+  padding: 0;
+
+  background: var(--white);
+}

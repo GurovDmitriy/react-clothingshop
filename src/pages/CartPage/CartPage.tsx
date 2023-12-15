@@ -2,7 +2,7 @@ import classNames from "classnames"
 import { useEffect } from "react"
 import CartBox from "../../components/CartBox/CartBox"
 import LoadingBlock from "../../components/LoadingBlock/LoadingBlock"
-import { CartEntities, CartOperation } from "../../firebaseSDK/cart/cart"
+import { CartEntities, CartOperation } from "@/modules/firebaseSDK/cart/cart"
 import {
   addToCartAction,
   deleteFromCartAction,

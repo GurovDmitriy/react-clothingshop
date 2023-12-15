@@ -2,9 +2,9 @@ import classNames from "classnames"
 import SignUpForm, {
   SignUpFormState,
 } from "../../components/SignUpForm/SignUpForm"
-import { signUpAction } from "../../store/auth/authAction"
-import { useAppDispatch } from "../../store/store"
-import { createUserAction } from "../../store/user/userAction"
+import { signUpAction } from "@/store/auth/authAction"
+import { useAppDispatch } from "@/store/store"
+import { createUserAction } from "@/store/user/userAction"
 
 function SignUpFormContainer(props: SignUpFormContainerProps) {
   const { className } = props
@@ -21,7 +21,7 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
       signUpAction({
         email: data.email,
         password: data.password,
-      })
+      }),
     )
 
     await dispatch(
@@ -31,7 +31,7 @@ function SignUpFormContainer(props: SignUpFormContainerProps) {
         id: signUpResponse.payload?.id,
         displayName: data.name,
         email: data.email,
-      })
+      }),
     )
   }
 

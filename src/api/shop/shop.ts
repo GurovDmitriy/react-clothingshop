@@ -6,13 +6,9 @@ export type FetchShopCollectionProps = {
   }
 }
 
-export type FetchShopCollectionResponse = Promise<{
-  collectionList: Array<Shop>
-}>
-
 async function fetchCollectionList(
   props: FetchShopCollectionProps
-): FetchShopCollectionResponse {
+) {
   const collectionList = await getCollectionList(props.params.category)
 
   return { collectionList }
@@ -20,7 +16,7 @@ async function fetchCollectionList(
 
 export type FetchShopResponse = Promise<{ shopList: Array<Shop> }>
 
-async function fetchShopItems(): FetchShopResponse {
+async function fetchShopItems() {
   const shopList = await getShopItems()
   return { shopList }
 }

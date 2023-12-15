@@ -1,4 +1,4 @@
-import { CartEntities } from "../../firebaseSDK/cart/cart"
+import { CartEntities } from "@/modules/firebaseSDK/cart/cart"
 import { ActionStatus } from "../storeType"
 
 export type CartEntitiesItem = {

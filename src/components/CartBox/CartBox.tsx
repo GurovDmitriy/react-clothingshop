@@ -2,7 +2,7 @@ import classNames from "classnames"
 import { ReactComponent as IconDec } from "../../assets/images/decrement.svg"
 import { ReactComponent as IconDel } from "../../assets/images/delete.svg"
 import { ReactComponent as IconInc } from "../../assets/images/increment.svg"
-import { CartEntities, CartOperation } from "../../firebaseSDK/cart/cart"
+import { CartEntities, CartOperation } from "@/modules/firebaseSDK/cart/cart"
 import "./style.scss"
 
 function CartBox(props: CartBoxProps) {

@@ -1,10 +1,10 @@
-import firebaseSDK from "../../firebaseSDK/firebaseSDK"
+import firebaseSDK from "@/modules/firebaseSDK/firebaseSDK"
 import {
   CreateUserPayload,
   CreateUserResponse,
   FetchUserPayload,
   FetchUserResponse,
-} from "../../firebaseSDK/user/user"
+} from "@/modules/firebaseSDK/user/user"
 
 function createUserDocument(payload: CreateUserPayload): CreateUserResponse {
   const data = {

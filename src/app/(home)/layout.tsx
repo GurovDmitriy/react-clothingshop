@@ -1,0 +1,34 @@
+"use client"
+
+import { ContainerFooter } from "@/domain/Footer/components/Footer/ContainerFooter"
+import { ContainerHeader } from "@/domain/Header/components/Header/ContainerHeader"
+import { ContainerMenu } from "@/domain/Menu/ContainerMenu"
+import { IPropsChildrenNode } from "@/lib/types/definitions"
+import { Layout } from "antd"
+import { useState } from "react"
+import styles from "./styles.module.scss"
+
+const { Sider, Content } = Layout
+
+export default function LayoutHome(props: IPropsChildrenNode) {
+  const [collapsed, setCollapsed] = useState(false)
+
+  function handleToggleMenu() {
+    setCollapsed(!collapsed)
+  }
+
+  return (
+    <Layout className={styles["ant-layout"]}>
+      <ContainerHeader onClick={handleToggleMenu} open={!collapsed} />
+      <Layout>
+        <Sider trigger={null} collapsible collapsed={collapsed}>
+          <ContainerMenu />
+        </Sider>
+        <Layout>
+          <Content className={styles.content}>{props.children}</Content>
+        </Layout>
+      </Layout>
+      <ContainerFooter />
+    </Layout>
+  )
+}

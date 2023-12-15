@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { CartEntities } from "../../firebaseSDK/cart/cart"
+import { CartEntities } from "@/modules/firebaseSDK/cart/cart"
 import ButtonDefault from "../ButtonDefault/ButtonDefault"
 import "./style.scss"
 

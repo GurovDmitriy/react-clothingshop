@@ -1,0 +1,14 @@
+.spinner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.icon :global(svg) {
+  width: 30px;
+  height: 30px;
+
+  fill: var(--spinner-main);
+}

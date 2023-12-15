@@ -1,16 +1,36 @@
-# Learn React - Clothing Shop
+# Beautychit
 
 ---
 
-## Branch
+## npm install a project
 
-- main - MobX
-- example_redux - Redux
-- dev - development
+```bash
+npm ci
+#or
+npm install
+#optional
+npm audit [fix]
+```
 
-## Example features
+## npm update with npm-check-updates
 
-- TypeScript
-- MobX
-- Redux (Toolkit, Thunk, Saga)
-- Firebase
+```bash
+npm install -g npm-check-updates
+ncu --interactive --format group
+```
+
+## node version manager
+
+https://volta.sh/
+
+```bash
+volta install node@lts
+volta pin node@lts
+```
+
+## executable files
+
+```sh
+chmod +x .husky/pre-commit
+chmod +x .husky/commit-msg
+```

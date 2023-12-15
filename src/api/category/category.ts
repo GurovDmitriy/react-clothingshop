@@ -1,8 +1,6 @@
 import categoryData, { Category } from "./data"
 
-export type FetchCategoryResponse = Promise<{ menuList: Array<Category> }>
-
-async function fetchCategory(): FetchCategoryResponse {
+async function fetchCategory() {
   const menuList = await new Promise<Array<Category>>((resolve) =>
     resolve(categoryData)
   )

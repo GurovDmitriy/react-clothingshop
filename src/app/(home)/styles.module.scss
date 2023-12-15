@@ -1,0 +1,17 @@
+@import "@/assets/styles/main";
+
+.ant-layout :global(.ant-layout-sider) {
+  background: var(--white);
+}
+
+.ant-layout :global(.ant-menu) {
+  height: 100%;
+}
+
+.content {
+  padding: $space-md;
+}
+
+.page {
+  min-height: 100%;
+}

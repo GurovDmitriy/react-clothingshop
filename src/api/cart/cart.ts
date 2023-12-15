@@ -5,8 +5,8 @@ import {
   DeleteCartFieldDocumentResponse,
   FetchCartDocumentPayload,
   FetchCartDocumentResponse,
-} from "../../firebaseSDK/cart/cart"
-import firebaseSDK from "../../firebaseSDK/firebaseSDK"
+} from "@/modules/firebaseSDK/cart/cart"
+import firebaseSDK from "@/modules/firebaseSDK/firebaseSDK"
 
 function createCartDocument(
   payload: CartDocumentPayload

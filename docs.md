@@ -1,33 +1,123 @@
 # Docs
 
-## Component
+## Components layer
 
-```jsx
-function ButtonDefault(props) {
-  const { children } = props
+- Layout
+- Page
+- Domain
+- Context
+- Container
+- UI
 
-  // hooks
-  // ...
+## Folders available as global and local structure
 
-  // variables
-  // ...
+- App
+  directory next.js for routing
 
-  // other logic
-  // ...
+- Assets
+  styles project global styles, images, icons, fonts
 
-  // handler funciton
-  // ...
+- Styles
+  module scss styles
 
-  // render function
-  // ...
+- Components
+  components group
 
-  // helper function
-  // ...
+- UI
+  clean components on props
 
-  return (
-    <div>
-      <button>{children}</button>
-    </div>
-  )
-}
-```
+- Container
+  logic components
+
+- Skeleton
+  skeleton components
+
+- Actions
+  server actions and fetch
+
+- Api
+  client api, documents gql
+
+- Hooks
+  client hooks
+
+- Hocs
+  components with hoc pattern
+
+- Types
+  reusable types
+
+- Util
+  reusable function
+
+- Tools
+  reusable function with dependency project
+
+- Gql
+  generate files types for graphQL
+
+## Convention
+
+Component
+
+- Layout<Default> - component layout
+- Page<Home> - component page
+- Container<CardUser> - logic component with fetch data and store
+- UI<Card> - clean props component
+- Context<Theme> - react context
+- Provider<Theme> - react context provider
+- Skeleton<CardUser> - skeletons
+
+Event
+
+- on<Click> - listener event
+- handle<Submit> - handle event
+
+Function and variable
+
+- render<Item> - return part render
+- fragment<Item> - save part component
+- action<FetchUser> - server function
+- use<FetchUser> - user hook
+- query<FetchUser> - gql document query
+
+Types
+
+- I<User> - interface
+- T<User> - type
+- T<USER> - enum
+- U<Nullish> - type utils
+- MENU - constant
+
+## Approach
+
+Fetch
+
+- server actions and fetch
+- client fetch
+
+Skeleton
+
+- suspense skeleton
+- inner component data skeleton
+- skeleton component skeleton wrapper
+
+Types
+
+- local types
+- file types
+- structuring types priority vs inherit types
+
+## Code style auto
+
+- eslint
+  js error
+
+- prettier
+  code style formatting
+  sort imports and clean unused
+
+- stylelint
+  css formatting
+  errors
+  sorting

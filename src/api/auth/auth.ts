@@ -1,12 +1,12 @@
-import Firebase from "firebase/compat"
 import {
   SignOutResponse,
   SignPayload,
   SignResponse,
   SignWithGoogleResponse,
   SubscribeStateChangePayload,
-} from "../../firebaseSDK/auth/auth"
-import firebaseSDK from "../../firebaseSDK/firebaseSDK"
+} from "@/modules/firebaseSDK/auth/auth"
+import firebaseSDK from "@/modules/firebaseSDK/firebaseSDK"
+import Firebase from "firebase/compat/app";
 
 function signUp(payload: SignPayload): SignResponse {
   const data = {

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../api/api"
 import { CollectionPreviewItemEntities } from "../../api/shop/data"
-import { CartEntities } from "../../firebaseSDK/cart/cart"
+import { CartEntities } from "@/modules/firebaseSDK/cart/cart"
 import { RootState } from "../store"
 import { CartEntitiesItem } from "./cartType"
 
