@@ -1,14 +1,13 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons"
 import { Button, Form, Input, Space, Typography } from "antd"
 import Link from "next/link"
-import { email } from "@/domain/Sign/components/SignUp/validations/email"
-import { password } from "@/domain/Sign/components/SignUp/validations/password"
+import { email } from "@/domain/Sign/validations/email"
+import { password } from "@/domain/Sign/validations/password"
 
 const { Text } = Typography
 
 interface IProps {
   onSubmit(value: ICredential): void
-  onSubmitFailure(error: any): void
   hrefToggleForm: string
   pending: boolean
 }
@@ -23,14 +22,12 @@ type TField = Partial<ICredential>
 export function UIFormSignUp(props: IProps) {
   const btnSignUpPending = props.pending
   const btnSignWithGoogleDisabled = props.pending
-  const btnSignUpDisabled = false
 
   return (
     <Form
       disabled={props.pending}
-      name="form-sign-in"
+      name="form-sign-up"
       onFinish={props.onSubmit}
-      onFinishFailed={props.onSubmitFailure}
     >
       <Form.Item<TField> name="email" hasFeedback rules={email}>
         <Input prefix={<UserOutlined />} type="email" placeholder="Email" />
@@ -44,12 +41,7 @@ export function UIFormSignUp(props: IProps) {
       </Form.Item>
       <Form.Item>
         <Space>
-          <Button
-            type="primary"
-            htmlType="submit"
-            loading={btnSignUpPending}
-            disabled={btnSignUpDisabled}
-          >
+          <Button type="primary" htmlType="submit" loading={btnSignUpPending}>
             Sign up
           </Button>
 
@@ -63,7 +55,7 @@ export function UIFormSignUp(props: IProps) {
 
           <span>Or</span>
 
-          <Link href="/sign-in">Sign in</Link>
+          <Link href={props.hrefToggleForm}>Sign in</Link>
         </Space>
       </Form.Item>
     </Form>

@@ -3,7 +3,7 @@ import { UIUserDetail } from "@/domain/User/components/UIUserDetail/UIUserDetail
 import { Col, Row } from "antd"
 import { Suspense } from "react"
 
-export default function PageSettings() {
+export default function PageCart() {
   return (
     <div>
       <h2>Settings</h2>
