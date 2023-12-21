@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { TStatus } from "@/lib/types/definitions"
 

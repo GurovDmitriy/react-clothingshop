@@ -1,4 +1,4 @@
-import { UILogo } from "@/ui/UILogo/UILogo"
+import { UILogo } from "@/domain/_components/ui/UILogo/UILogo"
 import { Layout } from "antd"
 import styles from "./styles.module.scss"
 

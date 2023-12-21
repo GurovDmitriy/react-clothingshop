@@ -1,4 +1,4 @@
-import { UICopyright } from "@/ui/UICopyright/UICopyright"
+import { UICopyright } from "@/domain/Footer/components/UICopyright/UICopyright"
 import { Layout } from "antd"
 import styles from "./style.module.scss"
 

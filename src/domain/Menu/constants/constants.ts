@@ -4,7 +4,7 @@ export const MENU = {
     path: "/",
   },
 
-  settings: {
+  cart: {
     name: "cart",
     path: "/cart",
   },

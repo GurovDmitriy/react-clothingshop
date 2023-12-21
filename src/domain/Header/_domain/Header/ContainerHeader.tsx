@@ -1,4 +1,4 @@
-import { UIHeader } from "@/domain/Header/components/Header/components/UIHeader/UIHeader"
+import { UIHeader } from "@/domain/Header/_domain/Header/components/UIHeader/UIHeader"
 
 interface IProps {
   open: boolean

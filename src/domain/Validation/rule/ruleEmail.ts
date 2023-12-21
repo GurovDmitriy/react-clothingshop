@@ -1,5 +1,5 @@
 import { Rule } from "antd/es/form"
-import { messageCorrect } from "@/lib/validations/message/messageCorrect"
+import { messageCorrect } from "@/domain/Validation/message/messageCorrect"
 
 export function ruleEmail(emailLabel: string = "E-mail"): Rule {
   return {

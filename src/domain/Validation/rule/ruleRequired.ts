@@ -1,5 +1,5 @@
 import { Rule } from "antd/es/form"
-import { messageRequired } from "@/lib/validations/message/messageRequired"
+import { messageRequired } from "@/domain/Validation/message/messageRequired"
 
 export function ruleRequired(): Rule {
   return {

@@ -13,6 +13,10 @@
   @return rgba($red, $green, $blue, color.alpha($transparent-color));
 }
 
+@function color($val) {
+  @return map.get($colors, $val);
+}
+
 @function divide($x, $y) {
   @return math.div($x, $y);
 }

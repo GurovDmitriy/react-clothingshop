@@ -1,28 +1,19 @@
 import { MENU } from "@/domain/Menu/constants/constants"
-import {
-  CalendarOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from "@ant-design/icons"
+import { CalendarOutlined, UserOutlined } from "@ant-design/icons"
 import { Menu } from "antd"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const list = [
   {
-    key: MENU.events.name,
+    key: MENU.store.name,
     icon: <CalendarOutlined />,
-    label: <Link href={MENU.events.path}>{MENU.events.name}</Link>,
+    label: <Link href={MENU.store.path}>{MENU.store.name}</Link>,
   },
   {
-    key: MENU.contacts.name,
+    key: MENU.cart.name,
     icon: <UserOutlined />,
-    label: <Link href={MENU.contacts.path}>{MENU.contacts.name}</Link>,
-  },
-  {
-    key: MENU.settings.name,
-    icon: <SettingOutlined />,
-    label: <Link href={MENU.settings.path}>{MENU.settings.name}</Link>,
+    label: <Link href={MENU.cart.path}>{MENU.cart.name}</Link>,
   },
 ]
 
@@ -31,9 +22,9 @@ export function ContainerMenu() {
   const selectedKeys = getSelectedKeys()
 
   function getSelectedKeys() {
-    const startPath = pathName.split("/")[1]
+    const startPath = pathName ? pathName.split("/")[1] : ""
     const element =
-      list.find((item) => item.key === startPath)?.key ?? MENU.events.name
+      list.find((item) => item.key === startPath)?.key ?? MENU.store.name
     return [element]
   }
 

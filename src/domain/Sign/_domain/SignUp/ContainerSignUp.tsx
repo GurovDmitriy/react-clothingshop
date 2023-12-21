@@ -2,18 +2,17 @@
 
 import { useRouter } from "next/navigation"
 import { useStateFetch } from "@/hooks/useStateFetch"
-import { SignPayload } from "@/store/auth/authType"
 import { actionSignUp } from "@/domain/Sign/_domain/SignUp/actions/actionSignUp"
 import { UIFormSignUp } from "@/domain/Sign/_domain/SignUp/components/UIFormSignUp/UIFormSignUp"
-import { TPathFormSign } from "@/domain/Sign/types/types"
+import { ISignPayload, TPathFormSign } from "@/domain/Sign/types/types"
 import { UIAlertErrorBackend } from "@/domain/Sign/components/UIAlertErrorBackend/UIAlertErrorBackend"
 import { useEffect } from "react"
 
 export function ContainerSignUp() {
   const router = useRouter()
 
-  const { fetch, data, pending, error } = useStateFetch((values: SignPayload) =>
-    actionSignUp(values),
+  const { fetch, data, pending, error } = useStateFetch(
+    (values: ISignPayload) => actionSignUp(values),
   )
 
   async function submit(values: any) {

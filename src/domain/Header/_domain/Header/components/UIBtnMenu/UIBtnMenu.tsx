@@ -1,6 +1,6 @@
-import { UIIconMenu } from "@/domain/Header/components/Header/components/UIIconMenu/UIIconMenu"
 import { IPropsClassName } from "@/lib/types/definitions"
 import { Button } from "antd"
+import { UIIconMenu } from "@/domain/Header/_domain/Header/components/UIIconMenu/UIIconMenu"
 
 interface IProps extends IPropsClassName {
   open: boolean

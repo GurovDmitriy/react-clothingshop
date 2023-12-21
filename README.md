@@ -1,4 +1,4 @@
-# Beautychit
+# Clothing Store
 
 ---
 

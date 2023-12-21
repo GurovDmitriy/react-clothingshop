@@ -1,7 +1,7 @@
-import { UIBtnMenu } from "@/domain/Header/components/Header/components/UIBtnMenu/UIBtnMenu"
-import { UILogo } from "@/ui/UILogo/UILogo"
+import { UILogo } from "@/domain/_components/ui/UILogo/UILogo"
 import { Layout } from "antd"
 import styles from "./styles.module.scss"
+import { UIBtnMenu } from "@/domain/Header/_domain/Header/components/UIBtnMenu/UIBtnMenu"
 
 const { Header } = Layout
 

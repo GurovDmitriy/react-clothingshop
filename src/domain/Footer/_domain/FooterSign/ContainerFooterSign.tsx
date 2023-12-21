@@ -1,4 +1,4 @@
-import { UIFooterSign } from "@/domain/Footer/components/FooterSign/components/UIFooter/UIFooterSign"
+import { UIFooterSign } from "@/domain/Footer/_domain/FooterSign/components/UIFooter/UIFooterSign"
 
 export function ContainerFooterSign() {
   return <UIFooterSign />

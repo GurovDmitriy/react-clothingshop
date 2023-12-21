@@ -1,12 +1,12 @@
 "use client"
 
-import { ContainerFooter } from "@/domain/Footer/components/Footer/ContainerFooter"
-import { ContainerHeader } from "@/domain/Header/components/Header/ContainerHeader"
 import { ContainerMenu } from "@/domain/Menu/ContainerMenu"
 import { IPropsChildrenNode } from "@/lib/types/definitions"
 import { Layout } from "antd"
 import { useState } from "react"
 import styles from "./styles.module.scss"
+import { ContainerHeader } from "@/domain/Header/_domain/Header/ContainerHeader"
+import { ContainerFooter } from "@/domain/Footer/_domain/Footer/ContainerFooter"
 
 const { Sider, Content } = Layout
 
