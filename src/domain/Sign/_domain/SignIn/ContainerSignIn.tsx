@@ -8,15 +8,12 @@ import { useContextAuthMethods } from "@/domain/Sign/providers/ProviderAuth"
 export function ContainerSignIn() {
   const auth = useContextAuthMethods()
 
-  async function submit(values: any) {
-    await auth.signIn.fetch(values)
-  }
-
   return (
     <div>
       <UIFormSignIn
-        pending={auth.signIn.pending}
-        onSubmit={submit}
+        pending={auth.signIn.pending || auth.signWithGoogle.pending}
+        onSubmit={auth.signIn.fetch}
+        onSignGoogle={auth.signWithGoogle.fetch}
         hrefToggleForm={TPathFormSign.signUp}
       />
       <UIAlertErrorBackend error={auth.signIn.error} />

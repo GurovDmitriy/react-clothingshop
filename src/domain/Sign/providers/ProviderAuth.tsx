@@ -4,8 +4,10 @@ import { createContext, useContext, useLayoutEffect, useState } from "react"
 import { IPropsChildrenNode } from "@/lib/types/definitions"
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut as signOutFB,
 } from "firebase/auth"
 import { useRouter } from "next/navigation"
@@ -18,6 +20,8 @@ import {
 } from "@/domain/Sign/types/types"
 import { useStateFetch } from "@/hooks/useStateFetch"
 import { UNullishObj } from "@/lib/types/util"
+
+const provider = new GoogleAuthProvider()
 
 interface IState extends IAuthState {}
 interface IMethods extends IAuthMethods {}
@@ -38,9 +42,10 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     signInWithEmailAndPassword(auth, payload.email, payload.password),
   )
 
-  const sig = useStateFetch((payload: ISignPayload) =>
-    signInWithGoogle(auth, payload.email, payload.password),
-  )
+  const signWithGoogle = useStateFetch(async () => {
+    const result = await signInWithPopup(auth, provider)
+    GoogleAuthProvider.credentialFromResult(result)
+  })
 
   function signOut() {
     signOutFB(auth)
@@ -67,7 +72,7 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     signOut,
     signUp,
     signIn,
-    signInWithGoogle,
+    signWithGoogle,
   }
 
   return (

@@ -40,8 +40,9 @@ export function UIFormSignIn(props: IProps) {
           </Button>
 
           <Button
+            onClick={props.onSignGoogle}
             type="text"
-            htmlType="submit"
+            htmlType="button"
             disabled={btnSignWithGoogleDisabled}
           >
             <Text type="secondary">Sign with Google</Text>

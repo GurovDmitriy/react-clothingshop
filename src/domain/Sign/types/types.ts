@@ -13,6 +13,7 @@ export interface ISignPayload {
 
 export interface IFormSign {
   onSubmit(payload: ISignPayload): void
+  onSignGoogle(): void
   hrefToggleForm: string
 }
 
@@ -29,7 +30,7 @@ export interface IAuthMethods {
   signOut(): void
   signUp: ReturnType<typeof useStateFetch>
   signIn: ReturnType<typeof useStateFetch>
-  signInWithGoogle: ReturnType<typeof useStateFetch>
+  signWithGoogle: ReturnType<typeof useStateFetch>
 }
 
 export interface IUser {
