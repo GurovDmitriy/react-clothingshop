@@ -1,38 +1,25 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useStateFetch } from "@/hooks/useStateFetch"
-import { actionSignUp } from "@/domain/Sign/_domain/SignUp/actions/actionSignUp"
 import { UIFormSignUp } from "@/domain/Sign/_domain/SignUp/components/UIFormSignUp/UIFormSignUp"
-import { ISignPayload, TPathFormSign } from "@/domain/Sign/types/types"
+import { TPathFormSign } from "@/domain/Sign/types/types"
 import { UIAlertErrorBackend } from "@/domain/Sign/components/UIAlertErrorBackend/UIAlertErrorBackend"
-import { useEffect } from "react"
+import { useContextAuthMethods } from "@/domain/Sign/providers/ProviderAuth"
 
 export function ContainerSignUp() {
-  const router = useRouter()
-
-  const { fetch, data, pending, error } = useStateFetch(
-    (values: ISignPayload) => actionSignUp(values),
-  )
+  const auth = useContextAuthMethods()
 
   async function submit(values: any) {
-    await fetch(values)
+    await auth.signUp.fetch(values)
   }
-
-  useEffect(() => {
-    if (data && data.user.uid) {
-      router.push("/")
-    }
-  }, [pending, data])
 
   return (
     <div>
       <UIFormSignUp
-        pending={pending}
+        pending={auth.signUp.pending}
         onSubmit={submit}
         hrefToggleForm={TPathFormSign.signIn}
       />
-      <UIAlertErrorBackend error={error} />
+      <UIAlertErrorBackend error={auth.signUp.error} />
     </div>
   )
 }

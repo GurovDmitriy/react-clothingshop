@@ -1,9 +1,6 @@
 import { ReactNode } from "react"
 
 /**
- * UtilNullish
- *
- * Output
  * {
  *   name?: string | null
  * }
@@ -13,9 +10,11 @@ export type UNullish<T> = {
 }
 
 /**
- * UtilNullable
- *
- * Output
+ * type TUser = IUser | null | undefined
+ */
+export type UNullishObj<T> = T | null | undefined
+
+/**
  * {
  *   name: string | null
  * }

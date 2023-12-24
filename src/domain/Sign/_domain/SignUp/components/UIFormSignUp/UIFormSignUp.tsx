@@ -3,13 +3,11 @@ import { Button, Form, Input, Space, Typography } from "antd"
 import Link from "next/link"
 import { email } from "@/domain/Sign/validations/email"
 import { password } from "@/domain/Sign/validations/password"
-import { ISignPayload } from "@/domain/Sign/types/types"
+import { IFormSign, ISignPayload } from "@/domain/Sign/types/types"
 
 const { Text } = Typography
 
-interface IProps {
-  onSubmit(value: ISignPayload): void
-  hrefToggleForm: string
+interface IProps extends IFormSign {
   pending: boolean
 }
 

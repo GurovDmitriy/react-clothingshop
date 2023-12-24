@@ -1,5 +1,3 @@
-"use client"
-
 import { IPropsChildrenNode } from "@/lib/types/definitions"
 import "../assets/styles/globals.scss"
 import { ProviderAuth } from "@/domain/Sign/providers/ProviderAuth"
