@@ -20,6 +20,7 @@ import {
 } from "@/domain/Sign/types/types"
 import { useStateFetch } from "@/hooks/useStateFetch"
 import { UNullishObj } from "@/lib/types/util"
+import { cookies } from "next/headers"
 
 const provider = new GoogleAuthProvider()
 
@@ -51,6 +52,12 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     signOutFB(auth)
   }
 
+  function resetError() {
+    signIn.resetError()
+    signUp.resetError()
+    signWithGoogle.resetError()
+  }
+
   useLayoutEffect(() => {
     return onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -58,6 +65,7 @@ export function ProviderAuth(props: IPropsChildrenNode) {
         router.push("/")
       } else {
         setUser(null)
+        resetError()
         router.push("/sign-in")
       }
     })

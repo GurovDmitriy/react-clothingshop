@@ -13,6 +13,10 @@ export function useStateFetch<T>(cb: (...args: any[]) => Promise<T>) {
   const success = status === "success"
   const failure = status === "failure"
 
+  function resetError() {
+    setError(null)
+  }
+
   async function fetch(...args: any[]) {
     if (pending) return
 
@@ -32,6 +36,7 @@ export function useStateFetch<T>(cb: (...args: any[]) => Promise<T>) {
 
   return {
     fetch,
+    resetError,
     data,
     status,
     useless,

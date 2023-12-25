@@ -1,6 +1,15 @@
-# Clothing Store
+# Clothing Shop
 
 ---
+
+## React - Real World Clone
+
+- Next.js
+- Ant Design
+- Typescript
+- Eslint, Prettier, Stylelint,
+- Husky
+- Commitlint
 
 ## npm install a project
 
