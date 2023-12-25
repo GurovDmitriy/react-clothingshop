@@ -1,5 +1,5 @@
-@import "../../assets/styles/mixins";
-@import "../../assets/styles/variables";
+@import "@/domain/_assets/styles/mixins";
+@import "@/domain/_assets/styles/variables";
 
 .about-layout {
   @include container;

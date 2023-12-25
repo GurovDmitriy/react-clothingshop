@@ -6,6 +6,7 @@
 
 - Next.js
 - Ant Design
+- Firebase
 - Typescript
 - Eslint, Prettier, Stylelint,
 - Husky

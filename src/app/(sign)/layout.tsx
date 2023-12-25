@@ -1,7 +1,5 @@
-"use client"
-
 import { IPropsChildrenNode } from "@/lib/types/definitions"
-import { UIContainer } from "@/domain/_components/ui/UIContainer/UIContainer"
+import { UIContainer } from "@/domain/_components/UIContainer/UIContainer"
 import { Layout } from "antd"
 import styles from "./styles.module.scss"
 import { ContainerHeaderSign } from "@/domain/Header/_domain/HeaderSign/ContainerHeaderSign"
