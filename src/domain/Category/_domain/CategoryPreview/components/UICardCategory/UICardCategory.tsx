@@ -1,6 +1,9 @@
+"use client"
+
 import { Card } from "antd"
 import Image from "next/image"
 import { ICardCategory } from "@/domain/Category/types/types"
+import Link from "next/link"
 
 const { Meta } = Card
 
@@ -9,14 +12,28 @@ interface IProps {
 }
 
 export function UICardCategory(props: IProps) {
-  const image = <Image src={"#"} width={200} height={200} alt="image preview" />
+  const image = (
+    <Image
+      src={props.entity.image}
+      width={200}
+      height={200}
+      alt="image preview"
+      style={{
+        width: "100%",
+        height: "150px",
+        objectFit: "cover",
+      }}
+    />
+  )
 
   return (
-    <Card cover={image}>
-      <Meta
-        title={props.entity.caption}
-        description={props.entity.description}
-      />
-    </Card>
+    <Link href={props.entity.link}>
+      <Card cover={image}>
+        <Meta
+          title={props.entity.caption}
+          description={props.entity.description}
+        />
+      </Card>
+    </Link>
   )
 }

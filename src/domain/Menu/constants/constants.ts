@@ -1,6 +1,11 @@
 export const MENU = {
-  store: {
-    name: "store",
+  shop: {
+    name: "shop",
+    path: "/",
+  },
+
+  all: {
+    name: "all",
     path: "/",
   },
 
