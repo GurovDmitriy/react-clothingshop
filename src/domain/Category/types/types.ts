@@ -1,27 +1,14 @@
-export interface ICardCategory {
-  id: number
-  caption: string
-  description: string
-  link: string
+export type TProductId = string | number
+export type TProductPrice = string
+
+export interface IProduct {
+  id: TProductId
   image: string
+  caption: string
+  description?: string
+  price: TProductPrice
 }
 
-export type TCardCategoryList = ICardCategory[]
-
-export interface IShopItem {
-  id: number
-  name: string
-  imageUrl: string
-  price: number
+export interface IProductAction {
+  add(id: TProductId): void
 }
-
-export type TShopItemList = IShopItem[]
-
-export interface IShop {
-  id: number
-  title: string
-  routeName: string
-  items: TShopItemList
-}
-
-export type TShopList = IShop[]

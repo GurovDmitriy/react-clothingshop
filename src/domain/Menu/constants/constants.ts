@@ -4,9 +4,9 @@ export const MENU = {
     path: "/",
   },
 
-  all: {
-    name: "all",
-    path: "/",
+  category: {
+    name: "category",
+    path: "/category",
   },
 
   cart: {

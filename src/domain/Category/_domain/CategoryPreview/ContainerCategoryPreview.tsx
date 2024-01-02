@@ -1,22 +1,15 @@
 import { actionCategoryPreview } from "@/domain/Category/_domain/CategoryPreview/actions/actionCategoryPreview"
-import { UICardCategory } from "@/domain/Category/_domain/CategoryPreview/components/UICardCategory/UICardCategory"
-import { UICardGrid } from "@/domain/Category/_domain/CategoryPreview/components/UICardGrid/UICardGrid"
-import { Col, Row } from "antd"
+import { UICardList } from "@/domain/Category/_domain/CategoryPreview/components/UICardList/UICardList"
 
 export async function ContainerCategoryPreview() {
   const data = await actionCategoryPreview()
+  const dataAdaptive = data.map((item) => ({
+    id: item.id,
+    link: `/category/${item.value}`,
+    image: `/images/${item.image}`,
+    caption: item.caption,
+    description: item.description,
+  }))
 
-  const list = renderList()
-
-  function renderList() {
-    return data.map((item) => <UICardCategory key={item.id} entity={item} />)
-  }
-
-  return (
-    <Row>
-      <Col xs={24} lg={12}>
-        <UICardGrid>{list}</UICardGrid>
-      </Col>
-    </Row>
-  )
+  return <UICardList entity={dataAdaptive} />
 }

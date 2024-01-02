@@ -1,10 +1,8 @@
 import { MENU } from "@/domain/Menu/constants/constants"
 import {
-  CalendarOutlined,
   ShopOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined,
-  UserOutlined,
 } from "@ant-design/icons"
 import { Menu } from "antd"
 import Link from "next/link"
@@ -17,9 +15,9 @@ const list = [
     label: <Link href={MENU.shop.path}>{MENU.shop.name}</Link>,
   },
   {
-    key: MENU.all.name,
+    key: MENU.category.name,
     icon: <ShoppingOutlined />,
-    label: <Link href={MENU.all.path}>{MENU.all.name}</Link>,
+    label: <Link href={MENU.category.path}>{MENU.category.name}</Link>,
   },
   {
     key: MENU.cart.name,

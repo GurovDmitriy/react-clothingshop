@@ -1,7 +1,7 @@
 "use client"
 
 import { getCategoryList } from "@/domain/Category/actions/actionCategoryDetail"
-import { UICardCategoryDetailList } from "@/domain/Category/_domain/CategoryDetail/UICardCategoryDetailList/UICardCategoryDetailList"
+import { UICardList } from "@/domain/Category/components/UICardList/UICardList"
 
 interface IProps {
   slugCategory: string
@@ -20,9 +20,8 @@ export async function ContainerCategoryDetail(props: IProps) {
       image: item.imageUrl,
       caption: item.name,
       price: item.price,
-      add: handleAddToCart,
     }
   })
 
-  return <UICardCategoryDetailList entity={dataAdaptive} />
+  return <UICardList entity={dataAdaptive} add={handleAddToCart} />
 }
