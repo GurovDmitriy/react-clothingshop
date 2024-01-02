@@ -7,3 +7,21 @@ export interface ICardCategory {
 }
 
 export type TCardCategoryList = ICardCategory[]
+
+export interface IShopItem {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+}
+
+export type TShopItemList = IShopItem[]
+
+export interface IShop {
+  id: number
+  title: string
+  routeName: string
+  items: TShopItemList
+}
+
+export type TShopList = IShop[]

@@ -4,10 +4,10 @@
 
 - Layout
 - Page
-- Domain
-- Context
-- Container
-- UI
+- Domain - business
+- Context - shared state & methods
+- Container - logic
+- UI - cleanup on props
 
 ## Folders available as global and local structure
 
@@ -89,26 +89,7 @@ Types
 - U<Nullish> - type utils
 - MENU - constant
 
-## Approach
-
-Fetch
-
-- server actions and fetch
-- client fetch
-
-Skeleton
-
-- suspense skeleton
-- inner component data skeleton
-- skeleton component skeleton wrapper
-
-Types
-
-- local types
-- file types
-- structuring types priority vs inherit types
-
-## Code style auto
+## Code style
 
 - eslint
   js error
@@ -120,4 +101,4 @@ Types
 - stylelint
   css formatting
   errors
-  sorting
+  sorting css rules
