@@ -6,19 +6,20 @@ import { Button } from "antd"
 import {
   IProduct,
   IProductAction,
-  TProductId,
   TProductPrice,
 } from "@/domain/Category/types/types"
 
-interface IProps extends IProductAction, IProduct {}
+interface IProps extends IProductAction, IProduct {
+  add(): void
+}
 
 export async function UICardProduct(props: IProps) {
-  function renderButtonAdd(id: TProductId) {
+  function renderButtonAdd() {
     return (
       <Button
         type="text"
         key="add"
-        onClick={() => props.add(id)}
+        onClick={props.add}
         icon={<ShoppingCartOutlined />}
       ></Button>
     )
@@ -33,7 +34,7 @@ export async function UICardProduct(props: IProps) {
       key={props.id}
       image={props.image}
       caption={props.caption}
-      actions={[renderButtonAdd(props.id), renderPrice(props.price)]}
+      actions={[renderButtonAdd(), renderPrice(props.price)]}
     />
   )
 }

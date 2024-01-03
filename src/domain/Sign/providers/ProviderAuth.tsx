@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  createContext,
-  useContext,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react"
+import { createContext, useContext, useLayoutEffect, useState } from "react"
 import { IPropsChildrenNode } from "@/lib/types/definitions"
 import {
   createUserWithEmailAndPassword,
@@ -68,8 +62,6 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     const result = await signInWithPopup(auth, provider)
     GoogleAuthProvider.credentialFromResult(result)
   })
-
-  const loading = signIn.pending || signUp.pending || signWithGoogle.pending
 
   function signOut() {
     signOutFB(auth)

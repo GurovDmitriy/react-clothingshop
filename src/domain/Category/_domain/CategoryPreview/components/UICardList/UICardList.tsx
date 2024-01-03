@@ -1,4 +1,3 @@
-import { Col, Row } from "antd"
 import { ICategory } from "@/domain/Category/_domain/CategoryPreview/types/types"
 import { UICard } from "@/domain/_components/UICard/UICard"
 import Link from "next/link"

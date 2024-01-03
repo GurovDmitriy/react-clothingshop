@@ -5,7 +5,6 @@ import {
   DeleteOutlined,
   MinusCircleOutlined,
   PlusCircleOutlined,
-  PlusOutlined,
 } from "@ant-design/icons"
 
 type TProps = Pick<ICartMethods, "increase" | "decrease" | "remove"> & {
