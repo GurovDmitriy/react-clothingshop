@@ -1,6 +1,12 @@
 "use client"
 
-import { createContext, useContext, useLayoutEffect, useState } from "react"
+import {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react"
 import { IPropsChildrenNode } from "@/lib/types/definitions"
 import {
   createUserWithEmailAndPassword,
@@ -10,7 +16,7 @@ import {
   signInWithPopup,
   signOut as signOutFB,
 } from "firebase/auth"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { auth } from "@/modules/firebaseSDK/config"
 import {
   IAuthMethods,
@@ -20,7 +26,7 @@ import {
 } from "@/domain/Sign/types/types"
 import { useStateFetch } from "@/hooks/useStateFetch"
 import { UNullishObj } from "@/lib/types/util"
-import { cookies } from "next/headers"
+import { UISpinner } from "@/domain/_components/UISpinner/UISpinner"
 
 const provider = new GoogleAuthProvider()
 
@@ -31,9 +37,24 @@ const ContextState = createContext<IState>(null!)
 const ContextMethods = createContext<IMethods>(null!)
 
 export function ProviderAuth(props: IPropsChildrenNode) {
+  const pathname = usePathname()
   const router = useRouter()
+
   const [user, setUser] = useState<UNullishObj<IUser>>(undefined)
   const isAuth = Boolean(user?.uid)
+
+  useLayoutEffect(() => {
+    return onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser({ email: user.email, uid: user.uid })
+        redirectToPrev()
+      } else {
+        setUser(null)
+        resetError()
+        redirectToSign()
+      }
+    })
+  }, [])
 
   const signUp = useStateFetch((payload: ISignPayload) =>
     createUserWithEmailAndPassword(auth, payload.email, payload.password),
@@ -48,8 +69,11 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     GoogleAuthProvider.credentialFromResult(result)
   })
 
+  const loading = signIn.pending || signUp.pending || signWithGoogle.pending
+
   function signOut() {
     signOutFB(auth)
+    setUser(undefined)
   }
 
   function resetError() {
@@ -58,18 +82,17 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     signWithGoogle.resetError()
   }
 
-  useLayoutEffect(() => {
-    return onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser({ email: user.email, uid: user.uid })
-        router.push("/")
-      } else {
-        setUser(null)
-        resetError()
-        router.push("/sign-in")
-      }
-    })
-  }, [])
+  function redirectToSign() {
+    router.push("/sign-in")
+  }
+
+  function redirectToPrev() {
+    if (["/sign-in", "/sign-up"].includes(pathname)) {
+      router.push("/")
+    } else {
+      router.push(pathname)
+    }
+  }
 
   const state: IState = {
     user,
@@ -83,11 +106,16 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     signWithGoogle,
   }
 
+  const inner = renderInner()
+
+  function renderInner() {
+    if (user === undefined) return <UISpinner />
+    else return props.children
+  }
+
   return (
     <ContextState.Provider value={state}>
-      <ContextMethods.Provider value={methods}>
-        {user === undefined ? "loading..." : props.children}
-      </ContextMethods.Provider>
+      <ContextMethods.Provider value={methods}>{inner}</ContextMethods.Provider>
     </ContextState.Provider>
   )
 }

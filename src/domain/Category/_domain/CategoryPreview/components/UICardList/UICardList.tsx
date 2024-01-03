@@ -23,11 +23,5 @@ export async function UICardList(props: IProps) {
     ))
   }
 
-  return (
-    <Row>
-      <Col xs={24} lg={12}>
-        <div className={styles.container}>{list}</div>
-      </Col>
-    </Row>
-  )
+  return <div className={styles.container}>{list}</div>
 }

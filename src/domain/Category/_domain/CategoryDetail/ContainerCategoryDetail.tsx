@@ -9,13 +9,16 @@ import { IProduct } from "@/domain/Category/types/types"
 import { adapterAddToCart } from "@/domain/Cart/adapters/adapterAddToCart"
 import { useContextCartMethods } from "@/domain/Cart/providers/ProviderCart"
 import useSWR from "swr"
+import { UIGridMain } from "@/domain/_components/UIGridMaiin/UIGridMain"
 
 interface IProps {
   slugCategory: string
 }
 
 export function ContainerCategoryDetail(props: IProps) {
-  const { data, error, isLoading } = useSWR(props.slugCategory, getCategoryList)
+  const { data } = useSWR(props.slugCategory, getCategoryList, {
+    suspense: true,
+  })
   const cartMethods = useContextCartMethods()
 
   function handleAddToCart(product: IProduct) {
@@ -37,5 +40,9 @@ export function ContainerCategoryDetail(props: IProps) {
     })
   }
 
-  return <UICardList entity={dataAdaptive} add={handleAddToCart} />
+  return (
+    <UIGridMain>
+      <UICardList entity={dataAdaptive} add={handleAddToCart} />
+    </UIGridMain>
+  )
 }

@@ -1,8 +1,8 @@
 "use client"
 
 import { doc, updateDoc } from "firebase/firestore"
-import { db } from "@/archive/firebaseSDK/config"
 import { ICartProduct } from "@/domain/Cart/types/types"
+import { db } from "@/modules/firebaseSDK/config"
 
 export async function actionUpdateCart(
   uid: string,

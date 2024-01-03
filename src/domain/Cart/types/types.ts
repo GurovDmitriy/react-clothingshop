@@ -14,7 +14,7 @@ export interface ICartProduct {
 
 export interface ICartState {
   cart: ICart
-  total: string
+  total: number
 }
 
 export interface ICartMethods {

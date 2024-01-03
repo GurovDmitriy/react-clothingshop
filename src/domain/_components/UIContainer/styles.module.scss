@@ -1,5 +1,5 @@
-@import "main";
+@import "../../_assets/styles/main";
 
 .container {
-  @include container;
+  @include container-global;
 }

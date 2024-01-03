@@ -7,6 +7,7 @@ import { useState } from "react"
 import styles from "./styles.module.scss"
 import { ContainerHeader } from "@/domain/Header/_domain/Header/ContainerHeader"
 import { ContainerFooter } from "@/domain/Footer/_domain/Footer/ContainerFooter"
+import { ProviderCart } from "@/domain/Cart/providers/ProviderCart"
 
 const { Sider, Content } = Layout
 
@@ -18,17 +19,19 @@ export default function LayoutHome(props: IPropsChildrenNode) {
   }
 
   return (
-    <Layout className={styles["ant-layout"]}>
-      <ContainerHeader onClick={handleToggleMenu} open={!collapsed} />
-      <Layout>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-          <ContainerMenu />
-        </Sider>
+    <ProviderCart>
+      <Layout className={styles["ant-layout"]}>
+        <ContainerHeader onClick={handleToggleMenu} open={!collapsed} />
         <Layout>
-          <Content className={styles.content}>{props.children}</Content>
+          <Sider trigger={null} collapsible collapsed={collapsed}>
+            <ContainerMenu />
+          </Sider>
+          <Layout>
+            <Content className={styles.content}>{props.children}</Content>
+          </Layout>
         </Layout>
+        <ContainerFooter />
       </Layout>
-      <ContainerFooter />
-    </Layout>
+    </ProviderCart>
   )
 }

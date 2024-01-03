@@ -1,5 +1,6 @@
 import { actionCategoryPreview } from "@/domain/Category/_domain/CategoryPreview/actions/actionCategoryPreview"
 import { UICardList } from "@/domain/Category/_domain/CategoryPreview/components/UICardList/UICardList"
+import { UIGridMain } from "@/domain/_components/UIGridMaiin/UIGridMain"
 
 export async function ContainerCategoryPreview() {
   const data = await actionCategoryPreview()
@@ -11,5 +12,9 @@ export async function ContainerCategoryPreview() {
     description: item.description,
   }))
 
-  return <UICardList entity={dataAdaptive} />
+  return (
+    <UIGridMain>
+      <UICardList entity={dataAdaptive} />
+    </UIGridMain>
+  )
 }

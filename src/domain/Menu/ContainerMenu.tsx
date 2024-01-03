@@ -31,12 +31,18 @@ export function ContainerMenu() {
     },
     {
       key: MENU.cart.name,
-      icon: <ShoppingCartOutlined />,
-      label: (
-        <Badge count={countProducts} overflowCount={10} offset={[10, 0]}>
-          <Link href={MENU.cart.path}>{MENU.cart.name}</Link>
+      icon: (
+        <Badge
+          count={countProducts}
+          overflowCount={10}
+          offset={[3, -2]}
+          style={{ lineHeight: "1.2", fontSize: "10px" }}
+          size="small"
+        >
+          <ShoppingCartOutlined />
         </Badge>
       ),
+      label: <Link href={MENU.cart.path}>{MENU.cart.name}</Link>,
     },
     {
       key: MENU.profile.name,

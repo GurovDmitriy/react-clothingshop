@@ -2,7 +2,7 @@
 @import "../config";
 @import "../breakpoints/breakpoints";
 
-@mixin container(
+@mixin container-global(
   $width: $container-width-mobile,
   $max-width: $container-max-width
 ) {
@@ -19,10 +19,6 @@
     padding-right: $container-padding-desktop;
     padding-left: $container-padding-desktop;
   }
-}
-
-.container {
-  @include container;
 }
 
 @mixin text-ellipsis() {

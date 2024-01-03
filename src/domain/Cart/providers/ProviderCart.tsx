@@ -7,13 +7,14 @@ import {
   ICartProduct,
   ICartState,
 } from "@/domain/Cart/types/types"
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { useContextAuthState } from "@/domain/Sign/providers/ProviderAuth"
 import { actionAddToCart } from "@/domain/Cart/actions/actionAddToCart"
 import { actionFetchCart } from "@/domain/Cart/actions/actionFetchCart"
 import { actionUpdateCart } from "@/domain/Cart/actions/actionUpdateCart"
 import { actionDeleteFromCart } from "@/domain/Cart/actions/actionDeleteFromCart"
 import { useStateFetch } from "@/hooks/useStateFetch"
+import { message } from "antd"
 
 interface IState extends ICartState {
   pending: boolean
@@ -28,6 +29,8 @@ export function ProviderCart(props: IPropsChildrenNode) {
   const [cart, setCart] = useState<ICart>({})
   const auth = useContextAuthState()
 
+  const [messageApi, contextHolder] = message.useMessage()
+
   const uid = auth.user?.uid ?? null
   const isAvailableActions = Boolean(auth.isAuth) && Boolean(uid)
 
@@ -41,18 +44,27 @@ export function ProviderCart(props: IPropsChildrenNode) {
     fetch()
   }, [])
 
+  useEffect(() => {}, [cart])
+
   async function fetchCart(): Promise<void | undefined> {
     if (!isAvailableActions) return undefined
 
     const cart = await actionFetchCart(uid!)
-    setCart(cart!)
+
+    if (!cart) {
+      setCart({})
+    } else {
+      setCart(cart)
+    }
   }
 
   async function add(payload: ICartProduct): Promise<void | undefined> {
     if (!isAvailableActions) return undefined
 
-    await actionAddToCart(uid!, payload)
-    await fetch()
+    await addWithMessage(async () => {
+      await actionAddToCart(uid!, payload)
+      await fetch()
+    })
   }
 
   async function increase(product: ICartProduct): Promise<void | undefined> {
@@ -74,12 +86,6 @@ export function ProviderCart(props: IPropsChildrenNode) {
     }
   }
 
-  const state: IState = {
-    cart,
-    total,
-    pending,
-  }
-
   async function remove(product: ICartProduct): Promise<void | undefined> {
     if (!isAvailableActions) return undefined
 
@@ -87,17 +93,33 @@ export function ProviderCart(props: IPropsChildrenNode) {
     await fetch()
   }
 
-  const methods: IMethods = {
-    fetch,
-    add,
-    increase,
-    decrease,
-    remove,
+  async function addWithMessage(cb: () => Promise<any>) {
+    const key = "addToCart"
+    messageApi.open({ key, type: "loading", content: "Add to cart..." })
+    await cb()
+    messageApi.open({ key, type: "success", content: "Product added" })
   }
+
+  const state: IState = {
+    cart,
+    total,
+    pending,
+  }
+
+  const methods: IMethods = useMemo(() => {
+    return {
+      fetch,
+      add,
+      increase,
+      decrease,
+      remove,
+    }
+  }, [])
 
   return (
     <ContextState.Provider value={state}>
       <ContextMethods.Provider value={methods}>
+        {contextHolder}
         {props.children}
       </ContextMethods.Provider>
     </ContextState.Provider>

@@ -2,7 +2,7 @@
 
 import Firebase from "firebase/compat/app"
 import { doc, getDoc } from "firebase/firestore"
-import { db } from "@/archive/firebaseSDK/config"
+import { db } from "@/modules/firebaseSDK/config"
 
 export async function actionFetchCart(
   uid: string,

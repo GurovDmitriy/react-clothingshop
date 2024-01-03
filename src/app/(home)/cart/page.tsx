@@ -1,21 +1,19 @@
 "use client"
 
-import { Col, Row } from "antd"
-import { Suspense } from "react"
-import { useContextAuthMethods } from "@/domain/Sign/providers/ProviderAuth"
+import { Col, Row, Typography } from "antd"
 import { ContainerCart } from "@/domain/Cart/ContainerCart"
 
-export default function PageCart() {
-  const signMethods = useContextAuthMethods()
+const { Title } = Typography
 
+export default function PageCart() {
   return (
     <div>
-      <h2>Cart</h2>
+      <Title level={2} type="secondary">
+        Cart
+      </Title>
       <Row>
         <Col xs={24} md={12}>
-          <Suspense fallback={"loading..."}>
-            <ContainerCart />
-          </Suspense>
+          <ContainerCart />
         </Col>
       </Row>
     </div>

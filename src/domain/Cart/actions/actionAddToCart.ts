@@ -2,7 +2,7 @@
 
 import { ICartProduct } from "@/domain/Cart/types/types"
 import { doc, setDoc } from "firebase/firestore"
-import { db } from "@/archive/firebaseSDK/config"
+import { db } from "@/modules/firebaseSDK/config"
 
 export async function actionAddToCart(
   uid: string,

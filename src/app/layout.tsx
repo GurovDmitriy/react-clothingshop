@@ -7,9 +7,7 @@ export default function LayoutRoot(props: IPropsChildrenNode) {
   return (
     <html lang="en">
       <body>
-        <ProviderAuth>
-          <ProviderCart>{props.children}</ProviderCart>
-        </ProviderAuth>
+        <ProviderAuth>{props.children}</ProviderAuth>
       </body>
     </html>
   )

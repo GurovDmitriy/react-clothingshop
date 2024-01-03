@@ -1,3 +1,5 @@
+"use client"
+
 import { IPropsChildrenNode } from "@/lib/types/definitions"
 import { UIContainer } from "@/domain/_components/UIContainer/UIContainer"
 import { Layout } from "antd"
