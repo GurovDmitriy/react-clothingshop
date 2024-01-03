@@ -3,6 +3,7 @@
 import { Col, Row } from "antd"
 import { Suspense } from "react"
 import { useContextAuthMethods } from "@/domain/Sign/providers/ProviderAuth"
+import { ContainerCart } from "@/domain/Cart/ContainerCart"
 
 export default function PageCart() {
   const signMethods = useContextAuthMethods()
@@ -11,10 +12,9 @@ export default function PageCart() {
     <div>
       <h2>Cart</h2>
       <Row>
-        <Col xs={24} md={12} xl={6}>
+        <Col xs={24} md={12}>
           <Suspense fallback={"loading..."}>
-            <div>cart</div>
-            <button onClick={signMethods.signOut}>signOut</button>
+            <ContainerCart />
           </Suspense>
         </Col>
       </Row>

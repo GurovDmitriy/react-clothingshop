@@ -32,7 +32,7 @@ export async function UICardList(props: IProps) {
             image={item.image}
             caption={item.caption}
             id={item.id}
-            add={props.add}
+            add={() => props.add(item)}
             price={item.price}
           />
         )

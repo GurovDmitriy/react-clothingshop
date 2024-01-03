@@ -13,4 +13,9 @@ export const MENU = {
     name: "cart",
     path: "/cart",
   },
+
+  profile: {
+    name: "profile",
+    path: "/profile",
+  },
 }

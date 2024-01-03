@@ -7,7 +7,6 @@ import { UIGrid } from "@/domain/_components/UIGrid/UIGrid"
 import { Typography } from "antd"
 import Link from "next/link"
 import styles from "./styles.module.scss"
-import { ArrowRightOutlined } from "@ant-design/icons"
 
 const { Title } = Typography
 
@@ -16,9 +15,9 @@ interface IProps extends IProductAction {
 }
 
 export function UICardListSplit(props: IProps) {
-  const list = renderlist()
+  const list = renderList()
 
-  function renderlist() {
+  function renderList() {
     return props.entity.map((category) => {
       const cards = renderCards(category.items)
 
@@ -40,7 +39,7 @@ export function UICardListSplit(props: IProps) {
       return (
         <UICardProduct
           key={item.id}
-          add={() => props.add(item.id)}
+          add={() => props.add(item)}
           price={item.price}
           id={item.id}
           image={item.image}

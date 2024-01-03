@@ -10,5 +10,5 @@ export interface IProduct {
 }
 
 export interface IProductAction {
-  add(id: TProductId): void
+  add(product: IProduct): void
 }
