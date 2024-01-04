@@ -44,8 +44,6 @@ export function ProviderCart(props: IPropsChildrenNode) {
     fetch()
   }, [])
 
-  useEffect(() => {}, [cart])
-
   async function fetchCart(): Promise<void | undefined> {
     if (!isAvailableActions) return undefined
 
