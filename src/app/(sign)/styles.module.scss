@@ -1,0 +1,17 @@
+@import "@/domain/_assets/styles/main";
+
+.layout {
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+}

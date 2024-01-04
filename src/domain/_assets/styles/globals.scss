@@ -1,0 +1,42 @@
+@use "sass:map";
+@import "normalize/normalize";
+@import "antd/antd";
+@import "config";
+
+:root {
+  @each $name, $col in $colors {
+    --#{$name}: #{$col};
+  }
+}
+
+html {
+  box-sizing: border-box;
+  width: $width-html;
+  min-width: $min-width-html;
+  min-height: $min-height-html;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: $width-body;
+  min-width: $min-width-html;
+  min-height: $min-height-html;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}

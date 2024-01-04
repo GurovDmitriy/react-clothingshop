@@ -1,0 +1,102 @@
+@use "sass:math";
+@import "../config";
+@import "../breakpoints/breakpoints";
+
+@mixin container-global(
+  $width: $container-width-mobile,
+  $max-width: $container-max-width
+) {
+  display: block;
+  width: $container-width-mobile;
+  max-width: $max-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $container-padding-mobile;
+  padding-left: $container-padding-mobile;
+
+  @include min-lg {
+    width: $container-width-desktop;
+    padding-right: $container-padding-desktop;
+    padding-left: $container-padding-desktop;
+  }
+}
+
+@mixin text-ellipsis() {
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-ellipsis {
+  @include text-ellipsis;
+}
+
+@mixin sr-only() {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+}
+
+.sr-only {
+  @include sr-only;
+}
+
+@mixin scroll-bar(
+  $size: 5px,
+  $radius: 20px,
+  $foreground: #d3d3d3,
+  $background: #ffffff
+) {
+  scrollbar-color: $foreground $background;
+
+  &::-webkit-scrollbar {
+    width: $size; /* Mostly for vertical scrollbars */
+    height: $size; /* Mostly for horizontal scrollbars */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* Foreground */
+
+    background: $foreground;
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar-track {
+    /* Background */
+
+    background: $background;
+  }
+}
+
+@mixin dont-break-out() {
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+
+  word-break: break-all;
+
+  /* Instead use this non-standard one: */
+
+  word-break: break-word;
+
+  /* These are technically the same, but use both */
+
+  overflow-wrap: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+
+  hyphens: auto;
+}
+
+.dont-break-out {
+  @include dont-break-out;
+}

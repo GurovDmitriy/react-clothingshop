@@ -1,0 +1,17 @@
+@import "../../../../../_assets/styles/main";
+
+.container {
+  display: grid;
+  gap: 20px;
+
+  @include min-md {
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.container :global(> a:last-child) {
+  @include min-md {
+    grid-area: 3 / span 2;
+  }
+}

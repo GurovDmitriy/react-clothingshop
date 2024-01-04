@@ -1,0 +1,15 @@
+@import "../../_assets/styles/main";
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 100%);
+  gap: 10px;
+
+  @include min-md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include min-lg {
+    grid-template-columns: repeat(4, 25%);
+  }
+}
