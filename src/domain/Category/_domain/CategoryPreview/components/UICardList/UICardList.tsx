@@ -7,7 +7,7 @@ interface IProps {
   entity: ICategory[]
 }
 
-export async function UICardList(props: IProps) {
+export function UICardList(props: IProps) {
   const list = renderList()
 
   function renderList() {

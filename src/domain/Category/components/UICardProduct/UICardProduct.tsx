@@ -13,7 +13,7 @@ interface IProps extends IProductAction, IProduct {
   add(): void
 }
 
-export async function UICardProduct(props: IProps) {
+export function UICardProduct(props: IProps) {
   function renderButtonAdd() {
     return (
       <Button

@@ -8,7 +8,7 @@ interface IProps extends IProductAction {
   entity: IProduct[] | undefined
 }
 
-export async function UICardList(props: IProps) {
+export function UICardList(props: IProps) {
   const list = getList()
 
   function getList() {

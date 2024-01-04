@@ -63,9 +63,9 @@ export function ProviderAuth(props: IPropsChildrenNode) {
     GoogleAuthProvider.credentialFromResult(result)
   })
 
-  function signOut() {
-    signOutFB(auth)
-    setUser(undefined)
+  async function signOut() {
+    await signOutFB(auth)
+    setUser(null)
   }
 
   function resetError() {
@@ -81,6 +81,8 @@ export function ProviderAuth(props: IPropsChildrenNode) {
   function redirectToPrev() {
     if (["/sign-in", "/sign-up"].includes(pathname)) {
       router.push("/")
+    } else if (pathname === "/") {
+      return
     } else {
       router.push(pathname)
     }
