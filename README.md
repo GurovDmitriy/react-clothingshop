@@ -2,12 +2,12 @@
 
 ---
 
-## React - Real World Clone
+## Real World Clone for React and Next.js 2023
 
-- Next.js
+- React + Next.js
+- Typescript
 - Ant Design
 - Firebase
-- Typescript
 - Eslint, Prettier, Stylelint,
 - Husky
 - Commitlint
