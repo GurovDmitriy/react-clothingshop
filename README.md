@@ -1,14 +1,16 @@
-# Clothing Shop
+# Clothing Shop (2024)
 
 ---
 
-## Real World Clone for React and Next.js 2023
+## Real World Clone for React and Next.js
 
 - React + Next.js
 - Typescript
 - Ant Design
 - Firebase
-- Eslint, Prettier, Stylelint,
+- Eslint
+- Prettier,
+- Stylelint,
 - Husky
 - Commitlint
 
