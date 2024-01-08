@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:output": "npx serve@latest out",
     "codegen": "graphql-codegen",
     "lint": "npm run lint:next && npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
     "lint:next": "next lint",

@@ -20,7 +20,7 @@ import {
   signOut as signOutFB,
 } from "firebase/auth"
 import { usePathname, useRouter } from "next/navigation"
-import { createContext, useContext, useLayoutEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 const provider = new GoogleAuthProvider()
 
@@ -37,7 +37,7 @@ export function ProviderAuth(props: IPropsChildrenNode) {
   const [user, setUser] = useState<UNullishObj<IUser>>(undefined)
   const isAuth = Boolean(user?.uid)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser({ email: user.email, uid: user.uid })
@@ -79,12 +79,13 @@ export function ProviderAuth(props: IPropsChildrenNode) {
   }
 
   function redirectToPrev() {
-    if (["/sign-in", "/sign-up"].includes(pathname)) {
-      router.push("/")
+    const pathn = window?.location.pathname || pathname
+    if (/sign-in|sign-up/.test(pathn)) {
+      return router.push("/")
     } else if (pathname === "/") {
       return
     } else {
-      router.push(pathname)
+      return router.push(pathname)
     }
   }
 
