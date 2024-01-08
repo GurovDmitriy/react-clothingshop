@@ -1,5 +1,5 @@
 import { UIIconMenu } from "@/domain/Header/_domain/Header/components/UIIconMenu/UIIconMenu"
-import { IPropsClassName } from "@/lib/types/definitions"
+import { IPropsClassName } from "@/shared/lib/types/definitions"
 import { Button } from "antd"
 
 interface IProps extends IPropsClassName {

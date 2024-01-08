@@ -1,7 +1,7 @@
 "use client"
 
 import { ICartProduct } from "@/domain/Cart/types/types"
-import { db } from "@/modules/firebaseSDK/config"
+import { db } from "@/shared/modules/firebaseSDK/config"
 import { deleteField, doc, updateDoc } from "firebase/firestore"
 
 export async function actionDeleteFromCart(

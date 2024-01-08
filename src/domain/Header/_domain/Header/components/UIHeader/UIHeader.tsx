@@ -1,5 +1,5 @@
 import { UIBtnMenu } from "@/domain/Header/_domain/Header/components/UIBtnMenu/UIBtnMenu"
-import { UILogo } from "@/domain/_components/UILogo/UILogo"
+import { UILogo } from "@/shared/ui/UILogo/UILogo"
 import { Layout } from "antd"
 import styles from "./styles.module.scss"
 

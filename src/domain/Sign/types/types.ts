@@ -1,5 +1,5 @@
-import { useStateFetch } from "@/hooks/useStateFetch"
-import { UNullishObj } from "@/lib/types/util"
+import { useStateFetch } from "@/shared/hooks/useStateFetch"
+import { UNullishObj } from "@/shared/lib/types/util"
 
 export enum TPathFormSign {
   signIn = "/sign-in",

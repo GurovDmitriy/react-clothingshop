@@ -1,4 +1,4 @@
-import { IPropsChildrenNode } from "@/lib/types/definitions"
+import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
 import { Col, Row } from "antd"
 
 export function UIGridMain(props: IPropsChildrenNode) {

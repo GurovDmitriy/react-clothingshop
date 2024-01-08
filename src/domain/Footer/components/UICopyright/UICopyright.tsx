@@ -1,4 +1,4 @@
-import { IPropsClassName } from "@/lib/types/definitions"
+import { IPropsClassName } from "@/shared/lib/types/definitions"
 import { Typography } from "antd"
 
 const { Title } = Typography

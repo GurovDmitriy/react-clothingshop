@@ -1,6 +1,5 @@
 "use client"
 
-import { UIGridMain } from "@/domain/_components/UIGridMaiin/UIGridMain"
 import { adapterAddToCart } from "@/domain/Cart/adapters/adapterAddToCart"
 import { useContextCartMethods } from "@/domain/Cart/providers/ProviderCart"
 import {
@@ -9,6 +8,7 @@ import {
 } from "@/domain/Category/actions/actionCategoryDetail"
 import { UICardList } from "@/domain/Category/components/UICardList/UICardList"
 import { IProduct } from "@/domain/Category/types/types"
+import { UIGridMain } from "@/shared/ui/UIGridMaiin/UIGridMain"
 import useSWR from "swr"
 
 interface IProps {

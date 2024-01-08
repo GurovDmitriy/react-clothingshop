@@ -1,6 +1,6 @@
 "use client"
 
-import { IPropsError } from "@/lib/types/definitions"
+import { IPropsError } from "@/shared/lib/types/definitions"
 import { useEffect } from "react"
 
 export function ContainerError(props: IPropsError) {

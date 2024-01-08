@@ -11,8 +11,8 @@ import {
   ICartState,
 } from "@/domain/Cart/types/types"
 import { useContextAuthState } from "@/domain/Sign/providers/ProviderAuth"
-import { useStateFetch } from "@/hooks/useStateFetch"
-import { IPropsChildrenNode } from "@/lib/types/definitions"
+import { useStateFetch } from "@/shared/hooks/useStateFetch"
+import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
 import { message } from "antd"
 import { createContext, useContext, useEffect, useMemo, useState } from "react"
 

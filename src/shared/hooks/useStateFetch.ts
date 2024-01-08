@@ -1,6 +1,6 @@
 "use client"
 
-import { TStatus } from "@/lib/types/definitions"
+import { TStatus } from "@/shared/lib/types/definitions"
 import { useState } from "react"
 
 export function useStateFetch<T>(cb: (...args: any[]) => Promise<T>) {

@@ -1,5 +1,5 @@
 import { UICardList } from "@/domain/Category/_domain/CategoryPreview/components/UICardList/UICardList"
-import { UIGridMain } from "@/domain/_components/UIGridMaiin/UIGridMain"
+import { UIGridMain } from "@/shared/ui/UIGridMaiin/UIGridMain"
 
 export interface ICategory {
   id: number

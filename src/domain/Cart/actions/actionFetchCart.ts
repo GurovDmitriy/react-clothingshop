@@ -1,6 +1,6 @@
 "use client"
 
-import { db } from "@/modules/firebaseSDK/config"
+import { db } from "@/shared/modules/firebaseSDK/config"
 import Firebase from "firebase/compat/app"
 import { doc, getDoc } from "firebase/firestore"
 

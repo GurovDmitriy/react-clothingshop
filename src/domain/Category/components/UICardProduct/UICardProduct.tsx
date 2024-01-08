@@ -5,7 +5,7 @@ import {
   IProductAction,
   TProductPrice,
 } from "@/domain/Category/types/types"
-import { UICard } from "@/domain/_components/UICard/UICard"
+import { UICard } from "@/shared/ui/UICard/UICard"
 import { ShoppingCartOutlined } from "@ant-design/icons"
 import { Button } from "antd"
 

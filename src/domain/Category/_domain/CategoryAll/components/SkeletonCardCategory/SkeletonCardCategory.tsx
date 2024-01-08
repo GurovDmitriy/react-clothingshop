@@ -1,6 +1,6 @@
 "use client"
 
-import { UIGrid } from "@/domain/_components/UIGrid/UIGrid"
+import { UIGrid } from "@/shared/ui/UIGrid/UIGrid"
 import { Card, Skeleton } from "antd"
 
 export function SkeletonCardCategory() {

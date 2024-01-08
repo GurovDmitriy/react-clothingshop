@@ -6,11 +6,11 @@ import {
   ISignPayload,
   IUser,
 } from "@/domain/Sign/types/types"
-import { UISpinner } from "@/domain/_components/UISpinner/UISpinner"
-import { useStateFetch } from "@/hooks/useStateFetch"
-import { IPropsChildrenNode } from "@/lib/types/definitions"
-import { UNullishObj } from "@/lib/types/util"
-import { auth } from "@/modules/firebaseSDK/config"
+import { useStateFetch } from "@/shared/hooks/useStateFetch"
+import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
+import { UNullishObj } from "@/shared/lib/types/util"
+import { auth } from "@/shared/modules/firebaseSDK/config"
+import { UISpinner } from "@/shared/ui/UISpinner/UISpinner"
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,

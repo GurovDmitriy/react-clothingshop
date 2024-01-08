@@ -1,6 +1,6 @@
 import { ProviderAuth } from "@/domain/Sign/providers/ProviderAuth"
-import "@/domain/_assets/styles/globals.scss"
-import { IPropsChildrenNode } from "@/lib/types/definitions"
+import "@/shared/assets/styles/globals.scss"
+import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

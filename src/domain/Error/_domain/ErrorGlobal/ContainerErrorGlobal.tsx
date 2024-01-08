@@ -1,6 +1,6 @@
 "use client"
 
-import { IPropsErrorGlobal } from "@/lib/types/definitions"
+import { IPropsErrorGlobal } from "@/shared/lib/types/definitions"
 import { useEffect } from "react"
 
 export function ContainerErrorGlobal(props: IPropsErrorGlobal) {

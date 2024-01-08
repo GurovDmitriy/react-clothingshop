@@ -2,7 +2,7 @@
 
 import { UICardProduct } from "@/domain/Category/components/UICardProduct/UICardProduct"
 import { IProduct, IProductAction } from "@/domain/Category/types/types"
-import { UIGrid } from "@/domain/_components/UIGrid/UIGrid"
+import { UIGrid } from "@/shared/ui/UIGrid/UIGrid"
 
 interface IProps extends IProductAction {
   entity: IProduct[] | undefined

@@ -2,8 +2,8 @@
 
 import { ContainerFooterSign } from "@/domain/Footer/_domain/FooterSign/ContainerFooterSign"
 import { ContainerHeaderSign } from "@/domain/Header/_domain/HeaderSign/ContainerHeaderSign"
-import { UIContainer } from "@/domain/_components/UIContainer/UIContainer"
-import { IPropsChildrenNode } from "@/lib/types/definitions"
+import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
+import { UIContainer } from "@/shared/ui/UIContainer/UIContainer"
 import { Layout } from "antd"
 import styles from "./styles.module.scss"
 

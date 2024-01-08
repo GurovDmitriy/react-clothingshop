@@ -1,4 +1,4 @@
-import { IPropsChildrenNode } from "@/lib/types/definitions"
+import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
 import styles from "./styles.module.scss"
 
 export function UIContainer(props: IPropsChildrenNode) {

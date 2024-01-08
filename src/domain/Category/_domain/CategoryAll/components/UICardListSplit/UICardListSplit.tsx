@@ -3,7 +3,7 @@
 import { ICategoryAll } from "@/domain/Category/_domain/CategoryAll/types/types"
 import { UICardProduct } from "@/domain/Category/components/UICardProduct/UICardProduct"
 import { IProduct, IProductAction } from "@/domain/Category/types/types"
-import { UIGrid } from "@/domain/_components/UIGrid/UIGrid"
+import { UIGrid } from "@/shared/ui/UIGrid/UIGrid"
 import { Typography } from "antd"
 import Link from "next/link"
 import styles from "./styles.module.scss"
