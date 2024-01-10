@@ -10,7 +10,7 @@ describe("Component: ContainerFooter", () => {
 
     // Act
     const content = screen.getByText(
-      "Clothing Shop - Real World Clone for React and Next.js 2023",
+      "Clothing Shop - Real World Clone for React and Next.js 2024",
     )
 
     // Assert
@@ -25,7 +25,7 @@ describe("Component: ContainerFooterSign", () => {
 
     // Act
     const content = screen.getByText(
-      "Clothing Shop - Real World Clone for React and Next.js 2023",
+      "Clothing Shop - Real World Clone for React and Next.js 2024",
     )
 
     // Assert

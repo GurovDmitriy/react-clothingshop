@@ -5,7 +5,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "React - Clothing Shop",
-  description: "Clothing Shop - Real World Clone for React and Next.js 2023",
+  description: "Clothing Shop - Real World Clone for React and Next.js 2024",
 }
 
 export default function LayoutRoot(props: IPropsChildrenNode) {

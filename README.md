@@ -9,8 +9,8 @@
 - Ant Design
 - Firebase
 - Eslint
-- Prettier,
-- Stylelint,
+- Prettier
+- Stylelint
 - Husky
 - Commitlint
 
