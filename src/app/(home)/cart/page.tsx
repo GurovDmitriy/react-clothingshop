@@ -1,6 +1,6 @@
 "use client"
 
-import { ContainerCart } from "@/domain/Cart/ContainerCart"
+import { ContainerCart } from "@/feature/Cart"
 import { Col, Row, Typography } from "antd"
 
 const { Title } = Typography

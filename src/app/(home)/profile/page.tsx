@@ -1,6 +1,6 @@
 "use client"
 
-import { useContextAuthMethods } from "@/domain/Sign/providers/ProviderAuth"
+import { useContextAuthMethods } from "@/entities/Sign/providers/ProviderAuth"
 import { Button, Typography } from "antd"
 
 const { Title } = Typography

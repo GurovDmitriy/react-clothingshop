@@ -1,9 +1,9 @@
 "use client"
 
-import { ProviderCart } from "@/domain/Cart/providers/ProviderCart"
-import { ContainerFooter } from "@/domain/Footer/_domain/Footer/ContainerFooter"
-import { ContainerHeader } from "@/domain/Header/_domain/Header/ContainerHeader"
-import { ContainerMenu } from "@/domain/Menu/ContainerMenu"
+import { ProviderCart } from "@/entities/Cart"
+import { UIHeader } from "@/entities/Header"
+import { ContainerFooter } from "@/feature/Footer"
+import { ContainerMenu } from "@/feature/Menu"
 import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
 import { Layout } from "antd"
 import { useState } from "react"
@@ -21,7 +21,7 @@ export default function LayoutHome(props: IPropsChildrenNode) {
   return (
     <ProviderCart>
       <Layout className={styles["ant-layout"]}>
-        <ContainerHeader onClick={handleToggleMenu} open={!collapsed} />
+        <UIHeader onClick={handleToggleMenu} open={!collapsed} />
         <Layout>
           <Sider trigger={null} collapsible collapsed={collapsed}>
             <ContainerMenu />

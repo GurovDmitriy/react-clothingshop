@@ -1,6 +1,5 @@
-import { SkeletonCardCategory } from "@/domain/Category/_domain/CategoryAll/components/SkeletonCardCategory/SkeletonCardCategory"
-import { ContainerCategoryDetail } from "@/domain/Category/_domain/CategoryDetail/ContainerCategoryDetail"
-import { actionCategoryPreview } from "@/domain/Category/_domain/CategoryPreview/actions/actionCategoryPreview"
+import { modelCategory, SkeletonCategoryListAll } from "@/entities/Category"
+import { ContainerCategoryListDetail } from "@/feature/Category"
 import { Suspense } from "react"
 
 interface IProps {
@@ -10,7 +9,7 @@ interface IProps {
 }
 
 export async function generateStaticParams() {
-  const categories = await actionCategoryPreview()
+  const categories = await modelCategory.fetchListPreview()
 
   return categories.map((category) => ({
     slug: category.value,
@@ -19,8 +18,8 @@ export async function generateStaticParams() {
 
 export default function PageCategory(props: IProps) {
   return (
-    <Suspense fallback={<SkeletonCardCategory />}>
-      <ContainerCategoryDetail slugCategory={props.params.slug} />
+    <Suspense fallback={<SkeletonCategoryListAll />}>
+      <ContainerCategoryListDetail slugCategory={props.params.slug} />
     </Suspense>
   )
 }

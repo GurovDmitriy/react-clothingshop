@@ -1,4 +1,4 @@
-import { ContainerSignUp } from "@/domain/Sign/_domain/SignUp/ContainerSignUp"
+import { ContainerSignUp } from "@/feature/Sign"
 
 export default function PageSignUp() {
   return <ContainerSignUp />
