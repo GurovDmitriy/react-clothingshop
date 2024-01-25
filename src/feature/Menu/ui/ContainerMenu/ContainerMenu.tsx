@@ -1,5 +1,7 @@
 import { useContextCartState } from "@/entities/Cart"
 import { MENU } from "@/feature/Menu"
+import { getCountProducts } from "@/feature/Menu/ui/ContainerMenu/utils/getCountProducts"
+import { getSelectedKeys } from "@/feature/Menu/ui/ContainerMenu/utils/getSelectedKeys"
 import {
   ShopOutlined,
   ShoppingCartOutlined,
@@ -13,10 +15,7 @@ import { usePathname } from "next/navigation"
 export function ContainerMenu() {
   const cartState = useContextCartState()
 
-  const countProducts = Object.values(cartState.cart).reduce(
-    (prev, next) => prev + next.count,
-    0,
-  )
+  const countProducts = getCountProducts(Object.values(cartState.cart))
 
   const list = [
     {
@@ -54,14 +53,11 @@ export function ContainerMenu() {
   ]
 
   const pathName = usePathname()
-  const selectedKeys = getSelectedKeys()
-
-  function getSelectedKeys() {
-    const startPath = pathName ? pathName.split("/")[1] : ""
-    const element =
-      list.find((item) => item.key === startPath)?.key ?? MENU.shop.name
-    return [element]
-  }
+  const selectedKeys = getSelectedKeys<typeof list>(
+    pathName,
+    list,
+    MENU.shop.name,
+  )
 
   return <Menu mode="inline" items={list} selectedKeys={selectedKeys} />
 }
