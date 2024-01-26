@@ -1,11 +1,14 @@
 import { UIHeaderSign } from "@/entities/Header"
-import { describe, expect, it } from "@jest/globals"
+import { beforeEach, describe, expect, it } from "@jest/globals"
 import { render, screen } from "@testing-library/react"
 
 describe("Components: UIHeaderSign", () => {
+  beforeEach(() => {
+    render(<UIHeaderSign />)
+  })
+
   it("should be render logo text", async () => {
     // arrange
-    render(<UIHeaderSign />)
     const findContent = "Clothing Shop"
 
     // act
@@ -17,7 +20,6 @@ describe("Components: UIHeaderSign", () => {
 
   it("should be render logo text in header sign", async () => {
     // arrange
-    render(<UIHeaderSign />)
     const findContent = "Clothing Shop"
 
     // act
