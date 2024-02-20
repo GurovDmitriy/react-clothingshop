@@ -3,8 +3,11 @@ import {
   ICategoryAll as ICategoryAllBackend,
   IProduct as IProductBackend,
 } from "@/entities/Category/model/data"
+import { TProductId, TProductPrice } from "@/entities/Product"
 
-function adapterCategoryList(data: ICategoryAllBackend[]): ICategoryAll[] {
+function adapterCategoryList(
+  data: ICategoryAllBackend[],
+): ICategoryAll<TProductId, TProductPrice>[] {
   return data.map((item) => {
     return {
       id: item.id,
@@ -17,7 +20,7 @@ function adapterCategoryList(data: ICategoryAllBackend[]): ICategoryAll[] {
 
 function adapterCategoryListItem(
   item: IProductBackend[] | undefined,
-): IProduct[] {
+): IProduct<TProductId, TProductPrice>[] {
   if (!item) return []
 
   return item.map((item) => {

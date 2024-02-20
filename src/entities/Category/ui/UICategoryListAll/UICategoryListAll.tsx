@@ -8,12 +8,12 @@ import styles from "./styles.module.scss"
 
 const { Title } = Typography
 
-interface IProps {
-  entity: ICategoryAll[]
-  children(item: IProduct): React.ReactNode
+interface IProps<I, P> {
+  entity: ICategoryAll<I, P>[]
+  children(item: IProduct<I, P>): React.ReactNode
 }
 
-export function UICategoryListAll(props: IProps) {
+export function UICategoryListAll<I, P>(props: IProps<I, P>) {
   const list = renderList()
 
   function renderList() {

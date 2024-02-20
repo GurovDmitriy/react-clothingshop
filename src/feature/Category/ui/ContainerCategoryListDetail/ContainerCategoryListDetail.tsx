@@ -1,10 +1,13 @@
 "use client"
 
 import { useContextCartMethods } from "@/entities/Cart"
-import { IProduct, modelCategory } from "@/entities/Category"
+import { IProduct, useModelCategory } from "@/entities/Category"
 import { UICategoryList } from "@/entities/Category/ui"
-import { UICardProduct } from "@/entities/Product"
-import { adapterCategoryListItem } from "@/feature/Category/adapters"
+import { TProductId, TProductPrice, UICardProduct } from "@/entities/Product"
+import {
+  adapterAddToCart,
+  adapterCategoryListItem,
+} from "@/feature/Category/adapters"
 import useSWR from "swr"
 
 interface IProps {
@@ -12,6 +15,8 @@ interface IProps {
 }
 
 export function ContainerCategoryListDetail(props: IProps) {
+  const modelCategory = useModelCategory()
+
   const { data } = useSWR(props.slugCategory, modelCategory.fetchListBySlug, {
     suspense: true,
   })
@@ -21,7 +26,9 @@ export function ContainerCategoryListDetail(props: IProps) {
   const dataAdaptive = adapterCategoryListItem(data?.items)
   const productList = renderProductList(dataAdaptive)
 
-  function renderProductList(data: IProduct[] | undefined) {
+  function renderProductList(
+    data: IProduct<TProductId, TProductPrice>[] | undefined,
+  ) {
     if (!data) return []
 
     return dataAdaptive.map((product) => {
@@ -32,7 +39,7 @@ export function ContainerCategoryListDetail(props: IProps) {
           caption={product.caption}
           image={product.image}
           price={product.price}
-          add={() => cartMethods.add(product)}
+          add={() => cartMethods.add(adapterAddToCart(product))}
         />
       )
     })

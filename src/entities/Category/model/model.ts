@@ -7,7 +7,7 @@ import {
 
 const listPreview = dataCategoryPreview
 
-function fetchListPreview(): Promise<ICategoryPreview[]> {
+export function fetchListPreview(): Promise<ICategoryPreview[]> {
   return new Promise((resolve) =>
     setTimeout(() => {
       resolve(dataCategoryPreview)
@@ -15,7 +15,7 @@ function fetchListPreview(): Promise<ICategoryPreview[]> {
   )
 }
 
-export function fetchListAll(): Promise<ICategoryAll[]> {
+function fetchListAll(): Promise<ICategoryAll[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       const resultData = dataCategoryAll.map((item) => {
@@ -29,9 +29,7 @@ export function fetchListAll(): Promise<ICategoryAll[]> {
   })
 }
 
-export function fetchListBySlug(
-  slug: string,
-): Promise<ICategoryAll | undefined> {
+function fetchListBySlug(slug: string): Promise<ICategoryAll | undefined> {
   return new Promise((resolve) => {
     setTimeout(() => {
       const resultData = dataCategoryAll.find((item) => item.value === slug)
@@ -40,9 +38,11 @@ export function fetchListBySlug(
   })
 }
 
-export const modelCategory = {
-  listPreview,
-  fetchListPreview,
-  fetchListAll,
-  fetchListBySlug,
+export function useModelCategory() {
+  return {
+    listPreview,
+    fetchListPreview,
+    fetchListAll,
+    fetchListBySlug,
+  }
 }

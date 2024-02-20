@@ -1,4 +1,4 @@
-import { ICartMethods, ICartProduct } from "@/entities/Cart"
+import { ICartProduct, IModelCart } from "@/entities/Cart"
 import {
   DeleteOutlined,
   MinusCircleOutlined,
@@ -7,12 +7,12 @@ import {
 import { Button, List } from "antd"
 import Image from "next/image"
 
-type TProps = Pick<ICartMethods, "increase" | "decrease" | "remove"> & {
-  entity: ICartProduct[]
+type TProps<T> = Pick<IModelCart, "increase" | "decrease" | "remove"> & {
+  entity: T[]
 }
 
-export function UICartList(props: TProps) {
-  function renderItem(item: ICartProduct) {
+export function UICartList<T extends ICartProduct>(props: TProps<T>) {
+  function renderItem(item: T) {
     return (
       <List.Item
         key={item.id}

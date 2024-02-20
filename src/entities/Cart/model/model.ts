@@ -1,18 +1,13 @@
 "use client"
 
-import { ICart, ICartProduct } from "@/entities/Cart"
-import { adapterAddToCart } from "@/entities/Cart/adapters"
-import { IProduct } from "@/entities/Product"
+import { ICart, ICartProduct, IModelCart } from "@/entities/Cart"
 import { useStateFetch } from "@/shared/hooks/useStateFetch"
 import { auth, db } from "@/shared/modules/firebaseSDK/config"
 import Firebase from "firebase/compat/app"
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 
-export async function addToCartFB(
-  uid: string,
-  payload: ICartProduct,
-): Promise<void> {
+async function addToCartFB(uid: string, payload: ICartProduct): Promise<void> {
   const cartsRef = doc(db, "carts", uid)
 
   await setDoc(
@@ -30,7 +25,7 @@ export async function addToCartFB(
   )
 }
 
-export async function deleteFromCartFB(
+async function deleteFromCartFB(
   uid: string,
   payload: ICartProduct,
 ): Promise<void> {
@@ -41,7 +36,7 @@ export async function deleteFromCartFB(
   })
 }
 
-export async function fetchCartFB(
+async function fetchCartFB(
   uid: string,
 ): Promise<Firebase.firestore.DocumentData | null> {
   const cartsRef = doc(db, `carts/${uid}`)
@@ -54,10 +49,7 @@ export async function fetchCartFB(
   }
 }
 
-export async function updateCartFB(
-  uid: string,
-  payload: ICartProduct,
-): Promise<void> {
+async function updateCartFB(uid: string, payload: ICartProduct): Promise<void> {
   const cartsRef = doc(db, "carts", uid)
 
   await updateDoc(cartsRef, {
@@ -71,7 +63,7 @@ export async function updateCartFB(
   })
 }
 
-function useCart() {
+export function useModelCart(): IModelCart {
   const { fetch, pending } = useStateFetch(fetchCart)
   const [cart, setCart] = useState<ICart>({})
 
@@ -100,10 +92,10 @@ function useCart() {
     }
   }
 
-  async function add(payload: IProduct): Promise<void | undefined> {
+  async function add(payload: ICartProduct): Promise<void | undefined> {
     if (!isAvailableActions) return undefined
 
-    await addToCartFB(uid!, adapterAddToCart(payload))
+    await addToCartFB(uid!, payload)
     await fetch()
   }
 
@@ -142,8 +134,4 @@ function useCart() {
     decrease,
     remove,
   }
-}
-
-export const modelCart = {
-  useCart,
 }

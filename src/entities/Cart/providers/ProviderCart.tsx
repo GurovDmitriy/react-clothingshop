@@ -1,27 +1,26 @@
 "use client"
 
-import { ICartMethods, ICartState, modelCart } from "@/entities/Cart"
-import { IProduct } from "@/entities/Product"
+import { IModelCart, useModelCart } from "@/entities/Cart"
+import { ICartProduct } from "@/feature/Cart"
 import { IPropsChildrenNode } from "@/shared/lib/types/definitions"
 import { message } from "antd"
 import { createContext, useContext, useMemo } from "react"
 
-interface IState extends ICartState {
-  pending: boolean
-}
-interface IMethods extends ICartMethods {}
+interface IState extends Pick<IModelCart, "cart" | "total" | "pending"> {}
+interface IMethods
+  extends Pick<IModelCart, "add" | "remove" | "increase" | "decrease"> {}
 
 const ContextState = createContext<IState>(null!)
 const ContextMethods = createContext<IMethods>(null!)
 
 export function ProviderCart(props: IPropsChildrenNode) {
-  const cart = modelCart.useCart()
+  const cart = useModelCart()
 
   const [messageApi, contextHolder] = message.useMessage()
 
-  async function add(payload: IProduct): Promise<void | undefined> {
+  async function add(payload: ICartProduct): Promise<void | undefined> {
     await addWithMessage(async () => {
-      await cart.add(payload)
+      cart.add(payload)
     })
   }
 

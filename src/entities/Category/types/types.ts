@@ -1,23 +1,13 @@
-import { TProductId, TProductPrice } from "@/entities/Product"
-
-// export interface ICategoryPreview {
-//   id: number
-//   image: string
-//   caption: string
-//   link: string
-//   description?: string
-// }
-
-export interface IProduct {
-  id: TProductId
+export interface IProduct<I, P> {
+  id: I
   image: string
   caption: string
-  price: TProductPrice
+  price: P
 }
 
-export interface ICategoryAll {
+export interface ICategoryAll<I, P> {
   id: string | number
   title: string
   link: string
-  items: IProduct[]
+  items: IProduct<I, P>[]
 }

@@ -1,13 +1,18 @@
 "use client"
 
 import { useContextCartMethods } from "@/entities/Cart"
-import { modelCategory } from "@/entities/Category"
+import { useModelCategory } from "@/entities/Category"
 import { UICategoryListAll } from "@/entities/Category/ui"
 import { IProduct, UICardProduct } from "@/entities/Product"
-import { adapterCategoryList } from "@/feature/Category/adapters"
+import {
+  adapterAddToCart,
+  adapterCategoryList,
+} from "@/feature/Category/adapters"
 import useSWR from "swr"
 
 export function ContainerCategoryListAll() {
+  const modelCategory = useModelCategory()
+
   const { data } = useSWR("allProducts", modelCategory.fetchListAll, {
     suspense: true,
   })
@@ -23,7 +28,7 @@ export function ContainerCategoryListAll() {
         caption={product.caption}
         image={product.image}
         price={product.price}
-        add={() => cartMethods.add(product)}
+        add={() => cartMethods.add(adapterAddToCart(product))}
       />
     )
   }

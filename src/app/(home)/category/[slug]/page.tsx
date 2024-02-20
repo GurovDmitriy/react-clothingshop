@@ -1,4 +1,4 @@
-import { modelCategory, SkeletonCategoryListAll } from "@/entities/Category"
+import { fetchListPreview, SkeletonCategoryListAll } from "@/entities/Category"
 import { ContainerCategoryListDetail } from "@/feature/Category"
 import { Suspense } from "react"
 
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export async function generateStaticParams() {
-  const categories = await modelCategory.fetchListPreview()
+  const categories = await fetchListPreview()
 
   return categories.map((category) => ({
     slug: category.value,

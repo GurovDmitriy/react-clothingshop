@@ -1,8 +1,8 @@
-import { ICartState } from "@/entities/Cart"
+import { IModelCart } from "@/entities/Cart"
 import { Alert } from "antd"
 
-type TProps = Pick<ICartState, "total">
+interface IProps extends Pick<IModelCart, "total"> {}
 
-export function UICartSummary(props: TProps) {
+export function UICartSummary(props: IProps) {
   return <Alert type="info" message={`Total: ${props.total}$`} />
 }
