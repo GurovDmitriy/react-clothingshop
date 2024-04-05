@@ -1,6 +1,6 @@
 "use client"
 
-import { ContainerErrorGlobal } from "@/feature/Error/ui"
+import { ContainerErrorGlobal } from "@/feature/ErrorGlobal"
 import { IPropsErrorGlobal } from "@/shared/lib/types/definitions"
 
 export default function PageErrorGlobal(props: IPropsErrorGlobal) {

@@ -1,5 +1,5 @@
 import { fetchListPreview, SkeletonCategoryListAll } from "@/entities/Category"
-import { ContainerCategoryListDetail } from "@/feature/Category"
+import { ContainerCategoryListDetail } from "@/feature/CategoryDetail"
 import { Suspense } from "react"
 
 interface IProps {

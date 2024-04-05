@@ -8,6 +8,18 @@
   height: 100%;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  padding: $space-md;
+
+  border-bottom: $border-layout;
+}
+
+.btn {
+  margin-right: $space-sm;
+}
+
 .content {
   padding: $space-md;
 }

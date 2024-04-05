@@ -4,6 +4,14 @@
   min-height: 100vh;
 }
 
+.header {
+  height: auto;
+  padding: $space-md 0;
+
+  line-height: inherit;
+  text-align: center;
+}
+
 .content {
   display: flex;
   flex-direction: column;

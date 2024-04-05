@@ -1,5 +1,5 @@
 import { SkeletonCategoryListPreview } from "@/entities/Category"
-import { ContainerCategoryListPreview } from "@/feature/Category"
+import { ContainerCategoryListPreview } from "@/feature/CategoryPreivew"
 import { Suspense } from "react"
 import styles from "./styles.module.scss"
 

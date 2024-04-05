@@ -1,5 +1,5 @@
 import { SkeletonCategoryListAll } from "@/entities/Category"
-import { ContainerCategoryListAll } from "@/feature/Category"
+import { ContainerCategoryListAll } from "@/feature/CategoryAll"
 import { UIGridMain } from "@/shared/ui/UIGridMaiin/UIGridMain"
 import { Suspense } from "react"
 

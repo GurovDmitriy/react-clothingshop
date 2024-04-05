@@ -23,10 +23,16 @@ export function UIFormSignUp(props: IProps) {
       onFinish={props.onSubmit}
     >
       <Form.Item<TField> name="email" hasFeedback rules={email}>
-        <Input prefix={<UserOutlined />} type="email" placeholder="Email" />
+        <Input
+          prefix={<UserOutlined />}
+          type="email"
+          placeholder="Email"
+          name="email"
+        />
       </Form.Item>
       <Form.Item<TField> name="password" hasFeedback rules={password}>
         <Input
+          name="password"
           prefix={<LockOutlined />}
           type="password"
           placeholder="Password"

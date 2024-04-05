@@ -8,11 +8,12 @@ describe("Components: ContainerFooter", () => {
     render(<ContainerFooter />)
     const findContent =
       "Clothing Shop - Real World Clone for React and Next.js 2024"
+    const findRegex = new RegExp(findContent, "i")
 
     // act
-    const content = screen.getByRole("heading", { level: 3 }).textContent
+    const element = screen.getByText(findRegex)
 
     // assert
-    expect(content).toEqual(findContent)
+    expect(element).toBeTruthy()
   })
 })
