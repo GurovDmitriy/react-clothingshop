@@ -1,10 +1,10 @@
-import { UIFormSignUp } from "@/entities/Sign"
+import { UIFormSignIn } from "@/entities/Sign"
 import { afterEach, beforeEach, describe, expect, it } from "@jest/globals"
 import { render, screen } from "@testing-library/react"
 import { userEvent } from "@testing-library/user-event"
 import { fn } from "jest-mock"
 
-describe("Components: UIFormSignUp", () => {
+describe("Components: UIFormSignIn", () => {
   let user: ReturnType<typeof userEvent.setup>
   let email: string
   let password: string
@@ -17,7 +17,7 @@ describe("Components: UIFormSignUp", () => {
     password = "123456"
 
     render(
-      <UIFormSignUp
+      <UIFormSignIn
         pending={false}
         onSubmit={onSubmit}
         onSignGoogle={() => {}}
@@ -58,12 +58,12 @@ describe("Components: UIFormSignUp", () => {
     expect(elementPassword.value).toBe(password)
   })
 
-  it("should be render signUp button", async () => {
+  it("should be render signIn button", async () => {
     // arrange
 
     // act
     const element = screen.getByRole("button", {
-      name: /sign up/i,
+      name: /sign in/i,
     })
 
     // assert
@@ -75,7 +75,7 @@ describe("Components: UIFormSignUp", () => {
     const elementEmail = screen.getByPlaceholderText("Email")
     const elementPassword = screen.getByPlaceholderText("Password")
     const element = screen.getByRole("button", {
-      name: /sign up/i,
+      name: /sign in/i,
     })
     await user.type(elementEmail, email)
     await user.type(elementPassword, password)
